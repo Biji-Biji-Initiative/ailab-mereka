@@ -1,0 +1,156 @@
+<!doctype html><html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Communications — AI Labs</title>
+<meta name="description" content="Internal and external communications, press relations, and public messaging">
+<link rel="canonical" href="https://ailab.mereka.dev/communications/">
+<meta property="og:title" content="Communications — AI Labs"><meta property="og:description" content="Internal and external communications, press relations, and public messaging"><meta property="og:url" content="https://ailab.mereka.dev/communications/">
+<link rel="icon" href="https://ailab.mereka.io/wp-content/uploads/sites/9/2025/11/favicon_256x256.png">
+<style>
+@font-face{font-family:'Poppins Font';font-weight:400;font-display:swap;src:url('/assets/fonts/Poppins-Regular.woff2') format('woff2')}
+@font-face{font-family:'Poppins Font';font-weight:500;font-display:swap;src:url('/assets/fonts/Poppins-Medium.woff2') format('woff2')}
+@font-face{font-family:'Poppins Font';font-weight:600;font-display:swap;src:url('/assets/fonts/Poppins-SemiBold.woff2') format('woff2')}
+@font-face{font-family:'Poppins Font';font-weight:700;font-display:swap;src:url('/assets/fonts/Poppins-Bold.woff2') format('woff2')}
+
+:root{
+  --ink:#1a1623; --muted:#5a5f6b; --white:#fff; --grey:#f6f6f8; --line:#e9eaee;
+  --pink:#ee53b1; --blue:#5177f9; --accent:linear-gradient(135deg,#ee53b1,#5177f9);
+  --maxw:1200px; --ease:cubic-bezier(.2,.7,.2,1);
+  --shadow:0 20px 60px rgba(26,22,35,.10); --shadow-sm:0 8px 24px rgba(26,22,35,.06);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:'Poppins Font',system-ui,Arial,sans-serif;color:var(--ink);background:var(--white);line-height:1.6;-webkit-font-smoothing:antialiased}
+h1,h2,h3,h4,h5{font-family:'Poppins Font',system-ui,sans-serif;font-weight:700;line-height:1.12;margin:0}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+.shell{max-width:var(--maxw);margin:0 auto;padding:0 28px}
+.btn{display:inline-flex;align-items:center;gap:8px;font-weight:600;font-size:.98rem;padding:14px 28px;border-radius:100px;cursor:pointer;border:1.5px solid transparent;transition:transform .2s var(--ease),box-shadow .2s,opacity .2s}
+.btn:hover{transform:translateY(-2px)}
+.btn-dark{background:var(--ink);color:#fff}
+.btn-accent{background:var(--accent);color:#fff;box-shadow:0 10px 28px rgba(129,100,220,.32)}
+.btn-ghost{background:#fff;color:var(--ink);border-color:var(--line)}
+.pill-accent{background:var(--accent);color:#fff;font-weight:600;font-size:.86rem;padding:8px 18px;border-radius:100px}
+/* NAV */
+header.nav{position:sticky;top:0;z-index:60;background:rgba(255,255,255,.9);backdrop-filter:saturate(160%) blur(12px);border-bottom:1px solid var(--line)}
+.nav-in{display:flex;align-items:center;gap:22px;height:78px}
+.nav-logo img{height:30px}
+.nav-links{display:flex;align-items:center;gap:24px;margin-left:auto;font-weight:500;font-size:.95rem}
+.nav-links a{color:#26222e}
+.nav-links a:hover{color:var(--pink)}
+.burger{display:none;margin-left:auto;background:none;border:0;cursor:pointer;padding:8px}
+.burger span{display:block;width:24px;height:2px;background:var(--ink);margin:5px 0;border-radius:2px}
+/* FOOTER */
+footer{background:var(--ink);color:#cfd2da;padding:70px 0 34px;margin-top:40px}
+footer h5{color:#fff;font-size:.82rem;letter-spacing:.12em;text-transform:uppercase;margin-bottom:16px}
+footer ul{list-style:none;padding:0;margin:0}
+footer li{margin:9px 0}
+footer a{color:#cfd2da;font-size:.94rem}
+footer a:hover{color:#fff}
+.foot-top{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:34px;padding-bottom:34px;border-bottom:1px solid rgba(255,255,255,.12)}
+.foot-logo img{height:28px;filter:brightness(0) invert(1);margin-bottom:14px}
+.foot-social{display:flex;gap:12px;margin-top:14px}
+.foot-social a{width:34px;height:34px;border:1px solid rgba(255,255,255,.24);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.74rem}
+.foot-bottom{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;padding-top:22px;font-size:.86rem;color:#9a9dab}
+.foot-bottom a{color:#9a9dab;margin-left:18px}
+@media(max-width:860px){.nav-links{display:none}.burger{display:block}.foot-top{grid-template-columns:1fr 1fr}}
+
+.rhero{padding:26px 0 10px}
+.rhero .blob{position:relative;border-radius:26px;padding:56px 40px 60px;text-align:center;overflow:hidden;
+  background:linear-gradient(118deg,#f7bfe6 0%,#c8ccff 42%,#a7ecef 100%)}
+.rhero .back{position:absolute;top:22px;left:26px;font-weight:600;font-size:.92rem;color:#3a2f52;display:inline-flex;gap:6px;align-items:center}
+.rhero h1{font-size:clamp(2.2rem,5vw,3.6rem);color:#1a1623;margin:6px auto 14px;max-width:16ch}
+.rhero p{color:#43405a;font-size:1.06rem;max-width:60ch;margin:0 auto}
+.onthis{position:sticky;top:78px;z-index:40;background:#fff;border-bottom:1px solid var(--line);padding:12px 0}
+.onthis details{max-width:var(--maxw);margin:0 auto;padding:0 28px}
+.onthis summary{font-weight:600;cursor:pointer;list-style:none;display:inline-flex;gap:8px;align-items:center;border:1px solid var(--line);border-radius:100px;padding:9px 18px}
+.onthis summary::-webkit-details-marker{display:none}
+.onthis ul{list-style:none;display:flex;flex-wrap:wrap;gap:8px 22px;padding:14px 2px 4px;margin:0}
+.onthis a{color:var(--muted);font-size:.92rem}.onthis a:hover{color:var(--pink)}
+.uc{padding:38px 0 0}
+.uc .lbl{color:var(--pink);font-weight:600;font-size:.82rem;letter-spacing:.12em;text-transform:uppercase}
+.uc h2{font-size:clamp(1.5rem,3vw,2.1rem);margin:8px 0 6px}
+.uc .ucsub{color:var(--muted);font-size:1.02rem;margin:0 0 22px;max-width:70ch}
+.prompt{margin:22px 0}
+.prompt .pname{font-weight:600;font-size:1.02rem;margin-bottom:10px}
+.pbox{position:relative;background:#161122;color:#d8d5e4;border-radius:16px;padding:22px 54px 22px 22px;
+  font-family:'SFMono-Regular',ui-monospace,Menlo,Consolas,monospace;font-size:.86rem;line-height:1.72;white-space:pre-wrap;word-break:break-word}
+.pbox .copy{position:absolute;top:14px;right:14px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);color:#cfc9e0;border-radius:9px;width:34px;height:34px;cursor:pointer;display:flex;align-items:center;justify-content:center}
+.pbox .copy:hover{background:rgba(255,255,255,.16)}
+.pbox .copy.done{background:var(--pink);color:#fff;border-color:var(--pink)}
+.rfoot-cta{margin:54px 0 10px}
+</style></head><body id="top"><header class="nav"><div class="shell nav-in">
+  <a class="nav-logo" href="/"><img src="/assets/mereka-logo.svg" alt="Mereka"></a>
+  <a class="pill-accent" href="https://mereka.io" target="_blank" rel="noopener" style="margin-left:6px">Marketplace</a>
+  <nav class="nav-links">
+    <a href="/prompts/">AI Prompts</a>
+    <a href="/#departments">Departments</a>
+    <a href="/#programmes">Programmes</a>
+    <a href="/#portfolio">Impact</a>
+    <a class="btn btn-dark" href="/#contact" style="padding:11px 22px">Contact Us</a>
+  </nav>
+  <button class="burger" aria-label="Menu" onclick="var n=document.querySelector('.nav-links');n.style.display=n.style.display==='flex'?'none':'flex';n.style.position='absolute';n.style.top='78px';n.style.right='28px';n.style.flexDirection='column';n.style.background='#fff';n.style.padding='16px';n.style.boxShadow='var(--shadow)';n.style.borderRadius='14px'"><span></span><span></span><span></span></button>
+</div></header>
+<section class="rhero"><div class="shell"><div class="blob">
+  <a class="back" href="/prompts/">&larr; Back to Prompts</a>
+  <h1>Communications</h1>
+  <p>Internal and external communications, press relations, and public messaging</p>
+</div></div></section>
+<div class="onthis"><details><summary>On this page &#9662;</summary><ul><li><a href="#town-halls">Town halls</a></li><li><a href="#prepare-for-analyst-or-press-briefings">Prepare for analyst or press briefings</a></li><li><a href="#create-mock-interview-questions-to-prepare-spokespeople">Create mock interview questions to prepare spokespeople</a></li><li><a href="#create-a-press-release">Create a press release</a></li><li><a href="#craft-internal-communications">Craft internal communications</a></li></ul></details></div>
+<section class="uc" id="town-halls"><div class="shell">
+  <div class="lbl">Use Case 1</div>
+  <h2>Town halls</h2>
+  <div class="prompt"><div class="pname">Summarize a document for opening remarks</div><div class="pbox"><button class="copy" aria-label="Copy" onclick="cp(this)"data-t="You are an executive communications specialist and speechwriter. Analyze the provided document and create opening remarks for senior leadership that highlight progress, acknowledge challenges, and motivate action. Extract impactful information into presentation-ready talking points organized under: ‘Welcome &amp; Context Setting,’ ‘Key Highlights &amp; Achievements,’ ‘Critical Data Points,’ ‘Challenges &amp; Opportunities,’ and ‘Transition to Agenda,’ with 2-3 conversational bullet points per section. Include a separate section with presentation tips covering emphasis points, anticipated questions, and visual aid recommendations. Prioritize information demonstrating value and progress, balance achievements with realistic challenges, use specific numbers over generalities, and connect to meeting objectives. Use natural, spoken language that creates engagement and establishes credibility."><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg></button>You are an executive communications specialist and speechwriter. Analyze the provided document and create opening remarks for senior leadership that highlight progress, acknowledge challenges, and motivate action. Extract impactful information into presentation-ready talking points organized under: ‘Welcome &amp; Context Setting,’ ‘Key Highlights &amp; Achievements,’ ‘Critical Data Points,’ ‘Challenges &amp; Opportunities,’ and ‘Transition to Agenda,’ with 2-3 conversational bullet points per section. Include a separate section with presentation tips covering emphasis points, anticipated questions, and visual aid recommendations. Prioritize information demonstrating value and progress, balance achievements with realistic challenges, use specific numbers over generalities, and connect to meeting objectives. Use natural, spoken language that creates engagement and establishes credibility.</div></div>
+</div></section><section class="uc" id="prepare-for-analyst-or-press-briefings"><div class="shell">
+  <div class="lbl">Use Case 2</div>
+  <h2>Prepare for analyst or press briefings</h2>
+  <div class="prompt"><div class="pname">Generate a brief template for a media and analyst briefing</div><div class="pbox"><button class="copy" aria-label="Copy" onclick="cp(this)"data-t="Please generate a concise and professional template to prepare [spokesperson] for an upcoming media and analyst briefing related to @[Product Launch], including: a clearly labeled section for a one-paragraph synopsis that outlines the launch’s purpose, headline message, and strategic relevance; a space for 3–5 key messages crafted specifically for press and analyst audiences that highlight the product’s value, innovation, and differentiation; a section for supporting data and proof points such as technical specifications, performance metrics, third-party validations, or customer testimonials; an optional Q&amp;A section with anticipated media questions and suggested spokesperson responses; and a final section outlining next steps, important upcoming dates, and designated media contacts; ensure the template is cleanly formatted, easy to populate, and aligned with standard communications best practices to support consistent and confident messaging across briefings."><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg></button>Please generate a concise and professional template to prepare [spokesperson] for an upcoming media and analyst briefing related to @[Product Launch], including: a clearly labeled section for a one-paragraph synopsis that outlines the launch’s purpose, headline message, and strategic relevance; a space for 3–5 key messages crafted specifically for press and analyst audiences that highlight the product’s value, innovation, and differentiation; a section for supporting data and proof points such as technical specifications, performance metrics, third-party validations, or customer testimonials; an optional Q&amp;A section with anticipated media questions and suggested spokesperson responses; and a final section outlining next steps, important upcoming dates, and designated media contacts; ensure the template is cleanly formatted, easy to populate, and aligned with standard communications best practices to support consistent and confident messaging across briefings.</div></div><div class="prompt"><div class="pname">Organize media and analyst contacts</div><div class="pbox"><button class="copy" aria-label="Copy" onclick="cp(this)"data-t="Please organize my media and analyst contacts from @[Analyst and Journalist Contact Notes] into a structured format suitable for planning an upcoming product briefing, including: a table with clearly labeled columns for full name, type of contact (analyst or journalist), primary focus area or beat, name of the outlet, agency, or firm they represent, and a designated field to assign priority level for briefing attendance (low, medium, or high); ensure the output allows for easy filtering and sorting, is formatted for either spreadsheet or document use, and supports briefing preparation by highlighting key targets and enabling strategic outreach planning."><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg></button>Please organize my media and analyst contacts from @[Analyst and Journalist Contact Notes] into a structured format suitable for planning an upcoming product briefing, including: a table with clearly labeled columns for full name, type of contact (analyst or journalist), primary focus area or beat, name of the outlet, agency, or firm they represent, and a designated field to assign priority level for briefing attendance (low, medium, or high); ensure the output allows for easy filtering and sorting, is formatted for either spreadsheet or document use, and supports briefing preparation by highlighting key targets and enabling strategic outreach planning.</div></div>
+</div></section><section class="uc" id="create-mock-interview-questions-to-prepare-spokespeople"><div class="shell">
+  <div class="lbl">Use Case 3</div>
+  <h2>Create mock interview questions to prepare spokespeople</h2>
+  <div class="prompt"><div class="pname">Generate mock interview questions for a spokesperson</div><div class="pbox"><button class="copy" aria-label="Copy" onclick="cp(this)"data-t="I am a [PR/AR] manager at [company name], and we’ve just launched [product] with a briefing that covered [key messages]. I am preparing [spokesperson and role/title] for upcoming media interviews. Please generate a well-rounded list of mock interview questions that includes: a mix of easy, moderate, and challenging questions; questions that cover both the foundational aspects of [product] (e.g., purpose, key features, differentiation) and broader, forward-looking topics such as strategic goals, market impact, and competitive positioning; include a few probing questions that challenge assumptions or invite thought leadership-level responses; and ensure the list is organized logically by topic or difficulty level to support structured preparation and roleplay."><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg></button>I am a [PR/AR] manager at [company name], and we’ve just launched [product] with a briefing that covered [key messages]. I am preparing [spokesperson and role/title] for upcoming media interviews. Please generate a well-rounded list of mock interview questions that includes: a mix of easy, moderate, and challenging questions; questions that cover both the foundational aspects of [product] (e.g., purpose, key features, differentiation) and broader, forward-looking topics such as strategic goals, market impact, and competitive positioning; include a few probing questions that challenge assumptions or invite thought leadership-level responses; and ensure the list is organized logically by topic or difficulty level to support structured preparation and roleplay.</div></div><div class="prompt"><div class="pname">Write suggested answers for mock interview questions</div><div class="pbox"><button class="copy" aria-label="Copy" onclick="cp(this)"data-t="Please use @[Product Launch Notes] to write suggested answers for a set of mock interview questions, framing the responses as if they are being delivered by [title of spokesperson] at [company]; ensure each answer is aligned with the product’s messaging and includes key talking points such as value proposition, unique features, market impact, and future roadmap; maintain a tone that is confident, articulate, and media-friendly, and tailor responses to reflect both technical expertise and accessibility for general audiences; structure the output as a list with each question followed by its corresponding answer, and include variations where appropriate to support different interview formats (e.g., broadcast, print, analyst briefings)."><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg></button>Please use @[Product Launch Notes] to write suggested answers for a set of mock interview questions, framing the responses as if they are being delivered by [title of spokesperson] at [company]; ensure each answer is aligned with the product’s messaging and includes key talking points such as value proposition, unique features, market impact, and future roadmap; maintain a tone that is confident, articulate, and media-friendly, and tailor responses to reflect both technical expertise and accessibility for general audiences; structure the output as a list with each question followed by its corresponding answer, and include variations where appropriate to support different interview formats (e.g., broadcast, print, analyst briefings).</div></div>
+</div></section><section class="uc" id="create-a-press-release"><div class="shell">
+  <div class="lbl">Use Case 4</div>
+  <h2>Create a press release</h2>
+  <div class="prompt"><div class="pname">Add more information to a press release</div><div class="pbox"><button class="copy" aria-label="Copy" onclick="cp(this)"data-t="Please enhance the press release by incorporating relevant information from @[Biography and Mission Statement] about the company being acquired, including: a concise and compelling origin story that highlights the inspiration behind its founding; a clear articulation of the company’s mission, core values, and guiding principles; a brief but informative overview of its growth trajectory, industry presence, and notable accomplishments; key ways in which the company has made an impact within its sector or community; and a summary of how its culture, vision, and strategic priorities align with those of the acquiring organization; ensure the new content integrates smoothly into the existing release, maintains a consistent tone and narrative structure, and reinforces the strategic and cultural significance of the acquisition for both internal stakeholders and external audiences."><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg></button>Please enhance the press release by incorporating relevant information from @[Biography and Mission Statement] about the company being acquired, including: a concise and compelling origin story that highlights the inspiration behind its founding; a clear articulation of the company’s mission, core values, and guiding principles; a brief but informative overview of its growth trajectory, industry presence, and notable accomplishments; key ways in which the company has made an impact within its sector or community; and a summary of how its culture, vision, and strategic priorities align with those of the acquiring organization; ensure the new content integrates smoothly into the existing release, maintains a consistent tone and narrative structure, and reinforces the strategic and cultural significance of the acquisition for both internal stakeholders and external audiences.</div></div>
+</div></section><section class="uc" id="craft-internal-communications"><div class="shell">
+  <div class="lbl">Use Case 5</div>
+  <h2>Craft internal communications</h2>
+  <div class="prompt"><div class="pname">Draft a company-wide memo about a relaunched intranet</div><div class="pbox"><button class="copy" aria-label="Copy" onclick="cp(this)"data-t="Please draft an upbeat and engaging company-wide memo announcing the relaunch of our intranet, referencing details from @[Intranet Launch Plan Notes], including: a brief opening that sets a positive and forward-looking tone; a clear introduction to [the new site] and its key improvements, specifically how [new page] addresses [common feedback we heard from employees]; highlights of new features or sections that improve navigation, accessibility, or usability; a reminder of where to access the site and how to get support if needed; and a closing message that reinforces the company’s commitment to employee experience and encourages feedback or exploration of the new platform; ensure the tone is enthusiastic yet professional, with concise language that is easy for all employees to follow."><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg></button>Please draft an upbeat and engaging company-wide memo announcing the relaunch of our intranet, referencing details from @[Intranet Launch Plan Notes], including: a brief opening that sets a positive and forward-looking tone; a clear introduction to [the new site] and its key improvements, specifically how [new page] addresses [common feedback we heard from employees]; highlights of new features or sections that improve navigation, accessibility, or usability; a reminder of where to access the site and how to get support if needed; and a closing message that reinforces the company’s commitment to employee experience and encourages feedback or exploration of the new platform; ensure the tone is enthusiastic yet professional, with concise language that is easy for all employees to follow.</div></div><div class="prompt"><div class="pname">Draft an email template to announce an issue</div><div class="pbox"><button class="copy" aria-label="Copy" onclick="cp(this)"data-t="I am a [customer success manager/operations director/communications lead] drafting an email template to notify [customers/users/stakeholders] about service issues or outages. Create a professional template (150-200 words) that includes: clear issue description and impact assessment, root cause explanation in accessible terms, immediate steps being taken to resolve the problem, realistic timeline for full resolution, workaround solutions if available, and contact information for additional support. Use a transparent, accountable tone that maintains customer confidence while providing regular update intervals."><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg></button>I am a [customer success manager/operations director/communications lead] drafting an email template to notify [customers/users/stakeholders] about service issues or outages. Create a professional template (150-200 words) that includes: clear issue description and impact assessment, root cause explanation in accessible terms, immediate steps being taken to resolve the problem, realistic timeline for full resolution, workaround solutions if available, and contact information for additional support. Use a transparent, accountable tone that maintains customer confidence while providing regular update intervals.</div></div>
+</div></section>
+<div class="shell rfoot-cta"><a class="btn btn-accent" href="/prompts/">Browse all prompts &rarr;</a></div>
+<footer><div class="shell">
+  <div class="foot-top">
+    <div>
+      <div class="foot-logo"><img src="/assets/mereka-logo.svg" alt="Mereka"></div>
+      <p style="max-width:34ch;color:#cfd2da">We upskill &amp; empower companies to boost productivity with AI.</p>
+      <div class="foot-social">
+        <a href="https://www.tiktok.com/@mereka.io" target="_blank" rel="noopener">TT</a>
+        <a href="https://www.instagram.com/mereka.io/" target="_blank" rel="noopener">IG</a>
+        <a href="https://www.facebook.com/mereka.io" target="_blank" rel="noopener">FB</a>
+        <a href="https://www.linkedin.com/company/mereka-io" target="_blank" rel="noopener">IN</a>
+        <a href="https://www.youtube.com/channel/UCGJ5RzyL0oib2ONP2gPvOYA" target="_blank" rel="noopener">YT</a>
+      </div>
+    </div>
+    <div><h5>Company</h5><ul>
+      <li><a href="https://corporate.mereka.io/about-us" target="_blank" rel="noopener">About</a></li>
+      <li><a href="https://corporate.mereka.io/portfolio" target="_blank" rel="noopener">Portfolio</a></li>
+      <li><a href="https://corporate.mereka.io/our-team" target="_blank" rel="noopener">Team</a></li>
+      <li><a href="https://corporate.mereka.io/blog" target="_blank" rel="noopener">Blog</a></li>
+    </ul></div>
+    <div><h5>Academy</h5><ul>
+      <li><a href="https://corporate.mereka.io/academy/future-of-work" target="_blank" rel="noopener">Future of Work</a></li>
+      <li><a href="https://corporate.mereka.io/academy/all-courses" target="_blank" rel="noopener">All Courses</a></li>
+      <li><a href="https://corporate.mereka.io/academy/makerspace" target="_blank" rel="noopener">Makerspace</a></li>
+    </ul></div>
+    <div><h5>Marketplace</h5><ul>
+      <li><a href="https://mereka.io/experiences" target="_blank" rel="noopener">Experiences</a></li>
+      <li><a href="https://mereka.io/hubs" target="_blank" rel="noopener">Hubs</a></li>
+      <li><a href="https://mereka.io/jobs" target="_blank" rel="noopener">Jobs</a></li>
+    </ul></div>
+  </div>
+  <div class="foot-bottom"><span>&copy; 2026 Mereka</span>
+    <span><a href="https://legal.mereka.io/" target="_blank" rel="noopener">Terms of Use</a><a href="https://legal.mereka.io/privacy-policy/" target="_blank" rel="noopener">Privacy Policy</a></span>
+  </div>
+</div></footer>
+<script>function cp(b){navigator.clipboard.writeText(b.dataset.t).then(()=>{b.classList.add('done');var s=b.innerHTML;b.textContent='✓';setTimeout(()=>{b.classList.remove('done');b.innerHTML=s;},1300);});}</script>
+</body></html>

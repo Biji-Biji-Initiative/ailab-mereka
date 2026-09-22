@@ -1,349 +1,169 @@
-<!doctype html>
-<html lang="en">
-<head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>AI Prompt Library — Mereka AI Labs</title>
-<meta name="description" content="Browse 187 ready-to-use AI prompts and 131 use cases across every department. Filter by team and category." />
-<link rel="canonical" href="https://ailab.mereka.dev/prompts/" />
-<meta property="og:type" content="website" />
-<meta property="og:title" content="AI Prompt Library — Mereka AI Labs" />
-<meta property="og:description" content="Browse 187 ready-to-use AI prompts and 131 use cases across every department. Filter by team and category." />
-<meta property="og:url" content="https://ailab.mereka.dev/prompts/" />
-<link rel="icon" href="https://ailab.mereka.io/wp-content/uploads/sites/9/2025/11/favicon_256x256.png" />
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<!doctype html><html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI Prompts — AI Labs</title>
+<meta name="description" content="Whether you&#x27;re exploring automation, customer insights, or decision intelligence, these practical guides show you how AI fits into your business.">
+<link rel="canonical" href="https://ailab.mereka.dev/prompts/">
+<meta property="og:title" content="AI Prompts — AI Labs"><meta property="og:description" content="Whether you&#x27;re exploring automation, customer insights, or decision intelligence, these practical guides show you how AI fits into your business."><meta property="og:url" content="https://ailab.mereka.dev/prompts/">
+<link rel="icon" href="https://ailab.mereka.io/wp-content/uploads/sites/9/2025/11/favicon_256x256.png">
 <style>
+@font-face{font-family:'Poppins Font';font-weight:400;font-display:swap;src:url('/assets/fonts/Poppins-Regular.woff2') format('woff2')}
+@font-face{font-family:'Poppins Font';font-weight:500;font-display:swap;src:url('/assets/fonts/Poppins-Medium.woff2') format('woff2')}
+@font-face{font-family:'Poppins Font';font-weight:600;font-display:swap;src:url('/assets/fonts/Poppins-SemiBold.woff2') format('woff2')}
+@font-face{font-family:'Poppins Font';font-weight:700;font-display:swap;src:url('/assets/fonts/Poppins-Bold.woff2') format('woff2')}
+
 :root{
-  --anchor:#1f3f7c; --anchor-700:#1a3468; --teal:#1fa3a6; --teal-600:#178184;
-  --gold:#e8a92f; --ink:#1a1623; --grey:#f5f6f7; --white:#fff;
-  --border:#e6e8ec; --muted:#5a5f6b; --radius:18px; --radius-sm:12px;
-  --shadow:0 18px 50px rgba(26,22,35,.10); --shadow-sm:0 6px 20px rgba(26,22,35,.07);
-  --maxw:1180px; --ease:cubic-bezier(.2,.7,.2,1);
+  --ink:#1a1623; --muted:#5a5f6b; --white:#fff; --grey:#f6f6f8; --line:#e9eaee;
+  --pink:#ee53b1; --blue:#5177f9; --accent:linear-gradient(135deg,#ee53b1,#5177f9);
+  --maxw:1200px; --ease:cubic-bezier(.2,.7,.2,1);
+  --shadow:0 20px 60px rgba(26,22,35,.10); --shadow-sm:0 8px 24px rgba(26,22,35,.06);
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{margin:0;font-family:Inter,Helvetica,Arial,sans-serif;color:var(--ink);background:var(--white);line-height:1.6;-webkit-font-smoothing:antialiased}
-h1,h2,h3,h4{font-family:Poppins,Montserrat,system-ui,sans-serif;font-weight:700;line-height:1.12;letter-spacing:-.02em;margin:0}
+body{margin:0;font-family:'Poppins Font',system-ui,Arial,sans-serif;color:var(--ink);background:var(--white);line-height:1.6;-webkit-font-smoothing:antialiased}
+h1,h2,h3,h4,h5{font-family:'Poppins Font',system-ui,sans-serif;font-weight:700;line-height:1.12;margin:0}
 a{color:inherit;text-decoration:none}
 img{max-width:100%;display:block}
-.shell{max-width:var(--maxw);margin:0 auto;padding:0 24px}
-.eyebrow{font-family:Poppins;font-weight:600;font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;color:var(--teal)}
-.btn{display:inline-flex;align-items:center;gap:9px;font-family:Poppins;font-weight:600;font-size:.98rem;padding:14px 26px;border-radius:999px;cursor:pointer;border:1.5px solid transparent;transition:transform .2s var(--ease),background .2s,box-shadow .2s}
+.shell{max-width:var(--maxw);margin:0 auto;padding:0 28px}
+.btn{display:inline-flex;align-items:center;gap:8px;font-weight:600;font-size:.98rem;padding:14px 28px;border-radius:100px;cursor:pointer;border:1.5px solid transparent;transition:transform .2s var(--ease),box-shadow .2s,opacity .2s}
 .btn:hover{transform:translateY(-2px)}
-.btn-primary{background:var(--teal);color:#fff;box-shadow:0 10px 26px rgba(31,163,166,.32)}
-.btn-primary:hover{background:var(--teal-600)}
-.btn-dark{background:var(--anchor);color:#fff}
-.btn-dark:hover{background:var(--anchor-700)}
-.btn-ghost{background:transparent;color:var(--anchor);border-color:rgba(31,63,124,.28)}
-.btn-ghost:hover{background:rgba(31,63,124,.06)}
-.btn-light{background:#fff;color:var(--anchor)}
-.section{padding:96px 0}
-.section--grey{background:var(--grey)}
-.section--ink{background:var(--anchor);color:#fff}
-.center{text-align:center}
-.lead{color:var(--muted);font-size:1.08rem;max-width:60ch}
-.center .lead{margin-left:auto;margin-right:auto}
-
+.btn-dark{background:var(--ink);color:#fff}
+.btn-accent{background:var(--accent);color:#fff;box-shadow:0 10px 28px rgba(129,100,220,.32)}
+.btn-ghost{background:#fff;color:var(--ink);border-color:var(--line)}
+.pill-accent{background:var(--accent);color:#fff;font-weight:600;font-size:.86rem;padding:8px 18px;border-radius:100px}
 /* NAV */
-header.nav{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.86);backdrop-filter:saturate(160%) blur(12px);border-bottom:1px solid var(--border)}
-.nav-inner{display:flex;align-items:center;gap:28px;height:74px}
-.nav-logo img{height:34px}
-.nav-links{display:flex;align-items:center;gap:26px;margin-left:auto;font-family:Poppins;font-weight:500;font-size:.95rem}
-.nav-links a{color:#2a2f3a}
-.nav-links a:hover{color:var(--teal)}
-.nav-cta{margin-left:4px}
-.burger{display:none;margin-left:auto;background:none;border:none;cursor:pointer;padding:8px}
+header.nav{position:sticky;top:0;z-index:60;background:rgba(255,255,255,.9);backdrop-filter:saturate(160%) blur(12px);border-bottom:1px solid var(--line)}
+.nav-in{display:flex;align-items:center;gap:22px;height:78px}
+.nav-logo img{height:30px}
+.nav-links{display:flex;align-items:center;gap:24px;margin-left:auto;font-weight:500;font-size:.95rem}
+.nav-links a{color:#26222e}
+.nav-links a:hover{color:var(--pink)}
+.burger{display:none;margin-left:auto;background:none;border:0;cursor:pointer;padding:8px}
 .burger span{display:block;width:24px;height:2px;background:var(--ink);margin:5px 0;border-radius:2px}
-
-/* HERO */
-.hero{position:relative;overflow:hidden;background:radial-gradient(120% 120% at 85% -10%,rgba(31,163,166,.16),transparent 55%),radial-gradient(90% 90% at 0% 110%,rgba(31,63,124,.12),transparent 60%),var(--white)}
-.hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center;padding:84px 0 90px}
-.hero h1{font-size:clamp(2.5rem,5.2vw,4rem);font-weight:800}
-.hero .pretitle{color:var(--teal);font-family:Poppins;font-weight:600;margin-bottom:14px;letter-spacing:.02em}
-.hero p.sub{font-size:1.14rem;color:var(--muted);margin:22px 0 12px;max-width:44ch}
-.hero-cta{display:flex;gap:14px;flex-wrap:wrap;margin-top:26px}
-.chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:26px}
-.chip{font-family:Poppins;font-weight:500;font-size:.9rem;padding:9px 16px;border-radius:999px;background:#fff;border:1px solid var(--border);box-shadow:var(--shadow-sm)}
-.chip b{color:var(--teal)}
-.hero-visual{position:relative;border-radius:26px;min-height:380px;background:linear-gradient(160deg,var(--anchor),#264a8f 60%,var(--teal));box-shadow:var(--shadow);overflow:hidden;display:flex;align-items:center;justify-content:center;padding:34px}
-.hero-visual .emblem{width:66%;opacity:.96;filter:drop-shadow(0 20px 40px rgba(0,0,0,.25))}
-.hero-visual .float{position:absolute;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.25);color:#fff;font-family:Poppins;font-weight:600;font-size:.82rem;padding:8px 14px;border-radius:12px;backdrop-filter:blur(6px)}
-
-/* PAINS */
-.pains{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:44px}
-.pain{background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:24px 22px;box-shadow:var(--shadow-sm)}
-.pain .q{color:var(--muted);font-size:.96rem}
-.pain h4{font-size:1.06rem;margin-bottom:8px;color:var(--anchor)}
-
-/* DEPARTMENTS TABS */
-.tabs{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin:38px 0 34px}
-.tab{font-family:Poppins;font-weight:600;font-size:.94rem;padding:11px 20px;border-radius:999px;border:1.5px solid var(--border);background:#fff;cursor:pointer;color:#2a2f3a;transition:.2s}
-.tab[aria-selected=true]{background:var(--anchor);color:#fff;border-color:var(--anchor)}
-.tabpanel{display:none}
-.tabpanel.active{display:block;animation:fade .35s var(--ease)}
-@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
-.dept-card{display:grid;grid-template-columns:.9fr 1.1fr;gap:34px;background:#fff;border:1px solid var(--border);border-radius:24px;padding:36px;box-shadow:var(--shadow)}
-.dept-side h3{font-size:1.55rem;color:var(--anchor);margin-bottom:12px}
-.dept-side .roles{margin-top:16px;font-size:.9rem;color:var(--muted)}
-.dept-side .roles b{color:var(--ink);font-family:Poppins;font-weight:600;display:block;margin-bottom:4px;font-size:.78rem;letter-spacing:.08em;text-transform:uppercase}
-.dept-cols{display:grid;grid-template-columns:1fr 1fr;gap:26px}
-.dept-cols h4{font-size:.82rem;letter-spacing:.08em;text-transform:uppercase;color:var(--teal);margin-bottom:12px}
-.dept-cols ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:9px}
-.dept-cols li a{font-size:.93rem;color:#333a47;display:flex;gap:9px;align-items:flex-start}
-.dept-cols li a:hover{color:var(--teal)}
-.dept-cols li a::before{content:"";flex:0 0 auto;width:7px;height:7px;border-radius:50%;background:var(--teal);margin-top:8px}
-.dept-foot{margin-top:26px;display:flex;justify-content:flex-end}
-
-/* CASE STUDY */
-.case{display:grid;grid-template-columns:1fr 1fr;gap:44px;align-items:center}
-.case-stats{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:22px}
-.stat{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);border-radius:var(--radius);padding:20px}
-.stat .num{font-family:Poppins;font-weight:800;font-size:1.7rem;color:#fff}
-.stat .lab{font-size:.88rem;color:rgba(255,255,255,.82)}
-.case .photo{border-radius:24px;min-height:320px;background:linear-gradient(150deg,var(--teal),#2bd0c9 90%);box-shadow:var(--shadow);display:flex;align-items:flex-end;padding:26px}
-.case .photo .tag{background:rgba(0,0,0,.28);color:#fff;font-family:Poppins;font-weight:600;font-size:.85rem;padding:8px 14px;border-radius:10px}
-
-/* PROGRAMMES */
-.prog-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:40px}
-.prog{background:#fff;border:1px solid var(--border);border-radius:22px;padding:28px;box-shadow:var(--shadow-sm);display:flex;flex-direction:column;transition:.25s var(--ease)}
-.prog:hover{transform:translateY(-6px);box-shadow:var(--shadow)}
-.prog .badge{align-self:flex-start;font-family:Poppins;font-weight:600;font-size:.74rem;letter-spacing:.06em;text-transform:uppercase;color:var(--teal);background:rgba(31,163,166,.1);padding:6px 12px;border-radius:999px;margin-bottom:16px}
-.prog h3{font-size:1.22rem;color:var(--anchor)}
-.prog p{color:var(--muted);font-size:.95rem;margin:12px 0 18px;flex:1}
-.prog .meta{font-family:Poppins;font-weight:600;font-size:.9rem;color:var(--ink);margin-bottom:18px}
-.prog .meta span{color:var(--teal)}
-.prog--wide{grid-column:1/-1;background:var(--anchor);color:#fff;flex-direction:row;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap}
-.prog--wide h3,.prog--wide p{color:#fff}
-.prog--wide p{margin:8px 0 0}
-
-/* PORTFOLIO / SKILLING */
-.big-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin:36px 0 12px}
-.big-stat{text-align:center;padding:22px}
-.big-stat .n{font-family:Poppins;font-weight:800;font-size:2.6rem;color:var(--teal)}
-.big-stat .d{color:var(--muted);font-size:.95rem;max-width:26ch;margin:6px auto 0}
-.study-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:22px;margin-top:34px}
-.study{background:#fff;border:1px solid var(--border);border-radius:20px;padding:28px;box-shadow:var(--shadow-sm)}
-.study h4{color:var(--anchor);font-size:1.1rem;margin-bottom:8px}
-.study p{color:var(--muted);font-size:.94rem;margin:0 0 14px}
-.study ul{margin:0;padding-left:18px;color:#333a47;font-size:.92rem}
-.study ul li{margin-bottom:6px}
-.study ul b{color:var(--ink)}
-
-/* INSTRUCTORS */
-.inst-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin-top:40px}
-.inst{background:#fff;border:1px solid var(--border);border-radius:20px;overflow:hidden;box-shadow:var(--shadow-sm)}
-.inst .ph{height:180px;background:linear-gradient(160deg,var(--anchor),var(--teal));display:flex;align-items:center;justify-content:center;color:#fff;font-family:Poppins;font-weight:800;font-size:2.2rem}
-.inst .body{padding:20px}
-.inst h4{color:var(--anchor);font-size:1.06rem}
-.inst .role{font-family:Poppins;font-weight:600;font-size:.82rem;color:var(--teal);margin:4px 0 10px}
-.inst p{color:var(--muted);font-size:.88rem;margin:0}
-
-/* RESOURCES */
-.res-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:36px}
-.res{background:#fff;border:1px solid var(--border);border-radius:20px;padding:26px;box-shadow:var(--shadow-sm);display:flex;flex-direction:column}
-.res .free{align-self:flex-start;background:var(--gold);color:#3a2a05;font-family:Poppins;font-weight:700;font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;padding:5px 11px;border-radius:999px;margin-bottom:14px}
-.res h4{color:var(--anchor);font-size:1.1rem}
-.res p{color:var(--muted);font-size:.92rem;margin:10px 0 18px;flex:1}
-
-/* CTA BAND */
-.band{background:linear-gradient(120deg,var(--anchor),#27488a);color:#fff;border-radius:26px;padding:52px;text-align:center;box-shadow:var(--shadow)}
-.band h2{font-size:clamp(1.6rem,3.2vw,2.3rem);margin-bottom:12px}
-.band p{color:rgba(255,255,255,.85);max-width:52ch;margin:0 auto 26px}
-
 /* FOOTER */
-footer{background:var(--ink);color:#c9ccd4;padding:64px 0 34px;font-size:.92rem}
-.foot-top{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:34px}
-footer h5{font-family:Poppins;font-weight:600;color:#fff;font-size:.82rem;letter-spacing:.08em;text-transform:uppercase;margin:0 0 16px}
-footer ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px}
-footer a:hover{color:var(--teal)}
-.foot-logo img{height:30px;margin-bottom:16px;filter:brightness(0) invert(1)}
-.foot-social{display:flex;gap:12px;margin-top:16px}
-.foot-social a{width:38px;height:38px;border-radius:50%;background:rgba(255,255,255,.08);display:flex;align-items:center;justify-content:center;font-family:Poppins;font-weight:600;font-size:.72rem;color:#fff}
-.foot-social a:hover{background:var(--teal)}
-.foot-bottom{border-top:1px solid rgba(255,255,255,.1);margin-top:44px;padding-top:22px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:14px;font-size:.86rem}
-.foot-bottom a{margin-left:18px}
+footer{background:var(--ink);color:#cfd2da;padding:70px 0 34px;margin-top:40px}
+footer h5{color:#fff;font-size:.82rem;letter-spacing:.12em;text-transform:uppercase;margin-bottom:16px}
+footer ul{list-style:none;padding:0;margin:0}
+footer li{margin:9px 0}
+footer a{color:#cfd2da;font-size:.94rem}
+footer a:hover{color:#fff}
+.foot-top{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:34px;padding-bottom:34px;border-bottom:1px solid rgba(255,255,255,.12)}
+.foot-logo img{height:28px;filter:brightness(0) invert(1);margin-bottom:14px}
+.foot-social{display:flex;gap:12px;margin-top:14px}
+.foot-social a{width:34px;height:34px;border:1px solid rgba(255,255,255,.24);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.74rem}
+.foot-bottom{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;padding-top:22px;font-size:.86rem;color:#9a9dab}
+.foot-bottom a{color:#9a9dab;margin-left:18px}
+@media(max-width:860px){.nav-links{display:none}.burger{display:block}.foot-top{grid-template-columns:1fr 1fr}}
 
-@media(max-width:960px){
-  .hero-grid{grid-template-columns:1fr;gap:34px;padding:56px 0 60px}
-  .hero-visual{min-height:280px}
-  .pains{grid-template-columns:1fr 1fr}
-  .dept-card{grid-template-columns:1fr;gap:26px}
-  .case{grid-template-columns:1fr}
-  .prog-grid{grid-template-columns:1fr}
-  .big-stats{grid-template-columns:1fr}
-  .study-grid{grid-template-columns:1fr}
-  .inst-grid{grid-template-columns:1fr 1fr}
-  .res-grid{grid-template-columns:1fr}
-  .foot-top{grid-template-columns:1fr 1fr}
-  .nav-links{display:none}
-  .burger{display:block}
-  .nav-links.open{display:flex;position:absolute;top:74px;left:0;right:0;flex-direction:column;background:#fff;padding:18px 24px;border-bottom:1px solid var(--border);gap:16px}
-  .nav-links.open .nav-cta{margin:6px 0 0}
-}
-@media(max-width:560px){.pains{grid-template-columns:1fr}.inst-grid{grid-template-columns:1fr}.dept-cols{grid-template-columns:1fr}.section{padding:64px 0}.band{padding:36px 22px}}
-</style>
-<style>
-.page-hero{background:linear-gradient(180deg,#fff, var(--grey));padding:60px 0 42px;border-bottom:1px solid var(--border)}
-.crumb{font-family:Poppins;font-weight:500;font-size:.85rem;color:var(--muted);margin-bottom:14px}
-.crumb a{color:var(--teal)}
-.page-hero h1{font-size:clamp(2rem,4.4vw,3rem)}
-.toolbar{position:sticky;top:74px;z-index:30;background:rgba(255,255,255,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--border);padding:16px 0}
-.toolbar-inner{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
-.search{flex:1;min-width:220px;display:flex;align-items:center;gap:10px;background:#fff;border:1.5px solid var(--border);border-radius:999px;padding:11px 18px}
-.search input{border:none;outline:none;font-family:Inter;font-size:1rem;width:100%;background:transparent;color:var(--ink)}
-.selectwrap select{font-family:Poppins;font-weight:500;font-size:.92rem;padding:11px 16px;border:1.5px solid var(--border);border-radius:999px;background:#fff;color:var(--ink);cursor:pointer}
-.seg{display:inline-flex;background:var(--grey);border-radius:999px;padding:4px}
-.seg button{font-family:Poppins;font-weight:600;font-size:.86rem;border:none;background:none;padding:8px 16px;border-radius:999px;cursor:pointer;color:var(--muted)}
-.seg button.on{background:#fff;color:var(--anchor);box-shadow:var(--shadow-sm)}
-.count-line{font-family:Poppins;font-weight:500;color:var(--muted);font-size:.9rem;margin:22px 0 16px}
-.card-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px}
-.pcard{background:#fff;border:1px solid var(--border);border-radius:var(--radius-sm);padding:18px 18px 16px;display:flex;flex-direction:column;gap:12px;transition:transform .18s var(--ease),box-shadow .18s,border-color .18s}
-.pcard:hover{transform:translateY(-3px);box-shadow:var(--shadow-sm);border-color:rgba(31,163,166,.4)}
-.pcard .ttl{font-family:Poppins;font-weight:600;font-size:1rem;line-height:1.32;color:var(--ink)}
-.pcard .meta{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-top:auto}
-.tag{font-family:Poppins;font-weight:600;font-size:.68rem;letter-spacing:.04em;text-transform:uppercase;padding:5px 10px;border-radius:999px}
-.tag.prompt{background:rgba(31,163,166,.12);color:var(--teal-600)}
-.tag.usecase{background:rgba(31,63,124,.1);color:var(--anchor)}
-.tag.cat{background:var(--grey);color:var(--muted)}
-.copybtn{margin-left:auto;font-family:Poppins;font-weight:600;font-size:.78rem;border:1.5px solid var(--border);background:#fff;border-radius:999px;padding:7px 14px;cursor:pointer;color:var(--anchor);transition:background .15s,border-color .15s}
-.copybtn:hover{background:rgba(31,63,124,.06)}
-.copybtn.done{background:var(--teal);color:#fff;border-color:var(--teal)}
-.empty{padding:60px 0;text-align:center;color:var(--muted);font-family:Poppins}
-.dept-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;margin-top:8px}
-.dept-tile{display:block;background:#fff;border:1px solid var(--border);border-radius:var(--radius-sm);padding:22px;transition:transform .18s var(--ease),box-shadow .18s}
-.dept-tile:hover{transform:translateY(-4px);box-shadow:var(--shadow-sm)}
-.dept-tile h3{font-size:1.12rem;margin-bottom:8px}
-.dept-tile p{color:var(--muted);font-size:.92rem;margin:0}
-.dept-tile .n{font-family:Poppins;font-weight:600;color:var(--teal);font-size:.82rem;margin-top:12px}
-.roles-chip{display:inline-block;background:rgba(255,255,255,.16);color:#fff;font-family:Poppins;font-weight:500;font-size:.82rem;padding:7px 14px;border-radius:999px;margin:4px 6px 0 0}
-.dh{background:var(--anchor);color:#fff;padding:64px 0 56px}
-.dh .eyebrow{color:#8fd6d8}
-.dh h1{font-size:clamp(2rem,4.6vw,3.2rem);margin:10px 0 14px;color:#fff}
-.dh p.lead{color:rgba(255,255,255,.85);max-width:64ch}
-.sub-tabs{display:inline-flex;background:var(--grey);border-radius:999px;padding:5px;margin-bottom:26px}
-.sub-tabs button{font-family:Poppins;font-weight:600;font-size:.9rem;border:none;background:none;padding:10px 20px;border-radius:999px;cursor:pointer;color:var(--muted)}
-.sub-tabs button.on{background:#fff;color:var(--anchor);box-shadow:var(--shadow-sm)}
-.list-col{columns:2;column-gap:16px}
-@media(max-width:720px){.list-col{columns:1}}
-.li{break-inside:avoid;background:#fff;border:1px solid var(--border);border-radius:var(--radius-sm);padding:14px 16px;margin-bottom:12px;display:flex;gap:12px;align-items:flex-start}
-.li .ic{flex:0 0 auto;width:26px;height:26px;border-radius:8px;background:rgba(31,163,166,.12);color:var(--teal-600);display:flex;align-items:center;justify-content:center;font-weight:700;font-family:Poppins;font-size:.85rem}
-.li.uc .ic{background:rgba(31,63,124,.1);color:var(--anchor)}
-.li span{font-family:Inter;font-size:.96rem;line-height:1.4;color:var(--ink)}
-</style>
-</head>
-<body id="top"><header class="nav">
-  <div class="shell nav-inner">
-    <a class="nav-logo" href="/" aria-label="AI Labs home"><img src="https://ailab.mereka.io/wp-content/uploads/sites/9/2025/11/mereka-logo.svg" alt="AI Labs"></a>
-    <button class="burger" aria-label="Menu" onclick="document.getElementById('nav').classList.toggle('open')"><span></span><span></span><span></span></button>
-    <nav class="nav-links" id="nav">
-      <a href="/#departments">Departments</a>
-      <a href="/prompts/">Prompt Library</a>
-      <a href="/#programmes">Programmes</a>
-      <a href="/#portfolio">Impact</a>
-      <a class="btn btn-primary nav-cta" href="/#contact">Get In Touch</a>
-    </nav>
-  </div>
-</header>
-<section class="page-hero"><div class="shell">
-  <div class="crumb"><a href="/">Home</a> / Prompt Library</div>
-  <span class="eyebrow">Prompt Library</span>
-  <h1>187 AI prompts &amp; 131 use cases</h1>
-  <p class="lead">Battle-tested prompts and real-world AI use cases your team can put to work today &mdash; organised by department and category.</p>
-  <div class="dept-grid"><a class="dept-tile" href="/department/customer-experience/">
-      <h3>Customer Experience</h3>
-      <p>Delight customers with intelligent support and frictionless service, powered by AI.</p>
-      <div class="n">16 use cases &middot; 17 prompts &rarr;</div>
-    </a><a class="dept-tile" href="/department/finance-operations/">
-      <h3>Finance &amp; Operations</h3>
-      <p>Automate finances and streamline operations with data-fueled intelligence.</p>
-      <div class="n">24 use cases &middot; 20 prompts &rarr;</div>
-    </a><a class="dept-tile" href="/department/growth-acquisition/">
-      <h3>Growth &amp; Acquisition</h3>
-      <p>AI-driven campaigns and sales automation for rapid, measurable growth.</p>
-      <div class="n">96 use cases &middot; 84 prompts &rarr;</div>
-    </a><a class="dept-tile" href="/department/people-culture/">
-      <h3>People &amp; Culture</h3>
-      <p>AI-powered hiring, engagement, and people operations—smarter, faster, more human.</p>
-      <div class="n">92 use cases &middot; 66 prompts &rarr;</div>
-    </a><a class="dept-tile" href="/department/product-engineering/">
-      <h3>Product &amp; Engineering</h3>
-      <p>Ship better products, faster—AI-enhanced development and IT automation at every step.</p>
-      <div class="n">24 use cases &middot; 22 prompts &rarr;</div>
-    </a></div>
+.chero{padding:30px 0 8px}
+.chero .blob{border-radius:26px;padding:60px 30px 66px;text-align:center;background:linear-gradient(118deg,#f7bfe6 0%,#c8ccff 42%,#a7ecef 100%)}
+.chero h1{font-size:clamp(2.3rem,5.4vw,4rem);color:#1a1623;max-width:18ch;margin:0 auto 16px}
+.chero p{color:#43405a;font-size:1.06rem;max-width:64ch;margin:0 auto 24px}
+.chero .search{max-width:520px;margin:0 auto;display:flex;align-items:center;gap:10px;background:#fff;border-radius:100px;padding:13px 22px;box-shadow:var(--shadow-sm)}
+.chero .search input{border:0;outline:0;width:100%;font-family:inherit;font-size:1rem;background:transparent;color:var(--ink)}
+.sec{padding:54px 0}
+.sechead{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:24px}
+.sechead h2{font-size:1.9rem}
+.feat{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.fcard{border:1px solid var(--line);border-radius:16px;padding:24px;transition:transform .18s var(--ease),box-shadow .18s}
+.fcard:hover{transform:translateY(-4px);box-shadow:var(--shadow-sm)}
+.fcard h3{font-size:1.06rem;line-height:1.35;margin-bottom:16px;min-height:2.7em}
+.tags{display:flex;flex-wrap:wrap;gap:8px}
+.tag{background:#eef0ff;color:#4f5bd0;font-weight:500;font-size:.74rem;padding:5px 12px;border-radius:100px}
+.toolbar{display:flex;gap:14px;align-items:center;flex-wrap:wrap;margin-bottom:8px}
+.toolbar select,.toolbar .sinput{font-family:inherit;font-size:.94rem;padding:11px 16px;border:1.5px solid var(--line);border-radius:100px;background:#fff;color:var(--ink)}
+.toolbar select{cursor:pointer}.toolbar .sp{margin-left:auto}
+table.plist{width:100%;border-collapse:collapse}
+table.plist td{padding:16px 6px;border-bottom:1px solid var(--line);vertical-align:middle}
+table.plist td.nm{font-weight:500}
+table.plist td.tg{text-align:right;white-space:nowrap}
+table.plist td.tg .tag{display:inline-block;margin-left:6px;background:transparent;color:#7b7f8c;padding:2px 0;font-size:.82rem}
+.pager{display:flex;gap:8px;justify-content:center;align-items:center;margin-top:30px}
+.pager button{min-width:40px;height:40px;border:1px solid var(--line);background:#fff;border-radius:12px;font-family:inherit;font-weight:600;cursor:pointer;color:var(--ink)}
+.pager button.on{border-color:var(--ink)}
+.pager button:disabled{opacity:.4;cursor:default}
+@media(max-width:820px){.feat{grid-template-columns:1fr}}
+</style></head><body id="top"><header class="nav"><div class="shell nav-in">
+  <a class="nav-logo" href="/"><img src="/assets/mereka-logo.svg" alt="Mereka"></a>
+  <a class="pill-accent" href="https://mereka.io" target="_blank" rel="noopener" style="margin-left:6px">Marketplace</a>
+  <nav class="nav-links">
+    <a href="/prompts/">AI Prompts</a>
+    <a href="/#departments">Departments</a>
+    <a href="/#programmes">Programmes</a>
+    <a href="/#portfolio">Impact</a>
+    <a class="btn btn-dark" href="/#contact" style="padding:11px 22px">Contact Us</a>
+  </nav>
+  <button class="burger" aria-label="Menu" onclick="var n=document.querySelector('.nav-links');n.style.display=n.style.display==='flex'?'none':'flex';n.style.position='absolute';n.style.top='78px';n.style.right='28px';n.style.flexDirection='column';n.style.background='#fff';n.style.padding='16px';n.style.boxShadow='var(--shadow)';n.style.borderRadius='14px'"><span></span><span></span><span></span></button>
+</div></header>
+<section class="chero"><div class="shell"><div class="blob">
+  <h1>Turn Strategy Into AI-Driven Results With AI Cookbooks</h1>
+  <p>Whether you're exploring automation, customer insights, or decision intelligence, these practical guides will show you how AI fits into your business&mdash;step by step, no PhD required.</p>
+  <label class="search"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#8a8fa0" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><input id="q" type="search" placeholder="Search ..." autocomplete="off"></label>
+</div></div></section>
+
+<section class="sec"><div class="shell">
+  <div class="sechead"><h2>Featured Prompts</h2><a class="btn btn-dark" href="#all" style="padding:11px 22px">See All Prompts</a></div>
+  <div class="feat"><div class="fcard"><h3>Craft a list of customer communication best practices</h3><div class="tags"><span class="tag">hiring</span><span class="tag">customer-support</span></div></div><div class="fcard"><h3>Create a formula to calculate the difference between two columns</h3><div class="tags"><span class="tag">formula</span><span class="tag">audit</span></div></div><div class="fcard"><h3>Clean a user feedback survey spreadsheet</h3><div class="tags"><span class="tag">survey</span><span class="tag">data-cleaning</span></div></div><div class="fcard"><h3>Add more information to a press release</h3><div class="tags"><span class="tag">pr</span><span class="tag">press-release</span></div></div><div class="fcard"><h3>Create a detailed lesson plan for a 5th-grade history class</h3><div class="tags"><span class="tag">learning</span></div></div></div>
 </div></section>
 
-<div class="toolbar"><div class="shell toolbar-inner">
-  <label class="search"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#5a5f6b" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
-    <input id="q" type="search" placeholder="Search prompts and use cases..." autocomplete="off"></label>
-  <div class="selectwrap"><select id="cat"><option value="">All categories</option><option value="Administrative &amp; Operations">Administrative &amp; Operations</option><option value="Budgeting &amp; Financial Analysis">Budgeting &amp; Financial Analysis</option><option value="Communications">Communications</option><option value="Content Creation">Content Creation</option><option value="Customer Support &amp; Service">Customer Support &amp; Service</option><option value="Design &amp; Multimedia">Design &amp; Multimedia</option><option value="Education &amp; Learning">Education &amp; Learning</option><option value="Employee Onboarding">Employee Onboarding</option><option value="Executive Leadership">Executive Leadership</option><option value="Frontline management">Frontline management</option><option value="Human Resources">Human Resources</option><option value="Lead Generation">Lead Generation</option><option value="Marketing &amp; Communications">Marketing &amp; Communications</option><option value="Productivity &amp; Automation">Productivity &amp; Automation</option><option value="Project Management">Project Management</option><option value="Recruitment">Recruitment</option><option value="Sales">Sales</option><option value="Software Development">Software Development</option><option value="Startup leaders">Startup leaders</option><option value="Strategy &amp; Business Planning">Strategy &amp; Business Planning</option></select></div>
-  <div class="seg" id="seg">
-    <button data-k="" class="on">All</button>
-    <button data-k="prompt">Prompts</button>
-    <button data-k="usecase">Use cases</button>
+<section class="sec" id="all" style="padding-top:0"><div class="shell">
+  <h2 style="font-size:1.9rem;margin-bottom:20px">All Prompts</h2>
+  <div class="toolbar">
+    <select id="cat"><option value="">All Categories</option><option value="Administrative &amp; Operations">Administrative &amp; Operations</option><option value="Budgeting &amp; Financial Analysis">Budgeting &amp; Financial Analysis</option><option value="Communications">Communications</option><option value="Content Creation">Content Creation</option><option value="Customer Support &amp; Service">Customer Support &amp; Service</option><option value="Design &amp; Multimedia">Design &amp; Multimedia</option><option value="Education &amp; Learning">Education &amp; Learning</option><option value="Employee Onboarding">Employee Onboarding</option><option value="Executive Leadership">Executive Leadership</option><option value="Frontline management">Frontline management</option><option value="Human Resources">Human Resources</option><option value="Lead Generation">Lead Generation</option><option value="Marketing &amp; Communications">Marketing &amp; Communications</option><option value="Productivity &amp; Automation">Productivity &amp; Automation</option><option value="Project Management">Project Management</option><option value="Recruitment">Recruitment</option><option value="Sales">Sales</option><option value="Software Development">Software Development</option><option value="Startup leaders">Startup leaders</option><option value="Strategy &amp; Business Planning">Strategy &amp; Business Planning</option></select>
+    <input class="sinput sp" id="q2" type="search" placeholder="Search">
   </div>
-</div></div>
-
-<section class="section" style="padding-top:28px"><div class="shell">
-  <div class="count-line" id="count"></div>
-  <div class="card-grid" id="grid"></div>
-  <div class="empty" id="empty" style="display:none">No results. Try a different search or filter.</div>
+  <table class="plist"><tbody id="tb"></tbody></table>
+  <div class="pager" id="pager"></div>
 </div></section>
-<footer>
-  <div class="shell">
-    <div class="foot-top">
-      <div>
-        <div class="foot-logo"><img src="https://ailab.mereka.io/wp-content/uploads/sites/9/2025/11/mereka-logo.svg" alt="AI Labs"></div>
-        <p style="max-width:34ch">We upskill &amp; empower companies to boost productivity with AI.</p>
-        <div class="foot-social">
-          <a href="https://www.tiktok.com/@mereka.io" target="_blank" rel="noopener">TT</a>
-          <a href="https://www.instagram.com/mereka.io/" target="_blank" rel="noopener">IG</a>
-          <a href="https://www.facebook.com/mereka.io" target="_blank" rel="noopener">FB</a>
-          <a href="https://www.linkedin.com/company/mereka-io" target="_blank" rel="noopener">IN</a>
-          <a href="https://www.youtube.com/channel/UCGJ5RzyL0oib2ONP2gPvOYA" target="_blank" rel="noopener">YT</a>
-        </div>
+<footer><div class="shell">
+  <div class="foot-top">
+    <div>
+      <div class="foot-logo"><img src="/assets/mereka-logo.svg" alt="Mereka"></div>
+      <p style="max-width:34ch;color:#cfd2da">We upskill &amp; empower companies to boost productivity with AI.</p>
+      <div class="foot-social">
+        <a href="https://www.tiktok.com/@mereka.io" target="_blank" rel="noopener">TT</a>
+        <a href="https://www.instagram.com/mereka.io/" target="_blank" rel="noopener">IG</a>
+        <a href="https://www.facebook.com/mereka.io" target="_blank" rel="noopener">FB</a>
+        <a href="https://www.linkedin.com/company/mereka-io" target="_blank" rel="noopener">IN</a>
+        <a href="https://www.youtube.com/channel/UCGJ5RzyL0oib2ONP2gPvOYA" target="_blank" rel="noopener">YT</a>
       </div>
-      <div><h5>Company</h5><ul>
-        <li><a href="https://corporate.mereka.io/about-us" target="_blank" rel="noopener">About</a></li>
-        <li><a href="https://corporate.mereka.io/portfolio" target="_blank" rel="noopener">Portfolio</a></li>
-        <li><a href="https://corporate.mereka.io/our-team" target="_blank" rel="noopener">Team</a></li>
-        <li><a href="https://corporate.mereka.io/blog" target="_blank" rel="noopener">Blog</a></li>
-      </ul></div>
-      <div><h5>Academy</h5><ul>
-        <li><a href="https://corporate.mereka.io/academy/future-of-work" target="_blank" rel="noopener">Future of Work</a></li>
-        <li><a href="https://corporate.mereka.io/academy/all-courses" target="_blank" rel="noopener">All Courses</a></li>
-        <li><a href="https://corporate.mereka.io/academy/makerspace" target="_blank" rel="noopener">Build a Makerspace</a></li>
-      </ul></div>
-      <div><h5>Marketplace</h5><ul>
-        <li><a href="https://mereka.io/experiences" target="_blank" rel="noopener">Experiences</a></li>
-        <li><a href="https://mereka.io/hubs" target="_blank" rel="noopener">Hubs</a></li>
-        <li><a href="https://mereka.io/jobs" target="_blank" rel="noopener">Jobs</a></li>
-      </ul></div>
     </div>
-    <div class="foot-bottom">
-      <span>&copy; 2026 Mereka</span>
-      <span>
-        <a href="https://legal.mereka.io/" target="_blank" rel="noopener">Terms of Use</a>
-        <a href="https://legal.mereka.io/privacy-policy/" target="_blank" rel="noopener">Privacy Policy</a>
-      </span>
-    </div>
+    <div><h5>Company</h5><ul>
+      <li><a href="https://corporate.mereka.io/about-us" target="_blank" rel="noopener">About</a></li>
+      <li><a href="https://corporate.mereka.io/portfolio" target="_blank" rel="noopener">Portfolio</a></li>
+      <li><a href="https://corporate.mereka.io/our-team" target="_blank" rel="noopener">Team</a></li>
+      <li><a href="https://corporate.mereka.io/blog" target="_blank" rel="noopener">Blog</a></li>
+    </ul></div>
+    <div><h5>Academy</h5><ul>
+      <li><a href="https://corporate.mereka.io/academy/future-of-work" target="_blank" rel="noopener">Future of Work</a></li>
+      <li><a href="https://corporate.mereka.io/academy/all-courses" target="_blank" rel="noopener">All Courses</a></li>
+      <li><a href="https://corporate.mereka.io/academy/makerspace" target="_blank" rel="noopener">Makerspace</a></li>
+    </ul></div>
+    <div><h5>Marketplace</h5><ul>
+      <li><a href="https://mereka.io/experiences" target="_blank" rel="noopener">Experiences</a></li>
+      <li><a href="https://mereka.io/hubs" target="_blank" rel="noopener">Hubs</a></li>
+      <li><a href="https://mereka.io/jobs" target="_blank" rel="noopener">Jobs</a></li>
+    </ul></div>
   </div>
-</footer>
+  <div class="foot-bottom"><span>&copy; 2026 Mereka</span>
+    <span><a href="https://legal.mereka.io/" target="_blank" rel="noopener">Terms of Use</a><a href="https://legal.mereka.io/privacy-policy/" target="_blank" rel="noopener">Privacy Policy</a></span>
+  </div>
+</div></footer>
 <script>
-const DATA=[{"t": "Access information and tools on your phone while on the go", "k": "usecase", "c": "Sales"}, {"t": "Add more information to a press release", "k": "prompt", "c": "Communications"}, {"t": "Add talking points to a presentation script", "k": "prompt", "c": "Human Resources"}, {"t": "Analyse the findings in this report", "k": "prompt", "c": "Marketing & Communications"}, {"t": "Analyze customer feedback", "k": "usecase", "c": "Customer Support & Service"}, {"t": "Analyze customer feedback from a spreadsheet", "k": "prompt", "c": "Customer Support & Service"}, {"t": "Analyze social media trends and other data to reduce time to market", "k": "usecase", "c": "Marketing & Communications"}, {"t": "Annual planning offsites", "k": "usecase", "c": "Administrative & Operations"}, {"t": "Assess employee satisfaction", "k": "usecase", "c": "Executive Leadership"}, {"t": "Board meetings", "k": "usecase", "c": "Executive Leadership"}, {"t": "Brainstorm and generate marketing content", "k": "usecase", "c": "Marketing & Communications"}, {"t": "Brainstorm brand partnerships", "k": "usecase", "c": "Marketing & Communications"}, {"t": "Brainstorm business and strategy", "k": "usecase", "c": "Startup leaders"}, {"t": "Brainstorm content and thought leadership", "k": "usecase", "c": "Executive Leadership"}, {"t": "Brainstorm different scenarios for a product launch plan", "k": "prompt", "c": "Startup leaders"}, {"t": "Brainstorm employee appreciation ideas", "k": "prompt", "c": "Executive Leadership"}, {"t": "Brainstorm marketing materials for an event/sale", "k": "prompt", "c": "Marketing & Communications"}, {"t": "Brainstorm responses to tough employee questions", "k": "prompt", "c": "Executive Leadership"}, {"t": "Brainstorm tactics to bring in new customers", "k": "prompt", "c": "Marketing & Communications"}, {"t": "Brainstorm value propositions based on product features and campaign learnings", "k": "prompt", "c": "Executive Leadership"}, {"t": "Build a high-level roadmap", "k": "prompt", "c": "Startup leaders"}, {"t": "Build customer relationships", "k": "usecase", "c": "Sales"}, {"t": "Check inventory levels", "k": "prompt", "c": "Frontline management"}, {"t": "Clean a user feedback survey spreadsheet", "k": "prompt", "c": "Startup leaders"}, {"t": "Clean an employee survey spreadsheet", "k": "prompt", "c": "Human Resources"}, {"t": "Client inquiries,", "k": "usecase", "c": "Administrative & Operations"}, {"t": "Client presentations", "k": "usecase", "c": "Executive Leadership"}, {"t": "Coach and train the sales team", "k": "usecase", "c": "Sales"}, {"t": "Communicate and negotiate with vendors", "k": "usecase", "c": "Startup leaders"}, {"t": "Communicate key findings and draft follow-up surveys", "k": "usecase", "c": "Human Resources"}, {"t": "Communicate on the go", "k": "usecase", "c": "Executive Leadership"}, {"t": "Communicate technical topics to non-technical audiences", "k": "usecase", "c": "Executive Leadership"}, {"t": "Communicate with candidates", "k": "usecase", "c": "Human Resources"}, {"t": "Compare product prices to competitors", "k": "prompt", "c": "Startup leaders"}, {"t": "Complex project discussions", "k": "usecase", "c": "Project Management"}, {"t": "Compliance requests", "k": "usecase", "c": "Administrative & Operations"}, {"t": "Compose a personalized follow-up email to a client", "k": "prompt", "c": "Sales"}, {"t": "Conduct a competitive analysis", "k": "prompt", "c": "Executive Leadership"}, {"t": "Conduct a competitive analysis for a new brick-and-mortar store", "k": "prompt", "c": "Marketing & Communications"}, {"t": "Conduct competitive analysis", "k": "usecase", "c": "Executive Leadership"}, {"t": "Conduct customer research", "k": "usecase", "c": "Sales"}, {"t": "Conduct employee engagement and satisfaction surveys", "k": "usecase", "c": "Human Resources"}, {"t": "Conduct fundraising and investor relations", "k": "usecase", "c": "Startup leaders"}, {"t": "Conduct in-depth audience research", "k": "prompt", "c": "Marketing & Communications"}, {"t": "Conduct market research and identify trends", "k": "usecase", "c": "Marketing & Communications"}, {"t": "Conduct market research for a new product launch", "k": "prompt", "c": "Executive Leadership"}, {"t": "Conduct market research to identify new trends", "k": "prompt", "c": "Marketing & Communications"}, {"t": "Conduct research on a company that issued an RFP", "k": "prompt", "c": "Sales"}, {"t": "Conduct voice of the customer research", "k": "usecase", "c": "Customer Support & Service"}, {"t": "Craft a list of customer communication best practices", "k": "prompt", "c": "Customer Support & Service"}, {"t": "Craft a synopsis of a product launch", "k": "prompt", "c": "Startup leaders"}, {"t": "Craft internal communications", "k": "usecase", "c": "Communications"}, {"t": "Create a 5-step nurture email cadence", "k": "prompt", "c": "Marketing & Communications"}, {"t": "Create a blog draft announcing a new hire", "k": "prompt", "c": "Marketing & Communications"}, {"t": "Create a blog post from a product return policy", "k": "prompt", "c": "Customer Support & Service"}, {"t": "Create a budget tracker for business travel", "k": "prompt", "c": "Administrative & Operations"}, {"t": "Create a business travel itinerary", "k": "prompt", "c": "Administrative & Operations"}, {"t": "Create a checklist for opening and closing duties", "k": "prompt", "c": "Frontline management"}, {"t": "Create a comparison table between two proposals", "k": "prompt", "c": "Marketing & Communications"}, {"t": "Create a comparison table for vendor proposals", "k": "prompt", "c": "Startup leaders"}, {"t": "Create a detailed lesson plan for a 5th-grade history class", "k": "prompt", "c": "Education & Learning"}, {"t": "Create a detailed outline for a presentation", "k": "prompt", "c": "Executive Leadership"}, {"t": "Create a detailed project plan for a new software development project", "k": "prompt", "c": "Productivity & Automation"}, {"t": "Create a formula to calculate hires by department", "k": "prompt", "c": "Human Resources"}, {"t": "Create a formula to calculate the difference between two columns", "k": "prompt", "c": "Frontline management"}, {"t": "Create a half-day agenda for an educational session", "k": "prompt", "c": "Sales"}, {"t": "Create a lesson plan", "k": "usecase", "c": "Education & Learning"}, {"t": "Create a list of strategies to improve the recruiting process", "k": "prompt", "c": "Recruitment"}, {"t": "Create a logo", "k": "usecase", "c": "Design & Multimedia"}, {"t": "Create a minimalist logo for a new tech startup", "k": "prompt", "c": "Design & Multimedia"}, {"t": "Create a new employee’s first-week schedule", "k": "prompt", "c": "Human Resources"}, {"t": "Create a personalized learning and development plan", "k": "prompt", "c": "Human Resources"}, {"t": "Create a post-call customer survey", "k": "prompt", "c": "Customer Support & Service"}, {"t": "Create a presentation slide to explain a technical topic", "k": "prompt", "c": "Executive Leadership"}, {"t": "Create a press release", "k": "usecase", "c": "Communications"}, {"t": "Create a press release with a catchy title", "k": "prompt", "c": "Startup leaders"}, {"t": "Create a project plan", "k": "usecase", "c": "Productivity & Automation"}, {"t": "Create a project retrospective", "k": "usecase", "c": "Project Management"}, {"t": "Create a project tracker for content amplification", "k": "prompt", "c": "Marketing & Communications"}, {"t": "Create a short elevator pitch for a startup", "k": "prompt", "c": "Startup leaders"}, {"t": "Create a slide describing a product", "k": "prompt", "c": "Startup leaders"}, {"t": "Create a social media calendar", "k": "usecase", "c": "Lead Generation"}, {"t": "Create a social media calendar for the next 7 days", "k": "prompt", "c": "Lead Generation"}, {"t": "Create a social media post promoting an event", "k": "prompt", "c": "Marketing & Communications"}, {"t": "Create a software license tracker", "k": "prompt", "c": "Executive Leadership"}, {"t": "Create a spreadsheet to track online courses", "k": "prompt", "c": "Sales"}, {"t": "Create a spreadsheet to track project issues", "k": "prompt", "c": "Project Management"}, {"t": "Create a strategic marketing plan", "k": "usecase", "c": "Marketing & Communications"}, {"t": "Create a table of user acceptance tests", "k": "prompt", "c": "Project Management"}, {"t": "Create a table to track customer experience improvement tactics", "k": "prompt", "c": "Customer Support & Service"}, {"t": "Create a table to track weekly staffing", "k": "prompt", "c": "Human Resources"}, {"t": "Create a template for a job offer letter", "k": "prompt", "c": "Human Resources"}, {"t": "Create a workback schedule", "k": "usecase", "c": "Project Management"}, {"t": "Create a workback schedule for a software release", "k": "prompt", "c": "Project Management"}, {"t": "Create an elevator pitch (speech to text)", "k": "usecase", "c": "Startup leaders"}, {"t": "Create an email draft explaining why your company is a good partner", "k": "prompt", "c": "Sales"}, {"t": "Create an email draft to negotiate a bulk pricing discount", "k": "prompt", "c": "Startup leaders"}, {"t": "Create an image for a marketing campaign", "k": "prompt", "c": "Marketing & Communications"}, {"t": "Create an image of a trade show booth", "k": "prompt", "c": "Marketing & Communications"}, {"t": "Create and manage content and distribution", "k": "usecase", "c": "Marketing & Communications"}, {"t": "Create and optimize copy for search engine marketing (SEM)", "k": "usecase", "c": "Marketing & Communications"}, {"t": "Create compelling copy for a landing page", "k": "prompt", "c": "Marketing & Communications"}, {"t": "Create convincing reasons for a customer to adopt a product", "k": "prompt", "c": "Sales"}, {"t": "Create individualized learning and development plans", "k": "usecase", "c": "Human Resources"}, {"t": "Create inspirational images for a marketing campaign", "k": "prompt", "c": "Marketing & Communications"}, {"t": "Create mock interview questions to prepare spokespeople", "k": "usecase", "c": "Communications"}, {"t": "Create outlines of presentations in seconds", "k": "usecase", "c": "Executive Leadership"}, {"t": "Create personalized onboarding materials for a new customer", "k": "prompt", "c": "Sales"}, {"t": "Create pricing comparison", "k": "usecase", "c": "Marketing & Communications"}, {"t": "Create social media posts", "k": "usecase", "c": "Marketing & Communications"}, {"t": "Create visuals for ad campaigns", "k": "usecase", "c": "Marketing & Communications"}, {"t": "Cross-departmental initiatives", "k": "usecase", "c": "Administrative & Operations"}, {"t": "Cross-functional team launches", "k": "usecase", "c": "Human Resources"}, {"t": "Define a brand architecture", "k": "prompt", "c": "Marketing & Communications"}, {"t": "Deliver personalized content to customers at scale", "k": "usecase", "c": "Marketing & Communications"}, {"t": "Demonstrate employee appreciation", "k": "usecase", "c": "Executive Leadership"}, {"t": "Department reorganizations", "k": "usecase", "c": "Administrative & Operations"}, {"t": "Design a team-bonding activity", "k": "prompt", "c": "Human Resources"}, {"t": "Develop a competitive analysis", "k": "usecase", "c": "Marketing & Communications"}, {"t": "Develop a marketing plan for a new app", "k": "prompt", "c": "Marketing & Communications"}, {"t": "Develop a product launch plan", "k": "usecase", "c": "Startup leaders"}, {"t": "Develop a script for a new hire presentation", "k": "prompt", "c": "Human Resources"}, {"t": "Develop a visual identity", "k": "usecase", "c": "Marketing & Communications"}, {"t": "Develop an issue tracker and related communications", "k": "usecase", "c": "Project Management"}, {"t": "Develop brand strategy", "k": "usecase", "c": "Marketing & Communications"}, {"t": "Develop customer relationships", "k": "usecase", "c": "Sales"}, {"t": "Develop product strategy and roadmap", "k": "usecase", "c": "Startup leaders"}, {"t": "Develop technical summaries", "k": "usecase", "c": "Executive Leadership"}, {"t": "Develop your personal brand", "k": "usecase", "c": "Startup leaders"}, {"t": "Draft a company-wide memo about a relaunched intranet", "k": "prompt", "c": "Communications"}, {"t": "Draft a competitive strategy outline", "k": "prompt", "c": "Executive Leadership"}, {"t": "Draft a customized script for a sales call", "k": "prompt", "c": "Sales"}, {"t": "Draft a follow-up email after a happy hour", "k": "prompt", "c": "Sales"}, {"t": "Draft a personalized email template to potential investors", "k": "prompt", "c": "Startup leaders"}, {"t": "Draft a project status update email template", "k": "prompt", "c": "Project Management"}, {"t": "Draft a thank you email to a potential investor", "k": "prompt", "c": "Startup leaders"}, {"t": "Draft an anonymous employee satisfaction survey", "k": "prompt", "c": "Executive Leadership"}, {"t": "Draft an anonymous employee survey to monitor company progress", "k": "prompt", "c": "Human Resources"}, {"t": "Draft an email template highlighting self-service resources", "k": "prompt", "c": "Customer Support & Service"}, {"t": "Draft an email template to announce an issue", "k": "prompt", "c": "Communications"}, {"t": "Draft an email template to escalate a critical project issue", "k": "prompt", "c": "Project Management"}, {"t": "Draft an email template to thank an employee", "k": "prompt", "c": "Executive Leadership"}, {"t": "Draft an email to a CMO about a strategic marketing plan", "k": "prompt", "c": "Marketing & Communications"}, {"t": "Draft an email to a colleague about a UAT", "k": "prompt", "c": "Project Management"}, {"t": "Draft an email to adjust a meeting agenda", "k": "prompt", "c": "Executive Leadership"}, {"t": "Draft an email to delegate tasks for a meeting you can’t attend", "k": "prompt", "c": "Executive Leadership"}, {"t": "Draft an email to new employees about a team-building meeting", "k": "prompt", "c": "Human Resources"}, {"t": "Draft an email to propose a meeting to discuss customer experience improvement", "k": "prompt", "c": "Customer Support & Service"}, {"t": "Draft an email to sales leads about a customer issue", "k": "prompt", "c": "Sales"}, {"t": "Draft an email to schedule an urgent meeting", "k": "prompt", "c": "Sales"}, {"t": "Draft an email to senior leadership summarizing a report", "k": "prompt", "c": "Human Resources"}, {"t": "Draft an empathetic email response to a customer complaint", "k": "prompt", "c": "Customer Support & Service"}, {"t": "Draft an outreach email template to industry influencers", "k": "prompt", "c": "Sales"}, {"t": "Draft customer acquisition communications", "k": "usecase", "c": "Marketing & Communications"}, {"t": "Draft customer communications", "k": "usecase", "c": "Customer Support & Service"}, {"t": "Draft survey questions about a recent customer experience", "k": "prompt", "c": "Customer Support & Service"}, {"t": "Draft templates for customer communication", "k": "prompt", "c": "Customer Support & Service"}, {"t": "Draft weekly check-in email templates for a new customer", "k": "prompt", "c": "Sales"}, {"t": "Enable customer self-service", "k": "usecase", "c": "Customer Support & Service"}, {"t": "Enhance personal productivity and time management", "k": "usecase", "c": "Executive Leadership"}, {"t": "Executive briefings", "k": "usecase", "c": "Executive Leadership"}, {"t": "Executive retreats", "k": "usecase", "c": "Administrative & Operations"}, {"t": "Executive travel", "k": "usecase", "c": "Administrative & Operations"}, {"t": "Expense management for executives", "k": "usecase", "c": "Administrative & Operations"}, {"t": "Explain generative AI to a non-technical audience", "k": "prompt", "c": "Executive Leadership"}, {"t": "Explain how a company can help a customer achieve their goals", "k": "prompt", "c": "Sales"}, {"t": "Find a document about a specific policy", "k": "prompt", "c": "Frontline management"}, {"t": "Find a document with specific details", "k": "prompt", "c": "Frontline management"}, {"t": "Find accurate information quickly", "k": "usecase", "c": "Frontline management"}, {"t": "Find out how much customers can save during a sale", "k": "prompt", "c": "Frontline management"}, {"t": "Find the month with the most hires", "k": "prompt", "c": "Human Resources"}, {"t": "Generate a 5-year financial projection for a new coffee shop", "k": "prompt", "c": "Strategy & Business Planning"}, {"t": "Generate a brief template for a media and analyst briefing", "k": "prompt", "c": "Communications"}, {"t": "Generate a competitive analysis of two companies", "k": "prompt", "c": "Marketing & Communications"}, {"t": "Generate a comprehensive study guide for a college-level biology exam", "k": "prompt", "c": "Education & Learning"}, {"t": "Generate a detailed market research report", "k": "prompt", "c": "Budgeting & Financial Analysis"}, {"t": "Generate a financial projection", "k": "usecase", "c": "Strategy & Business Planning"}, {"t": "Generate a list of 10 blog post ideas for a new product launch", "k": "prompt", "c": "Content Creation"}, {"t": "Generate a list of behavioral interview questions for a customer service position", "k": "prompt", "c": "Human Resources"}, {"t": "Generate a list of interview questions", "k": "usecase", "c": "Employee Onboarding"}, {"t": "Generate a list of keywords for an SEM campaign", "k": "prompt", "c": "Marketing & Communications"}, {"t": "Generate a market research report", "k": "usecase", "c": "Strategy & Business Planning"}, {"t": "Generate a personalized email for a customer’s one-month anniversary", "k": "prompt", "c": "Sales"}, {"t": "Generate a project tracker from meeting notes", "k": "prompt", "c": "Marketing & Communications"}, {"t": "Generate a response to a customer question using a document", "k": "prompt", "c": "Customer Support & Service"}, {"t": "Generate a response to an email thread with details from a document", "k": "prompt", "c": "Executive Leadership"}, {"t": "Generate a step-by-step checklist for a time-off request policy", "k": "prompt", "c": "Human Resources"}, {"t": "Generate a study guide", "k": "usecase", "c": "Education & Learning"}, {"t": "Generate ad copy variations for an SEM campaign", "k": "prompt", "c": "Marketing & Communications"}, {"t": "Generate an elevator pitch for a product", "k": "prompt", "c": "Sales"}, {"t": "Generate an email response using a document", "k": "prompt", "c": "Administrative & Operations"}, {"t": "Generate blog post ideas", "k": "usecase", "c": "Content Creation"}, {"t": "Generate code for a website", "k": "usecase", "c": "Software Development"}, {"t": "Generate copy for a lead nurture email sequence", "k": "prompt", "c": "Marketing & Communications"}, {"t": "Generate email responses from a document", "k": "usecase", "c": "Administrative & Operations"}, {"t": "Generate HTML and CSS code for a responsive navigation bar", "k": "prompt", "c": "Software Development"}, {"t": "Generate ideas for a creative and eye-catching logo", "k": "prompt", "c": "Marketing & Communications"}, {"t": "Generate inbound marketing campaigns", "k": "usecase", "c": "Marketing & Communications"}, {"t": "Generate inspiration for your blog", "k": "usecase", "c": "Marketing & Communications"}, {"t": "Generate mock interview questions for a spokesperson", "k": "prompt", "c": "Communications"}, {"t": "Generate more logo options in a specific style", "k": "prompt", "c": "Marketing & Communications"}, {"t": "Generate new slogan options", "k": "prompt", "c": "Executive Leadership"}, {"t": "Generate personalized customer appreciation materials", "k": "usecase", "c": "Sales"}, {"t": "Generate questions for an employee engagement and satisfaction survey", "k": "prompt", "c": "Human Resources"}, {"t": "Generate templates for customer service phone calls", "k": "prompt", "c": "Customer Support & Service"}, {"t": "Generate thought leadership blog post ideas", "k": "prompt", "c": "Executive Leadership"}, {"t": "Generate user acceptance tests", "k": "usecase", "c": "Project Management"}, {"t": "Generate variations of ad copy for A/B testing", "k": "prompt", "c": "Marketing & Communications"}, {"t": "Give me a list of gifts to send new clients", "k": "prompt", "c": "Sales"}, {"t": "Help me grow my personal brand", "k": "prompt", "c": "Startup leaders"}, {"t": "Identify potential influencers and complementary brands for a campaign", "k": "prompt", "c": "Marketing & Communications"}, {"t": "Identify trends and patterns in expenses", "k": "prompt", "c": "Startup leaders"}, {"t": "Improve collaboration and execution by customizing sales materials", "k": "usecase", "c": "Sales"}, {"t": "Improve collaboration with customers, agencies, and teams", "k": "usecase", "c": "Marketing & Communications"}, {"t": "Improve customer service", "k": "usecase", "c": "Customer Support & Service"}, {"t": "Improve customer service", "k": "usecase", "c": "Customer Support & Service"}, {"t": "Improve team collaboration by finding and sharing information easily", "k": "usecase", "c": "Frontline management"}, {"t": "International Business trips", "k": "usecase", "c": "Administrative & Operations"}, {"t": "Investor meetings", "k": "usecase", "c": "Executive Leadership"}, {"t": "Leadership summits", "k": "usecase", "c": "Administrative & Operations"}, {"t": "List likely objections from a prospect and how to respond", "k": "prompt", "c": "Sales"}, {"t": "Manage audits", "k": "usecase", "c": "Frontline management"}, {"t": "Manage inventory", "k": "usecase", "c": "Frontline management"}, {"t": "Manage multiple email inboxes", "k": "usecase", "c": "Administrative & Operations"}, {"t": "Manage the interview process", "k": "usecase", "c": "Human Resources"}, {"t": "Manage the recruiting process", "k": "usecase", "c": "Human Resources"}, {"t": "Manage the request for proposal (RFP) process", "k": "usecase", "c": "Sales"}, {"t": "Manage time off policies and tracking", "k": "usecase", "c": "Human Resources"}, {"t": "Managing communications from key clients", "k": "usecase", "c": "Sales"}, {"t": "Map customer journeys", "k": "usecase", "c": "Sales"}, {"t": "New hire orientations", "k": "usecase", "c": "Human Resources"}, {"t": "Nurture relationships, personalized outreach, and thought leadership", "k": "usecase", "c": "Sales"}, {"t": "Onboard employees", "k": "usecase", "c": "Human Resources"}, {"t": "Organize media and analyst contacts", "k": "prompt", "c": "Communications"}, {"t": "Perform audience research and develop personas", "k": "usecase", "c": "Marketing & Communications"}, {"t": "Perform market research and campaign planning", "k": "usecase", "c": "Executive Leadership"}, {"t": "Plan a three-day offsite agenda", "k": "prompt", "c": "Administrative & Operations"}, {"t": "Plan agendas", "k": "usecase", "c": "Administrative & Operations"}, {"t": "Plan and track budgets", "k": "usecase", "c": "Startup leaders"}, {"t": "Plan business travel", "k": "usecase", "c": "Administrative & Operations"}, {"t": "Prepare challenging employee communications", "k": "usecase", "c": "Executive Leadership"}, {"t": "Prepare for analyst or press briefings", "k": "usecase", "c": "Communications"}, {"t": "Prepare for briefings", "k": "usecase", "c": "Communications"}, {"t": "Prepare for new customer calls", "k": "usecase", "c": "Sales"}, {"t": "Product launche", "k": "usecase", "c": "Startup leaders"}, {"t": "Recommend proactive steps to stay ahead of technology trends", "k": "prompt", "c": "Executive Leadership"}, {"t": "Refine ad copy for a specific audience", "k": "prompt", "c": "Marketing & Communications"}, {"t": "Reformat agenda into a table", "k": "prompt", "c": "Executive Leadership"}, {"t": "Report on project status", "k": "usecase", "c": "Project Management"}, {"t": "Report on recruitment metrics", "k": "usecase", "c": "Human Resources"}, {"t": "Request a follow-up conversation with a dissatisfied customer", "k": "prompt", "c": "Customer Support & Service"}, {"t": "Research a new customer’s market strategy", "k": "prompt", "c": "Sales"}, {"t": "Research and suggest vendor options", "k": "prompt", "c": "Executive Leadership"}, {"t": "Research social media trends", "k": "prompt", "c": "Marketing & Communications"}, {"t": "Research vendor products, services, and features", "k": "usecase", "c": "Executive Leadership"}, {"t": "Respond to complex customer issues using FAQ documents", "k": "usecase", "c": "Customer Support & Service"}, {"t": "Responding to RFPs", "k": "usecase", "c": "Administrative & Operations"}, {"t": "Site visits", "k": "usecase", "c": "Administrative & Operations"}, {"t": "Standardize communication frameworks", "k": "usecase", "c": "Customer Support & Service"}, {"t": "Strategic planning sessions", "k": "usecase", "c": "Administrative & Operations"}, {"t": "Streamline responses on the go", "k": "usecase", "c": "Executive Leadership"}, {"t": "Streamline task management", "k": "usecase", "c": "Frontline management"}, {"t": "Suggest alternative options to expedited shipping", "k": "prompt", "c": "Customer Support & Service"}, {"t": "Suggest blog post topics for a specific industry", "k": "prompt", "c": "Marketing & Communications"}, {"t": "Suggest follow-up items for a brainstorm session", "k": "prompt", "c": "Startup leaders"}, {"t": "Suggest icebreaker activities for a new team", "k": "prompt", "c": "Human Resources"}, {"t": "Summarize a call transcript and highlight action items", "k": "prompt", "c": "Project Management"}, {"t": "Summarize a document for opening remarks", "k": "prompt", "c": "Executive Leadership"}, {"t": "Summarize a policy document in an email", "k": "prompt", "c": "Frontline management"}, {"t": "Summarize a project retrospective document", "k": "prompt", "c": "Project Management"}, {"t": "Summarize a technical report for a non-technical audience", "k": "prompt", "c": "Executive Leadership"}, {"t": "Summarize a YouTube interview", "k": "prompt", "c": "Executive Leadership"}, {"t": "Summarize an email thread and list action items", "k": "prompt", "c": "Administrative & Operations"}, {"t": "Summarize an RFP", "k": "prompt", "c": "Sales"}, {"t": "Summarize and simplify a product return policy", "k": "prompt", "c": "Customer Support & Service"}, {"t": "Summarize articles and provide key insights", "k": "prompt", "c": "Executive Leadership"}, {"t": "Summarize blog content and generate follow-up questions", "k": "prompt", "c": "Sales"}, {"t": "Summarize customer pain points from a call transcript", "k": "prompt", "c": "Sales"}, {"t": "Summarize documents for meeting remarks", "k": "usecase", "c": "Administrative & Operations"}, {"t": "Summarize emails from a specific person", "k": "prompt", "c": "Administrative & Operations"}, {"t": "Summarize emerging technology trends", "k": "usecase", "c": "Executive Leadership"}, {"t": "Summarize emerging technology trends and their potential impact", "k": "prompt", "c": "Executive Leadership"}, {"t": "Summarize employee feedback results", "k": "prompt", "c": "Executive Leadership"}, {"t": "Summarize product information from multiple documents", "k": "prompt", "c": "Customer Support & Service"}, {"t": "Support the sales team", "k": "usecase", "c": "Sales"}, {"t": "Team travels", "k": "usecase", "c": "Administrative & Operations"}, {"t": "Town halls", "k": "usecase", "c": "Communications"}, {"t": "Track IT assets", "k": "usecase", "c": "Executive Leadership"}, {"t": "Track travel and entertainment budget", "k": "usecase", "c": "Administrative & Operations"}, {"t": "Turn whiteboard notes into text", "k": "prompt", "c": "Startup leaders"}, {"t": "Welcome new employees", "k": "usecase", "c": "Human Resources"}, {"t": "Write a business plan", "k": "usecase", "c": "Strategy & Business Planning"}, {"t": "Write a compelling product description for a new product", "k": "prompt", "c": "Lead Generation"}, {"t": "Write a compelling role description for a content marketing manager", "k": "prompt", "c": "Recruitment"}, {"t": "Write a comprehensive business plan", "k": "prompt", "c": "Strategy & Business Planning"}, {"t": "Write a creative story", "k": "usecase", "c": "Content Creation"}, {"t": "Write a detailed research paper on the impact of climate change on coral reefs", "k": "prompt", "c": "Education & Learning"}, {"t": "Write a list of open-ended interview questions", "k": "prompt", "c": "Recruitment"}, {"t": "Write a meeting recap from brainstorm notes", "k": "prompt", "c": "Project Management"}, {"t": "Write a message to a supervisor about an audit", "k": "prompt", "c": "Frontline management"}, {"t": "Write a product description", "k": "usecase", "c": "Lead Generation"}, {"t": "Write a recap message to a customer after a meeting", "k": "prompt", "c": "Sales"}, {"t": "Write a rejection letter to a job candidate", "k": "prompt", "c": "Human Resources"}, {"t": "Write a report detailing the successes, failures, and lessons learned from a project", "k": "prompt", "c": "Project Management"}, {"t": "Write a research paper", "k": "usecase", "c": "Education & Learning"}, {"t": "Write a response to an email acknowledging receipt and providing a timeline", "k": "prompt", "c": "Sales"}, {"t": "Write a short, imaginative story about a time-traveling librarian", "k": "prompt", "c": "Content Creation"}, {"t": "Write a tagline and potential names for a business", "k": "prompt", "c": "Design & Multimedia"}, {"t": "Write an email inviting people to a happy hour", "k": "prompt", "c": "Sales"}, {"t": "Write an email to a copywriting team for feedback", "k": "prompt", "c": "Marketing & Communications"}, {"t": "Write an email to a vendor to schedule a meeting", "k": "prompt", "c": "Marketing & Communications"}, {"t": "Write an email to communicate remaining tasks", "k": "prompt", "c": "Frontline management"}, {"t": "Write an introductory email to a new customer", "k": "prompt", "c": "Sales"}, {"t": "Write an invitation for a team lunch to celebrate a project milestone", "k": "prompt", "c": "Human Resources"}, {"t": "Write email subject lines for a new product", "k": "prompt", "c": "Marketing & Communications"}, {"t": "Write engaging social media posts", "k": "prompt", "c": "Marketing & Communications"}, {"t": "Write suggested answers for mock interview questions", "k": "prompt", "c": "Communications"}, {"t": "Write uplifting remarks for a quarterly town hall meeting", "k": "prompt", "c": "Executive Leadership"}];
-const grid=document.getElementById('grid'),q=document.getElementById('q'),cat=document.getElementById('cat'),count=document.getElementById('count'),empty=document.getElementById('empty');
-let kind="";
-document.getElementById('seg').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;[...b.parentNode.children].forEach(x=>x.classList.remove('on'));b.classList.add('on');kind=b.dataset.k;render();});
+const ROWS=[{"t": "Add more information to a press release", "tags": ["Communications"]}, {"t": "Add talking points to a presentation script", "tags": ["Human Resources"]}, {"t": "Analyse the findings in this report", "tags": ["Marketing & Communications"]}, {"t": "Analyze customer feedback from a spreadsheet", "tags": ["Customer Support & Service"]}, {"t": "Brainstorm different scenarios for a product launch plan", "tags": ["Startup leaders"]}, {"t": "Brainstorm employee appreciation ideas", "tags": ["Executive Leadership"]}, {"t": "Brainstorm marketing materials for an event/sale", "tags": ["Marketing & Communications"]}, {"t": "Brainstorm responses to tough employee questions", "tags": ["Executive Leadership"]}, {"t": "Brainstorm tactics to bring in new customers", "tags": ["Marketing & Communications"]}, {"t": "Brainstorm value propositions based on product features and campaign learnings", "tags": ["Executive Leadership"]}, {"t": "Build a high-level roadmap", "tags": ["Startup leaders"]}, {"t": "Check inventory levels", "tags": ["Frontline management"]}, {"t": "Clean a user feedback survey spreadsheet", "tags": ["Startup leaders"]}, {"t": "Clean an employee survey spreadsheet", "tags": ["Human Resources"]}, {"t": "Compare product prices to competitors", "tags": ["Startup leaders"]}, {"t": "Compose a personalized follow-up email to a client", "tags": ["Sales"]}, {"t": "Conduct a competitive analysis", "tags": ["Executive Leadership"]}, {"t": "Conduct a competitive analysis for a new brick-and-mortar store", "tags": ["Marketing & Communications"]}, {"t": "Conduct in-depth audience research", "tags": ["Marketing & Communications"]}, {"t": "Conduct market research for a new product launch", "tags": ["Executive Leadership"]}, {"t": "Conduct market research to identify new trends", "tags": ["Marketing & Communications"]}, {"t": "Conduct research on a company that issued an RFP", "tags": ["Sales"]}, {"t": "Craft a list of customer communication best practices", "tags": ["Customer Support & Service"]}, {"t": "Craft a synopsis of a product launch", "tags": ["Startup leaders"]}, {"t": "Create a 5-step nurture email cadence", "tags": ["Marketing & Communications"]}, {"t": "Create a blog draft announcing a new hire", "tags": ["Marketing & Communications"]}, {"t": "Create a blog post from a product return policy", "tags": ["Customer Support & Service"]}, {"t": "Create a budget tracker for business travel", "tags": ["Administrative & Operations"]}, {"t": "Create a business travel itinerary", "tags": ["Administrative & Operations"]}, {"t": "Create a checklist for opening and closing duties", "tags": ["Frontline management"]}, {"t": "Create a comparison table between two proposals", "tags": ["Marketing & Communications"]}, {"t": "Create a comparison table for vendor proposals", "tags": ["Startup leaders"]}, {"t": "Create a detailed lesson plan for a 5th-grade history class", "tags": ["Education & Learning"]}, {"t": "Create a detailed outline for a presentation", "tags": ["Executive Leadership"]}, {"t": "Create a detailed project plan for a new software development project", "tags": ["Productivity & Automation"]}, {"t": "Create a formula to calculate hires by department", "tags": ["Human Resources"]}, {"t": "Create a formula to calculate the difference between two columns", "tags": ["Frontline management"]}, {"t": "Create a half-day agenda for an educational session", "tags": ["Sales"]}, {"t": "Create a list of strategies to improve the recruiting process", "tags": ["Recruitment", "Human Resources"]}, {"t": "Create a minimalist logo for a new tech startup", "tags": ["Design & Multimedia"]}, {"t": "Create a new employee’s first-week schedule", "tags": ["Human Resources"]}, {"t": "Create a personalized learning and development plan", "tags": ["Human Resources"]}, {"t": "Create a post-call customer survey", "tags": ["Customer Support & Service"]}, {"t": "Create a presentation slide to explain a technical topic", "tags": ["Executive Leadership"]}, {"t": "Create a press release with a catchy title", "tags": ["Startup leaders"]}, {"t": "Create a project tracker for content amplification", "tags": ["Marketing & Communications"]}, {"t": "Create a short elevator pitch for a startup", "tags": ["Startup leaders"]}, {"t": "Create a slide describing a product", "tags": ["Startup leaders"]}, {"t": "Create a social media calendar for the next 7 days", "tags": ["Lead Generation"]}, {"t": "Create a social media post promoting an event", "tags": ["Marketing & Communications"]}, {"t": "Create a software license tracker", "tags": ["Executive Leadership"]}, {"t": "Create a spreadsheet to track online courses", "tags": ["Sales"]}, {"t": "Create a spreadsheet to track project issues", "tags": ["Project Management"]}, {"t": "Create a table of user acceptance tests", "tags": ["Project Management"]}, {"t": "Create a table to track customer experience improvement tactics", "tags": ["Customer Support & Service"]}, {"t": "Create a table to track weekly staffing", "tags": ["Human Resources"]}, {"t": "Create a template for a job offer letter", "tags": ["Human Resources"]}, {"t": "Create a workback schedule for a software release", "tags": ["Project Management"]}, {"t": "Create an email draft explaining why your company is a good partner", "tags": ["Sales"]}, {"t": "Create an email draft to negotiate a bulk pricing discount", "tags": ["Startup leaders"]}, {"t": "Create an image for a marketing campaign", "tags": ["Marketing & Communications"]}, {"t": "Create an image of a trade show booth", "tags": ["Marketing & Communications"]}, {"t": "Create compelling copy for a landing page", "tags": ["Marketing & Communications"]}, {"t": "Create convincing reasons for a customer to adopt a product", "tags": ["Sales"]}, {"t": "Create inspirational images for a marketing campaign", "tags": ["Marketing & Communications"]}, {"t": "Create personalized onboarding materials for a new customer", "tags": ["Sales"]}, {"t": "Define a brand architecture", "tags": ["Marketing & Communications"]}, {"t": "Design a team-bonding activity", "tags": ["Human Resources"]}, {"t": "Develop a marketing plan for a new app", "tags": ["Marketing & Communications"]}, {"t": "Develop a script for a new hire presentation", "tags": ["Human Resources"]}, {"t": "Draft a company-wide memo about a relaunched intranet", "tags": ["Communications"]}, {"t": "Draft a competitive strategy outline", "tags": ["Executive Leadership"]}, {"t": "Draft a customized script for a sales call", "tags": ["Sales"]}, {"t": "Draft a follow-up email after a happy hour", "tags": ["Sales"]}, {"t": "Draft a personalized email template to potential investors", "tags": ["Startup leaders"]}, {"t": "Draft a project status update email template", "tags": ["Project Management"]}, {"t": "Draft a thank you email to a potential investor", "tags": ["Startup leaders"]}, {"t": "Draft an anonymous employee satisfaction survey", "tags": ["Executive Leadership"]}, {"t": "Draft an anonymous employee survey to monitor company progress", "tags": ["Human Resources"]}, {"t": "Draft an email template highlighting self-service resources", "tags": ["Customer Support & Service"]}, {"t": "Draft an email template to announce an issue", "tags": ["Communications"]}, {"t": "Draft an email template to escalate a critical project issue", "tags": ["Project Management"]}, {"t": "Draft an email template to thank an employee", "tags": ["Executive Leadership"]}, {"t": "Draft an email to a CMO about a strategic marketing plan", "tags": ["Marketing & Communications"]}, {"t": "Draft an email to a colleague about a UAT", "tags": ["Project Management"]}, {"t": "Draft an email to adjust a meeting agenda", "tags": ["Executive Leadership"]}, {"t": "Draft an email to delegate tasks for a meeting you can’t attend", "tags": ["Executive Leadership"]}, {"t": "Draft an email to new employees about a team-building meeting", "tags": ["Human Resources"]}, {"t": "Draft an email to propose a meeting to discuss customer experience improvement", "tags": ["Customer Support & Service"]}, {"t": "Draft an email to sales leads about a customer issue", "tags": ["Sales"]}, {"t": "Draft an email to schedule an urgent meeting", "tags": ["Sales"]}, {"t": "Draft an email to senior leadership summarizing a report", "tags": ["Human Resources"]}, {"t": "Draft an empathetic email response to a customer complaint", "tags": ["Customer Support & Service"]}, {"t": "Draft an outreach email template to industry influencers", "tags": ["Sales"]}, {"t": "Draft survey questions about a recent customer experience", "tags": ["Customer Support & Service"]}, {"t": "Draft templates for customer communication", "tags": ["Customer Support & Service"]}, {"t": "Draft weekly check-in email templates for a new customer", "tags": ["Sales"]}, {"t": "Explain generative AI to a non-technical audience", "tags": ["Executive Leadership"]}, {"t": "Explain how a company can help a customer achieve their goals", "tags": ["Sales"]}, {"t": "Find a document about a specific policy", "tags": ["Frontline management"]}, {"t": "Find a document with specific details", "tags": ["Frontline management"]}, {"t": "Find out how much customers can save during a sale", "tags": ["Frontline management"]}, {"t": "Find the month with the most hires", "tags": ["Human Resources"]}, {"t": "Generate a 5-year financial projection for a new coffee shop", "tags": ["Strategy & Business Planning"]}, {"t": "Generate a brief template for a media and analyst briefing", "tags": ["Communications"]}, {"t": "Generate a competitive analysis of two companies", "tags": ["Marketing & Communications"]}, {"t": "Generate a comprehensive study guide for a college-level biology exam", "tags": ["Education & Learning"]}, {"t": "Generate a detailed market research report", "tags": ["Budgeting & Financial Analysis", "Strategy & Business Planning"]}, {"t": "Generate a list of 10 blog post ideas for a new product launch", "tags": ["Content Creation"]}, {"t": "Generate a list of behavioral interview questions for a customer service position", "tags": ["Human Resources", "Employee Onboarding"]}, {"t": "Generate a list of keywords for an SEM campaign", "tags": ["Marketing & Communications"]}, {"t": "Generate a personalized email for a customer’s one-month anniversary", "tags": ["Sales"]}, {"t": "Generate a project tracker from meeting notes", "tags": ["Marketing & Communications"]}, {"t": "Generate a response to a customer question using a document", "tags": ["Customer Support & Service"]}, {"t": "Generate a response to an email thread with details from a document", "tags": ["Executive Leadership"]}, {"t": "Generate a step-by-step checklist for a time-off request policy", "tags": ["Human Resources"]}, {"t": "Generate ad copy variations for an SEM campaign", "tags": ["Marketing & Communications"]}, {"t": "Generate an elevator pitch for a product", "tags": ["Sales"]}, {"t": "Generate an email response using a document", "tags": ["Administrative & Operations"]}, {"t": "Generate copy for a lead nurture email sequence", "tags": ["Marketing & Communications"]}, {"t": "Generate HTML and CSS code for a responsive navigation bar", "tags": ["Software Development"]}, {"t": "Generate ideas for a creative and eye-catching logo", "tags": ["Marketing & Communications"]}, {"t": "Generate mock interview questions for a spokesperson", "tags": ["Communications"]}, {"t": "Generate more logo options in a specific style", "tags": ["Marketing & Communications"]}, {"t": "Generate new slogan options", "tags": ["Executive Leadership"]}, {"t": "Generate questions for an employee engagement and satisfaction survey", "tags": ["Human Resources"]}, {"t": "Generate templates for customer service phone calls", "tags": ["Customer Support & Service"]}, {"t": "Generate thought leadership blog post ideas", "tags": ["Executive Leadership"]}, {"t": "Generate variations of ad copy for A/B testing", "tags": ["Marketing & Communications"]}, {"t": "Give me a list of gifts to send new clients", "tags": ["Sales"]}, {"t": "Help me grow my personal brand", "tags": ["Startup leaders"]}, {"t": "Identify potential influencers and complementary brands for a campaign", "tags": ["Marketing & Communications"]}, {"t": "Identify trends and patterns in expenses", "tags": ["Startup leaders"]}, {"t": "List likely objections from a prospect and how to respond", "tags": ["Sales"]}, {"t": "Organize media and analyst contacts", "tags": ["Communications"]}, {"t": "Plan a three-day offsite agenda", "tags": ["Administrative & Operations"]}, {"t": "Recommend proactive steps to stay ahead of technology trends", "tags": ["Executive Leadership"]}, {"t": "Refine ad copy for a specific audience", "tags": ["Marketing & Communications"]}, {"t": "Reformat agenda into a table", "tags": ["Executive Leadership"]}, {"t": "Request a follow-up conversation with a dissatisfied customer", "tags": ["Customer Support & Service"]}, {"t": "Research a new customer’s market strategy", "tags": ["Sales"]}, {"t": "Research and suggest vendor options", "tags": ["Executive Leadership"]}, {"t": "Research social media trends", "tags": ["Marketing & Communications"]}, {"t": "Suggest alternative options to expedited shipping", "tags": ["Customer Support & Service"]}, {"t": "Suggest blog post topics for a specific industry", "tags": ["Marketing & Communications"]}, {"t": "Suggest follow-up items for a brainstorm session", "tags": ["Startup leaders"]}, {"t": "Suggest icebreaker activities for a new team", "tags": ["Human Resources", "Administrative & Operations"]}, {"t": "Summarize a call transcript and highlight action items", "tags": ["Project Management"]}, {"t": "Summarize a document for opening remarks", "tags": ["Executive Leadership", "Communications", "Administrative & Operations"]}, {"t": "Summarize a policy document in an email", "tags": ["Frontline management"]}, {"t": "Summarize a project retrospective document", "tags": ["Project Management"]}, {"t": "Summarize a technical report for a non-technical audience", "tags": ["Executive Leadership"]}, {"t": "Summarize a YouTube interview", "tags": ["Executive Leadership"]}, {"t": "Summarize an email thread and list action items", "tags": ["Administrative & Operations", "Project Management"]}, {"t": "Summarize an RFP", "tags": ["Sales"]}, {"t": "Summarize and simplify a product return policy", "tags": ["Customer Support & Service"]}, {"t": "Summarize articles and provide key insights", "tags": ["Executive Leadership"]}, {"t": "Summarize blog content and generate follow-up questions", "tags": ["Sales"]}, {"t": "Summarize customer pain points from a call transcript", "tags": ["Sales"]}, {"t": "Summarize emails from a specific person", "tags": ["Administrative & Operations", "Sales"]}, {"t": "Summarize emerging technology trends and their potential impact", "tags": ["Executive Leadership"]}, {"t": "Summarize employee feedback results", "tags": ["Executive Leadership"]}, {"t": "Summarize product information from multiple documents", "tags": ["Customer Support & Service"]}, {"t": "Turn whiteboard notes into text", "tags": ["Startup leaders"]}, {"t": "Write a compelling product description for a new product", "tags": ["Lead Generation"]}, {"t": "Write a compelling role description for a content marketing manager", "tags": ["Recruitment", "Human Resources"]}, {"t": "Write a comprehensive business plan", "tags": ["Strategy & Business Planning"]}, {"t": "Write a detailed research paper on the impact of climate change on coral reefs", "tags": ["Education & Learning"]}, {"t": "Write a list of open-ended interview questions", "tags": ["Recruitment", "Human Resources"]}, {"t": "Write a meeting recap from brainstorm notes", "tags": ["Project Management"]}, {"t": "Write a message to a supervisor about an audit", "tags": ["Frontline management"]}, {"t": "Write a recap message to a customer after a meeting", "tags": ["Sales"]}, {"t": "Write a rejection letter to a job candidate", "tags": ["Human Resources"]}, {"t": "Write a report detailing the successes, failures, and lessons learned from a project", "tags": ["Project Management"]}, {"t": "Write a response to an email acknowledging receipt and providing a timeline", "tags": ["Sales"]}, {"t": "Write a short, imaginative story about a time-traveling librarian", "tags": ["Content Creation"]}, {"t": "Write a tagline and potential names for a business", "tags": ["Design & Multimedia"]}, {"t": "Write an email inviting people to a happy hour", "tags": ["Sales"]}, {"t": "Write an email to a copywriting team for feedback", "tags": ["Marketing & Communications"]}, {"t": "Write an email to a vendor to schedule a meeting", "tags": ["Marketing & Communications"]}, {"t": "Write an email to communicate remaining tasks", "tags": ["Frontline management"]}, {"t": "Write an introductory email to a new customer", "tags": ["Sales"]}, {"t": "Write an invitation for a team lunch to celebrate a project milestone", "tags": ["Human Resources"]}, {"t": "Write email subject lines for a new product", "tags": ["Marketing & Communications"]}, {"t": "Write engaging social media posts", "tags": ["Marketing & Communications"]}, {"t": "Write suggested answers for mock interview questions", "tags": ["Communications"]}, {"t": "Write uplifting remarks for a quarterly town hall meeting", "tags": ["Executive Leadership"]}];
+const PER=24;let page=1;
+const tb=document.getElementById('tb'),pager=document.getElementById('pager'),cat=document.getElementById('cat'),q2=document.getElementById('q2'),q=document.getElementById('q');
 function esc(s){return s.replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));}
-function render(){
-  const term=q.value.trim().toLowerCase(),c=cat.value;
-  const out=DATA.filter(d=>(!kind||d.k===kind)&&(!c||d.c===c)&&(!term||d.t.toLowerCase().includes(term)));
-  count.textContent=out.length+" result"+(out.length===1?"":"s");
-  empty.style.display=out.length?"none":"block";
-  grid.innerHTML=out.slice(0,600).map(d=>`<div class="pcard"><div class="ttl">${esc(d.t)}</div><div class="meta"><span class="tag ${d.k}">${d.k==='prompt'?'Prompt':'Use case'}</span><span class="tag cat">${esc(d.c)}</span>${d.k==='prompt'?`<button class="copybtn" onclick="cp(this)" data-t="${esc(d.t)}">Copy</button>`:''}</div></div>`).join('');
-}
-function cp(b){navigator.clipboard.writeText(b.dataset.t).then(()=>{b.textContent='Copied';b.classList.add('done');setTimeout(()=>{b.textContent='Copy';b.classList.remove('done');},1400);});}
-q.addEventListener('input',render);cat.addEventListener('change',render);render();
+function filtered(){const term=(q2.value||q.value||'').trim().toLowerCase(),c=cat.value;
+  return ROWS.filter(r=>(!c||r.tags.includes(c))&&(!term||r.t.toLowerCase().includes(term)));}
+function render(){const f=filtered();const pages=Math.max(1,Math.ceil(f.length/PER));if(page>pages)page=1;
+  const slice=f.slice((page-1)*PER,page*PER);
+  tb.innerHTML=slice.map(r=>`<tr><td class="nm">${esc(r.t)}</td><td class="tg">${r.tags.map(x=>'<span class="tag">'+esc(x.toLowerCase().replace(/ & /g,' ').replace(/\s+/g,'-'))+'</span>').join('')}</td></tr>`).join('')||'<tr><td style="color:var(--muted);padding:40px 6px">No prompts found.</td></tr>';
+  let btns='<button '+(page===1?'disabled':'')+' onclick="go(page-1)">&larr;</button>';
+  for(let i=1;i<=pages;i++){if(i<=3||i===pages||Math.abs(i-page)<=1){btns+=`<button class="${i===page?'on':''}" onclick="go(${i})">${i}</button>`;}else if(i===4||i===pages-1){btns+='<span style="padding:0 4px">…</span>';}}
+  btns+='<button '+(page===pages?'disabled':'')+' onclick="go(page+1)">&rarr;</button>';
+  pager.innerHTML=pages>1?btns:'';}
+function go(p){page=p;render();window.scrollTo({top:document.getElementById('all').offsetTop-90,behavior:'smooth'});}
+[q,q2,cat].forEach(el=>el.addEventListener('input',()=>{page=1;render();}));
+render();
 </script>
 </body></html>

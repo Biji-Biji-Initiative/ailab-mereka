@@ -1,0 +1,160 @@
+<!doctype html><html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Project Management — AI Labs</title>
+<meta name="description" content="Project planning, execution, tracking, and team coordination">
+<link rel="canonical" href="https://ailab.mereka.dev/project-management/">
+<meta property="og:title" content="Project Management — AI Labs"><meta property="og:description" content="Project planning, execution, tracking, and team coordination"><meta property="og:url" content="https://ailab.mereka.dev/project-management/">
+<link rel="icon" href="https://ailab.mereka.io/wp-content/uploads/sites/9/2025/11/favicon_256x256.png">
+<style>
+@font-face{font-family:'Poppins Font';font-weight:400;font-display:swap;src:url('/assets/fonts/Poppins-Regular.woff2') format('woff2')}
+@font-face{font-family:'Poppins Font';font-weight:500;font-display:swap;src:url('/assets/fonts/Poppins-Medium.woff2') format('woff2')}
+@font-face{font-family:'Poppins Font';font-weight:600;font-display:swap;src:url('/assets/fonts/Poppins-SemiBold.woff2') format('woff2')}
+@font-face{font-family:'Poppins Font';font-weight:700;font-display:swap;src:url('/assets/fonts/Poppins-Bold.woff2') format('woff2')}
+
+:root{
+  --ink:#1a1623; --muted:#5a5f6b; --white:#fff; --grey:#f6f6f8; --line:#e9eaee;
+  --pink:#ee53b1; --blue:#5177f9; --accent:linear-gradient(135deg,#ee53b1,#5177f9);
+  --maxw:1200px; --ease:cubic-bezier(.2,.7,.2,1);
+  --shadow:0 20px 60px rgba(26,22,35,.10); --shadow-sm:0 8px 24px rgba(26,22,35,.06);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:'Poppins Font',system-ui,Arial,sans-serif;color:var(--ink);background:var(--white);line-height:1.6;-webkit-font-smoothing:antialiased}
+h1,h2,h3,h4,h5{font-family:'Poppins Font',system-ui,sans-serif;font-weight:700;line-height:1.12;margin:0}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+.shell{max-width:var(--maxw);margin:0 auto;padding:0 28px}
+.btn{display:inline-flex;align-items:center;gap:8px;font-weight:600;font-size:.98rem;padding:14px 28px;border-radius:100px;cursor:pointer;border:1.5px solid transparent;transition:transform .2s var(--ease),box-shadow .2s,opacity .2s}
+.btn:hover{transform:translateY(-2px)}
+.btn-dark{background:var(--ink);color:#fff}
+.btn-accent{background:var(--accent);color:#fff;box-shadow:0 10px 28px rgba(129,100,220,.32)}
+.btn-ghost{background:#fff;color:var(--ink);border-color:var(--line)}
+.pill-accent{background:var(--accent);color:#fff;font-weight:600;font-size:.86rem;padding:8px 18px;border-radius:100px}
+/* NAV */
+header.nav{position:sticky;top:0;z-index:60;background:rgba(255,255,255,.9);backdrop-filter:saturate(160%) blur(12px);border-bottom:1px solid var(--line)}
+.nav-in{display:flex;align-items:center;gap:22px;height:78px}
+.nav-logo img{height:30px}
+.nav-links{display:flex;align-items:center;gap:24px;margin-left:auto;font-weight:500;font-size:.95rem}
+.nav-links a{color:#26222e}
+.nav-links a:hover{color:var(--pink)}
+.burger{display:none;margin-left:auto;background:none;border:0;cursor:pointer;padding:8px}
+.burger span{display:block;width:24px;height:2px;background:var(--ink);margin:5px 0;border-radius:2px}
+/* FOOTER */
+footer{background:var(--ink);color:#cfd2da;padding:70px 0 34px;margin-top:40px}
+footer h5{color:#fff;font-size:.82rem;letter-spacing:.12em;text-transform:uppercase;margin-bottom:16px}
+footer ul{list-style:none;padding:0;margin:0}
+footer li{margin:9px 0}
+footer a{color:#cfd2da;font-size:.94rem}
+footer a:hover{color:#fff}
+.foot-top{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:34px;padding-bottom:34px;border-bottom:1px solid rgba(255,255,255,.12)}
+.foot-logo img{height:28px;filter:brightness(0) invert(1);margin-bottom:14px}
+.foot-social{display:flex;gap:12px;margin-top:14px}
+.foot-social a{width:34px;height:34px;border:1px solid rgba(255,255,255,.24);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.74rem}
+.foot-bottom{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;padding-top:22px;font-size:.86rem;color:#9a9dab}
+.foot-bottom a{color:#9a9dab;margin-left:18px}
+@media(max-width:860px){.nav-links{display:none}.burger{display:block}.foot-top{grid-template-columns:1fr 1fr}}
+
+.rhero{padding:26px 0 10px}
+.rhero .blob{position:relative;border-radius:26px;padding:56px 40px 60px;text-align:center;overflow:hidden;
+  background:linear-gradient(118deg,#f7bfe6 0%,#c8ccff 42%,#a7ecef 100%)}
+.rhero .back{position:absolute;top:22px;left:26px;font-weight:600;font-size:.92rem;color:#3a2f52;display:inline-flex;gap:6px;align-items:center}
+.rhero h1{font-size:clamp(2.2rem,5vw,3.6rem);color:#1a1623;margin:6px auto 14px;max-width:16ch}
+.rhero p{color:#43405a;font-size:1.06rem;max-width:60ch;margin:0 auto}
+.onthis{position:sticky;top:78px;z-index:40;background:#fff;border-bottom:1px solid var(--line);padding:12px 0}
+.onthis details{max-width:var(--maxw);margin:0 auto;padding:0 28px}
+.onthis summary{font-weight:600;cursor:pointer;list-style:none;display:inline-flex;gap:8px;align-items:center;border:1px solid var(--line);border-radius:100px;padding:9px 18px}
+.onthis summary::-webkit-details-marker{display:none}
+.onthis ul{list-style:none;display:flex;flex-wrap:wrap;gap:8px 22px;padding:14px 2px 4px;margin:0}
+.onthis a{color:var(--muted);font-size:.92rem}.onthis a:hover{color:var(--pink)}
+.uc{padding:38px 0 0}
+.uc .lbl{color:var(--pink);font-weight:600;font-size:.82rem;letter-spacing:.12em;text-transform:uppercase}
+.uc h2{font-size:clamp(1.5rem,3vw,2.1rem);margin:8px 0 6px}
+.uc .ucsub{color:var(--muted);font-size:1.02rem;margin:0 0 22px;max-width:70ch}
+.prompt{margin:22px 0}
+.prompt .pname{font-weight:600;font-size:1.02rem;margin-bottom:10px}
+.pbox{position:relative;background:#161122;color:#d8d5e4;border-radius:16px;padding:22px 54px 22px 22px;
+  font-family:'SFMono-Regular',ui-monospace,Menlo,Consolas,monospace;font-size:.86rem;line-height:1.72;white-space:pre-wrap;word-break:break-word}
+.pbox .copy{position:absolute;top:14px;right:14px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);color:#cfc9e0;border-radius:9px;width:34px;height:34px;cursor:pointer;display:flex;align-items:center;justify-content:center}
+.pbox .copy:hover{background:rgba(255,255,255,.16)}
+.pbox .copy.done{background:var(--pink);color:#fff;border-color:var(--pink)}
+.rfoot-cta{margin:54px 0 10px}
+</style></head><body id="top"><header class="nav"><div class="shell nav-in">
+  <a class="nav-logo" href="/"><img src="/assets/mereka-logo.svg" alt="Mereka"></a>
+  <a class="pill-accent" href="https://mereka.io" target="_blank" rel="noopener" style="margin-left:6px">Marketplace</a>
+  <nav class="nav-links">
+    <a href="/prompts/">AI Prompts</a>
+    <a href="/#departments">Departments</a>
+    <a href="/#programmes">Programmes</a>
+    <a href="/#portfolio">Impact</a>
+    <a class="btn btn-dark" href="/#contact" style="padding:11px 22px">Contact Us</a>
+  </nav>
+  <button class="burger" aria-label="Menu" onclick="var n=document.querySelector('.nav-links');n.style.display=n.style.display==='flex'?'none':'flex';n.style.position='absolute';n.style.top='78px';n.style.right='28px';n.style.flexDirection='column';n.style.background='#fff';n.style.padding='16px';n.style.boxShadow='var(--shadow)';n.style.borderRadius='14px'"><span></span><span></span><span></span></button>
+</div></header>
+<section class="rhero"><div class="shell"><div class="blob">
+  <a class="back" href="/prompts/">&larr; Back to Prompts</a>
+  <h1>Project Management</h1>
+  <p>Project planning, execution, tracking, and team coordination</p>
+</div></div></section>
+<div class="onthis"><details><summary>On this page &#9662;</summary><ul><li><a href="#report-on-project-status">Report on project status</a></li><li><a href="#generate-user-acceptance-tests">Generate user acceptance tests</a></li><li><a href="#develop-an-issue-tracker-and-related-communications">Develop an issue tracker and related communications</a></li><li><a href="#create-a-workback-schedule">Create a workback schedule</a></li><li><a href="#create-a-project-retrospective">Create a project retrospective</a></li><li><a href="#complex-project-discussions">Complex project discussions</a></li></ul></details></div>
+<section class="uc" id="report-on-project-status"><div class="shell">
+  <div class="lbl">Use Case 1</div>
+  <h2>Report on project status</h2>
+  <div class="prompt"><div class="pname">Summarize a call transcript and highlight action items</div><div class="pbox"><button class="copy" aria-label="Copy" onclick="cp(this)"data-t="I am a [project manager/meeting coordinator/team lead] creating a concise call summary for team follow-up. Using the attached call transcript, write a brief paragraph summarizing the main discussion topics and overall meeting outcomes, then create organized bullet point lists for: action items with specific tasks and deadlines, decisions made during the call with context, assigned owners/responsible parties for each item, any unresolved issues or parking lot items, and next meeting dates or follow-up timeline. Format for easy reference and accountability tracking, ensuring all team members have clear visibility into their responsibilities and project progress"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg></button>I am a [project manager/meeting coordinator/team lead] creating a concise call summary for team follow-up. Using the attached call transcript, write a brief paragraph summarizing the main discussion topics and overall meeting outcomes, then create organized bullet point lists for: action items with specific tasks and deadlines, decisions made during the call with context, assigned owners/responsible parties for each item, any unresolved issues or parking lot items, and next meeting dates or follow-up timeline. Format for easy reference and accountability tracking, ensuring all team members have clear visibility into their responsibilities and project progress</div></div><div class="prompt"><div class="pname">Draft a project status update email template</div><div class="pbox"><button class="copy" aria-label="Copy" onclick="cp(this)"data-t="I am a [project manager/team lead/individual contributor] creating a weekly status update template for my manager on [project name/work area]. Draft a professional email template (200-250 words) with structured sections for: executive summary of overall project health and progress, key accomplishments and milestones achieved this week with quantifiable results, challenges or roadblocks encountered with proposed solutions or escalation needs, top 3 priorities for the upcoming week with expected outcomes, resource needs or support required from management, and timeline updates or risk mitigation items. Use a clear, concise format that enables quick scanning while providing sufficient detail for informed decision-making."><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg></button>I am a [project manager/team lead/individual contributor] creating a weekly status update template for my manager on [project name/work area]. Draft a professional email template (200-250 words) with structured sections for: executive summary of overall project health and progress, key accomplishments and milestones achieved this week with quantifiable results, challenges or roadblocks encountered with proposed solutions or escalation needs, top 3 priorities for the upcoming week with expected outcomes, resource needs or support required from management, and timeline updates or risk mitigation items. Use a clear, concise format that enables quick scanning while providing sufficient detail for informed decision-making.</div></div><div class="prompt"><div class="pname">Write a meeting recap from brainstorm notes</div><div class="pbox"><button class="copy" aria-label="Copy" onclick="cp(this)"data-t="I am a [project manager/team lead/meeting facilitator] following up with my team after our brainstorming session. Using @[Brainstorm Notes and Ideas 9/1/24], write an upbeat meeting recap email (200-250 words) that: thanks the team for their creative participation and energy, summarizes the key ideas and insights generated during the session, highlights particularly innovative or promising concepts, captures any decisions made or next steps identified, previews topics for our upcoming meeting focused on [specific topic], maintains momentum and excitement about our collaborative work, and encourages continued idea sharing. Use an enthusiastic, team-building tone that celebrates our collective creativity"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg></button>I am a [project manager/team lead/meeting facilitator] following up with my team after our brainstorming session. Using @[Brainstorm Notes and Ideas 9/1/24], write an upbeat meeting recap email (200-250 words) that: thanks the team for their creative participation and energy, summarizes the key ideas and insights generated during the session, highlights particularly innovative or promising concepts, captures any decisions made or next steps identified, previews topics for our upcoming meeting focused on [specific topic], maintains momentum and excitement about our collaborative work, and encourages continued idea sharing. Use an enthusiastic, team-building tone that celebrates our collective creativity</div></div>
+</div></section><section class="uc" id="generate-user-acceptance-tests"><div class="shell">
+  <div class="lbl">Use Case 2</div>
+  <h2>Generate user acceptance tests</h2>
+  <div class="prompt"><div class="pname">Create a table of user acceptance tests</div><div class="pbox"><button class="copy" aria-label="Copy" onclick="cp(this)"data-t="I am a [QA manager/project manager/business analyst] creating user acceptance tests for our website registration form functionality. Design a comprehensive UAT table with 10 test cases covering: successful registration scenarios, form validation testing (required fields, email format, password requirements), error handling and messaging, user experience flows, security considerations, and edge cases. Include columns for: Test Case ID, Test Description, Pre-conditions, Test Steps, Expected Results, Pass/Fail Status, and Notes. Ensure tests cover both positive and negative scenarios that validate the registration form meets business requirements and user expectations"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg></button>I am a [QA manager/project manager/business analyst] creating user acceptance tests for our website registration form functionality. Design a comprehensive UAT table with 10 test cases covering: successful registration scenarios, form validation testing (required fields, email format, password requirements), error handling and messaging, user experience flows, security considerations, and edge cases. Include columns for: Test Case ID, Test Description, Pre-conditions, Test Steps, Expected Results, Pass/Fail Status, and Notes. Ensure tests cover both positive and negative scenarios that validate the registration form meets business requirements and user expectations</div></div><div class="prompt"><div class="pname">Draft an email to a colleague about a UAT</div><div class="pbox"><button class="copy" aria-label="Copy" onclick="cp(this)"data-t="I am a [project manager/QA lead/business analyst] coordinating with [colleague name] who is leading the user acceptance testing phase. Draft a clear, actionable email (100-150 words) that outlines their next steps for the UAT process including: specific UAT tasks or test cases to execute, timeline and deadlines for completion, required resources or access permissions needed, stakeholders to involve or communicate with, deliverables or documentation to produce, escalation process for any issues discovered, and offer of support or assistance. Use a collaborative, professional tone that provides clear direction while acknowledging their expertise in managing the testing process"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg></button>I am a [project manager/QA lead/business analyst] coordinating with [colleague name] who is leading the user acceptance testing phase. Draft a clear, actionable email (100-150 words) that outlines their next steps for the UAT process including: specific UAT tasks or test cases to execute, timeline and deadlines for completion, required resources or access permissions needed, stakeholders to involve or communicate with, deliverables or documentation to produce, escalation process for any issues discovered, and offer of support or assistance. Use a collaborative, professional tone that provides clear direction while acknowledging their expertise in managing the testing process</div></div>
+</div></section><section class="uc" id="develop-an-issue-tracker-and-related-communications"><div class="shell">
+  <div class="lbl">Use Case 3</div>
+  <h2>Develop an issue tracker and related communications</h2>
+  <div class="prompt"><div class="pname">Create a spreadsheet to track project issues</div><div class="pbox"><button class="copy" aria-label="Copy" onclick="cp(this)"data-t="I am a [project manager/team lead/operations coordinator] creating an issue tracking system for [project name/type]. Design a comprehensive spreadsheet template with columns for: Issue ID, Description/Summary, Category/Type, Priority Level (Critical/High/Medium/Low), Status (Open/In Progress/Resolved/Closed), Assigned Owner, Date Reported, Target Resolution Date, Action Items/Next Steps, and Resolution Notes. Include data validation for priority and status fields, conditional formatting to highlight overdue or critical issues, and filter/sort capabilities for easy project management. Format as a professional template suitable for team collaboration."><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg></button>I am a [project manager/team lead/operations coordinator] creating an issue tracking system for [project name/type]. Design a comprehensive spreadsheet template with columns for: Issue ID, Description/Summary, Category/Type, Priority Level (Critical/High/Medium/Low), Status (Open/In Progress/Resolved/Closed), Assigned Owner, Date Reported, Target Resolution Date, Action Items/Next Steps, and Resolution Notes. Include data validation for priority and status fields, conditional formatting to highlight overdue or critical issues, and filter/sort capabilities for easy project management. Format as a professional template suitable for team collaboration.</div></div><div class="prompt"><div class="pname">Draft an email template to escalate a critical project issue</div><div class="pbox"><button class="copy" aria-label="Copy" onclick="cp(this)"data-t="I am a [project manager/team lead/program director] escalating a critical project issue to [stakeholder type – executive/sponsor/client]. Draft a professional escalation email (150-200 words) that includes: clear subject line indicating urgency and project name, concise problem statement with specific impact on timeline/budget/deliverables, root cause analysis or contributing factors, proposed solution with resource requirements and timeline, alternative options if applicable, immediate action needed from stakeholder, and next steps with follow-up timeline. Use a direct, solution-focused tone that conveys urgency while maintaining professional confidence."><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg></button>I am a [project manager/team lead/program director] escalating a critical project issue to [stakeholder type – executive/sponsor/client]. Draft a professional escalation email (150-200 words) that includes: clear subject line indicating urgency and project name, concise problem statement with specific impact on timeline/budget/deliverables, root cause analysis or contributing factors, proposed solution with resource requirements and timeline, alternative options if applicable, immediate action needed from stakeholder, and next steps with follow-up timeline. Use a direct, solution-focused tone that conveys urgency while maintaining professional confidence.</div></div>
+</div></section><section class="uc" id="create-a-workback-schedule"><div class="shell">
+  <div class="lbl">Use Case 4</div>
+  <h2>Create a workback schedule</h2>
+  <div class="prompt"><div class="pname">Create a workback schedule for a software release</div><div class="pbox"><button class="copy" aria-label="Copy" onclick="cp(this)"data-t="I am a technical project manager at [company] overseeing [project name and brief description] with delivery date of [delivery date]. Create a detailed workback schedule based on scope: [scope], goals: [project goals], deliverables: [project deliverables], and budget: [budget]. Include: major project phases with start/end dates, key milestones and deliverables, demo and review checkpoints, testing and QA phases, buffer time for risk mitigation, resource allocation across timeline, and critical path dependencies. Format as a timeline with weekly breakdown and highlight potential bottlenecks or high-risk phases."><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg></button>I am a technical project manager at [company] overseeing [project name and brief description] with delivery date of [delivery date]. Create a detailed workback schedule based on scope: [scope], goals: [project goals], deliverables: [project deliverables], and budget: [budget]. Include: major project phases with start/end dates, key milestones and deliverables, demo and review checkpoints, testing and QA phases, buffer time for risk mitigation, resource allocation across timeline, and critical path dependencies. Format as a timeline with weekly breakdown and highlight potential bottlenecks or high-risk phases.</div></div>
+</div></section><section class="uc" id="create-a-project-retrospective"><div class="shell">
+  <div class="lbl">Use Case 5</div>
+  <h2>Create a project retrospective</h2>
+  <div class="prompt"><div class="pname">Write a report detailing the successes, failures, and lessons learned from a project</div><div class="pbox"><button class="copy" aria-label="Copy" onclick="cp(this)"data-t="I am a [project manager/team lead/operations director] conducting a post-project review for [project name]. Create 20 investigative questions for cross-team interviews covering: project successes and what enabled them, failures and root cause analysis, process breakdowns at specific stages, technical challenges and solutions, communication effectiveness and gaps, resource allocation and timeline management, stakeholder engagement and feedback, team collaboration dynamics, and actionable lessons learned. Structure questions to encourage honest, detailed responses and include both retrospective analysis and forward-looking improvement suggestions. Format for use in team interviews or surveys."><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg></button>I am a [project manager/team lead/operations director] conducting a post-project review for [project name]. Create 20 investigative questions for cross-team interviews covering: project successes and what enabled them, failures and root cause analysis, process breakdowns at specific stages, technical challenges and solutions, communication effectiveness and gaps, resource allocation and timeline management, stakeholder engagement and feedback, team collaboration dynamics, and actionable lessons learned. Structure questions to encourage honest, detailed responses and include both retrospective analysis and forward-looking improvement suggestions. Format for use in team interviews or surveys.</div></div><div class="prompt"><div class="pname">Summarize a project retrospective document</div><div class="pbox"><button class="copy" aria-label="Copy" onclick="cp(this)"data-t="I am a [project manager/team lead/stakeholder] reviewing a project retrospective document. Summarize the attached document in two focused paragraphs: the first covering project overview (goals, scope, timeline, key contributors and their roles), and the second addressing outcomes and performance (deliverables achieved, measurable results, major successes, significant failures or challenges, and critical lessons learned). Focus on executive-level insights and actionable takeaways suitable for stakeholder briefings or future project planning reference"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg></button>I am a [project manager/team lead/stakeholder] reviewing a project retrospective document. Summarize the attached document in two focused paragraphs: the first covering project overview (goals, scope, timeline, key contributors and their roles), and the second addressing outcomes and performance (deliverables achieved, measurable results, major successes, significant failures or challenges, and critical lessons learned). Focus on executive-level insights and actionable takeaways suitable for stakeholder briefings or future project planning reference</div></div>
+</div></section><section class="uc" id="complex-project-discussions"><div class="shell">
+  <div class="lbl">Use Case 6</div>
+  <h2>Complex project discussions</h2>
+  <div class="prompt"><div class="pname">Summarize an email thread and list action items</div><div class="pbox"><button class="copy" aria-label="Copy" onclick="cp(this)"data-t="You are a project coordinator and executive assistant. Analyze the provided email thread and create a clear, actionable summary for follow-up and tracking. Identify all action items, determine deadlines from context, and assess priority levels. Create a conversation overview and action items table with Action Item, Assigned Person, Due Date, Priority Level, Dependencies, and Status. Look for explicit commitments, implied responsibilities, and unclear accountability. Format with headings: ‘Thread Summary &amp; Participants,’ ‘Action Items Table,’ ‘Confirmed Decisions,’ ‘Unresolved Issues,’ and ‘Risk Assessment &amp; Next Steps’ to transform email discussions into clear accountability"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg></button>You are a project coordinator and executive assistant. Analyze the provided email thread and create a clear, actionable summary for follow-up and tracking. Identify all action items, determine deadlines from context, and assess priority levels. Create a conversation overview and action items table with Action Item, Assigned Person, Due Date, Priority Level, Dependencies, and Status. Look for explicit commitments, implied responsibilities, and unclear accountability. Format with headings: ‘Thread Summary &amp; Participants,’ ‘Action Items Table,’ ‘Confirmed Decisions,’ ‘Unresolved Issues,’ and ‘Risk Assessment &amp; Next Steps’ to transform email discussions into clear accountability</div></div>
+</div></section>
+<div class="shell rfoot-cta"><a class="btn btn-accent" href="/prompts/">Browse all prompts &rarr;</a></div>
+<footer><div class="shell">
+  <div class="foot-top">
+    <div>
+      <div class="foot-logo"><img src="/assets/mereka-logo.svg" alt="Mereka"></div>
+      <p style="max-width:34ch;color:#cfd2da">We upskill &amp; empower companies to boost productivity with AI.</p>
+      <div class="foot-social">
+        <a href="https://www.tiktok.com/@mereka.io" target="_blank" rel="noopener">TT</a>
+        <a href="https://www.instagram.com/mereka.io/" target="_blank" rel="noopener">IG</a>
+        <a href="https://www.facebook.com/mereka.io" target="_blank" rel="noopener">FB</a>
+        <a href="https://www.linkedin.com/company/mereka-io" target="_blank" rel="noopener">IN</a>
+        <a href="https://www.youtube.com/channel/UCGJ5RzyL0oib2ONP2gPvOYA" target="_blank" rel="noopener">YT</a>
+      </div>
+    </div>
+    <div><h5>Company</h5><ul>
+      <li><a href="https://corporate.mereka.io/about-us" target="_blank" rel="noopener">About</a></li>
+      <li><a href="https://corporate.mereka.io/portfolio" target="_blank" rel="noopener">Portfolio</a></li>
+      <li><a href="https://corporate.mereka.io/our-team" target="_blank" rel="noopener">Team</a></li>
+      <li><a href="https://corporate.mereka.io/blog" target="_blank" rel="noopener">Blog</a></li>
+    </ul></div>
+    <div><h5>Academy</h5><ul>
+      <li><a href="https://corporate.mereka.io/academy/future-of-work" target="_blank" rel="noopener">Future of Work</a></li>
+      <li><a href="https://corporate.mereka.io/academy/all-courses" target="_blank" rel="noopener">All Courses</a></li>
+      <li><a href="https://corporate.mereka.io/academy/makerspace" target="_blank" rel="noopener">Makerspace</a></li>
+    </ul></div>
+    <div><h5>Marketplace</h5><ul>
+      <li><a href="https://mereka.io/experiences" target="_blank" rel="noopener">Experiences</a></li>
+      <li><a href="https://mereka.io/hubs" target="_blank" rel="noopener">Hubs</a></li>
+      <li><a href="https://mereka.io/jobs" target="_blank" rel="noopener">Jobs</a></li>
+    </ul></div>
+  </div>
+  <div class="foot-bottom"><span>&copy; 2026 Mereka</span>
+    <span><a href="https://legal.mereka.io/" target="_blank" rel="noopener">Terms of Use</a><a href="https://legal.mereka.io/privacy-policy/" target="_blank" rel="noopener">Privacy Policy</a></span>
+  </div>
+</div></footer>
+<script>function cp(b){navigator.clipboard.writeText(b.dataset.t).then(()=>{b.classList.add('done');var s=b.innerHTML;b.textContent='✓';setTimeout(()=>{b.classList.remove('done');b.innerHTML=s;},1300);});}</script>
+</body></html>
