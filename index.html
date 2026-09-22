@@ -210,8 +210,8 @@ footer a:hover{color:var(--teal)}
 .pstudy-body h4{color:var(--ink);font-size:clamp(1.3rem,2.2vw,1.6rem);line-height:1.15;margin-bottom:10px}
 .pstudy-body>p{color:var(--muted);margin:0 0 18px}
 .checks{list-style:none;padding:0;margin:0}
-.checks li{display:flex;gap:11px;align-items:flex-start;margin-bottom:13px;font-size:.96rem;color:#333a47;line-height:1.5}
-.checks li::before{content:"";flex:0 0 22px;width:22px;height:22px;background:url('/assets/img/icon-circle-checkmark.svg') center/contain no-repeat;margin-top:1px}
+.checks li{position:relative;padding-left:34px;margin-bottom:13px;font-size:.96rem;color:#333a47;line-height:1.5}
+.checks li::before{content:"";position:absolute;left:0;top:1px;width:22px;height:22px;background:url('/assets/img/icon-circle-checkmark.svg') center/contain no-repeat}
 .checks b{color:var(--ink)}
 .carousel-hint{text-align:center;color:var(--muted);font-size:.85rem;margin-top:2px}
 @media(max-width:760px){.pstudy{flex-basis:90%;grid-template-columns:1fr}.pstudy-img{min-height:200px}}
