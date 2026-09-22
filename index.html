@@ -122,8 +122,8 @@ header.nav{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.86);bac
 
 /* PORTFOLIO / SKILLING */
 .big-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin:36px 0 12px}
-.big-stat{text-align:center;padding:22px}
-.big-stat .n{font-family:'Poppins Font';font-weight:800;font-size:2.6rem;color:var(--teal)}
+.big-stat{text-align:center;padding:28px 22px;background:#f2f2f2;border-radius:12px}
+.big-stat .n{font-family:'Poppins Font';font-weight:600;font-size:2.6rem;color:#276ef1}
 .big-stat .d{color:var(--muted);font-size:.95rem;max-width:26ch;margin:6px auto 0}
 .study-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:22px;margin-top:34px}
 .study{background:#fff;border:1px solid var(--border);border-radius:20px;padding:28px;box-shadow:var(--shadow-sm)}
@@ -198,6 +198,23 @@ footer a:hover{color:var(--teal)}
 .hrd-logo{height:60px;margin:0 auto 10px;display:block}
 .res-img{width:100%;height:150px;object-fit:cover;border-radius:14px;margin-bottom:14px}
 .foot-badges{display:flex;gap:10px;margin-top:16px}.foot-badges img{height:40px;width:auto}
+
+.study-carousel{display:flex;gap:24px;overflow-x:auto;scroll-snap-type:x mandatory;padding:10px 4px 26px;margin-top:36px;-webkit-overflow-scrolling:touch;scrollbar-width:thin}
+.study-carousel::-webkit-scrollbar{height:8px}
+.study-carousel::-webkit-scrollbar-thumb{background:#d5d7dd;border-radius:10px}
+.study-carousel::-webkit-scrollbar-track{background:transparent}
+.pstudy{scroll-snap-align:center;flex:0 0 86%;max-width:940px;display:grid;grid-template-columns:.82fr 1fr;background:#fff;border:1px solid var(--border);border-radius:22px;overflow:hidden;box-shadow:var(--shadow-sm)}
+.pstudy-img{width:100%;height:100%;min-height:360px;object-fit:cover}
+.pstudy-body{padding:36px 38px;background:linear-gradient(155deg,#ffffff 55%,#eef1ff)}
+.pstudy-body .plogo{height:34px;margin-bottom:16px;object-fit:contain;display:block}
+.pstudy-body h4{color:var(--ink);font-size:clamp(1.3rem,2.2vw,1.6rem);line-height:1.15;margin-bottom:10px}
+.pstudy-body>p{color:var(--muted);margin:0 0 18px}
+.checks{list-style:none;padding:0;margin:0}
+.checks li{display:flex;gap:11px;align-items:flex-start;margin-bottom:13px;font-size:.96rem;color:#333a47;line-height:1.5}
+.checks li::before{content:"";flex:0 0 22px;width:22px;height:22px;background:url('/assets/img/icon-circle-checkmark.svg') center/contain no-repeat;margin-top:1px}
+.checks b{color:var(--ink)}
+.carousel-hint{text-align:center;color:var(--muted);font-size:.85rem;margin-top:2px}
+@media(max-width:760px){.pstudy{flex-basis:90%;grid-template-columns:1fr}.pstudy-img{min-height:200px}}
 </style>
 </head>
 <body>
@@ -350,30 +367,43 @@ footer a:hover{color:var(--teal)}
     </div>
   </div>
   <div class="shell">
-    <div class="study-grid">
-      <div class="study">
-        <img class="study-img" src="/assets/img/portfolio-sdec-landscape.jpg" alt="SDEC"><img class="study-logo" src="/assets/img/logo-sdec.png" alt="SDEC">
-        <h4>SDEC — AI Skilling for Craft Entrepreneurs</h4>
-        <p>Trained 50 craft entrepreneurs from 7 rural Sarawak hubs on practical AI tools like Microsoft Copilot — AI literacy, data analytics for customer insights, and AI-powered sales &amp; marketing.</p>
-        <ul><li><b>66% women participants</b> — strong inclusivity among micro &amp; SME owners</li><li><b>62% aged 30–49</b> — prime working-age entrepreneurs</li><li><b>High completion</b> — several hubs hit 100% (Betong, Serian, Kapit, Sarikei)</li></ul>
+    <p class="carousel-hint">← Swipe to explore case studies →</p>
+    <div class="study-carousel">
+      <div class="pstudy">
+        <img class="pstudy-img" src="/assets/img/portfolio-sdec-landscape.jpg" alt="SDEC">
+        <div class="pstudy-body">
+          <img class="plogo" src="/assets/img/logo-sdec.png" alt="SDEC">
+          <h4>SDEC — AI Skilling for Craft Entrepreneurs</h4>
+          <p>Trained 50 craft entrepreneurs from 7 rural Sarawak hubs on practical AI tools like Microsoft Copilot — AI literacy, data analytics for customer insights, and AI-powered sales &amp; marketing.</p>
+          <ul class="checks"><li><b>66% women participants</b> — strong inclusivity among micro &amp; SME owners</li><li><b>62% aged 30–49</b> — prime working-age entrepreneurs</li><li><b>High completion</b> — several hubs hit 100% (Betong, Serian, Kapit, Sarikei)</li></ul>
+        </div>
       </div>
-      <div class="study">
-        <img class="study-img" src="/assets/img/portfolio-talentcorp-landscape.jpg" alt="TalentCorp"><img class="study-logo" src="/assets/img/logo-talent-corp-coa.png" alt="TalentCorp">
-        <h4>TalentCorp — AI for Women Re-entering the Workforce</h4>
-        <p>Supporting TalentCorp's gender inclusion goals through AI literacy training.</p>
-        <ul><li><b>100% female participation</b> — supporting gender inclusion goals</li><li><b>Faster task completion</b> post-training, zero participants needing over 2 hours</li><li><b>Positive feedback</b> — boosted confidence and interest in advanced training</li></ul>
+      <div class="pstudy">
+        <img class="pstudy-img" src="/assets/img/portfolio-talentcorp-landscape.jpg" alt="TalentCorp">
+        <div class="pstudy-body">
+          <img class="plogo" src="/assets/img/logo-talent-corp-coa.png" alt="TalentCorp">
+          <h4>TalentCorp — AI for Women Re-entering the Workforce</h4>
+          <p>Supporting TalentCorp's gender inclusion goals through AI literacy training.</p>
+          <ul class="checks"><li><b>100% female participation</b> — supporting gender inclusion goals</li><li><b>Faster task completion</b> post-training, zero participants needing over 2 hours</li><li><b>Positive feedback</b> — boosted confidence and interest in advanced training</li></ul>
+        </div>
       </div>
-      <div class="study">
-        <img class="study-img" src="/assets/img/portfolio-petrajaya-landscape.jpg" alt="Putrajaya"><img class="study-logo" src="/assets/img/logo-petrajaya.png" alt="Putrajaya">
-        <h4>Parliament of Putrajaya — AI for Community Leaders</h4>
-        <p>AI literacy training for community leaders to boost productivity and efficiency.</p>
-        <ul><li><b>97 graduates, 94% completion</b> by community leaders (47/50)</li><li><b>Productivity boost</b> — tasks cut from 2+ hrs to under 30 mins; 44% AI literacy gain</li><li><b>3× faster workflows</b> for teachers &amp; entrepreneurs; 50% less reporting time</li></ul>
+      <div class="pstudy">
+        <img class="pstudy-img" src="/assets/img/portfolio-petrajaya-landscape.jpg" alt="Putrajaya">
+        <div class="pstudy-body">
+          <img class="plogo" src="/assets/img/logo-petrajaya.png" alt="Putrajaya">
+          <h4>Parliament of Petrajaya — AI Skilling for Community Leaders</h4>
+          <p>AI literacy training for community leaders to boost productivity and efficiency.</p>
+          <ul class="checks"><li><b>97 graduates with 94% completion</b> — by community leaders (47/50)</li><li><b>Productivity boost</b> — tasks cut from 2+ hours to under 30 mins, 44% AI literacy gain for leaders</li><li><b>3× faster workflows</b> — for teachers &amp; entrepreneurs, 50% less reporting time for leaders</li></ul>
+        </div>
       </div>
-      <div class="study">
-        <img class="study-img" src="/assets/img/portfolio-irda-landscape.jpg" alt="IRDA"><img class="study-logo" src="/assets/img/logo-irda.png" alt="IRDA">
-        <h4>IRDA — AI Skilling for Mid-Career Professionals</h4>
-        <p>AI and data skills training for mid-career professionals across multiple domains.</p>
-        <ul><li><b>44% AI &amp; data skills boost</b> across 7 domains</li><li><b>Faster analysis</b> — under-30-min completions up from 38% to 43%</li><li><b>Time saved</b> — 2+ hour tasks cut from 38% to 10.8%</li></ul>
+      <div class="pstudy">
+        <img class="pstudy-img" src="/assets/img/portfolio-irda-landscape.jpg" alt="IRDA">
+        <div class="pstudy-body">
+          <img class="plogo" src="/assets/img/logo-irda.png" alt="IRDA">
+          <h4>IRDA — AI Skilling for Mid-Career Professionals</h4>
+          <p>AI and data skills training for mid-career professionals across multiple domains.</p>
+          <ul class="checks"><li><b>44% AI &amp; data skills boost</b> across 7 domains</li><li><b>Faster analysis</b> — under-30-min completions up from 38% to 43%</li><li><b>Time saved</b> — 2+ hour tasks cut from 38% to 10.8%</li></ul>
+        </div>
       </div>
     </div>
   </div>
