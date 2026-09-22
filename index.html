@@ -194,6 +194,7 @@ footer a:hover{color:var(--teal)}
     <button class="burger" aria-label="Menu" onclick="document.getElementById('nav').classList.toggle('open')"><span></span><span></span><span></span></button>
     <nav class="nav-links" id="nav">
       <a href="#departments">Departments</a>
+      <a href="/prompts/">Prompt Library</a>
       <a href="#programmes">Programmes</a>
       <a href="#portfolio">Impact</a>
       <a href="#instructors">Instructors</a>
@@ -510,7 +511,7 @@ DEPTS.forEach((d,i)=>{
       <h3>${d.name}</h3>
       <p class="lead" style="font-size:1rem">${d.desc}</p>
       <div class="roles"><b>Common roles</b>${d.roles}</div>
-      <div style="margin-top:18px"><a class="btn btn-primary" href="https://ailab.mereka.io/department/${d.slug}/" target="_blank" rel="noopener">Explore ${d.name} →</a></div>
+      <div style="margin-top:18px"><a class="btn btn-primary" href="/department/${d.slug}/">Explore ${d.name} →</a></div>
     </div>
     <div>
       <div class="dept-cols">
