@@ -1,0 +1,32 @@
+name: Sync content from ailab.mereka.io
+on:
+  schedule:
+    - cron: "0 2 * * 1"   # every Monday 02:00 UTC
+  workflow_dispatch: {}
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.11" }
+      - name: Regenerate from WordPress REST API
+        run: python3 sync.py
+      - name: Commit changes if any
+        run: |
+          git config user.name "ailab-sync-bot"
+          git config user.email "actions@github.com"
+          if [ -n "$(git status --porcelain)" ]; then
+            git add -A
+            git commit -m "chore: sync content from ailab.mereka.io [skip ci]"
+            git push
+          else
+            echo "No content changes."
+          fi
+      # Optional: trigger Coolify redeploy (set COOLIFY_DEPLOY_URL secret to the
+      # app's deploy webhook, or use the API deploy endpoint + token).
+      - name: Trigger Coolify redeploy
+        if: ${{ env.COOLIFY_DEPLOY_URL != '' }}
+        env:
+          COOLIFY_DEPLOY_URL: ${{ secrets.COOLIFY_DEPLOY_URL }}
+        run: curl -fsS -X GET "$COOLIFY_DEPLOY_URL" || true
