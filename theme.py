@@ -110,5 +110,5 @@ def head(title, desc, canonical, extra_css=""):
 <meta name="description" content="{html.escape(desc)}">
 <link rel="canonical" href="{canonical}">
 <meta property="og:title" content="{html.escape(title)}"><meta property="og:description" content="{html.escape(desc)}"><meta property="og:url" content="{canonical}">
-<link rel="icon" href="https://ailab.mereka.io/wp-content/uploads/sites/9/2025/11/favicon_256x256.png">
+<link rel="icon" href="/assets/favicon.png">
 <style>{CSS}{extra_css}</style></head><body id="top">"""

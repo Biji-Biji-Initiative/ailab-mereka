@@ -104,7 +104,7 @@ header.nav{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.86);bac
 .stat{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);border-radius:var(--radius);padding:20px}
 .stat .num{font-family:'Poppins Font';font-weight:800;font-size:1.7rem;color:#fff}
 .stat .lab{font-size:.88rem;color:rgba(255,255,255,.82)}
-.case .photo{border-radius:24px;min-height:320px;background:linear-gradient(150deg,var(--teal),#2bd0c9 90%);box-shadow:var(--shadow);display:flex;align-items:flex-end;padding:26px}
+.case .photo{border-radius:24px;min-height:320px;background:url('/assets/img/card-case-study.jpg') center/cover;box-shadow:var(--shadow);display:flex;align-items:flex-end;padding:26px}
 .case .photo .tag{background:rgba(0,0,0,.28);color:#fff;font-family:'Poppins Font';font-weight:600;font-size:.85rem;padding:8px 14px;border-radius:10px}
 
 /* PROGRAMMES */
@@ -150,7 +150,7 @@ header.nav{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.86);bac
 .res p{color:var(--muted);font-size:.92rem;margin:10px 0 18px;flex:1}
 
 /* CTA BAND */
-.band{background:linear-gradient(120deg,var(--anchor),#27488a);color:#fff;border-radius:26px;padding:52px;text-align:center;box-shadow:var(--shadow)}
+.band{background:linear-gradient(120deg,var(--anchor),#27488a);color:#fff;border-radius:26px;padding:52px;text-align:center;box-shadow:var(--shadow);background-image:linear-gradient(120deg,rgba(31,63,124,.86),rgba(31,63,124,.7)),url('/assets/img/bg-cta.jpg');background-size:cover;background-position:center}
 .band h2{font-size:clamp(1.6rem,3.2vw,2.3rem);margin-bottom:12px}
 .band p{color:rgba(255,255,255,.85);max-width:52ch;margin:0 auto 26px}
 
@@ -185,6 +185,19 @@ footer a:hover{color:var(--teal)}
   .nav-links.open .nav-cta{margin:6px 0 0}
 }
 @media(max-width:560px){.pains{grid-template-columns:1fr}.inst-grid{grid-template-columns:1fr}.dept-cols{grid-template-columns:1fr}.section{padding:64px 0}.band{padding:36px 22px}}
+
+.prog-img{width:100%;height:154px;object-fit:cover;border-radius:14px;margin-bottom:18px}
+.study-img{width:100%;height:184px;object-fit:cover;border-radius:14px;margin-bottom:16px}
+.study-logo{height:26px;margin-bottom:12px;object-fit:contain;display:block}
+.inst .ph{overflow:hidden;padding:0}
+.inst .ph img{width:100%;height:100%;object-fit:cover;display:block}
+.dept-img{width:100%;height:158px;object-fit:cover;border-radius:16px;margin-bottom:18px}
+.partners{display:flex;flex-wrap:wrap;gap:30px 46px;align-items:center;justify-content:center;margin-top:40px}
+.partners img{height:32px;object-fit:contain;filter:grayscale(1);opacity:.72;transition:.2s}
+.partners img:hover{filter:none;opacity:1}
+.hrd-logo{height:60px;margin:0 auto 10px;display:block}
+.res-img{width:100%;height:150px;object-fit:cover;border-radius:14px;margin-bottom:14px}
+.foot-badges{display:flex;gap:10px;margin-top:16px}.foot-badges img{height:40px;width:auto}
 </style>
 </head>
 <body>
@@ -289,6 +302,7 @@ footer a:hover{color:var(--teal)}
   <div class="shell">
     <div class="prog-grid">
       <div class="prog">
+        <img class="prog-img" src="/assets/img/programme-ai-foundation.jpg" alt="AI Foundation">
         <span class="badge">Foundation</span>
         <h3>AI Foundation for Your Team</h3>
         <p>Improve your team's productivity through AI literacy and gradual adoption of AI in task-specific roles.</p>
@@ -296,6 +310,7 @@ footer a:hover{color:var(--teal)}
         <a class="btn btn-ghost" href="https://corporate.mereka.io/academy/course/ai-foundation-for-your-team" target="_blank" rel="noopener">See Programme Details</a>
       </div>
       <div class="prog">
+        <img class="prog-img" src="/assets/img/programme-ai-adaptation.jpg" alt="AI Adaptation">
         <span class="badge">Adaptation</span>
         <h3>AI Adaptation in Your Team</h3>
         <p>Enhance decision-making through data-driven insights. Foster innovation by leveraging AI tools to generate new ideas and solutions.</p>
@@ -303,6 +318,7 @@ footer a:hover{color:var(--teal)}
         <a class="btn btn-ghost" href="https://corporate.mereka.io/academy/course/ai-adaptation-in-your-team" target="_blank" rel="noopener">See Programme Details</a>
       </div>
       <div class="prog">
+        <img class="prog-img" src="/assets/img/programme-ai-embedding.jpg" alt="AI Embedding">
         <span class="badge">Embedding</span>
         <h3>AI Embedding in Your Team</h3>
         <p>Modernise processes. Develop and deploy chatbots for department or task-specific functions.</p>
@@ -326,6 +342,7 @@ footer a:hover{color:var(--teal)}
     <div class="eyebrow">Our AI skilling portfolio</div>
     <h2 style="font-size:clamp(1.7rem,3.4vw,2.4rem);margin-top:12px">842,000+ learners reached</h2>
     <p class="lead" style="margin-top:14px">In partnership with Microsoft, our AI skilling initiatives have created significant impact across Malaysia and Indonesia.</p>
+    <div class="partners"><img src="/assets/img/logo-microsoft.png" alt="Microsoft"><img src="/assets/img/logo-perkeso.png" alt="PERKESO"><img src="/assets/img/logo-talent-corp.png" alt="TalentCorp"><img src="/assets/img/logo-avpn.png" alt="AVPN"><img src="/assets/img/logo-yayasan-amir.png" alt="Yayasan AMIR"><img src="/assets/img/logo-sdec.png" alt="SDEC"></div>
     <div class="big-stats">
       <div class="big-stat"><div class="n">260K</div><div class="d">learners reached through AI skilling programs across Malaysia &amp; Indonesia</div></div>
       <div class="big-stat"><div class="n">60K</div><div class="d">learners trained in AI fundamentals across Malaysia &amp; Indonesia</div></div>
@@ -335,21 +352,25 @@ footer a:hover{color:var(--teal)}
   <div class="shell">
     <div class="study-grid">
       <div class="study">
+        <img class="study-img" src="/assets/img/portfolio-sdec-landscape.jpg" alt="SDEC"><img class="study-logo" src="/assets/img/logo-sdec.png" alt="SDEC">
         <h4>SDEC — AI Skilling for Craft Entrepreneurs</h4>
         <p>Trained 50 craft entrepreneurs from 7 rural Sarawak hubs on practical AI tools like Microsoft Copilot — AI literacy, data analytics for customer insights, and AI-powered sales &amp; marketing.</p>
         <ul><li><b>66% women participants</b> — strong inclusivity among micro &amp; SME owners</li><li><b>62% aged 30–49</b> — prime working-age entrepreneurs</li><li><b>High completion</b> — several hubs hit 100% (Betong, Serian, Kapit, Sarikei)</li></ul>
       </div>
       <div class="study">
+        <img class="study-img" src="/assets/img/portfolio-talentcorp-landscape.jpg" alt="TalentCorp"><img class="study-logo" src="/assets/img/logo-talent-corp-coa.png" alt="TalentCorp">
         <h4>TalentCorp — AI for Women Re-entering the Workforce</h4>
         <p>Supporting TalentCorp's gender inclusion goals through AI literacy training.</p>
         <ul><li><b>100% female participation</b> — supporting gender inclusion goals</li><li><b>Faster task completion</b> post-training, zero participants needing over 2 hours</li><li><b>Positive feedback</b> — boosted confidence and interest in advanced training</li></ul>
       </div>
       <div class="study">
+        <img class="study-img" src="/assets/img/portfolio-petrajaya-landscape.jpg" alt="Putrajaya"><img class="study-logo" src="/assets/img/logo-petrajaya.png" alt="Putrajaya">
         <h4>Parliament of Putrajaya — AI for Community Leaders</h4>
         <p>AI literacy training for community leaders to boost productivity and efficiency.</p>
         <ul><li><b>97 graduates, 94% completion</b> by community leaders (47/50)</li><li><b>Productivity boost</b> — tasks cut from 2+ hrs to under 30 mins; 44% AI literacy gain</li><li><b>3× faster workflows</b> for teachers &amp; entrepreneurs; 50% less reporting time</li></ul>
       </div>
       <div class="study">
+        <img class="study-img" src="/assets/img/portfolio-irda-landscape.jpg" alt="IRDA"><img class="study-logo" src="/assets/img/logo-irda.png" alt="IRDA">
         <h4>IRDA — AI Skilling for Mid-Career Professionals</h4>
         <p>AI and data skills training for mid-career professionals across multiple domains.</p>
         <ul><li><b>44% AI &amp; data skills boost</b> across 7 domains</li><li><b>Faster analysis</b> — under-30-min completions up from 38% to 43%</li><li><b>Time saved</b> — 2+ hour tasks cut from 38% to 10.8%</li></ul>
@@ -366,13 +387,13 @@ footer a:hover{color:var(--teal)}
   </div>
   <div class="shell">
     <div class="inst-grid">
-      <div class="inst"><div class="ph">JB</div><div class="body"><h4>Jey Bala</h4><div class="role">Lead-Instructor / Chief Ecosystem Officer @ Mereka</div><p>Experienced educator, trainer and business development professional with 15+ years in corporate training and educational program development.</p></div></div>
-      <div class="inst"><div class="ph">GS</div><div class="body"><h4>Gurpreet Singh Dhillon</h4><div class="role">AI Agent Instructor / CEO @ Mereka.io</div><p>Changemaker and social entrepreneur equipping Asia's youth with 21st-century skills and an entrepreneurial mindset.</p></div></div>
-      <div class="inst"><div class="ph">RP</div><div class="body"><h4>Rashvin Pal Singh</h4><div class="role">AI For Business Instructor / CEO @ Biji-Biji Initiative</div><p>Leads the Biji-biji Group, one of Malaysia's pioneering social innovation organisations, since 2013.</p></div></div>
-      <div class="inst"><div class="ph">AS</div><div class="body"><h4>Ambika Sangaran</h4><div class="role">AI Ethics &amp; Sustainability Instructor / COO @ Mereka</div><p>Builds ecosystems that empower individuals through education, entrepreneurship, and sustainability.</p></div></div>
+      <div class="inst"><div class="ph"><img src="/assets/img/expert-jey.jpg" alt="Jey Bala"></div><div class="body"><h4>Jey Bala</h4><div class="role">Lead-Instructor / Chief Ecosystem Officer @ Mereka</div><p>Experienced educator, trainer and business development professional with 15+ years in corporate training and educational program development.</p></div></div>
+      <div class="inst"><div class="ph"><img src="/assets/img/expert-gurpreet.jpg" alt="Gurpreet Singh Dhillon"></div><div class="body"><h4>Gurpreet Singh Dhillon</h4><div class="role">AI Agent Instructor / CEO @ Mereka.io</div><p>Changemaker and social entrepreneur equipping Asia's youth with 21st-century skills and an entrepreneurial mindset.</p></div></div>
+      <div class="inst"><div class="ph"><img src="/assets/img/expert-rashvin.jpg" alt="Rashvin Pal Singh"></div><div class="body"><h4>Rashvin Pal Singh</h4><div class="role">AI For Business Instructor / CEO @ Biji-Biji Initiative</div><p>Leads the Biji-biji Group, one of Malaysia's pioneering social innovation organisations, since 2013.</p></div></div>
+      <div class="inst"><div class="ph"><img src="/assets/img/expert-sangaran.jpg" alt="Ambika Sangaran"></div><div class="body"><h4>Ambika Sangaran</h4><div class="role">AI Ethics &amp; Sustainability Instructor / COO @ Mereka</div><p>Builds ecosystems that empower individuals through education, entrepreneurship, and sustainability.</p></div></div>
     </div>
     <div class="center" style="margin-top:40px;padding:28px;background:var(--grey);border-radius:20px">
-      <h3 style="color:var(--anchor);font-size:1.3rem">Our programmes are HRD Corp-claimable</h3>
+      <img class="hrd-logo" src="/assets/img/logo-hrd.png" alt="HRD Corp"><h3 style="color:var(--anchor);font-size:1.3rem">Our programmes are HRD Corp-claimable</h3>
       <p class="lead center" style="margin:10px auto 18px">Any registered employer under HRD Corp can apply for the training grant.</p>
       <a class="btn btn-primary" href="https://corporate.mereka.io/contact" target="_blank" rel="noopener">Get in touch with our team →</a>
     </div>
@@ -388,7 +409,7 @@ footer a:hover{color:var(--teal)}
   </div>
   <div class="shell">
     <div class="res-grid">
-      <div class="res"><span class="free">Free Programme</span><h4>Mereka AI Lab: FREE AI Training — 2hr</h4><p>Join us for a FREE introduction to AI for the workplace.</p><a class="btn btn-ghost" href="https://mereka.io/experience/mereka-ai-lab" target="_blank" rel="noopener">Programme Details</a></div>
+      <div class="res"><img class="res-img" src="/assets/img/resource-mereka-ai-lab-sesion.jpg" alt="Mereka AI Lab"><span class="free">Free Programme</span><h4>Mereka AI Lab: FREE AI Training — 2hr</h4><p>Join us for a FREE introduction to AI for the workplace.</p><a class="btn btn-ghost" href="https://mereka.io/experience/mereka-ai-lab" target="_blank" rel="noopener">Programme Details</a></div>
       <div class="res"><span class="free">Free Course</span><h4>AI for MY Future</h4><p>Start your AI journey in a supportive, community-driven environment with free training, certification, and mentorship.</p><a class="btn btn-ghost" href="https://aiformyfuture.biji-biji.com/" target="_blank" rel="noopener">Programme Details</a></div>
       <div class="res"><span class="free">Fund</span><h4>AVPN AI Opportunity Fund</h4><p>For social entrepreneurs and NGOs — get support to pilot impactful AI projects.</p><a class="btn btn-ghost" href="https://avpn.asia/event/ai-opportunity-fund-ap-2-info-session-1/" target="_blank" rel="noopener">Programme Details</a></div>
     </div>
@@ -414,6 +435,7 @@ footer a:hover{color:var(--teal)}
       <div>
         <div class="foot-logo"><img src="/assets/mereka-logo.svg" alt="AI Labs"></div>
         <p style="max-width:34ch">We upskill &amp; empower companies to boost productivity with AI.</p>
+        <div class="foot-badges"><a href="https://apps.apple.com/my/app/mereka/id1524970037" target="_blank" rel="noopener"><img src="/assets/img/badge-app-store.png" alt="App Store"></a><a href="https://play.google.com/store/apps/details?id=io.mereka.app" target="_blank" rel="noopener"><img src="/assets/img/badge-google-play.png" alt="Google Play"></a></div>
         <div class="foot-social">
           <a href="https://www.tiktok.com/@mereka.io" target="_blank" rel="noopener">TT</a>
           <a href="https://www.instagram.com/mereka.io/" target="_blank" rel="noopener">IG</a>
@@ -468,27 +490,27 @@ footer a:hover{color:var(--teal)}
 <script>
 /* Department tabs — data pulled from ailab.mereka.io (5 departments). */
 const DEPTS = [
-  { name:"People & Culture", slug:"people-culture",
+  { name:"People & Culture", slug:"people-culture", img:"/assets/img/department-people-culture.jpg",
     desc:"AI-powered hiring, engagement, and people operations—smarter, faster, more human.",
     roles:"Head of People, Chief of Staff, HR Managers, Talent Acquisition Managers, HR Executives",
     usecases:[["Communicate key findings & draft follow-up surveys","/human-resources"],["Communicate with candidates","/human-resources"],["Assess employee satisfaction","/executive-leadership"],["Board meetings","/executive-leadership"],["Annual planning offsites","/administrative-operations"],["Communicate on the go","/executive-leadership"]],
     prompts:[["Add talking points to a presentation script","/human-resources"],["Brainstorm employee appreciation ideas","/executive-leadership"],["Brainstorm responses to tough employee questions","/executive-leadership"],["Check inventory levels","/frontline-management"]] },
-  { name:"Growth & Acquisition", slug:"growth-acquisition",
+  { name:"Growth & Acquisition", slug:"growth-acquisition", img:"/assets/img/department-growth-acquisition.jpg",
     desc:"AI-driven campaigns and sales automation for rapid, measurable growth.",
     roles:"Marketing Directors, Sales Managers, Campaign Managers, Digital Marketing Specialists, Growth Hackers",
     usecases:[["Analyze social media trends to reduce time to market","/marketing-communications"],["Brainstorm and generate marketing content","/marketing-communications"],["Brainstorm brand partnerships","/marketing-communications"],["Build customer relationships","/sales"],["Access tools on your phone while on the go","/sales"],["Brainstorm content & thought leadership","/executive-leadership"]],
     prompts:[["Add more information to a press release","/communications"],["Analyse the findings in this report","/marketing-communications"],["Brainstorm marketing materials for an event/sale","/marketing-communications"],["Brainstorm tactics to bring in new customers","/marketing-communications"]] },
-  { name:"Customer Experience", slug:"customer-experience",
+  { name:"Customer Experience", slug:"customer-experience", img:"/assets/img/department-customer-experience.jpg",
     desc:"Delight customers with intelligent support and frictionless service, powered by AI.",
     roles:"Customer Success Managers, Support Team Leads, Call Center Managers, Customer Experience Directors",
     usecases:[["Analyze customer feedback","/customer-support-service"],["Conduct voice of the customer research","/customer-support-service"],["Draft customer communications","/customer-support-service"],["Enable customer self-service","/customer-support-service"],["Improve customer service","/customer-support-service"],["Client inquiries","/administrative-operations"]],
     prompts:[["Analyze customer feedback from a spreadsheet","/customer-support-service"],["Craft a list of customer communication best practices","/customer-support-service"],["Create a blog post from a product return policy","/customer-support-service"],["Create a post-call customer survey","/customer-support-service"]] },
-  { name:"Finance & Operations", slug:"finance-operations",
+  { name:"Finance & Operations", slug:"finance-operations", img:"/assets/img/department-operations.jpg",
     desc:"Automate finances and streamline operations with data-fueled intelligence.",
     roles:"CFOs, Finance Managers, Operations Directors, Budget Analysts, Financial Controllers",
     usecases:[["Brainstorm business and strategy","/startup-leaders"],["Communicate and negotiate with vendors","/startup-leaders"],["Conduct fundraising and investor relations","/startup-leaders"],["Develop a product launch plan","/startup-leaders"],["Compliance requests","/administrative-operations"],["Create an elevator pitch (speech to text)","/startup-leaders"]],
     prompts:[["Brainstorm scenarios for a product launch plan","/startup-leaders"],["Build a high-level roadmap","/startup-leaders"],["Clean a user feedback survey spreadsheet","/startup-leaders"],["Compare product prices to competitors","/startup-leaders"]] },
-  { name:"Product & Engineering", slug:"product-engineering",
+  { name:"Product & Engineering", slug:"product-engineering", img:"/assets/img/department-product-engineering.jpg",
     desc:"Ship better products, faster—AI-enhanced development and IT automation at every step.",
     roles:"IT Directors, DevOps Engineers, System Administrators, Tech Leads, Infrastructure Managers",
     usecases:[["Create a project plan","/productivity-automation"],["Create a project retrospective","/project-management"],["Create a workback schedule","/project-management"],["Develop an issue tracker & related communications","/project-management"],["Complex project discussions","/project-management"],["Communicate technical topics to non-technical audiences","/executive-leadership"]],
@@ -502,6 +524,7 @@ DEPTS.forEach((d,i)=>{
   const p=document.createElement('div');p.className='tabpanel'+(i===0?' active':'');
   p.innerHTML=`<div class="dept-card">
     <div class="dept-side">
+      <img class="dept-img" src="${d.img}" alt="${d.name}">
       <h3>${d.name}</h3>
       <p class="lead" style="font-size:1rem">${d.desc}</p>
       <div class="roles"><b>Common roles</b>${d.roles}</div>
