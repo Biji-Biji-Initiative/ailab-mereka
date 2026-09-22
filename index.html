@@ -215,6 +215,89 @@ footer a:hover{color:var(--teal)}
 .checks b{color:var(--ink)}
 .carousel-hint{text-align:center;color:var(--muted);font-size:.85rem;margin-top:2px}
 @media(max-width:760px){.pstudy{flex-basis:90%;grid-template-columns:1fr}.pstudy-img{min-height:200px}}
+
+/* Departments 3-col */
+.tab[aria-selected="true"]{background:#276ef1;color:#fff;border-color:#276ef1}
+.dept-head{display:flex;justify-content:space-between;align-items:flex-start;gap:20px;flex-wrap:wrap}
+.dept-head .lead{margin-top:14px;text-align:left}
+.dept-card{grid-template-columns:.92fr 1.05fr 1.05fr;gap:20px;background:transparent;border:0;padding:0;box-shadow:none}
+.dept-media{background:#fff;border:1px solid var(--line);border-radius:20px;padding:24px}
+.dept-media img{width:100%;height:250px;object-fit:cover;border-radius:14px;margin:0 0 20px}
+.dept-media h3{font-size:1.5rem;color:var(--ink);margin-bottom:10px}
+.dept-media p{color:var(--muted);font-size:.98rem;margin:0}
+.dept-uc,.dept-pp{border-radius:20px;padding:28px}
+.dept-uc{background:#fff;border:1px solid var(--line)}
+.dept-uc h4{font-size:1.4rem;color:var(--ink);margin-bottom:6px}
+.dept-uc ul{list-style:none;margin:0;padding:0}
+.dept-uc li a{display:flex;justify-content:space-between;align-items:center;gap:14px;padding:15px 6px;border-bottom:1px solid var(--line);color:#333a47;font-size:.98rem;line-height:1.35}
+.dept-uc li:last-child a{border-bottom:0}
+.dept-uc li a::after{content:"\203A";color:#a2a7b4;font-size:1.4rem;flex:0 0 auto}
+.dept-uc li a:hover{color:var(--blue)}
+.dept-pp{background:var(--ink);color:#fff}
+.dept-pp h4{color:#fff;font-size:1.4rem;margin-bottom:12px}
+.dept-pp .div{border-top:1px solid rgba(255,255,255,.16);margin-bottom:8px}
+.dept-pp ul{list-style:none;margin:0;padding:0}
+.dept-pp li{padding:14px 0;color:#e7e5f0;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.9rem;line-height:1.5;border-bottom:1px solid rgba(255,255,255,.08)}
+.dept-pp li:last-child{border-bottom:0}
+@media(max-width:900px){.dept-card{grid-template-columns:1fr}}
+/* Case study */
+.cs-wrap{background:linear-gradient(120deg,#d9e3ff 0%,#eaeefb 55%,#f6f7fb 100%);border-radius:28px;padding:42px;display:grid;grid-template-columns:.82fr 1.18fr;gap:44px;align-items:stretch}
+.cs-card{position:relative;border-radius:20px;overflow:hidden;min-height:430px;padding:30px;display:flex;flex-direction:column;color:#fff;background-size:cover;background-position:center}
+.cs-card::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(20,18,30,.35),rgba(20,18,30,.72))}
+.cs-card>*{position:relative;z-index:1}
+.cs-card .eyb{font-size:.92rem;color:rgba(255,255,255,.9)}
+.cs-card .cs-bottom{margin-top:auto}
+.cs-card h3{font-size:clamp(1.6rem,2.4vw,2rem);color:#fff;margin:0 0 10px;line-height:1.12}
+.cs-card p{color:rgba(255,255,255,.9);font-size:.95rem;margin:0 0 18px}
+.cs-body .cs-tag{color:var(--blue);font-weight:700;font-size:1.05rem;margin-bottom:12px}
+.cs-body h2{font-size:clamp(1.9rem,3.6vw,2.8rem);color:var(--ink);line-height:1.08;margin-bottom:14px}
+.cs-body>p{color:var(--muted);font-size:1.05rem;margin:0 0 22px;max-width:60ch}
+.cs-pills{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:24px}
+.cs-pill{background:#fff;border-radius:14px;padding:13px 18px;display:flex;align-items:center;gap:12px;box-shadow:var(--shadow-sm)}
+.cs-pill svg{flex:0 0 auto;color:var(--ink)}
+.cs-pill b{font-weight:700;font-size:1.15rem;display:block;line-height:1.05}
+.cs-pill span{font-size:.9rem;color:#333a47}
+.cs-checks{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:1fr 1fr;gap:14px 26px}
+.cs-checks li{position:relative;padding-left:32px;font-size:.96rem;color:#333a47;line-height:1.4}
+.cs-checks li::before{content:"";position:absolute;left:0;top:0;width:22px;height:22px;background:url('/assets/img/icon-circle-checkmark.svg') center/contain no-repeat}
+.cs-checks b{color:var(--ink)}
+@media(max-width:820px){.cs-wrap{grid-template-columns:1fr}.cs-checks{grid-template-columns:1fr}}
+/* Testimonial + trusted */
+.testi{display:grid;grid-template-columns:1.6fr 1fr;gap:30px;align-items:center}
+.testi-quote{display:flex;gap:14px;align-items:flex-start}
+.testi-quote .qmark{font-family:Georgia,serif;font-size:4rem;line-height:.8;color:var(--ink);font-weight:700}
+.testi-quote h2{font-size:clamp(1.6rem,3vw,2.3rem);color:var(--ink);line-height:1.15}
+.testi-author{display:flex;flex-direction:column;align-items:flex-end;text-align:right;gap:6px}
+.testi-author img{height:60px;object-fit:contain;margin-bottom:4px}
+.testi-author b{font-size:1rem}.testi-author span{color:var(--muted);font-size:.92rem}
+.trusted{display:flex;align-items:center;gap:34px;flex-wrap:wrap;margin-top:44px}
+.trusted>span{font-weight:600;color:#333a47}
+.trusted img{height:30px;object-fit:contain}
+@media(max-width:760px){.testi{grid-template-columns:1fr}.testi-author{align-items:flex-start;text-align:left}}
+/* HRDF band */
+.hrd-band{background:linear-gradient(115deg,#1f6bff,#38a4ff);border-radius:26px;padding:50px 56px;display:grid;grid-template-columns:1fr auto;gap:30px;align-items:center;color:#fff}
+.hrd-band h2{color:#fff;font-size:clamp(1.8rem,3.4vw,2.7rem);margin:0}
+.hrd-band p{color:rgba(255,255,255,.92);margin:12px 0 22px}
+.hrd-band .badge-img{height:158px;width:auto}
+@media(max-width:720px){.hrd-band{grid-template-columns:1fr}.hrd-band .badge-img{height:120px}}
+/* Resources */
+.res-head{max-width:760px}
+.res-tabs{display:flex;gap:12px;margin:26px 0 30px}
+.res-tabs button{font-family:'Poppins Font';font-weight:600;font-size:.94rem;padding:11px 22px;border-radius:100px;border:1.5px solid var(--line);background:#fff;color:#2a2f3a;cursor:pointer}
+.res-tabs button.on{border-color:var(--ink);color:var(--ink)}
+.res-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.res{background:#fff;border:1px solid var(--line);border-radius:20px;padding:28px;display:flex;flex-direction:column;min-height:420px}
+.res .res-logo{height:30px;object-fit:contain;align-self:flex-start;margin-bottom:auto}
+.res h4{font-size:1.35rem;color:var(--ink);margin:26px 0 10px}
+.res p{color:var(--muted);font-size:.98rem;margin:0}
+.res-link{margin-top:auto;padding-top:22px;display:flex;align-items:center;justify-content:space-between;font-weight:600;color:var(--ink)}
+.res-link span{font-size:1.2rem}
+.res--dark{background:linear-gradient(160deg,#2a2350,#3a2f63 55%,#4a2a55);color:#fff;border:0;position:relative;overflow:hidden}
+.res--dark h4{color:#fff;margin-top:0}
+.res--dark p{color:rgba(255,255,255,.82)}
+.res--dark .res-photo{width:calc(100% + 56px);margin:20px -28px 0;height:180px;object-fit:cover;object-position:center top}
+.res--dark .res-link{color:#fff;padding-top:16px}
+@media(max-width:860px){.res-grid{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -278,42 +361,57 @@ footer a:hover{color:var(--teal)}
 
 <!-- DEPARTMENTS -->
 <section class="section section--grey" id="departments">
-  <div class="shell center">
-    <div class="eyebrow">Use cases &amp; prompts</div>
-    <h2 style="font-size:clamp(1.8rem,3.6vw,2.6rem);margin-top:12px">AI For All Departments</h2>
-    <p class="lead" style="margin-top:14px">Find specific use cases and prompts to help save time and boost productivity for your departments.</p>
-    <div style="margin-top:18px"><a class="btn btn-ghost" href="/prompts/" target="_blank" rel="noopener">See All Prompts</a></div>
-  </div>
-  <div class="shell">
+    <div class="shell">
+    <div class="dept-head">
+      <div>
+        <h2 style="font-size:clamp(1.9rem,3.8vw,2.8rem)">AI For All Departments</h2>
+        <p class="lead">Find specific use cases and prompts to help save time and boost productivity for your departments.</p>
+      </div>
+      <a class="btn btn-dark" href="/prompts/">See All Prompts</a>
+    </div>
+  </div><div class="shell">
     <div class="tabs" role="tablist" id="depttabs"></div>
     <div id="deptpanels"></div>
   </div>
 </section>
 
 <!-- CASE STUDY -->
-<section class="section section--ink" id="case-study">
-  <div class="shell case">
-    <div>
-      <div class="eyebrow" style="color:var(--teal)">Case Study : Mereka</div>
-      <h2 style="color:#fff;font-size:clamp(1.7rem,3.4vw,2.4rem);margin:14px 0">How we saved 5 hours / week with AI.</h2>
-      <p style="color:rgba(255,255,255,.85)">Our teams have learnt &amp; implemented AI for themselves. We completed a 10-week AI micro-learning programme with AI tools, workflows and use cases that improved productivity. <b style="color:#fff">22 People · 10 Weeks · Full Remote.</b> No coding experience required!</p>
-      <div class="case-stats">
-        <div class="stat"><div class="num">5 hrs+</div><div class="lab">weekly productivity gains per employee</div></div>
-        <div class="stat"><div class="num">80%</div><div class="lab">increase in AI adoption within the organisation</div></div>
-        <div class="stat"><div class="num">USD 100K</div><div class="lab">worth of leads won using AI</div></div>
-        <div class="stat"><div class="num">↑ Confidence</div><div class="lab">increased team confidence using AI</div></div>
+<section class="section" id="case-study">
+  <div class="shell">
+    <div class="cs-wrap">
+      <div class="cs-card" style="background-image:url('/assets/img/card-case-study.jpg')">
+        <span class="eyb">Case Study : Mereka</span>
+        <div class="cs-bottom">
+          <h3>How we saved 5 hours / week with AI.</h3>
+          <p>Understand how AI can help save your business time and cost.</p>
+          <a class="btn btn-light" href="https://corporate.mereka.io/blog/organizational-case-study-merekas-ai-transformation" target="_blank" rel="noopener">Read the full case study →</a>
+        </div>
       </div>
-      <div style="margin-top:24px"><a class="btn btn-primary" href="https://corporate.mereka.io/blog/organizational-case-study-merekas-ai-transformation" target="_blank" rel="noopener">Read the full case study →</a></div>
+      <div class="cs-body">
+        <div class="cs-tag">The Mereka Case Study</div>
+        <h2>Our teams have learnt &amp; implemented AI for themselves.</h2>
+        <p>We completed a 10-week AI micro-learning programme with AI tools, workflows and use cases that improved productivity.</p>
+        <div class="cs-pills">
+          <div class="cs-pill"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="9" cy="8" r="3.2"/><path d="M3.5 19c0-3 2.5-5 5.5-5s5.5 2 5.5 5"/><circle cx="17" cy="8.5" r="2.6"/><path d="M15 14.2c3 .2 5 2.2 5 4.8"/></svg><span><b>22</b>People</span></div>
+          <div class="cs-pill"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3.5" y="5" width="17" height="15" rx="2.5"/><path d="M3.5 9.5h17M8 3.5v3M16 3.5v3"/></svg><span><b>10</b>Weeks</span></div>
+          <div class="cs-pill"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4.5" width="18" height="12" rx="2"/><path d="M8 20h8M12 16.5V20"/></svg><span><b>Full</b>Remote</span></div>
+        </div>
+        <ul class="cs-checks">
+          <li><b>5 hours+</b> weekly productivity gains per employee</li>
+          <li><b>80% increase</b> in AI adoption with the organisation</li>
+          <li><b>USD 100,000</b> worth of leads won using AI</li>
+          <li><b>Increased team confidence</b> when using AI</li>
+        </ul>
+      </div>
     </div>
-    <div class="photo"><span class="tag">The Mereka Case Study</span></div>
   </div>
 </section>
 
 <!-- PROGRAMMES -->
 <section class="section" id="programmes">
   <div class="shell center">
-    <div class="eyebrow">Discover our programmes</div>
-    <h2 style="font-size:clamp(1.7rem,3.4vw,2.4rem);margin-top:12px">Future-proof your teams</h2>
+    <span class="chip" style="background:#eaf0ff;color:var(--blue);border:0;font-weight:600">&#10022; No coding experience required! &#10022;</span>
+    <h2 style="font-size:clamp(2rem,4vw,3rem);margin-top:16px">Discover Our Programmes</h2>
     <p class="lead" style="margin-top:14px">Designed to future-proof your teams by learning AI skills and deploying AI tools internally. Yes, you can do it by yourself!</p>
   </div>
   <div class="shell">
@@ -359,7 +457,6 @@ footer a:hover{color:var(--teal)}
     <div class="eyebrow">Our AI skilling portfolio</div>
     <h2 style="font-size:clamp(1.7rem,3.4vw,2.4rem);margin-top:12px">842,000+ learners reached</h2>
     <p class="lead" style="margin-top:14px">In partnership with Microsoft, our AI skilling initiatives have created significant impact across Malaysia and Indonesia.</p>
-    <div class="partners"><img src="/assets/img/logo-microsoft.png" alt="Microsoft"><img src="/assets/img/logo-perkeso.png" alt="PERKESO"><img src="/assets/img/logo-talent-corp.png" alt="TalentCorp"><img src="/assets/img/logo-avpn.png" alt="AVPN"><img src="/assets/img/logo-yayasan-amir.png" alt="Yayasan AMIR"><img src="/assets/img/logo-sdec.png" alt="SDEC"></div>
     <div class="big-stats">
       <div class="big-stat"><div class="n">260K</div><div class="d">learners reached through AI skilling programs across Malaysia &amp; Indonesia</div></div>
       <div class="big-stat"><div class="n">60K</div><div class="d">learners trained in AI fundamentals across Malaysia &amp; Indonesia</div></div>
@@ -410,10 +507,21 @@ footer a:hover{color:var(--teal)}
 </section>
 
 <!-- INSTRUCTORS -->
+<!-- TESTIMONIAL + TRUSTED -->
+<section class="section">
+  <div class="shell">
+    <div class="testi">
+      <div class="testi-quote"><span class="qmark">&ldquo;</span><h2>The most human centered AI Upskilling Programme</h2></div>
+      <div class="testi-author"><img src="/assets/img/logo-yayasan-amir.png" alt="Yayasan AMIR"><b>Zaida Khalida Shaari</b><span>Advisor</span></div>
+    </div>
+    <div class="trusted"><span>Trusted by:</span><img src="/assets/img/logo-microsoft.png" alt="Microsoft"><img src="/assets/img/logo-perkeso.png" alt="PERKESO"><img src="/assets/img/logo-talent-corp.png" alt="TalentCorp"><img src="/assets/img/logo-avpn.png" alt="AVPN"><img src="/assets/img/logo-sdec.png" alt="SDEC"></div>
+  </div>
+</section>
+
+<!-- INSTRUCTORS -->
 <section class="section" id="instructors">
-  <div class="shell center">
-    <div class="eyebrow">The most human-centered AI upskilling programme</div>
-    <h2 style="font-size:clamp(1.7rem,3.4vw,2.4rem);margin-top:12px">Learn From Experts In Their Field</h2>
+  <div class="shell">
+    <h2 style="font-size:clamp(1.8rem,3.6vw,2.6rem)">Learn From Experts In Their Field</h2>
   </div>
   <div class="shell">
     <div class="inst-grid">
@@ -422,26 +530,48 @@ footer a:hover{color:var(--teal)}
       <div class="inst"><div class="ph"><img src="/assets/img/expert-rashvin.jpg" alt="Rashvin Pal Singh"></div><div class="body"><h4>Rashvin Pal Singh</h4><div class="role">AI For Business Instructor / CEO @ Biji-Biji Initiative</div><p>Leads the Biji-biji Group, one of Malaysia's pioneering social innovation organisations, since 2013.</p></div></div>
       <div class="inst"><div class="ph"><img src="/assets/img/expert-sangaran.jpg" alt="Ambika Sangaran"></div><div class="body"><h4>Ambika Sangaran</h4><div class="role">AI Ethics &amp; Sustainability Instructor / COO @ Mereka</div><p>Builds ecosystems that empower individuals through education, entrepreneurship, and sustainability.</p></div></div>
     </div>
-    <div class="center" style="margin-top:40px;padding:28px;background:var(--grey);border-radius:20px">
-      <img class="hrd-logo" src="/assets/img/logo-hrd.png" alt="HRD Corp"><h3 style="color:var(--anchor);font-size:1.3rem">Our programmes are HRD Corp-claimable</h3>
-      <p class="lead center" style="margin:10px auto 18px">Any registered employer under HRD Corp can apply for the training grant.</p>
-      <a class="btn btn-primary" href="https://corporate.mereka.io/contact" target="_blank" rel="noopener">Get in touch with our team →</a>
-    </div>
   </div>
 </section>
 
-<!-- RESOURCES -->
-<section class="section section--grey" id="resources">
-  <div class="shell center">
-    <div class="eyebrow">Free to get started</div>
-    <h2 style="font-size:clamp(1.7rem,3.4vw,2.4rem);margin-top:12px">Explore our introductory resources</h2>
-    <p class="lead" style="margin-top:14px">We've got loads of FREE material for you to start upskilling your team at no cost!</p>
+<!-- HRDF BAND -->
+<section class="section"><div class="shell">
+  <div class="hrd-band">
+    <div>
+      <h2>Our programmes are HRDF-claimable.</h2>
+      <p>Any registered employer under HRD Corp can apply for the training grant.</p>
+      <a class="btn btn-dark" href="https://corporate.mereka.io/contact" target="_blank" rel="noopener">Get in touch with our team</a>
+    </div>
+    <img class="badge-img" src="/assets/img/logo-hrd.png" alt="HRD Corp Claimable">
   </div>
+</div></section>
+
+<!-- RESOURCES -->
+<section class="section" id="resources">
   <div class="shell">
+    <div class="res-head">
+      <h2 style="font-size:clamp(2rem,4vw,3rem)">Explore our collection of introductory resources to get started!</h2>
+      <p class="lead">We've got loads of FREE material for you to start upskilling your team at no cost!</p>
+    </div>
+    <div class="res-tabs"><button class="on">Free Programmes</button><button>Free Courses</button></div>
     <div class="res-grid">
-      <div class="res"><img class="res-img" src="/assets/img/resource-mereka-ai-lab-sesion.jpg" alt="Mereka AI Lab"><span class="free">Free Programme</span><h4>Mereka AI Lab: FREE AI Training — 2hr</h4><p>Join us for a FREE introduction to AI for the workplace.</p><a class="btn btn-ghost" href="https://mereka.io/experience/mereka-ai-lab" target="_blank" rel="noopener">Programme Details</a></div>
-      <div class="res"><span class="free">Free Course</span><h4>AI for MY Future</h4><p>Start your AI journey in a supportive, community-driven environment with free training, certification, and mentorship.</p><a class="btn btn-ghost" href="https://aiformyfuture.biji-biji.com/" target="_blank" rel="noopener">Programme Details</a></div>
-      <div class="res"><span class="free">Fund</span><h4>AVPN AI Opportunity Fund</h4><p>For social entrepreneurs and NGOs — get support to pilot impactful AI projects.</p><a class="btn btn-ghost" href="https://avpn.asia/event/ai-opportunity-fund-ap-2-info-session-1/" target="_blank" rel="noopener">Programme Details</a></div>
+      <div class="res res--dark">
+        <h4>Mereka AI Lab: FREE AI Training &ndash; 2hr</h4>
+        <p>Join us for a FREE introduction to AI for the workplace.</p>
+        <img class="res-photo" src="/assets/img/resource-mereka-ai-lab-sesion.jpg" alt="Mereka AI Lab">
+        <a class="res-link" href="https://mereka.io/experience/mereka-ai-lab" target="_blank" rel="noopener">Programme Details <span>&rarr;</span></a>
+      </div>
+      <div class="res">
+        <img class="res-logo" src="/assets/img/logo-microsoft.png" alt="Microsoft">
+        <h4>AI for MY Future</h4>
+        <p>Start your AI journey in a supportive, community-driven environment with free training, certification, and mentorship.</p>
+        <a class="res-link" href="https://aiformyfuture.biji-biji.com/" target="_blank" rel="noopener">Programme Details <span>&rarr;</span></a>
+      </div>
+      <div class="res">
+        <img class="res-logo" src="/assets/img/logo-avpn.png" alt="AVPN">
+        <h4>AVPN AI Opportunity Fund</h4>
+        <p>For social entrepreneurs and NGOs&mdash;get support to pilot impactful AI projects.</p>
+        <a class="res-link" href="https://avpn.asia/event/ai-opportunity-fund-ap-2-info-session-1/" target="_blank" rel="noopener">Programme Details <span>&rarr;</span></a>
+      </div>
     </div>
   </div>
 </section>
@@ -553,19 +683,18 @@ DEPTS.forEach((d,i)=>{
   t.onclick=()=>select(i);tabsEl.appendChild(t);
   const p=document.createElement('div');p.className='tabpanel'+(i===0?' active':'');
   p.innerHTML=`<div class="dept-card">
-    <div class="dept-side">
-      <img class="dept-img" src="${d.img}" alt="${d.name}">
+    <div class="dept-media">
+      <img src="${d.img}" alt="${d.name}">
       <h3>${d.name}</h3>
-      <p class="lead" style="font-size:1rem">${d.desc}</p>
-      <div class="roles"><b>Common roles</b>${d.roles}</div>
-      <div style="margin-top:18px"><a class="btn btn-primary" href="/prompts/">Explore ${d.name} prompts →</a></div>
+      <p>${d.desc}</p>
     </div>
-    <div>
-      <div class="dept-cols">
-        <div><h4>Use Cases</h4><ul>${d.usecases.map(u=>`<li><a href="${u[1]}" target="_blank" rel="noopener">${u[0]}</a></li>`).join('')}</ul></div>
-        <div><h4>Power Prompts</h4><ul>${d.prompts.map(u=>`<li><a href="${u[1]}" target="_blank" rel="noopener">${u[0]}</a></li>`).join('')}</ul></div>
-      </div>
-      <div class="dept-foot"><a class="btn btn-ghost" href="/prompts/" target="_blank" rel="noopener">See All Prompts →</a></div>
+    <div class="dept-uc">
+      <h4>Use Cases</h4>
+      <ul>${d.usecases.map(u=>`<li><a href="${u[1]}">${u[0]}</a></li>`).join('')}</ul>
+    </div>
+    <div class="dept-pp">
+      <h4>Power Prompts</h4><div class="div"></div>
+      <ul>${d.prompts.map(u=>`<li>${u[0]}</li>`).join('')}</ul>
     </div>
   </div>`;
   panelsEl.appendChild(p);
