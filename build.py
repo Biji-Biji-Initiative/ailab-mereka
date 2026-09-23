@@ -91,6 +91,9 @@ LIB_CSS = """
 .chero p{color:#43405a;font-size:1.06rem;max-width:64ch;margin:0 auto 24px}
 .chero .search{max-width:520px;margin:0 auto;display:flex;align-items:center;gap:10px;background:#fff;border-radius:100px;padding:13px 22px;box-shadow:var(--shadow-sm)}
 .chero .search input{border:0;outline:0;width:100%;font-family:inherit;font-size:1rem;background:transparent;color:var(--ink)}
+.chero .search .qclear{border:0;background:none;cursor:pointer;color:var(--blue);font-size:1.4rem;line-height:1;padding:0 2px;display:none}
+.chero .search .qclear.show{display:block}
+.res-count{color:var(--muted);font-size:.92rem;margin:0 0 16px;min-height:1.2em}
 .sec{padding:54px 0}
 .sechead{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:24px}
 .sechead h2{font-size:1.9rem}
@@ -140,7 +143,7 @@ lib=theme.head("AI Prompts — AI Labs","Whether you're exploring automation, cu
 <section class="chero"><div class="shell"><div class="blob">
   <h1>Turn Strategy Into AI-Driven Results With AI Cookbooks</h1>
   <p>Whether you're exploring automation, customer insights, or decision intelligence, these practical guides will show you how AI fits into your business&mdash;step by step, no PhD required.</p>
-  <label class="search"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#8a8fa0" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><input id="q" type="search" placeholder="Search ..." autocomplete="off"></label>
+  <div class="search"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#8a8fa0" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><input id="q" type="search" placeholder="Search prompts by keyword..." autocomplete="off"><button id="qclear" class="qclear" type="button" aria-label="Clear search">&times;</button></div>
 </div></div></section>
 
 <section class="sec"><div class="shell">
@@ -149,7 +152,8 @@ lib=theme.head("AI Prompts — AI Labs","Whether you're exploring automation, cu
 </div></section>
 
 <section class="sec" id="all" style="padding-top:0"><div class="shell">
-  <h2 style="font-size:1.9rem;margin-bottom:20px">All Prompts</h2>
+  <h2 style="font-size:1.9rem;margin-bottom:6px">All Prompts</h2>
+  <div class="res-count" id="count"></div>
   <div class="toolbar">
     <select id="cat"><option value="">All Categories</option>{catopts}</select>
     <input class="sinput sp" id="q2" type="search" placeholder="Search">
@@ -161,19 +165,25 @@ lib=theme.head("AI Prompts — AI Labs","Whether you're exploring automation, cu
 <script>
 const ROWS={json.dumps(rows,ensure_ascii=False)};
 const PER=24;let page=1;
-const tb=document.getElementById('tb'),pager=document.getElementById('pager'),cat=document.getElementById('cat'),q2=document.getElementById('q2'),q=document.getElementById('q');
+const tb=document.getElementById('tb'),pager=document.getElementById('pager'),cat=document.getElementById('cat'),q2=document.getElementById('q2'),q=document.getElementById('q'),qclear=document.getElementById('qclear'),count=document.getElementById('count'),ALL=document.getElementById('all');
 function esc(s){{return s.replace(/[&<>"]/g,c=>({{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}}[c]));}}
-function filtered(){{const term=(q2.value||q.value||'').trim().toLowerCase(),c=cat.value;
+function filtered(){{const term=q.value.trim().toLowerCase(),c=cat.value;
   return ROWS.filter(r=>(!c||r.tags.includes(c))&&(!term||r.t.toLowerCase().includes(term)));}}
 function render(){{const f=filtered();const pages=Math.max(1,Math.ceil(f.length/PER));if(page>pages)page=1;
+  const term=q.value.trim();count.textContent=f.length+(f.length===1?' prompt':' prompts')+((term||cat.value)?' found':'')+(term?(' for \u201c'+esc(term)+'\u201d'):'');
   const slice=f.slice((page-1)*PER,page*PER);
-  tb.innerHTML=slice.map(r=>`<tr><td class="nm">${{esc(r.t)}}</td><td class="tg">${{r.tags.map(x=>'<span class="tag">'+esc(x.toLowerCase().replace(/ & /g,' ').replace(/\\s+/g,'-'))+'</span>').join('')}}</td></tr>`).join('')||'<tr><td style="color:var(--muted);padding:40px 6px">No prompts found.</td></tr>';
+  tb.innerHTML=slice.map(r=>`<tr><td class="nm">${{esc(r.t)}}</td><td class="tg">${{r.tags.map(x=>'<span class="tag">'+esc(x.toLowerCase().replace(/ & /g,' ').replace(/\\s+/g,'-'))+'</span>').join('')}}</td></tr>`).join('')||'<tr><td colspan="2" style="color:var(--muted);padding:40px 6px">No prompts found. Try a different keyword.</td></tr>';
   let btns='<button '+(page===1?'disabled':'')+' onclick="go(page-1)">&larr;</button>';
   for(let i=1;i<=pages;i++){{if(i<=3||i===pages||Math.abs(i-page)<=1){{btns+=`<button class="${{i===page?'on':''}}" onclick="go(${{i}})">${{i}}</button>`;}}else if(i===4||i===pages-1){{btns+='<span style="padding:0 4px">…</span>';}}}}
   btns+='<button '+(page===pages?'disabled':'')+' onclick="go(page+1)">&rarr;</button>';
   pager.innerHTML=pages>1?btns:'';}}
 function go(p){{page=p;render();window.scrollTo({{top:document.getElementById('all').offsetTop-90,behavior:'smooth'}});}}
-[q,q2,cat].forEach(el=>el.addEventListener('input',()=>{{page=1;render();}}));
+function apply(val,fromHero){{q.value=val;q2.value=val;qclear.classList.toggle('show',!!val);page=1;render();if(fromHero&&val){{ALL.scrollIntoView({{behavior:'smooth',block:'start'}});}}}}
+q.addEventListener('input',e=>apply(e.target.value,true));
+q2.addEventListener('input',e=>apply(e.target.value,false));
+q.addEventListener('keydown',e=>{{if(e.key==='Enter'){{e.preventDefault();if(q.value)ALL.scrollIntoView({{behavior:'smooth',block:'start'}});}}}});
+cat.addEventListener('change',()=>{{page=1;render();}});
+qclear.addEventListener('click',()=>{{apply('',false);q.focus();}});
 render();
 </script>
 </body></html>'''
