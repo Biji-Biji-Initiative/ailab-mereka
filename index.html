@@ -292,10 +292,10 @@ footer a:hover{color:var(--teal)}
 .res p{color:var(--muted);font-size:.98rem;margin:0}
 .res-link{margin-top:auto;padding-top:22px;display:flex;align-items:center;justify-content:space-between;font-weight:600;color:var(--ink)}
 .res-link span{font-size:1.2rem}
-.res--dark{background:linear-gradient(160deg,#2a2350,#3a2f63 55%,#4a2a55);color:#fff;border:0;position:relative;overflow:hidden}
+.res--dark{background:linear-gradient(160deg,#2a2350,#3a2f63 55%,#4a2a55);color:#fff;border:0;position:relative;overflow:hidden;min-height:560px}
 .res--dark h4{color:#fff;margin-top:0}
 .res--dark p{color:rgba(255,255,255,.82)}
-.res--dark .res-photo{width:calc(100% + 56px);margin:20px -28px 0;height:180px;object-fit:cover;object-position:center top}
+.res--dark .res-photo{width:100%;border-radius:14px;margin:22px 0 0;height:250px;object-fit:cover;object-position:left top}
 .res--dark .res-link{color:#fff;padding-top:16px}
 @media(max-width:860px){.res-grid{grid-template-columns:1fr}}
 
@@ -304,13 +304,14 @@ footer a:hover{color:var(--teal)}
 .nav-links a:not(.btn){color:#1a1623;font-weight:500}
 /* hero blob + below */
 .hero{padding:0}
-.hero-blob{position:relative;border-radius:0 0 44px 44px;overflow:hidden;background:url('/assets/bg-hero.png') center/cover no-repeat;padding:74px 0 92px}
-.hero-blob .hero-inner{max-width:1000px;margin:0 auto;text-align:center;padding:0 24px}
+.hero-blob{position:relative;border-radius:0 0 44px 44px;overflow:hidden;background:#e9f5f1;padding:74px 0 92px}
+.hero-blob::before{content:'';position:absolute;inset:0;background:url('/assets/bg-hero.png') center/cover no-repeat;transform:scaleX(-1);z-index:0}
+.hero-blob .hero-inner{position:relative;z-index:1;max-width:1000px;margin:0 auto;text-align:center;padding:0 24px}
 .hero .pretitle{font-weight:700;color:var(--ink);font-size:1.02rem;margin-bottom:18px;letter-spacing:.01em}
 .hero .pretitle .spk{color:#f4b400}
 .hero-blob h1{font-size:clamp(2.8rem,6.4vw,6rem);font-weight:800;line-height:1.03;letter-spacing:-.01em}
 .hero-blob p.sub{font-size:1.18rem;color:#2a2733;margin:26px auto 0;max-width:60ch}
-.hero-badge{position:absolute;right:46px;top:50%;transform:translateY(-20%);width:132px;height:132px;object-fit:contain}
+.hero-badge{position:absolute;z-index:1;right:46px;top:50%;transform:translateY(-20%);width:132px;height:132px;object-fit:contain}
 .hero-below{text-align:center;padding:40px 24px 70px}
 .hero .chips{display:flex;flex-wrap:wrap;gap:34px;justify-content:center;margin:0 0 30px}
 .hero .chips .hc{display:inline-flex;align-items:center;gap:9px;font-family:'Poppins Font';font-weight:700;font-size:1.12rem}
@@ -363,6 +364,20 @@ footer a:hover{color:var(--teal)}
 .foot2-links a{color:#e7e5f0}.foot2-links a:hover{color:#fff}
 .foot2-contact{background:#fff;color:var(--ink);border-radius:100px;padding:13px 30px;font-family:'Poppins Font';font-weight:600}
 @media(max-width:640px){.cta-band .badge-img{display:none}.cta-band{padding:48px 26px}}
+
+.foot2-cols{display:grid;grid-template-columns:1fr 1.5fr 1fr 1.3fr;gap:36px;padding:44px 0 36px;border-top:1px solid rgba(255,255,255,.12);margin-top:34px}
+.foot2-cols h5{color:#fff;font-family:'Poppins Font';font-weight:600;font-size:.98rem;margin:0 0 16px}
+.foot2-cols h6{color:#8b8f9e;font-weight:600;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;margin:0 0 12px}
+.foot2-cols ul{list-style:none;margin:0 0 4px;padding:0}
+.foot2-cols li{margin-bottom:11px}
+.foot2-cols a{color:#cfd2da;font-size:.93rem}.foot2-cols a:hover{color:#fff}
+.foot2-mk{display:grid;grid-template-columns:1fr 1fr;gap:26px}
+.foot2-listcta{font-size:.92rem;color:#cfd2da;margin-top:14px}
+.foot2-listbtn{display:inline-block;margin-top:12px;background:#fff;color:var(--ink);border-radius:100px;padding:11px 24px;font-family:'Poppins Font';font-weight:600;font-size:.88rem}
+.foot2-bottom{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;padding-top:24px;border-top:1px solid rgba(255,255,255,.12);color:#9a9dab;font-size:.86rem}
+.foot2-bottom a{color:#9a9dab;margin-left:22px}.foot2-bottom a:hover{color:#fff}
+@media(max-width:860px){.foot2-cols{grid-template-columns:1fr 1fr}}
+@media(max-width:560px){.foot2-cols{grid-template-columns:1fr}.foot2-mk{grid-template-columns:1fr 1fr}}
 </style>
 </head>
 <body>
@@ -679,7 +694,7 @@ footer a:hover{color:var(--teal)}
     <div class="foot2-nav">
       <div class="foot2-links">
         <a href="https://corporate.mereka.io/about-us" target="_blank" rel="noopener">About</a>
-        <a href="https://corporate.mereka.io/andragogy" target="_blank" rel="noopener">Andragogy</a>
+        <a href="https://corporate.mereka.io/andragogy" target="_blank" rel="noopener">Androgogy</a>
         <a href="https://corporate.mereka.io/portfolio" target="_blank" rel="noopener">Portfolio</a>
         <a href="https://corporate.mereka.io/our-team" target="_blank" rel="noopener">Team</a>
         <a href="https://corporate.mereka.io/work-with-us" target="_blank" rel="noopener">Careers</a>
@@ -687,6 +702,63 @@ footer a:hover{color:var(--teal)}
         <a href="https://corporate.mereka.io/blog" target="_blank" rel="noopener">Blog</a>
       </div>
       <a class="foot2-contact" href="https://corporate.mereka.io/contact" target="_blank" rel="noopener">Contact Us</a>
+    </div>
+    <div class="foot2-cols">
+      <div>
+        <h5>Corporate</h5>
+        <ul>
+          <li><a href="https://corporate.mereka.io/academy/funders" target="_blank" rel="noopener">Accelerate Talent</a></li>
+          <li><a href="https://corporate.mereka.io/academy/create-online-courses" target="_blank" rel="noopener">Create Online Course</a></li>
+          <li><a href="https://corporate.mereka.io/academy/makerspace" target="_blank" rel="noopener">Build a Makerspace</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Marketplace</h5>
+        <div class="foot2-mk">
+          <div>
+            <h6>Users</h6>
+            <ul>
+              <li><a href="https://mereka.io/experiences" target="_blank" rel="noopener">Experiences</a></li>
+              <li><a href="https://mereka.io/spaces" target="_blank" rel="noopener">Experts</a></li>
+              <li><a href="https://mereka.io/hubs" target="_blank" rel="noopener">Expertise</a></li>
+              <li><a href="https://mereka.io/jobs" target="_blank" rel="noopener">Jobs</a></li>
+              <li><a href="https://mereka.io/hubs" target="_blank" rel="noopener">Hubs</a></li>
+              <li><a href="https://corporate.mereka.io/space" target="_blank" rel="noopener">Spaces</a></li>
+            </ul>
+          </div>
+          <div>
+            <h6>Business</h6>
+            <ul>
+              <li><a href="https://hubs.mereka.io/pricing" target="_blank" rel="noopener">Pricing</a></li>
+              <li><a href="https://hubs.mereka.io/howitworks" target="_blank" rel="noopener">Solutions</a></li>
+              <li><a href="https://hubs.mereka.io" target="_blank" rel="noopener">Manage your bookings</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="foot2-listcta">What are you waiting for?</div>
+        <a class="foot2-listbtn" href="https://mereka.io/welcome/hub" target="_blank" rel="noopener">List your service</a>
+      </div>
+      <div>
+        <h5>Academy</h5>
+        <ul>
+          <li><a href="https://corporate.mereka.io/academy/future-of-work" target="_blank" rel="noopener">Future of Work</a></li>
+          <li><a href="https://corporate.mereka.io/academy/digital-entrepreneur" target="_blank" rel="noopener">Become a Digital Entrepreneur</a></li>
+          <li><a href="https://corporate.mereka.io/academy/all-courses" target="_blank" rel="noopener">All Courses</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Space</h5>
+        <ul>
+          <li><a href="https://corporate.mereka.io/publika" target="_blank" rel="noopener">Mereka @ Publika</a></li>
+          <li><a href="https://mereka.canny.io/" target="_blank" rel="noopener">Our Labs</a></li>
+          <li><a href="https://corporate.mereka.io/space/innovate#products" target="_blank" rel="noopener">Bespoke Design Services</a></li>
+          <li><a href="https://corporate.mereka.io/space#event-cta" target="_blank" rel="noopener">Co-host Creative Events / Talks / Workshops</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot2-bottom">
+      <span>&copy; 2026 MEREKA</span>
+      <span><a href="https://legal.mereka.io/" target="_blank" rel="noopener">Terms of Use</a><a href="https://legal.mereka.io/privacy-policy/" target="_blank" rel="noopener">Privacy Policy</a><a href="https://legal.mereka.io/cookie-policy" target="_blank" rel="noopener">Cookies Policy</a></span>
     </div>
   </div>
 </div>
