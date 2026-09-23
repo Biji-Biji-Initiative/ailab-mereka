@@ -203,11 +203,11 @@ footer a:hover{color:var(--teal)}
 .study-carousel::-webkit-scrollbar{height:8px}
 .study-carousel::-webkit-scrollbar-thumb{background:#d5d7dd;border-radius:10px}
 .study-carousel::-webkit-scrollbar-track{background:transparent}
-.pstudy{scroll-snap-align:center;flex:0 0 86%;max-width:940px;display:grid;grid-template-columns:.82fr 1fr;background:#fff;border:1px solid var(--border);border-radius:22px;overflow:hidden;box-shadow:var(--shadow-sm)}
+.pstudy{scroll-snap-align:center;flex:0 0 88%;max-width:1020px;display:grid;grid-template-columns:.95fr 1.05fr;background:#fff;border:1px solid var(--border);border-radius:22px;overflow:hidden;box-shadow:var(--shadow-sm)}
 .pstudy-img{width:100%;height:100%;min-height:360px;object-fit:cover}
 .pstudy-body{padding:36px 38px;background:linear-gradient(155deg,#ffffff 55%,#eef1ff)}
 .pstudy-body .plogo{height:34px;margin-bottom:16px;object-fit:contain;display:block}
-.pstudy-body h4{color:var(--ink);font-size:clamp(1.3rem,2.2vw,1.6rem);line-height:1.15;margin-bottom:10px}
+.pstudy-body h4{color:var(--ink);font-size:clamp(1.7rem,2.8vw,2.3rem);line-height:1.12;margin-bottom:14px}
 .pstudy-body>p{color:var(--muted);margin:0 0 18px}
 .checks{list-style:none;padding:0;margin:0}
 .checks li{position:relative;padding-left:34px;margin-bottom:13px;font-size:.96rem;color:#333a47;line-height:1.5}
@@ -298,20 +298,86 @@ footer a:hover{color:var(--teal)}
 .res--dark .res-photo{width:calc(100% + 56px);margin:20px -28px 0;height:180px;object-fit:cover;object-position:center top}
 .res--dark .res-link{color:#fff;padding-top:16px}
 @media(max-width:860px){.res-grid{grid-template-columns:1fr}}
+
+/* nav corporate */
+.nav-logo img{height:38px}
+.nav-links a:not(.btn){color:#1a1623;font-weight:500}
+/* hero blob + below */
+.hero{padding:0}
+.hero-blob{position:relative;border-radius:0 0 44px 44px;overflow:hidden;background:url('/assets/bg-hero.png') center/cover no-repeat;padding:74px 0 92px}
+.hero-blob .hero-inner{max-width:1000px;margin:0 auto;text-align:center;padding:0 24px}
+.hero .pretitle{font-weight:700;color:var(--ink);font-size:1.02rem;margin-bottom:18px;letter-spacing:.01em}
+.hero .pretitle .spk{color:#f4b400}
+.hero-blob h1{font-size:clamp(2.8rem,6.4vw,6rem);font-weight:800;line-height:1.03;letter-spacing:-.01em}
+.hero-blob p.sub{font-size:1.18rem;color:#2a2733;margin:26px auto 0;max-width:60ch}
+.hero-badge{position:absolute;right:46px;top:50%;transform:translateY(-20%);width:132px;height:132px;object-fit:contain}
+.hero-below{text-align:center;padding:40px 24px 70px}
+.hero .chips{display:flex;flex-wrap:wrap;gap:34px;justify-content:center;margin:0 0 30px}
+.hero .chips .hc{display:inline-flex;align-items:center;gap:9px;font-family:'Poppins Font';font-weight:700;font-size:1.12rem}
+.hero .chips .hc.g{color:#18b26a}.hero .chips .hc.p{color:#8b5cf6}.hero .chips .hc.b{color:#3b82f6}
+.hero .chips .hc .spk{font-size:1.15rem}
+.hero-cta{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
+@media(max-width:760px){.hero-badge{display:none}.hero-blob h1{font-size:2.6rem}}
+/* pains word cloud */
+.pain-cloud{display:flex;flex-wrap:wrap;gap:14px 16px;justify-content:center;max-width:1120px;margin:44px auto 0}
+.pill-tag{font-family:'Poppins Font';font-weight:600;font-size:1.02rem;padding:15px 26px;border-radius:16px;line-height:1.2}
+.pill-tag.blue{background:#a9b8f5;color:#1a1623}
+.pill-tag.grey{background:#edeef2;color:#2a2733}
+.pain-foot{text-align:center;margin-top:40px}
+.pain-foot .lead{margin:0 auto 24px}
+.btn-outline{background:#fff;color:var(--ink);border:1.6px solid var(--ink);border-radius:100px;padding:15px 30px;font-family:'Poppins Font';font-weight:600;display:inline-flex;gap:10px;align-items:center}
+.btn-outline:hover{background:var(--ink);color:#fff}
+/* programmes redo */
+.prog-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:22px;margin-top:44px;align-items:stretch}
+.prog{background:#fff;border:1px solid var(--line);border-radius:20px;padding:0;overflow:hidden;display:flex;flex-direction:column;box-shadow:var(--shadow-sm)}
+.prog .prog-img{width:100%;height:180px;object-fit:cover;border-radius:0;margin:0}
+.prog .prog-in{padding:22px 22px 24px;display:flex;flex-direction:column;flex:1}
+.prog h3{font-size:1.15rem;margin:0 0 10px;color:var(--ink)}
+.prog p{color:var(--muted);font-size:.95rem;margin:0}
+.prog .prog-meta{display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--line);margin-top:18px;padding-top:16px;font-family:'Poppins Font';font-weight:700;font-size:.95rem}
+.prog .prog-meta .price{color:var(--ink)}
+.prog .prog-btn{margin-top:16px;display:flex;align-items:center;justify-content:center;gap:8px;border:1.4px solid var(--line);border-radius:12px;padding:13px;font-family:'Poppins Font';font-weight:600;font-size:.92rem;color:var(--ink)}
+.prog .prog-btn:hover{background:var(--grey)}
+.prog--dark{background:var(--ink);color:#fff;border:0}
+.prog--dark .prog-in{padding:30px 26px}
+.prog--dark .tagpill{font-family:'Poppins Font';font-weight:600;font-size:.92rem;color:#cfd2da;margin-bottom:auto}
+.prog--dark h3{color:#fff;font-size:1.9rem;line-height:1.1;margin:34px 0 14px}
+.prog--dark p{color:#cfd2da}
+.prog--dark .prog-btn{background:#fff;color:var(--ink);border:0;margin-top:26px;padding:15px}
+@media(max-width:1000px){.prog-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:620px){.prog-grid{grid-template-columns:1fr}}
+/* final CTA on dark + footer */
+.footwrap{background:#191627;color:#fff;padding:70px 0 40px;margin-top:0}
+.cta-band{max-width:var(--maxw);margin:0 auto 64px;border-radius:26px;padding:70px 60px;position:relative;overflow:hidden;background:linear-gradient(120deg,#12224e 0%,#173a86 45%,#1f8fb0 100%);text-align:center}
+.cta-band h2{color:#fff;font-size:clamp(2rem,4vw,3rem);margin:0 0 14px}
+.cta-band p{color:rgba(255,255,255,.9);margin:0 0 26px}
+.cta-band .badge-img{position:absolute;right:56px;top:50%;transform:translateY(-50%);width:140px;height:140px}
+.foot2{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+.foot2-top{display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap;padding-bottom:40px}
+.foot2-logo img{height:38px}
+.foot2-social{display:flex;gap:16px}
+.foot2-social a{color:#fff;display:inline-flex}
+.foot2-social svg{width:22px;height:22px;fill:currentColor}
+.foot2-nav{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;padding-top:30px}
+.foot2-links{display:flex;gap:34px;flex-wrap:wrap;font-family:'Poppins Font';font-weight:500}
+.foot2-links a{color:#e7e5f0}.foot2-links a:hover{color:#fff}
+.foot2-contact{background:#fff;color:var(--ink);border-radius:100px;padding:13px 30px;font-family:'Poppins Font';font-weight:600}
+@media(max-width:640px){.cta-band .badge-img{display:none}.cta-band{padding:48px 26px}}
 </style>
 </head>
 <body>
 
 <header class="nav">
   <div class="shell nav-inner">
-    <a class="nav-logo" href="#top" aria-label="AI Labs home"><img src="/assets/mereka-logo.svg" alt="Mereka"></a>
+    <a class="nav-logo" href="#top" aria-label="Mereka home"><img src="/assets/mereka-logo-emblem.svg" alt="Mereka"></a>
     <a class="chip" href="https://mereka.io" target="_blank" rel="noopener" style="background:var(--accent);color:#fff;border:0;font-weight:600;margin-left:2px">Marketplace</a>
     <button class="burger" aria-label="Menu" onclick="document.getElementById('nav').classList.toggle('open')"><span></span><span></span><span></span></button>
     <nav class="nav-links" id="nav">
-      <a href="/prompts/">AI Prompts</a>
-      <a href="#departments">Departments</a>
-      <a href="#programmes">Programmes</a>
-      <a href="#portfolio">Impact</a>
+      <a href="https://corporate.mereka.io" target="_blank" rel="noopener">Our Approach</a>
+      <a href="https://corporate.mereka.io/academy" target="_blank" rel="noopener">Grow with us</a>
+      <a href="https://corporate.mereka.io/create-with-us" target="_blank" rel="noopener">Create With Us</a>
+      <a href="https://mereka.io/hubs" target="_blank" rel="noopener">Discover Spaces</a>
+      <a href="https://corporate.mereka.io/about-us" target="_blank" rel="noopener">Company</a>
       <a class="btn btn-dark nav-cta" href="#contact">Contact Us</a>
     </nav>
   </div>
@@ -321,20 +387,23 @@ footer a:hover{color:var(--teal)}
 
 <!-- HERO -->
 <section class="hero">
-  <div class="shell">
+  <div class="hero-blob">
     <div class="hero-inner">
-      <div class="pretitle">Boost your team's productivity</div>
+      <div class="pretitle"><span class="spk">&#10022;</span> Boost your teams productivity <span class="spk">&#10022;</span></div>
       <h1>It's Easy To Get Started With AI</h1>
       <p class="sub">We upskill &amp; empower companies &amp; departments to boost their productivity with AI. Future-proof your teams by learning how to deploy AI tools internally.</p>
-      <div class="chips">
-        <span class="chip">✍️ Write <b>Better Prompts</b></span>
-        <span class="chip">⚙️ Automate <b>with AI</b></span>
-        <span class="chip">🤖 Build <b>Agents &amp; Tools</b></span>
-      </div>
-      <div class="hero-cta">
-        <a class="btn btn-primary" href="#contact">Get In Touch →</a>
-        <a class="btn btn-ghost" href="#programmes">Browse Programmes</a>
-      </div>
+    </div>
+    <img class="hero-badge" src="/assets/img/logo-hrd.png" alt="HRD Corp Claimable">
+  </div>
+  <div class="hero-below">
+    <div class="chips">
+      <span class="hc g"><span class="spk">&#10022;</span> Write Better Prompts</span>
+      <span class="hc p"><span class="spk">&#10022;</span> Automate with AI</span>
+      <span class="hc b"><span class="spk">&#10022;</span> Build Agents &amp; Tools</span>
+    </div>
+    <div class="hero-cta">
+      <a class="btn btn-dark" href="#contact" style="padding:16px 34px">Get In Touch</a>
+      <a class="btn btn-ghost" href="#programmes" style="padding:16px 34px">Browse Programmes</a>
     </div>
   </div>
 </section>
@@ -342,20 +411,27 @@ footer a:hover{color:var(--teal)}
 <!-- PAINS -->
 <section class="section">
   <div class="shell center">
-    <div class="eyebrow">The reality</div>
-    <h2 style="font-size:clamp(1.7rem,3.4vw,2.4rem);margin-top:12px">Most Senior Managers Struggle With</h2>
-    <p class="lead" style="margin-top:14px">Perhaps someone in your organisation is going through the same thing?</p>
+    <h2 style="font-size:clamp(2rem,4.2vw,3.2rem)">Most Senior Managers Struggle With</h2>
   </div>
   <div class="shell">
-    <div class="pains">
-      <div class="pain"><h4>Drowning in Data, Short on Insights</h4><p class="q">"How do I quickly extract key insights from all this data?"</p></div>
-      <div class="pain"><h4>Slow, Manual Processes</h4><p class="q">"Why are some processes still so manual and time-consuming?"</p></div>
-      <div class="pain"><h4>Team Communication Bottlenecks</h4><p class="q">"How do I drive innovation while juggling daily operations?"</p></div>
-      <div class="pain"><h4>Decision Fatigue</h4><p class="q">"Am I attending too many meetings that don't need me?"</p></div>
-      <div class="pain"><h4>Fear of Falling Behind</h4><p class="q">"How can I free up time for more high-value work?"</p></div>
-      <div class="pain"><h4>Outdated Process &amp; Workflow</h4><p class="q">"What tasks am I doing that I should be delegating or automating?"</p></div>
+    <div class="pain-cloud">
+      <span class="pill-tag blue">Drowning in Data, Short on Insights</span>
+      <span class="pill-tag blue">Fear of Falling Behind</span>
+      <span class="pill-tag grey">How do I quickly extract key insights from all this data?</span>
+      <span class="pill-tag blue">Team Communication Bottlenecks</span>
+      <span class="pill-tag grey">Why are some processes still so manual and time-consuming?</span>
+      <span class="pill-tag blue">Slow, Manual Processes</span>
+      <span class="pill-tag grey">How do I drive innovation while juggling daily operations?</span>
+      <span class="pill-tag blue">Outdated Process and Workflow</span>
+      <span class="pill-tag grey">Am I attending too many meetings that don't need me?</span>
+      <span class="pill-tag grey">How can I free up time for more high-value work?</span>
+      <span class="pill-tag grey">What tasks am I doing that I should be delegating or automating?</span>
+      <span class="pill-tag blue">Decision Fatigue</span>
     </div>
-    <div class="center" style="margin-top:34px"><a class="btn btn-dark" href="#case-study">See How AI Has Helped Mereka</a></div>
+    <div class="pain-foot">
+      <p class="lead">Perhaps someone in your organisation is going through the same thing?</p>
+      <a class="btn-outline" href="#case-study">See How AI Has Helped Mereka <span>&darr;</span></a>
+    </div>
   </div>
 </section>
 
@@ -417,35 +493,39 @@ footer a:hover{color:var(--teal)}
   <div class="shell">
     <div class="prog-grid">
       <div class="prog">
-        <img class="prog-img" src="/assets/img/programme-ai-foundation.jpg" alt="AI Foundation">
-        <span class="badge">Foundation</span>
-        <h3>AI Foundation for Your Team</h3>
-        <p>Improve your team's productivity through AI literacy and gradual adoption of AI in task-specific roles.</p>
-        <div class="meta">1 day · <span>From RM8,000</span></div>
-        <a class="btn btn-ghost" href="https://corporate.mereka.io/academy/course/ai-foundation-for-your-team" target="_blank" rel="noopener">See Programme Details</a>
-      </div>
-      <div class="prog">
-        <img class="prog-img" src="/assets/img/programme-ai-adaptation.jpg" alt="AI Adaptation">
-        <span class="badge">Adaptation</span>
-        <h3>AI Adaptation in Your Team</h3>
-        <p>Enhance decision-making through data-driven insights. Foster innovation by leveraging AI tools to generate new ideas and solutions.</p>
-        <div class="meta">8 sessions · <span>From RM16,000</span></div>
-        <a class="btn btn-ghost" href="https://corporate.mereka.io/academy/course/ai-adaptation-in-your-team" target="_blank" rel="noopener">See Programme Details</a>
-      </div>
-      <div class="prog">
-        <img class="prog-img" src="/assets/img/programme-ai-embedding.jpg" alt="AI Embedding">
-        <span class="badge">Embedding</span>
-        <h3>AI Embedding in Your Team</h3>
-        <p>Modernise processes. Develop and deploy chatbots for department or task-specific functions.</p>
-        <div class="meta">8 sessions · <span>From RM24,000</span></div>
-        <a class="btn btn-ghost" href="https://corporate.mereka.io/academy/course/ai-embedding-in-your-team" target="_blank" rel="noopener">See Programme Details</a>
-      </div>
-      <div class="prog prog--wide">
-        <div>
-          <h3>Need a customised solution for your business?</h3>
-          <p>50+ Businesses Registered! We can tailor-make courses according to your business' needs.</p>
+        <img class="prog-img" src="/assets/img/programme-ai-foundation.jpg" alt="AI Foundation for Your Team">
+        <div class="prog-in">
+          <h3>AI Foundation for Your Team</h3>
+          <p>Improve your team's productivity through AI literacy and gradual adoption of AI in task-specific roles.</p>
+          <div class="prog-meta"><span>1 day</span><span class="price">From RM8,000</span></div>
+          <a class="prog-btn" href="https://corporate.mereka.io/academy/course/ai-foundation-for-your-team" target="_blank" rel="noopener"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M8.5 13h7M8.5 16.5h7"/></svg> See Programme Details</a>
         </div>
-        <a class="btn btn-light" href="#contact">Speak to Us →</a>
+      </div>
+      <div class="prog">
+        <img class="prog-img" src="/assets/img/programme-ai-adaptation.jpg" alt="AI Adaptation in Your Team">
+        <div class="prog-in">
+          <h3>AI Adaptation in Your Team</h3>
+          <p>Enhance decision-making through data-driven insights. Foster innovation by leveraging AI tools to generate new ideas and solutions.</p>
+          <div class="prog-meta"><span>8 sessions</span><span class="price">From RM16,000</span></div>
+          <a class="prog-btn" href="https://corporate.mereka.io/academy/course/ai-adaptation-in-your-team" target="_blank" rel="noopener"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M8.5 13h7M8.5 16.5h7"/></svg> See Programme Details</a>
+        </div>
+      </div>
+      <div class="prog">
+        <img class="prog-img" src="/assets/img/programme-ai-embedding.jpg" alt="AI Embedding in Your Team">
+        <div class="prog-in">
+          <h3>AI Embedding in Your Team</h3>
+          <p>Modernise processes. Develop and deploy chat bots for department or task specific functions.</p>
+          <div class="prog-meta"><span>8 sessions</span><span class="price">From RM24,000</span></div>
+          <a class="prog-btn" href="https://corporate.mereka.io/academy/course/ai-embedding-in-your-team" target="_blank" rel="noopener"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M8.5 13h7M8.5 16.5h7"/></svg> See Programme Details</a>
+        </div>
+      </div>
+      <div class="prog prog--dark">
+        <div class="prog-in">
+          <div class="tagpill">50+ Businesses Registered!</div>
+          <h3>Need a customised solution for your business?</h3>
+          <p>We can tailor-make courses according to your businesses' needs.</p>
+          <a class="prog-btn" href="#contact">Speak to Us &rarr;</a>
+        </div>
       </div>
     </div>
   </div>
@@ -464,13 +544,12 @@ footer a:hover{color:var(--teal)}
     </div>
   </div>
   <div class="shell">
-    <p class="carousel-hint">← Swipe to explore case studies →</p>
     <div class="study-carousel">
       <div class="pstudy">
         <img class="pstudy-img" src="/assets/img/portfolio-sdec-landscape.jpg" alt="SDEC">
         <div class="pstudy-body">
           <img class="plogo" src="/assets/img/logo-sdec.png" alt="SDEC">
-          <h4>SDEC — AI Skilling for Craft Entrepreneurs</h4>
+          <h4>Sarawak Digital Economy Corporation (SDEC) - AI Skilling for Craft Entrepreneurs</h4>
           <p>Trained 50 craft entrepreneurs from 7 rural Sarawak hubs on practical AI tools like Microsoft Copilot — AI literacy, data analytics for customer insights, and AI-powered sales &amp; marketing.</p>
           <ul class="checks"><li><b>66% women participants</b> — strong inclusivity among micro &amp; SME owners</li><li><b>62% aged 30–49</b> — prime working-age entrepreneurs</li><li><b>High completion</b> — several hubs hit 100% (Betong, Serian, Kapit, Sarikei)</li></ul>
         </div>
@@ -479,7 +558,7 @@ footer a:hover{color:var(--teal)}
         <img class="pstudy-img" src="/assets/img/portfolio-talentcorp-landscape.jpg" alt="TalentCorp">
         <div class="pstudy-body">
           <img class="plogo" src="/assets/img/logo-talent-corp-coa.png" alt="TalentCorp">
-          <h4>TalentCorp — AI for Women Re-entering the Workforce</h4>
+          <h4>TalentCorp - AI Skilling for Women Re-entering the Workforce</h4>
           <p>Supporting TalentCorp's gender inclusion goals through AI literacy training.</p>
           <ul class="checks"><li><b>100% female participation</b> — supporting gender inclusion goals</li><li><b>Faster task completion</b> post-training, zero participants needing over 2 hours</li><li><b>Positive feedback</b> — boosted confidence and interest in advanced training</li></ul>
         </div>
@@ -488,7 +567,7 @@ footer a:hover{color:var(--teal)}
         <img class="pstudy-img" src="/assets/img/portfolio-petrajaya-landscape.jpg" alt="Putrajaya">
         <div class="pstudy-body">
           <img class="plogo" src="/assets/img/logo-petrajaya.png" alt="Putrajaya">
-          <h4>Parliament of Petrajaya — AI Skilling for Community Leaders</h4>
+          <h4>Parliament of Petrajaya - AI Skilling for Community Leaders</h4>
           <p>AI literacy training for community leaders to boost productivity and efficiency.</p>
           <ul class="checks"><li><b>97 graduates with 94% completion</b> — by community leaders (47/50)</li><li><b>Productivity boost</b> — tasks cut from 2+ hours to under 30 mins, 44% AI literacy gain for leaders</li><li><b>3× faster workflows</b> — for teachers &amp; entrepreneurs, 50% less reporting time for leaders</li></ul>
         </div>
@@ -497,7 +576,7 @@ footer a:hover{color:var(--teal)}
         <img class="pstudy-img" src="/assets/img/portfolio-irda-landscape.jpg" alt="IRDA">
         <div class="pstudy-body">
           <img class="plogo" src="/assets/img/logo-irda.png" alt="IRDA">
-          <h4>IRDA — AI Skilling for Mid-Career Professionals</h4>
+          <h4>Iskandar Regional Development Authority (IRDA) - AI Skilling for Mid-Career Professionals</h4>
           <p>AI and data skills training for mid-career professionals across multiple domains.</p>
           <ul class="checks"><li><b>44% AI &amp; data skills boost</b> across 7 domains</li><li><b>Faster analysis</b> — under-30-min completions up from 38% to 43%</li><li><b>Time saved</b> — 2+ hour tasks cut from 38% to 10.8%</li></ul>
         </div>
@@ -576,76 +655,41 @@ footer a:hover{color:var(--teal)}
   </div>
 </section>
 
-<!-- CTA -->
-<section class="section" id="contact">
-  <div class="shell">
-    <div class="band">
-      <h2>Not sure where to begin?</h2>
-      <p>Let us recommend the right programme for your business. Future-proof your teams by learning AI skills and deploying AI tools internally.</p>
-      <a class="btn btn-primary" href="https://corporate.mereka.io/contact" target="_blank" rel="noopener">Get in touch with our team →</a>
-    </div>
-  </div>
-</section>
-
 </main>
 
-<footer>
-  <div class="shell">
-    <div class="foot-top">
-      <div>
-        <div class="foot-logo"><img src="/assets/mereka-logo.svg" alt="AI Labs"></div>
-        <p style="max-width:34ch">We upskill &amp; empower companies to boost productivity with AI.</p>
-        <div class="foot-badges"><a href="https://apps.apple.com/my/app/mereka/id1524970037" target="_blank" rel="noopener"><img src="/assets/img/badge-app-store.png" alt="App Store"></a><a href="https://play.google.com/store/apps/details?id=io.mereka.app" target="_blank" rel="noopener"><img src="/assets/img/badge-google-play.png" alt="Google Play"></a></div>
-        <div class="foot-social">
-          <a href="https://www.tiktok.com/@mereka.io" target="_blank" rel="noopener">TT</a>
-          <a href="https://www.instagram.com/mereka.io/" target="_blank" rel="noopener">IG</a>
-          <a href="https://www.facebook.com/mereka.io" target="_blank" rel="noopener">FB</a>
-          <a href="https://www.linkedin.com/company/mereka-io" target="_blank" rel="noopener">IN</a>
-          <a href="https://www.youtube.com/channel/UCGJ5RzyL0oib2ONP2gPvOYA" target="_blank" rel="noopener">YT</a>
-        </div>
-      </div>
-      <div>
-        <h5>Company</h5>
-        <ul>
-          <li><a href="https://corporate.mereka.io/about-us" target="_blank" rel="noopener">About</a></li>
-          <li><a href="https://corporate.mereka.io/portfolio" target="_blank" rel="noopener">Portfolio</a></li>
-          <li><a href="https://corporate.mereka.io/our-team" target="_blank" rel="noopener">Team</a></li>
-          <li><a href="https://corporate.mereka.io/work-with-us" target="_blank" rel="noopener">Careers</a></li>
-          <li><a href="https://corporate.mereka.io/ecosystem" target="_blank" rel="noopener">Ecosystem</a></li>
-          <li><a href="https://corporate.mereka.io/blog" target="_blank" rel="noopener">Blog</a></li>
-        </ul>
-      </div>
-      <div>
-        <h5>Academy</h5>
-        <ul>
-          <li><a href="https://corporate.mereka.io/academy/future-of-work" target="_blank" rel="noopener">Future of Work</a></li>
-          <li><a href="https://corporate.mereka.io/academy/digital-entrepreneur" target="_blank" rel="noopener">Digital Entrepreneur</a></li>
-          <li><a href="https://corporate.mereka.io/academy/all-courses" target="_blank" rel="noopener">All Courses</a></li>
-          <li><a href="https://corporate.mereka.io/academy/create-online-courses" target="_blank" rel="noopener">Create Online Course</a></li>
-          <li><a href="https://corporate.mereka.io/academy/makerspace" target="_blank" rel="noopener">Build a Makerspace</a></li>
-        </ul>
-      </div>
-      <div>
-        <h5>Marketplace</h5>
-        <ul>
-          <li><a href="https://mereka.io/experiences" target="_blank" rel="noopener">Experiences</a></li>
-          <li><a href="https://mereka.io/spaces" target="_blank" rel="noopener">Experts</a></li>
-          <li><a href="https://mereka.io/hubs" target="_blank" rel="noopener">Hubs</a></li>
-          <li><a href="https://mereka.io/jobs" target="_blank" rel="noopener">Jobs</a></li>
-          <li><a href="https://hubs.mereka.io/pricing" target="_blank" rel="noopener">Pricing</a></li>
-        </ul>
+<!-- FINAL CTA + FOOTER -->
+<div class="footwrap" id="contact">
+  <div class="cta-band">
+    <h2>Not sure where to begin?</h2>
+    <p>Let us recommend the right programme for your business.</p>
+    <a class="btn" href="https://corporate.mereka.io/contact" target="_blank" rel="noopener" style="background:#191627;color:#fff;padding:16px 34px">Get in touch with our team</a>
+    <img class="badge-img" src="/assets/img/logo-hrd.png" alt="HRD Corp Claimable">
+  </div>
+  <div class="foot2">
+    <div class="foot2-top">
+      <a class="foot2-logo" href="#top"><img src="/assets/mereka-logo.svg" alt="Mereka" style="filter:brightness(0) invert(1)"></a>
+      <div class="foot2-social">
+        <a href="https://www.tiktok.com/@mereka.io" target="_blank" rel="noopener" aria-label="TikTok"><svg viewBox="0 0 24 24"><path d="M16.5 3c.3 2.2 1.9 3.9 4 4.2v2.5c-1.4 0-2.8-.4-4-1.1v6.1a5.8 5.8 0 1 1-5.8-5.8c.3 0 .6 0 .9.1v2.6a3.2 3.2 0 1 0 2.3 3V3h2.6z"/></svg></a>
+        <a href="https://www.instagram.com/mereka.io/" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 2.2c3.2 0 3.6 0 4.9.1 1.2.1 1.8.3 2.2.4.5.2.9.5 1.3.9.4.4.7.8.9 1.3.2.4.3 1 .4 2.2.1 1.3.1 1.7.1 4.9s0 3.6-.1 4.9c-.1 1.2-.3 1.8-.4 2.2-.2.5-.5.9-.9 1.3-.4.4-.8.7-1.3.9-.4.2-1 .3-2.2.4-1.3.1-1.7.1-4.9.1s-3.6 0-4.9-.1c-1.2-.1-1.8-.3-2.2-.4-.5-.2-.9-.5-1.3-.9-.4-.4-.7-.8-.9-1.3-.2-.4-.3-1-.4-2.2C2.2 15.6 2.2 15.2 2.2 12s0-3.6.1-4.9c.1-1.2.3-1.8.4-2.2.2-.5.5-.9.9-1.3.4-.4.8-.7 1.3-.9.4-.2 1-.3 2.2-.4C8.4 2.2 8.8 2.2 12 2.2zm0 3.2A6.6 6.6 0 1 0 18.6 12 6.6 6.6 0 0 0 12 5.4zm0 10.9A4.3 4.3 0 1 1 16.3 12 4.3 4.3 0 0 1 12 16.3zm6.8-11.2a1.5 1.5 0 1 1-1.5-1.5 1.5 1.5 0 0 1 1.5 1.5z"/></svg></a>
+        <a href="https://www.facebook.com/mereka.io" target="_blank" rel="noopener" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M22 12a10 10 0 1 0-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.5h-1.2c-1.2 0-1.6.8-1.6 1.6V12h2.7l-.4 2.9h-2.3v7A10 10 0 0 0 22 12z"/></svg></a>
+        <a href="https://www.linkedin.com/company/mereka-io" target="_blank" rel="noopener" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3zM9 9h3.8v1.7h.1c.5-1 1.8-2 3.7-2 4 0 4.7 2.6 4.7 5.9V21h-4v-5.5c0-1.3 0-3-1.8-3s-2.1 1.4-2.1 2.9V21H9z"/></svg></a>
+        <a href="https://www.youtube.com/channel/UCGJ5RzyL0oib2ONP2gPvOYA" target="_blank" rel="noopener" aria-label="YouTube"><svg viewBox="0 0 24 24"><path d="M23 12s0-3.2-.4-4.7a2.5 2.5 0 0 0-1.8-1.8C19.3 5 12 5 12 5s-7.3 0-8.8.5A2.5 2.5 0 0 0 1.4 7.3C1 8.8 1 12 1 12s0 3.2.4 4.7a2.5 2.5 0 0 0 1.8 1.8C4.7 19 12 19 12 19s7.3 0 8.8-.5a2.5 2.5 0 0 0 1.8-1.8C23 15.2 23 12 23 12zM9.7 15.3V8.7l6 3.3z"/></svg></a>
       </div>
     </div>
-    <div class="foot-bottom">
-      <span>© 2026 Mereka</span>
-      <span>
-        <a href="https://legal.mereka.io/" target="_blank" rel="noopener">Terms of Use</a>
-        <a href="https://legal.mereka.io/privacy-policy/" target="_blank" rel="noopener">Privacy Policy</a>
-        <a href="https://legal.mereka.io/cookie-policy" target="_blank" rel="noopener">Cookies Policy</a>
-      </span>
+    <div class="foot2-nav">
+      <div class="foot2-links">
+        <a href="https://corporate.mereka.io/about-us" target="_blank" rel="noopener">About</a>
+        <a href="https://corporate.mereka.io/andragogy" target="_blank" rel="noopener">Andragogy</a>
+        <a href="https://corporate.mereka.io/portfolio" target="_blank" rel="noopener">Portfolio</a>
+        <a href="https://corporate.mereka.io/our-team" target="_blank" rel="noopener">Team</a>
+        <a href="https://corporate.mereka.io/work-with-us" target="_blank" rel="noopener">Careers</a>
+        <a href="https://corporate.mereka.io/ecosystem" target="_blank" rel="noopener">Ecosystem</a>
+        <a href="https://corporate.mereka.io/blog" target="_blank" rel="noopener">Blog</a>
+      </div>
+      <a class="foot2-contact" href="https://corporate.mereka.io/contact" target="_blank" rel="noopener">Contact Us</a>
     </div>
   </div>
-</footer>
+</div>
 
 <script>
 /* Department tabs — data pulled from ailab.mereka.io (5 departments). */
