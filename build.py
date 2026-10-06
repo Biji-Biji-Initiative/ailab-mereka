@@ -26,12 +26,23 @@ html{scroll-padding-top:165px}
 .rhero .back{position:absolute;top:22px;left:26px;font-weight:600;font-size:.92rem;color:#3a2f52;display:inline-flex;gap:6px;align-items:center}
 .rhero h1{font-size:clamp(2.2rem,5vw,3.6rem);color:#1a1623;margin:6px auto 14px;max-width:16ch}
 .rhero p{color:#43405a;font-size:1.06rem;max-width:60ch;margin:0 auto}
-.onthis{position:sticky;top:78px;z-index:40;background:#fff;border-bottom:1px solid var(--line);padding:12px 0}
-.onthis details{max-width:var(--maxw);margin:0 auto;padding:0 28px}
-.onthis summary{font-weight:600;cursor:pointer;list-style:none;display:inline-flex;gap:8px;align-items:center;border:1px solid var(--line);border-radius:100px;padding:9px 18px}
-.onthis summary::-webkit-details-marker{display:none}
-.onthis ul{list-style:none;display:flex;flex-wrap:wrap;gap:8px 22px;padding:14px 2px 4px;margin:0}
-.onthis a{color:var(--muted);font-size:.92rem}.onthis a:hover{color:var(--pink)}
+/* "On this page" — a sticky card that follows you down the page and marks the
+   use case you are currently in, as on ailab.mereka.io. The wrapper reserves
+   only the collapsed height so the open panel overlays the content instead of
+   shoving it down. */
+.onthis{position:sticky;top:94px;z-index:45;height:46px;max-width:var(--maxw);margin:0 auto;padding:0 28px}
+.toc{position:absolute;left:28px;top:0;width:296px;max-width:calc(100vw - 56px);
+  background:#fff;border:1px solid var(--line);border-radius:20px;box-shadow:0 14px 38px rgba(26,22,35,.14);padding:5px}
+.toc-h{display:flex;align-items:center;justify-content:space-between;gap:10px;width:100%;
+  background:none;border:0;cursor:pointer;font-family:inherit;font-weight:600;font-size:.98rem;color:var(--ink);padding:9px 14px}
+.toc-h .chev{flex:none;transition:transform .2s var(--ease)}
+.toc.open .toc-h .chev{transform:rotate(180deg)}
+.toc-list{list-style:none;margin:0;padding:0 0 4px;display:none}
+.toc.open .toc-list{display:block}
+.toc-list a{display:block;padding:8px 16px;border-radius:12px;color:var(--muted);font-size:.95rem;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.toc-list a:hover{background:var(--grey);color:var(--ink)}
+.toc-list a.on{background:var(--accent);color:#fff;font-weight:500}
 .uc{padding:38px 0 0}
 .uc .lbl{color:var(--pink);font-weight:600;font-size:.82rem;letter-spacing:.12em;text-transform:uppercase}
 .uc h2{font-size:clamp(1.5rem,3vw,2.1rem);margin:8px 0 6px}
@@ -76,10 +87,18 @@ def role_page(slug, r):
     groups=r["groups"]
     cat_id=(cats.get(slug) or {}).get("id")
     seen=set()
-    toc="".join(f'<li><a href="#{slugify(g["usecase"])}">{esc(g["usecase"])}</a></li>' for g in groups if g["usecase"])
-    body=""
+    # one id per use case, de-duplicated: a page can repeat a heading
+    # (customer-support-service lists "Improve customer service" twice), and two
+    # sections sharing an id would send the TOC to the wrong one.
+    gids=[]; used={}
     for i,g in enumerate(groups,1):
-        gid=slugify(g["usecase"]) or f"uc{i}"
+        base=slugify(g["usecase"]) or f"uc{i}"
+        used[base]=used.get(base,0)+1
+        gids.append(base if used[base]==1 else f"{base}-{used[base]}")
+    toc="".join(f'<li><a href="#{gid}">{esc(g["usecase"])}</a></li>'
+                for gid,g in zip(gids,groups) if g["usecase"])
+    body=""
+    for i,(gid,g) in enumerate(zip(gids,groups),1):
         prompts=""
         for p in g["prompts"]:
             name=f'<div class="pname">{esc(p["name"])}</div>' if p.get("name") else ""
@@ -102,7 +121,13 @@ def role_page(slug, r):
   <h1>{esc(r["title"])}</h1>
   <p>{esc(r["subtitle"])}</p>
 </div></div></section>
-<div class="onthis"><details><summary>On this page &#9662;</summary><ul>{toc}</ul></details></div>
+<div class="onthis"><div class="toc" id="toc">
+  <button class="toc-h" type="button" aria-expanded="false" aria-controls="toc-list" onclick="tocToggle()">
+    <span>On this page</span>
+    <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7.41 8.59 12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41Z"/></svg>
+  </button>
+  <ul class="toc-list" id="toc-list">{toc}</ul>
+</div></div>
 {body}
 <div class="shell rfoot-cta"><a class="btn btn-accent" href="/prompts/">Browse all prompts &rarr;</a></div>
 {theme.footer()}
@@ -122,6 +147,42 @@ window.addEventListener('load',function(){{
   if(document.fonts&&document.fonts.ready) document.fonts.ready.then(anchorToHash);
 }});
 window.addEventListener('hashchange',anchorToHash);
+
+/* "On this page": open/close, and highlight the use case currently in view. */
+(function(){{
+  var toc=document.getElementById('toc');
+  if(!toc) return;
+  var links=[].slice.call(document.querySelectorAll('#toc-list a'));
+  var secs=links.map(function(a){{ return document.getElementById(a.getAttribute('href').slice(1)); }});
+  window.tocToggle=function(){{
+    var open=toc.classList.toggle('open');
+    toc.querySelector('.toc-h').setAttribute('aria-expanded', open?'true':'false');
+  }};
+  /* The marker sits just below the sticky nav + card, so a use case becomes
+     "current" as soon as its heading clears them. Section offsets are measured
+     up front and re-measured on resize/font load, which keeps the scroll
+     handler pure arithmetic — no layout reads, so it needs no rAF throttle. */
+  var OFFSET=180, tops=[], active=-1;
+  function measure(){{
+    tops=secs.map(function(s){{ return s ? s.getBoundingClientRect().top+window.scrollY : Infinity; }});
+  }}
+  function spy(){{
+    var y=window.scrollY+OFFSET, best=0;
+    for(var i=0;i<tops.length;i++){{ if(tops[i]<=y) best=i; }}
+    /* at the very bottom the last section is current even if its top never
+       reaches the marker */
+    if(window.innerHeight+window.scrollY>=document.documentElement.scrollHeight-2) best=tops.length-1;
+    if(best===active) return;
+    active=best;
+    for(var j=0;j<links.length;j++) links[j].classList.toggle('on', j===best);
+  }}
+  function remeasure(){{ measure(); active=-1; spy(); }}
+  window.addEventListener('scroll',spy,{{passive:true}});
+  window.addEventListener('resize',remeasure);
+  window.addEventListener('load',remeasure);
+  if(document.fonts&&document.fonts.ready) document.fonts.ready.then(remeasure);
+  remeasure();
+}})();
 </script>
 </body></html>'''
     os.makedirs(f"{REPO}/{slug}", exist_ok=True)

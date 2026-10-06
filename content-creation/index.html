@@ -52,7 +52,7 @@ footer a:hover{color:#fff}
 .foot-social a{width:34px;height:34px;border:1px solid rgba(255,255,255,.24);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.74rem}
 .foot-bottom{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;padding-top:22px;font-size:.86rem;color:#9a9dab}
 .foot-bottom a{color:#9a9dab;margin-left:18px}
-@media(max-width:860px){.nav-links{display:none}.burger{display:block}.foot-top{grid-template-columns:1fr 1fr}}
+@media(max-width:860px){.nav-links{display:none}.nav-links.open{display:flex;position:absolute;top:78px;right:28px;flex-direction:column;align-items:flex-start;background:#fff;padding:16px 20px;gap:14px;box-shadow:var(--shadow);border-radius:14px}.burger{display:block}.foot-top{grid-template-columns:1fr 1fr}}
 
 /* A role page stacks two sticky bars: the 78px nav and the "On this page"
    strip pinned under it (bottom edge ~149px). The global 100px that matches
@@ -65,12 +65,23 @@ html{scroll-padding-top:165px}
 .rhero .back{position:absolute;top:22px;left:26px;font-weight:600;font-size:.92rem;color:#3a2f52;display:inline-flex;gap:6px;align-items:center}
 .rhero h1{font-size:clamp(2.2rem,5vw,3.6rem);color:#1a1623;margin:6px auto 14px;max-width:16ch}
 .rhero p{color:#43405a;font-size:1.06rem;max-width:60ch;margin:0 auto}
-.onthis{position:sticky;top:78px;z-index:40;background:#fff;border-bottom:1px solid var(--line);padding:12px 0}
-.onthis details{max-width:var(--maxw);margin:0 auto;padding:0 28px}
-.onthis summary{font-weight:600;cursor:pointer;list-style:none;display:inline-flex;gap:8px;align-items:center;border:1px solid var(--line);border-radius:100px;padding:9px 18px}
-.onthis summary::-webkit-details-marker{display:none}
-.onthis ul{list-style:none;display:flex;flex-wrap:wrap;gap:8px 22px;padding:14px 2px 4px;margin:0}
-.onthis a{color:var(--muted);font-size:.92rem}.onthis a:hover{color:var(--pink)}
+/* "On this page" — a sticky card that follows you down the page and marks the
+   use case you are currently in, as on ailab.mereka.io. The wrapper reserves
+   only the collapsed height so the open panel overlays the content instead of
+   shoving it down. */
+.onthis{position:sticky;top:94px;z-index:45;height:46px;max-width:var(--maxw);margin:0 auto;padding:0 28px}
+.toc{position:absolute;left:28px;top:0;width:296px;max-width:calc(100vw - 56px);
+  background:#fff;border:1px solid var(--line);border-radius:20px;box-shadow:0 14px 38px rgba(26,22,35,.14);padding:5px}
+.toc-h{display:flex;align-items:center;justify-content:space-between;gap:10px;width:100%;
+  background:none;border:0;cursor:pointer;font-family:inherit;font-weight:600;font-size:.98rem;color:var(--ink);padding:9px 14px}
+.toc-h .chev{flex:none;transition:transform .2s var(--ease)}
+.toc.open .toc-h .chev{transform:rotate(180deg)}
+.toc-list{list-style:none;margin:0;padding:0 0 4px;display:none}
+.toc.open .toc-list{display:block}
+.toc-list a{display:block;padding:8px 16px;border-radius:12px;color:var(--muted);font-size:.95rem;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.toc-list a:hover{background:var(--grey);color:var(--ink)}
+.toc-list a.on{background:var(--accent);color:#fff;font-weight:500}
 .uc{padding:38px 0 0}
 .uc .lbl{color:var(--pink);font-weight:600;font-size:.82rem;letter-spacing:.12em;text-transform:uppercase}
 .uc h2{font-size:clamp(1.5rem,3vw,2.1rem);margin:8px 0 6px}
@@ -84,23 +95,30 @@ html{scroll-padding-top:165px}
 .pbox .copy.done{background:var(--pink);color:#fff;border-color:var(--pink)}
 .rfoot-cta{margin:54px 0 10px}
 </style></head><body id="top"><header class="nav"><div class="shell nav-in">
-  <a class="nav-logo" href="/"><img src="/assets/mereka-logo.svg" alt="Mereka"></a>
-  <a class="pill-accent" href="https://mereka.io" target="_blank" rel="noopener" style="margin-left:6px">Marketplace</a>
-  <nav class="nav-links">
-    <a href="/prompts/">AI Prompts</a>
-    <a href="/#departments">Departments</a>
-    <a href="/#programmes">Programmes</a>
-    <a href="/#portfolio">Impact</a>
-    <a class="btn btn-dark" href="/#contact" style="padding:11px 22px">Contact Us</a>
+  <a class="nav-logo" href="/" aria-label="Mereka home"><img src="/assets/mereka-logo-emblem.svg" alt="Mereka"></a>
+  <a class="pill-accent" href="https://mereka.io" target="_blank" rel="noopener" style="margin-left:2px">Marketplace</a>
+  <nav class="nav-links" id="nav">
+    <a href="https://corporate.mereka.io" target="_blank" rel="noopener">Our Approach</a>
+    <a href="https://corporate.mereka.io/academy" target="_blank" rel="noopener">Grow with us</a>
+    <a href="https://corporate.mereka.io/create-with-us" target="_blank" rel="noopener">Create With Us</a>
+    <a href="https://mereka.io/hubs" target="_blank" rel="noopener">Discover Spaces</a>
+    <a href="https://corporate.mereka.io/about-us" target="_blank" rel="noopener">Company</a>
+    <a class="btn btn-dark nav-cta" href="/#contact" style="padding:11px 22px">Contact Us</a>
   </nav>
-  <button class="burger" aria-label="Menu" onclick="var n=document.querySelector('.nav-links');n.style.display=n.style.display==='flex'?'none':'flex';n.style.position='absolute';n.style.top='78px';n.style.right='28px';n.style.flexDirection='column';n.style.background='#fff';n.style.padding='16px';n.style.boxShadow='var(--shadow)';n.style.borderRadius='14px'"><span></span><span></span><span></span></button>
+  <button class="burger" aria-label="Menu" onclick="document.getElementById('nav').classList.toggle('open')"><span></span><span></span><span></span></button>
 </div></header>
 <section class="rhero"><div class="shell"><div class="blob">
   <a class="back" href="/prompts/">&larr; Back to Prompts</a>
   <h1>Content Creation</h1>
   <p>Content creation, writing, editing, copywriting, and creative content development</p>
 </div></div></section>
-<div class="onthis"><details><summary>On this page &#9662;</summary><ul><li><a href="#write-a-creative-story">Write a creative story</a></li><li><a href="#generate-blog-post-ideas">Generate blog post ideas</a></li></ul></details></div>
+<div class="onthis"><div class="toc" id="toc">
+  <button class="toc-h" type="button" aria-expanded="false" aria-controls="toc-list" onclick="tocToggle()">
+    <span>On this page</span>
+    <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7.41 8.59 12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41Z"/></svg>
+  </button>
+  <ul class="toc-list" id="toc-list"><li><a href="#write-a-creative-story">Write a creative story</a></li><li><a href="#generate-blog-post-ideas">Generate blog post ideas</a></li></ul>
+</div></div>
 <section class="uc" id="write-a-creative-story"><div class="shell">
   <div class="lbl">Use Case 1</div>
   <h2>Write a creative story</h2>
@@ -161,5 +179,41 @@ window.addEventListener('load',function(){
   if(document.fonts&&document.fonts.ready) document.fonts.ready.then(anchorToHash);
 });
 window.addEventListener('hashchange',anchorToHash);
+
+/* "On this page": open/close, and highlight the use case currently in view. */
+(function(){
+  var toc=document.getElementById('toc');
+  if(!toc) return;
+  var links=[].slice.call(document.querySelectorAll('#toc-list a'));
+  var secs=links.map(function(a){ return document.getElementById(a.getAttribute('href').slice(1)); });
+  window.tocToggle=function(){
+    var open=toc.classList.toggle('open');
+    toc.querySelector('.toc-h').setAttribute('aria-expanded', open?'true':'false');
+  };
+  /* The marker sits just below the sticky nav + card, so a use case becomes
+     "current" as soon as its heading clears them. Section offsets are measured
+     up front and re-measured on resize/font load, which keeps the scroll
+     handler pure arithmetic — no layout reads, so it needs no rAF throttle. */
+  var OFFSET=180, tops=[], active=-1;
+  function measure(){
+    tops=secs.map(function(s){ return s ? s.getBoundingClientRect().top+window.scrollY : Infinity; });
+  }
+  function spy(){
+    var y=window.scrollY+OFFSET, best=0;
+    for(var i=0;i<tops.length;i++){ if(tops[i]<=y) best=i; }
+    /* at the very bottom the last section is current even if its top never
+       reaches the marker */
+    if(window.innerHeight+window.scrollY>=document.documentElement.scrollHeight-2) best=tops.length-1;
+    if(best===active) return;
+    active=best;
+    for(var j=0;j<links.length;j++) links[j].classList.toggle('on', j===best);
+  }
+  function remeasure(){ measure(); active=-1; spy(); }
+  window.addEventListener('scroll',spy,{passive:true});
+  window.addEventListener('resize',remeasure);
+  window.addEventListener('load',remeasure);
+  if(document.fonts&&document.fonts.ready) document.fonts.ready.then(remeasure);
+  remeasure();
+})();
 </script>
 </body></html>

@@ -52,7 +52,7 @@ footer a:hover{color:#fff}
 .foot-social a{width:34px;height:34px;border:1px solid rgba(255,255,255,.24);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.74rem}
 .foot-bottom{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;padding-top:22px;font-size:.86rem;color:#9a9dab}
 .foot-bottom a{color:#9a9dab;margin-left:18px}
-@media(max-width:860px){.nav-links{display:none}.burger{display:block}.foot-top{grid-template-columns:1fr 1fr}}
+@media(max-width:860px){.nav-links{display:none}.nav-links.open{display:flex;position:absolute;top:78px;right:28px;flex-direction:column;align-items:flex-start;background:#fff;padding:16px 20px;gap:14px;box-shadow:var(--shadow);border-radius:14px}.burger{display:block}.foot-top{grid-template-columns:1fr 1fr}}
 
 /* A role page stacks two sticky bars: the 78px nav and the "On this page"
    strip pinned under it (bottom edge ~149px). The global 100px that matches
@@ -65,12 +65,23 @@ html{scroll-padding-top:165px}
 .rhero .back{position:absolute;top:22px;left:26px;font-weight:600;font-size:.92rem;color:#3a2f52;display:inline-flex;gap:6px;align-items:center}
 .rhero h1{font-size:clamp(2.2rem,5vw,3.6rem);color:#1a1623;margin:6px auto 14px;max-width:16ch}
 .rhero p{color:#43405a;font-size:1.06rem;max-width:60ch;margin:0 auto}
-.onthis{position:sticky;top:78px;z-index:40;background:#fff;border-bottom:1px solid var(--line);padding:12px 0}
-.onthis details{max-width:var(--maxw);margin:0 auto;padding:0 28px}
-.onthis summary{font-weight:600;cursor:pointer;list-style:none;display:inline-flex;gap:8px;align-items:center;border:1px solid var(--line);border-radius:100px;padding:9px 18px}
-.onthis summary::-webkit-details-marker{display:none}
-.onthis ul{list-style:none;display:flex;flex-wrap:wrap;gap:8px 22px;padding:14px 2px 4px;margin:0}
-.onthis a{color:var(--muted);font-size:.92rem}.onthis a:hover{color:var(--pink)}
+/* "On this page" — a sticky card that follows you down the page and marks the
+   use case you are currently in, as on ailab.mereka.io. The wrapper reserves
+   only the collapsed height so the open panel overlays the content instead of
+   shoving it down. */
+.onthis{position:sticky;top:94px;z-index:45;height:46px;max-width:var(--maxw);margin:0 auto;padding:0 28px}
+.toc{position:absolute;left:28px;top:0;width:296px;max-width:calc(100vw - 56px);
+  background:#fff;border:1px solid var(--line);border-radius:20px;box-shadow:0 14px 38px rgba(26,22,35,.14);padding:5px}
+.toc-h{display:flex;align-items:center;justify-content:space-between;gap:10px;width:100%;
+  background:none;border:0;cursor:pointer;font-family:inherit;font-weight:600;font-size:.98rem;color:var(--ink);padding:9px 14px}
+.toc-h .chev{flex:none;transition:transform .2s var(--ease)}
+.toc.open .toc-h .chev{transform:rotate(180deg)}
+.toc-list{list-style:none;margin:0;padding:0 0 4px;display:none}
+.toc.open .toc-list{display:block}
+.toc-list a{display:block;padding:8px 16px;border-radius:12px;color:var(--muted);font-size:.95rem;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.toc-list a:hover{background:var(--grey);color:var(--ink)}
+.toc-list a.on{background:var(--accent);color:#fff;font-weight:500}
 .uc{padding:38px 0 0}
 .uc .lbl{color:var(--pink);font-weight:600;font-size:.82rem;letter-spacing:.12em;text-transform:uppercase}
 .uc h2{font-size:clamp(1.5rem,3vw,2.1rem);margin:8px 0 6px}
@@ -84,41 +95,52 @@ html{scroll-padding-top:165px}
 .pbox .copy.done{background:var(--pink);color:#fff;border-color:var(--pink)}
 .rfoot-cta{margin:54px 0 10px}
 </style></head><body id="top"><header class="nav"><div class="shell nav-in">
-  <a class="nav-logo" href="/"><img src="/assets/mereka-logo.svg" alt="Mereka"></a>
-  <a class="pill-accent" href="https://mereka.io" target="_blank" rel="noopener" style="margin-left:6px">Marketplace</a>
-  <nav class="nav-links">
-    <a href="/prompts/">AI Prompts</a>
-    <a href="/#departments">Departments</a>
-    <a href="/#programmes">Programmes</a>
-    <a href="/#portfolio">Impact</a>
-    <a class="btn btn-dark" href="/#contact" style="padding:11px 22px">Contact Us</a>
+  <a class="nav-logo" href="/" aria-label="Mereka home"><img src="/assets/mereka-logo-emblem.svg" alt="Mereka"></a>
+  <a class="pill-accent" href="https://mereka.io" target="_blank" rel="noopener" style="margin-left:2px">Marketplace</a>
+  <nav class="nav-links" id="nav">
+    <a href="https://corporate.mereka.io" target="_blank" rel="noopener">Our Approach</a>
+    <a href="https://corporate.mereka.io/academy" target="_blank" rel="noopener">Grow with us</a>
+    <a href="https://corporate.mereka.io/create-with-us" target="_blank" rel="noopener">Create With Us</a>
+    <a href="https://mereka.io/hubs" target="_blank" rel="noopener">Discover Spaces</a>
+    <a href="https://corporate.mereka.io/about-us" target="_blank" rel="noopener">Company</a>
+    <a class="btn btn-dark nav-cta" href="/#contact" style="padding:11px 22px">Contact Us</a>
   </nav>
-  <button class="burger" aria-label="Menu" onclick="var n=document.querySelector('.nav-links');n.style.display=n.style.display==='flex'?'none':'flex';n.style.position='absolute';n.style.top='78px';n.style.right='28px';n.style.flexDirection='column';n.style.background='#fff';n.style.padding='16px';n.style.boxShadow='var(--shadow)';n.style.borderRadius='14px'"><span></span><span></span><span></span></button>
+  <button class="burger" aria-label="Menu" onclick="document.getElementById('nav').classList.toggle('open')"><span></span><span></span><span></span></button>
 </div></header>
 <section class="rhero"><div class="shell"><div class="blob">
   <a class="back" href="/prompts/">&larr; Back to Prompts</a>
   <h1>Communications</h1>
   <p>Internal and external communications, press relations, and public messaging</p>
 </div></div></section>
-<div class="onthis"><details><summary>On this page &#9662;</summary><ul><li><a href="#town-halls">Town halls</a></li><li><a href="#prepare-for-analyst-or-press-briefings">Prepare for analyst or press briefings</a></li><li><a href="#create-mock-interview-questions-to-prepare-spokespeople">Create mock interview questions to prepare spokespeople</a></li><li><a href="#create-a-press-release">Create a press release</a></li><li><a href="#craft-internal-communications">Craft internal communications</a></li></ul></details></div>
+<div class="onthis"><div class="toc" id="toc">
+  <button class="toc-h" type="button" aria-expanded="false" aria-controls="toc-list" onclick="tocToggle()">
+    <span>On this page</span>
+    <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7.41 8.59 12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41Z"/></svg>
+  </button>
+  <ul class="toc-list" id="toc-list"><li><a href="#town-halls">Town halls</a></li><li><a href="#prepare-for-briefings">Prepare for briefings</a></li><li><a href="#prepare-for-analyst-or-press-briefings">Prepare for analyst or press briefings</a></li><li><a href="#create-mock-interview-questions-to-prepare-spokespeople">Create mock interview questions to prepare spokespeople</a></li><li><a href="#create-a-press-release">Create a press release</a></li><li><a href="#craft-internal-communications">Craft internal communications</a></li></ul>
+</div></div>
 <section class="uc" id="town-halls"><div class="shell">
   <div class="lbl">Use Case 1</div>
   <h2>Town halls</h2>
   <div class="prompt" id="prompt-834"><div class="pname">Summarize a document for opening remarks</div><div class="pbox"><button class="copy" aria-label="Copy" onclick="cp(this)"data-t="You are an executive communications specialist and speechwriter. Analyze the provided document and create opening remarks for senior leadership that highlight progress, acknowledge challenges, and motivate action. Extract impactful information into presentation-ready talking points organized under: ‘Welcome &amp; Context Setting,’ ‘Key Highlights &amp; Achievements,’ ‘Critical Data Points,’ ‘Challenges &amp; Opportunities,’ and ‘Transition to Agenda,’ with 2-3 conversational bullet points per section. Include a separate section with presentation tips covering emphasis points, anticipated questions, and visual aid recommendations. Prioritize information demonstrating value and progress, balance achievements with realistic challenges, use specific numbers over generalities, and connect to meeting objectives. Use natural, spoken language that creates engagement and establishes credibility."><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg></button>You are an executive communications specialist and speechwriter. Analyze the provided document and create opening remarks for senior leadership that highlight progress, acknowledge challenges, and motivate action. Extract impactful information into presentation-ready talking points organized under: ‘Welcome &amp; Context Setting,’ ‘Key Highlights &amp; Achievements,’ ‘Critical Data Points,’ ‘Challenges &amp; Opportunities,’ and ‘Transition to Agenda,’ with 2-3 conversational bullet points per section. Include a separate section with presentation tips covering emphasis points, anticipated questions, and visual aid recommendations. Prioritize information demonstrating value and progress, balance achievements with realistic challenges, use specific numbers over generalities, and connect to meeting objectives. Use natural, spoken language that creates engagement and establishes credibility.</div></div>
-</div></section><section class="uc" id="prepare-for-analyst-or-press-briefings"><div class="shell">
+</div></section><section class="uc" id="prepare-for-briefings"><div class="shell">
   <div class="lbl">Use Case 2</div>
+  <h2>Prepare for briefings</h2>
+  
+</div></section><section class="uc" id="prepare-for-analyst-or-press-briefings"><div class="shell">
+  <div class="lbl">Use Case 3</div>
   <h2>Prepare for analyst or press briefings</h2>
   <div class="prompt" id="prompt-817"><div class="pname">Generate a brief template for a media and analyst briefing</div><div class="pbox"><button class="copy" aria-label="Copy" onclick="cp(this)"data-t="Please generate a concise and professional template to prepare [spokesperson] for an upcoming media and analyst briefing related to @[Product Launch], including: a clearly labeled section for a one-paragraph synopsis that outlines the launch’s purpose, headline message, and strategic relevance; a space for 3–5 key messages crafted specifically for press and analyst audiences that highlight the product’s value, innovation, and differentiation; a section for supporting data and proof points such as technical specifications, performance metrics, third-party validations, or customer testimonials; an optional Q&amp;A section with anticipated media questions and suggested spokesperson responses; and a final section outlining next steps, important upcoming dates, and designated media contacts; ensure the template is cleanly formatted, easy to populate, and aligned with standard communications best practices to support consistent and confident messaging across briefings."><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg></button>Please generate a concise and professional template to prepare [spokesperson] for an upcoming media and analyst briefing related to @[Product Launch], including: a clearly labeled section for a one-paragraph synopsis that outlines the launch’s purpose, headline message, and strategic relevance; a space for 3–5 key messages crafted specifically for press and analyst audiences that highlight the product’s value, innovation, and differentiation; a section for supporting data and proof points such as technical specifications, performance metrics, third-party validations, or customer testimonials; an optional Q&amp;A section with anticipated media questions and suggested spokesperson responses; and a final section outlining next steps, important upcoming dates, and designated media contacts; ensure the template is cleanly formatted, easy to populate, and aligned with standard communications best practices to support consistent and confident messaging across briefings.</div></div><div class="prompt" id="prompt-816"><div class="pname">Organize media and analyst contacts</div><div class="pbox"><button class="copy" aria-label="Copy" onclick="cp(this)"data-t="Please organize my media and analyst contacts from @[Analyst and Journalist Contact Notes] into a structured format suitable for planning an upcoming product briefing, including: a table with clearly labeled columns for full name, type of contact (analyst or journalist), primary focus area or beat, name of the outlet, agency, or firm they represent, and a designated field to assign priority level for briefing attendance (low, medium, or high); ensure the output allows for easy filtering and sorting, is formatted for either spreadsheet or document use, and supports briefing preparation by highlighting key targets and enabling strategic outreach planning."><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg></button>Please organize my media and analyst contacts from @[Analyst and Journalist Contact Notes] into a structured format suitable for planning an upcoming product briefing, including: a table with clearly labeled columns for full name, type of contact (analyst or journalist), primary focus area or beat, name of the outlet, agency, or firm they represent, and a designated field to assign priority level for briefing attendance (low, medium, or high); ensure the output allows for easy filtering and sorting, is formatted for either spreadsheet or document use, and supports briefing preparation by highlighting key targets and enabling strategic outreach planning.</div></div>
 </div></section><section class="uc" id="create-mock-interview-questions-to-prepare-spokespeople"><div class="shell">
-  <div class="lbl">Use Case 3</div>
+  <div class="lbl">Use Case 4</div>
   <h2>Create mock interview questions to prepare spokespeople</h2>
   <div class="prompt" id="prompt-727"><div class="pname">Generate mock interview questions for a spokesperson</div><div class="pbox"><button class="copy" aria-label="Copy" onclick="cp(this)"data-t="I am a [PR/AR] manager at [company name], and we’ve just launched [product] with a briefing that covered [key messages]. I am preparing [spokesperson and role/title] for upcoming media interviews. Please generate a well-rounded list of mock interview questions that includes: a mix of easy, moderate, and challenging questions; questions that cover both the foundational aspects of [product] (e.g., purpose, key features, differentiation) and broader, forward-looking topics such as strategic goals, market impact, and competitive positioning; include a few probing questions that challenge assumptions or invite thought leadership-level responses; and ensure the list is organized logically by topic or difficulty level to support structured preparation and roleplay."><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg></button>I am a [PR/AR] manager at [company name], and we’ve just launched [product] with a briefing that covered [key messages]. I am preparing [spokesperson and role/title] for upcoming media interviews. Please generate a well-rounded list of mock interview questions that includes: a mix of easy, moderate, and challenging questions; questions that cover both the foundational aspects of [product] (e.g., purpose, key features, differentiation) and broader, forward-looking topics such as strategic goals, market impact, and competitive positioning; include a few probing questions that challenge assumptions or invite thought leadership-level responses; and ensure the list is organized logically by topic or difficulty level to support structured preparation and roleplay.</div></div><div class="prompt" id="prompt-726"><div class="pname">Write suggested answers for mock interview questions</div><div class="pbox"><button class="copy" aria-label="Copy" onclick="cp(this)"data-t="Please use @[Product Launch Notes] to write suggested answers for a set of mock interview questions, framing the responses as if they are being delivered by [title of spokesperson] at [company]; ensure each answer is aligned with the product’s messaging and includes key talking points such as value proposition, unique features, market impact, and future roadmap; maintain a tone that is confident, articulate, and media-friendly, and tailor responses to reflect both technical expertise and accessibility for general audiences; structure the output as a list with each question followed by its corresponding answer, and include variations where appropriate to support different interview formats (e.g., broadcast, print, analyst briefings)."><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg></button>Please use @[Product Launch Notes] to write suggested answers for a set of mock interview questions, framing the responses as if they are being delivered by [title of spokesperson] at [company]; ensure each answer is aligned with the product’s messaging and includes key talking points such as value proposition, unique features, market impact, and future roadmap; maintain a tone that is confident, articulate, and media-friendly, and tailor responses to reflect both technical expertise and accessibility for general audiences; structure the output as a list with each question followed by its corresponding answer, and include variations where appropriate to support different interview formats (e.g., broadcast, print, analyst briefings).</div></div>
 </div></section><section class="uc" id="create-a-press-release"><div class="shell">
-  <div class="lbl">Use Case 4</div>
+  <div class="lbl">Use Case 5</div>
   <h2>Create a press release</h2>
   <div class="prompt" id="prompt-711"><div class="pname">Add more information to a press release</div><div class="pbox"><button class="copy" aria-label="Copy" onclick="cp(this)"data-t="Please enhance the press release by incorporating relevant information from @[Biography and Mission Statement] about the company being acquired, including: a concise and compelling origin story that highlights the inspiration behind its founding; a clear articulation of the company’s mission, core values, and guiding principles; a brief but informative overview of its growth trajectory, industry presence, and notable accomplishments; key ways in which the company has made an impact within its sector or community; and a summary of how its culture, vision, and strategic priorities align with those of the acquiring organization; ensure the new content integrates smoothly into the existing release, maintains a consistent tone and narrative structure, and reinforces the strategic and cultural significance of the acquisition for both internal stakeholders and external audiences."><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg></button>Please enhance the press release by incorporating relevant information from @[Biography and Mission Statement] about the company being acquired, including: a concise and compelling origin story that highlights the inspiration behind its founding; a clear articulation of the company’s mission, core values, and guiding principles; a brief but informative overview of its growth trajectory, industry presence, and notable accomplishments; key ways in which the company has made an impact within its sector or community; and a summary of how its culture, vision, and strategic priorities align with those of the acquiring organization; ensure the new content integrates smoothly into the existing release, maintains a consistent tone and narrative structure, and reinforces the strategic and cultural significance of the acquisition for both internal stakeholders and external audiences.</div></div>
 </div></section><section class="uc" id="craft-internal-communications"><div class="shell">
-  <div class="lbl">Use Case 5</div>
+  <div class="lbl">Use Case 6</div>
   <h2>Craft internal communications</h2>
   <div class="prompt" id="prompt-706"><div class="pname">Draft a company-wide memo about a relaunched intranet</div><div class="pbox"><button class="copy" aria-label="Copy" onclick="cp(this)"data-t="Please draft an upbeat and engaging company-wide memo announcing the relaunch of our intranet, referencing details from @[Intranet Launch Plan Notes], including: a brief opening that sets a positive and forward-looking tone; a clear introduction to [the new site] and its key improvements, specifically how [new page] addresses [common feedback we heard from employees]; highlights of new features or sections that improve navigation, accessibility, or usability; a reminder of where to access the site and how to get support if needed; and a closing message that reinforces the company’s commitment to employee experience and encourages feedback or exploration of the new platform; ensure the tone is enthusiastic yet professional, with concise language that is easy for all employees to follow."><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg></button>Please draft an upbeat and engaging company-wide memo announcing the relaunch of our intranet, referencing details from @[Intranet Launch Plan Notes], including: a brief opening that sets a positive and forward-looking tone; a clear introduction to [the new site] and its key improvements, specifically how [new page] addresses [common feedback we heard from employees]; highlights of new features or sections that improve navigation, accessibility, or usability; a reminder of where to access the site and how to get support if needed; and a closing message that reinforces the company’s commitment to employee experience and encourages feedback or exploration of the new platform; ensure the tone is enthusiastic yet professional, with concise language that is easy for all employees to follow.</div></div><div class="prompt" id="prompt-707"><div class="pname">Draft an email template to announce an issue</div><div class="pbox"><button class="copy" aria-label="Copy" onclick="cp(this)"data-t="I am a [customer success manager/operations director/communications lead] drafting an email template to notify [customers/users/stakeholders] about service issues or outages. Create a professional template (150-200 words) that includes: clear issue description and impact assessment, root cause explanation in accessible terms, immediate steps being taken to resolve the problem, realistic timeline for full resolution, workaround solutions if available, and contact information for additional support. Use a transparent, accountable tone that maintains customer confidence while providing regular update intervals."><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg></button>I am a [customer success manager/operations director/communications lead] drafting an email template to notify [customers/users/stakeholders] about service issues or outages. Create a professional template (150-200 words) that includes: clear issue description and impact assessment, root cause explanation in accessible terms, immediate steps being taken to resolve the problem, realistic timeline for full resolution, workaround solutions if available, and contact information for additional support. Use a transparent, accountable tone that maintains customer confidence while providing regular update intervals.</div></div>
 </div></section>
@@ -173,5 +195,41 @@ window.addEventListener('load',function(){
   if(document.fonts&&document.fonts.ready) document.fonts.ready.then(anchorToHash);
 });
 window.addEventListener('hashchange',anchorToHash);
+
+/* "On this page": open/close, and highlight the use case currently in view. */
+(function(){
+  var toc=document.getElementById('toc');
+  if(!toc) return;
+  var links=[].slice.call(document.querySelectorAll('#toc-list a'));
+  var secs=links.map(function(a){ return document.getElementById(a.getAttribute('href').slice(1)); });
+  window.tocToggle=function(){
+    var open=toc.classList.toggle('open');
+    toc.querySelector('.toc-h').setAttribute('aria-expanded', open?'true':'false');
+  };
+  /* The marker sits just below the sticky nav + card, so a use case becomes
+     "current" as soon as its heading clears them. Section offsets are measured
+     up front and re-measured on resize/font load, which keeps the scroll
+     handler pure arithmetic — no layout reads, so it needs no rAF throttle. */
+  var OFFSET=180, tops=[], active=-1;
+  function measure(){
+    tops=secs.map(function(s){ return s ? s.getBoundingClientRect().top+window.scrollY : Infinity; });
+  }
+  function spy(){
+    var y=window.scrollY+OFFSET, best=0;
+    for(var i=0;i<tops.length;i++){ if(tops[i]<=y) best=i; }
+    /* at the very bottom the last section is current even if its top never
+       reaches the marker */
+    if(window.innerHeight+window.scrollY>=document.documentElement.scrollHeight-2) best=tops.length-1;
+    if(best===active) return;
+    active=best;
+    for(var j=0;j<links.length;j++) links[j].classList.toggle('on', j===best);
+  }
+  function remeasure(){ measure(); active=-1; spy(); }
+  window.addEventListener('scroll',spy,{passive:true});
+  window.addEventListener('resize',remeasure);
+  window.addEventListener('load',remeasure);
+  if(document.fonts&&document.fonts.ready) document.fonts.ready.then(remeasure);
+  remeasure();
+})();
 </script>
 </body></html>

@@ -56,7 +56,11 @@ def parse_role(slug):
     if not subtitle:
         md=re.search(r'<meta name="description" content="([^"]*)"',h)
         if md: subtitle=strip(md.group(1))
-    return {"slug":slug,"title":title or slug,"subtitle":subtitle,"groups":[g for g in groups if g["prompts"]]}
+    # Keep use cases that have no prompts. ailab.mereka.io renders them (its
+    # Communications page shows an empty "Prepare for briefings" as Use Case 2),
+    # and dropping them shifted every later "Use Case N" out of step with io.
+    return {"slug":slug,"title":title or slug,"subtitle":subtitle,
+            "groups":[g for g in groups if g["usecase"] or g["prompts"]]}
 
 # role/category slugs from data.json (skip empty)
 data=json.load(open(f"{REPO}/data.json"))
