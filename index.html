@@ -306,6 +306,7 @@ footer a:hover{color:var(--teal)}
 .topstrip{display:flex;justify-content:center;gap:10px;align-items:center;font-family:'Poppins Font';font-weight:600;
   font-size:.82rem;letter-spacing:.06em;text-transform:uppercase;color:var(--anchor);margin-bottom:18px;flex-wrap:wrap}
 .topstrip .sep{opacity:.4}
+.topstrip br.m{display:none}
 .hero-badges{display:flex;gap:12px;justify-content:center;align-items:center;flex-wrap:wrap;margin-bottom:22px}
 .hero-badges .hb{display:inline-flex;align-items:center;gap:9px;background:rgba(255,255,255,.82);border:1px solid var(--border);
   border-radius:999px;padding:7px 16px;font-size:.84rem;font-weight:600;color:var(--ink)}
@@ -435,6 +436,96 @@ footer a:hover{color:var(--teal)}
 @media(max-width:620px){.statbar,.pillars,.toolgrid,.criteria,.deliv,.tgrid,.steps,.contacts{grid-template-columns:1fr}
   .ptable{font-size:.88rem}.ptable th,.ptable td{padding:12px 8px}}
 
+
+/* ===== phone layout ===== */
+@media(max-width:620px){
+  /* the page was built desktop-first; tighten the vertical rhythm so sections
+     do not read as a column of isolated blocks on a 390px screen */
+  .section{padding:44px 0}
+  .hero-below{padding:26px 20px 44px}
+  .hero-blob{padding:52px 0 60px}
+  .hero .pretitle,.topstrip{font-size:.72rem;line-height:1.7}
+  .topstrip .sep{display:none}
+  .topstrip br.m{display:block}
+  .hero-badges{gap:8px;margin-bottom:18px}
+  .hero-badges .hb{font-size:.78rem;padding:6px 13px}
+  .hero-cta{flex-direction:column;align-items:stretch;gap:10px}
+  .hero-cta .btn{width:100%;justify-content:center}
+  .hrd-strip{font-size:.92rem;padding:13px 18px;margin-top:22px}
+
+  /* logos: one per row was 4 stacked lines — pair them up */
+  .trust-strip{display:grid;grid-template-columns:1fr 1fr;gap:18px 16px;place-items:center}
+  .trust-strip img{max-height:30px;max-width:100%}
+  .trust-strip img.sq{max-height:46px}
+  .hrd-badge{margin-top:20px}
+  .hrd-badge img{width:78px;height:78px}
+
+  /* body copy was dipping to ~13.8px */
+  .lead,.tt p,.pil p,.tool p,.dlv p,.tq p,.lg dd,.stp p,.faq2 p,.agenda p,.crit span{font-size:.95rem;line-height:1.6}
+  .stat-cap,.footnote,.trust-note,.tq .who,.sched-row span{font-size:.9rem;line-height:1.55}
+  .chipfilter button{padding:12px 18px}            /* 44px tap target */
+  .foot2-links a,.foot2-nav a,footer li a{display:inline-block;padding:7px 0}
+  .sb span{font-size:.9rem}
+
+  /* banners: text and button were fighting over one row */
+  .bridge,.callout,.concierge{flex-direction:column;align-items:flex-start;gap:16px;padding:24px 22px}
+  .bridge .btn,.callout .btn,.concierge .btn{width:100%;justify-content:center}
+
+  /* a 4-column price table does not fit 390px — reflow to labelled rows */
+  .ptable,.ptable tbody,.ptable tr,.ptable td{display:block;width:100%}
+  .ptable thead{display:none}
+  .ptable tr{border:1px solid var(--border);border-radius:var(--radius-sm);padding:14px 16px;margin-bottom:12px;background:#fff}
+  .ptable td{border:0;padding:5px 0;display:flex;justify-content:space-between;gap:14px;font-size:.95rem}
+  .ptable td::before{content:attr(data-l);color:var(--muted);font-size:.82rem;flex:none}
+  .ptable td:first-child{padding-bottom:9px;margin-bottom:5px;border-bottom:1px solid var(--border)}
+  .ptable td:first-child::before{content:''}
+
+  /* contact rows were 22px tap targets */
+  .ct{padding:14px 18px}
+  .ct a{display:flex;align-items:center;padding:9px 0;min-height:44px}
+  .cta-band{padding:44px 22px}
+  .cta-band h2{font-size:clamp(1.7rem,7vw,2.1rem)}
+
+  .agenda li{padding-left:44px;margin-left:14px}
+  .chipfilter{gap:8px}
+  .chipfilter button{font-size:.86rem;padding:9px 16px}
+  .pc{padding:24px 20px}
+  .outcomes{grid-template-columns:1fr}
+}
+@media(max-width:380px){
+  .trust-strip{grid-template-columns:1fr}
+  h1{font-size:clamp(2rem,9vw,2.4rem)}
+}
+
+
+/* ===== section interactivity ===== */
+@media(prefers-reduced-motion:no-preference){
+  .reveal{opacity:0;transform:translateY(18px);transition:opacity .55s var(--ease),transform .55s var(--ease)}
+  .reveal.in{opacity:1;transform:none}
+  .reveal-stagger>*{opacity:0;transform:translateY(16px);transition:opacity .5s var(--ease),transform .5s var(--ease)}
+  .reveal-stagger.in>*{opacity:1;transform:none}
+  .reveal-stagger.in>*:nth-child(2){transition-delay:.07s}
+  .reveal-stagger.in>*:nth-child(3){transition-delay:.14s}
+  .reveal-stagger.in>*:nth-child(4){transition-delay:.21s}
+  .reveal-stagger.in>*:nth-child(5){transition-delay:.28s}
+  .reveal-stagger.in>*:nth-child(6){transition-delay:.35s}
+}
+/* press/hover feedback — :active matters more than :hover on touch */
+.tt,.pil,.dlv,.tq,.lg,.pc,.oc,.crit,.sb{transition:transform .2s var(--ease),box-shadow .2s var(--ease),border-color .2s}
+.tt:hover,.pil:hover,.dlv:hover,.tq:hover,.lg:hover{transform:translateY(-3px);box-shadow:var(--shadow-sm)}
+.tool:active,.tt:active,.pil:active,.dlv:active,.tq:active,.lg:active,.pc:active{transform:scale(.995)}
+.btn:active,.chipfilter button:active{transform:translateY(0) scale(.97)}
+.sb:hover b{color:var(--teal)}
+.sb b{transition:color .2s var(--ease)}
+/* the cohort chips actually filter now */
+.sched-row{display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap;
+  background:#fff;border:1px solid var(--border);border-radius:var(--radius-sm);padding:16px 20px;margin-bottom:10px;text-align:left}
+.sched-row b{display:block;font-family:'Poppins Font';font-size:1rem;color:var(--anchor)}
+.sched-row span{color:var(--muted);font-size:.9rem}
+.sched-row .pill{background:var(--grey);border-radius:999px;padding:6px 14px;font-size:.84rem;font-weight:600;color:var(--anchor);white-space:nowrap}
+.sched-count{color:var(--muted);font-size:.9rem;margin:0 0 14px;text-align:center}
+@media(max-width:620px){.sched-row{flex-direction:column;align-items:flex-start;gap:8px}}
+
 /*NAV-CSS*/
 /* ---- mega-menu (hover panels), 1-to-1 with ailab.mereka.io ---- */
 .navitem{position:relative;display:inline-flex;align-items:center}
@@ -560,7 +651,7 @@ footer a:hover{color:var(--teal)}
 <section class="hero">
   <div class="hero-blob">
     <div class="hero-inner">
-      <div class="topstrip">Future of Work <span class="sep">|</span> Future of Business <span class="sep">&mdash;</span> Boost your team&rsquo;s productivity</div>
+      <div class="topstrip">Future of Work <span class="sep">|</span> Future of Business<span class="sep"> &mdash; </span><br class="m">Boost your team&rsquo;s productivity</div>
       <div class="hero-badges">
         <span class="hb">In Partnership With <img src="/assets/img/logo-microsoft.png" alt="Microsoft"></span>
         <span class="hb">100% HRD Corp Claimable</span>
@@ -619,11 +710,17 @@ footer a:hover{color:var(--teal)}
   </div>
   <div class="shell">
     <div class="chipfilter">
-      <button class="on" type="button">All Public Sessions</button>
-      <button type="button">Tool Deep Dives</button>
-      <button type="button">AI Foundation L1</button>
+      <button class="on" type="button" data-f="all" aria-pressed="true">All Public Sessions</button>
+      <button type="button" data-f="tool" aria-pressed="false">Tool Deep Dives</button>
+      <button type="button" data-f="foundation" aria-pressed="false">AI Foundation L1</button>
     </div>
-    <div class="sched-empty">
+    <p class="sched-count" id="schedcount"></p>
+    <div id="schedlist">
+      <div class="sched-row" data-k="foundation"><div><b>AI Foundation (Level 1) &mdash; Half Day</b><span>Public cohort &middot; RM 450 / pax &middot; min 12 pax</span></div><span class="pill">Dates on request</span></div>
+      <div class="sched-row" data-k="foundation"><div><b>AI Foundation (Level 1) &mdash; Full Day</b><span>Public cohort &middot; RM 700 / pax &middot; min 12 pax</span></div><span class="pill">Dates on request</span></div>
+      <div class="sched-row" data-k="tool"><div><b>AI Tool Deep Dive &mdash; Half Day</b><span>Public cohort &middot; RM 300 / pax &middot; min 12 pax</span></div><span class="pill">Dates on request</span></div>
+    </div>
+    <div class="sched-empty" style="margin-top:16px">
       <b>Upcoming public dates are released monthly.</b>
       Tell us which programme you&rsquo;re after and we&rsquo;ll send the current calendar with seats remaining.
       <div style="margin-top:18px"><a class="btn btn-dark" href="#contact" style="padding:13px 26px">Ask for the current schedule</a></div>
@@ -854,9 +951,9 @@ footer a:hover{color:var(--teal)}
     <table class="ptable">
       <thead><tr><th>Programme</th><th>Format</th><th>In-House (base 20 pax)</th><th>Public (per person)</th></tr></thead>
       <tbody>
-        <tr><td><b>Tool Deep Dive</b></td><td>Half day</td><td>RM 3,000</td><td>RM 300</td></tr>
-        <tr><td><b>L1: AI Foundation</b></td><td>Half day</td><td>RM 4,500</td><td>RM 450</td></tr>
-        <tr><td><b>L1: AI Foundation</b></td><td>Full day</td><td>RM 7,000</td><td>RM 700</td></tr>
+        <tr><td><b>Tool Deep Dive</b></td><td data-l="Format">Half day</td><td data-l="In-house">RM 3,000</td><td data-l="Public">RM 300</td></tr>
+        <tr><td><b>L1: AI Foundation</b></td><td data-l="Format">Half day</td><td data-l="In-house">RM 4,500</td><td data-l="Public">RM 450</td></tr>
+        <tr><td><b>L1: AI Foundation</b></td><td data-l="Format">Full day</td><td data-l="In-house">RM 7,000</td><td data-l="Public">RM 700</td></tr>
       </tbody>
     </table>
     <p class="footnote">Excludes 8% SST. 4% HRDC fee added to invoice. In-house includes up to 20 participants; per-person cost applies beyond. Public classes require min 12 pax.</p>
@@ -1118,6 +1215,107 @@ DEPTS.forEach((d,i)=>{
   panelsEl.appendChild(p);
 });
 function select(i){[...tabsEl.children].forEach((t,j)=>t.setAttribute('aria-selected',j===i?'true':'false'));[...panelsEl.children].forEach((p,j)=>p.classList.toggle('active',j===i));}
+</script>
+
+<script>
+/* ---- section interactivity ---------------------------------------------
+   Reveal on scroll, stat counters, and the cohort filter. Everything here is
+   progressive: with JS off or reduced motion on, the page is fully readable
+   and the schedule shows every row. */
+(function(){
+  var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* 1. reveal sections as they enter the viewport */
+  if (!reduce && 'IntersectionObserver' in window) {
+    document.querySelectorAll('section.section > .shell, .hero-below, .cta-band').forEach(function(el){
+      el.classList.add('reveal');
+    });
+    document.querySelectorAll('.two-teams,.statbar,.pillars,.toolgrid,.deliv,.tgrid,.criteria,.steps,.outcomes,.logi,.pricecards,.trust-strip')
+      .forEach(function(el){ el.classList.add('reveal-stagger'); });
+    /* threshold 0 + a small bottom inset: a section shell can be 1100px tall, and
+       asking for a percentage of THAT visible would keep it hidden far too long */
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+      });
+    }, {rootMargin:'0px 0px -60px 0px', threshold:0});
+    var targets = document.querySelectorAll('.reveal,.reveal-stagger');
+    targets.forEach(function(el){ io.observe(el); });
+    /* fail-safe: nothing may stay invisible. Anything already at or above the
+       fold is shown immediately (deep links, restored scroll, fast scrolling),
+       and a timer backstops the observer if it never fires at all. */
+    function revealPassed(){
+      targets.forEach(function(el){
+        if (el.getBoundingClientRect().top < innerHeight) { el.classList.add('in'); io.unobserve(el); }
+      });
+    }
+    revealPassed();
+    addEventListener('load', revealPassed);
+    /* last resort: if the observer is throttled or misbehaves, scrolling still
+       uncovers content — reveal is an enhancement, never a gate on reading */
+    addEventListener('scroll', revealPassed, {passive:true});
+    setTimeout(function(){
+      targets.forEach(function(el){ if (!el.classList.contains('in')) io.observe(el); });
+      revealPassed();
+    }, 400);
+  }
+
+  /* 2. count the stat figures up once they are on screen */
+  if ('IntersectionObserver' in window) {
+    var sio = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if (!e.isIntersecting) return;
+        sio.unobserve(e.target);
+        var el = e.target, raw = el.textContent.trim();
+        var m = raw.match(/^([\d.]+)(.*)$/);
+        if (!m || reduce) return;
+        var target = parseFloat(m[1]), suffix = m[2], dec = (m[1].split('.')[1]||'').length;
+        var t0 = null, dur = 900, done = false;
+        /* These are survey figures. requestAnimationFrame is throttled in a
+           background tab or under battery saver, which would freeze the number
+           part-way and display a wrong statistic — so the real value always
+           wins, on a hard timer and whenever the page is hidden. */
+        function finish(){ if (done) return; done = true; el.textContent = raw; }
+        setTimeout(finish, dur + 400);
+        document.addEventListener('visibilitychange', function(){ if (document.hidden) finish(); });
+        function step(ts){
+          if (done) return;
+          if (t0 === null) t0 = ts;
+          var p = Math.min((ts - t0) / dur, 1);
+          if (p >= 1) { finish(); return; }
+          el.textContent = (target * (1 - Math.pow(1 - p, 3))).toFixed(dec) + suffix;
+          requestAnimationFrame(step);
+        }
+        requestAnimationFrame(step);
+      });
+    }, {threshold:0.6});
+    document.querySelectorAll('.sb b').forEach(function(el){ sio.observe(el); });
+  }
+
+  /* 3. cohort filter */
+  var chips = document.querySelectorAll('.chipfilter button[data-f]');
+  var rows  = document.querySelectorAll('#schedlist .sched-row');
+  var count = document.getElementById('schedcount');
+  function apply(key){
+    var shown = 0;
+    rows.forEach(function(r){
+      var on = (key === 'all' || r.dataset.k === key);
+      r.hidden = !on;
+      if (on) shown++;
+    });
+    if (count) count.textContent = shown + (shown === 1 ? ' programme' : ' programmes')
+      + (key === 'all' ? ' running as public cohorts' : ' in this track');
+    chips.forEach(function(c){
+      var sel = c.dataset.f === key;
+      c.classList.toggle('on', sel);
+      c.setAttribute('aria-pressed', sel ? 'true' : 'false');
+    });
+  }
+  if (chips.length && rows.length) {
+    chips.forEach(function(c){ c.addEventListener('click', function(){ apply(c.dataset.f); }); });
+    apply('all');
+  }
+})();
 </script>
 </body>
 </html>
