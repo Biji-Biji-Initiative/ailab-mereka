@@ -140,7 +140,7 @@ def footer():
         <a href="https://www.tiktok.com/@mereka.io" target="_blank" rel="noopener">TT</a>
         <a href="https://www.instagram.com/mereka.io/" target="_blank" rel="noopener">IG</a>
         <a href="https://www.facebook.com/mereka.io" target="_blank" rel="noopener">FB</a>
-        <a href="https://www.linkedin.com/company/mereka-io" target="_blank" rel="noopener">IN</a>
+        <a href="https://www.linkedin.com/company/mereka" target="_blank" rel="noopener">IN</a>
         <a href="https://www.youtube.com/channel/UCGJ5RzyL0oib2ONP2gPvOYA" target="_blank" rel="noopener">YT</a>
       </div>
     </div>
