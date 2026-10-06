@@ -19,7 +19,7 @@ ROLE_CSS = """
    strip pinned under it (bottom edge ~149px). The global 100px that matches
    ailab.mereka.io is right for /prompts/, but here it would drop a linked
    prompt's title behind that strip, so clear the whole stack. */
-html{scroll-padding-top:165px}
+html{scroll-padding-top:176px}
 /* Hero, as on ailab.mereka.io: full-bleed mesh gradient that runs edge to edge
    under the nav and is rounded only along the bottom, with "Back to Prompts"
    centred above the title. It used to be an inset card with a flat 3-stop
@@ -32,13 +32,11 @@ html{scroll-padding-top:165px}
 .rhero .back:hover{opacity:.7}
 .rhero h1{font-size:clamp(2.4rem,6.9vw,6rem);line-height:1.05;color:var(--ink);margin:0 0 20px}
 .rhero p{color:var(--ink);font-size:1.25rem;line-height:1.5;max-width:64ch;margin:0 auto}
-@media(max-width:860px){.rhero{padding:64px 0 76px;border-radius:0 0 44px 44px}
-  .rhero p{font-size:1.06rem}}
 /* "On this page" — a sticky card that follows you down the page and marks the
    use case you are currently in, as on ailab.mereka.io. The wrapper reserves
    only the collapsed height so the open panel overlays the content instead of
    shoving it down. */
-.onthis{position:sticky;top:90px;z-index:45;height:46px;max-width:var(--maxw);margin:0 auto;padding:0 28px}
+.onthis{position:sticky;top:98px;z-index:45;height:46px;max-width:var(--maxw);margin:24px auto 0;padding:0 28px}
 .toc{position:absolute;left:28px;top:0;width:296px;max-width:calc(100vw - 56px);
   background:#fff;border:1px solid var(--line);border-radius:20px;box-shadow:0 14px 38px rgba(26,22,35,.14);padding:5px}
 .toc-h{display:flex;align-items:center;justify-content:space-between;gap:10px;width:100%;
@@ -51,6 +49,11 @@ html{scroll-padding-top:165px}
   white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .toc-list a:hover{background:var(--grey);color:var(--ink)}
 .toc-list a.on{background:var(--accent);color:#fff;font-weight:500}
+@media(max-width:860px){.rhero{padding:64px 0 76px;border-radius:0 0 44px 44px}
+  .rhero p{font-size:1.06rem}
+  .onthis{top:92px;margin-top:18px;padding:0 20px}
+  .toc{left:20px;max-width:calc(100vw - 40px)}
+  html{scroll-padding-top:170px}}
 .uc{padding:38px 0 0}
 .uc .lbl{color:var(--pink);font-weight:600;font-size:.82rem;letter-spacing:.12em;text-transform:uppercase}
 .uc h2{font-size:clamp(1.5rem,3vw,2.1rem);margin:8px 0 6px}
@@ -123,7 +126,7 @@ def role_page(slug, r):
   {prompts}
 </div></section>'''
     page=theme.head(f'{r["title"]} — AI Labs', r["subtitle"] or r["title"],
-                    f'https://ailab.mereka.dev/{slug}/', ROLE_CSS) + theme.nav() + f'''
+                    f'https://ailab.mereka.dev/{slug}/', ROLE_CSS) + theme.nav("prompts") + f'''
 <section class="rhero"><div class="rhero-in">
   <a class="back" href="/prompts/"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M15.41 16.59 10.83 12l4.58-4.59L14 6l-6 6 6 6 1.41-1.41Z"/></svg>Back to Prompts</a>
   <h1>{esc(r["title"])}</h1>
@@ -300,7 +303,7 @@ for _t in FEATURED_TITLES:
     featcards+=(f'<a class="fcard" href="{esc(_r["h"])}">{_inner}</a>' if _r["h"]
                 else f'<div class="fcard">{_inner}</div>')
 
-lib=theme.head("AI Prompts — AI Labs","Whether you're exploring automation, customer insights, or decision intelligence, these practical guides show you how AI fits into your business.","https://ailab.mereka.dev/prompts/",LIB_CSS)+theme.nav()+f'''
+lib=theme.head("AI Prompts — AI Labs","Whether you're exploring automation, customer insights, or decision intelligence, these practical guides show you how AI fits into your business.","https://ailab.mereka.dev/prompts/",LIB_CSS)+theme.nav("prompts")+f'''
 <section class="chero"><div class="chero-in">
   <h1>Turn Strategy Into AI-Driven Results With AI Cookbooks</h1>
   <p>Whether you're exploring automation, customer insights, or decision intelligence, these practical guides will show you how AI fits into your business&mdash;step by step, no PhD required.</p>

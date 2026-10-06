@@ -34,12 +34,15 @@ img{max-width:100%;display:block}
 header.nav{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.86);backdrop-filter:saturate(160%) blur(12px);border-bottom:1px solid var(--border)}
 .nav-inner{display:flex;align-items:center;gap:28px;height:74px}
 .nav-logo img{height:38px}
-.nav-links{display:flex;align-items:center;gap:26px;margin-left:auto;font-family:'Poppins Font';font-weight:500;font-size:.95rem}
+.nav-links{display:flex;align-items:center;gap:22px;margin-left:auto;font-family:'Poppins Font';font-weight:500;font-size:.95rem}
+/* seven items need ~1105px; without nowrap they wrap inside each link */
+.nav-links a{white-space:nowrap}
 .nav-links a:not(.btn){color:#1a1623;font-weight:500}
 .nav-links a:not(.btn):hover{color:var(--teal)}
 /* without this the CTA inherits .nav-links a and renders dark-on-dark */
 .nav-links a.btn-dark,.nav-links a.nav-cta{color:#fff}
 .nav-cta{margin-left:4px;background:var(--anchor)}
+.nav-links a[aria-current="page"]{color:var(--teal);font-weight:600}
 .chip{font-family:'Poppins Font';font-weight:500;font-size:.9rem;padding:9px 16px;border-radius:999px;background:#fff;border:1px solid var(--border);box-shadow:var(--shadow-sm)}
 .burger{display:none;margin-left:auto;background:none;border:0;cursor:pointer;padding:8px}
 .burger span{display:block;width:24px;height:2px;background:var(--ink);margin:5px 0;border-radius:2px}
@@ -56,19 +59,24 @@ footer a:hover{color:#fff}
 .foot-social a{width:34px;height:34px;border:1px solid rgba(255,255,255,.24);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.74rem}
 .foot-bottom{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;padding-top:22px;font-size:.86rem;color:#9a9dab}
 .foot-bottom a{color:#9a9dab;margin-left:18px}
-@media(max-width:860px){.nav-links{display:none}.nav-links.open{display:flex;position:absolute;top:74px;left:0;right:0;flex-direction:column;background:#fff;padding:18px 24px;border-bottom:1px solid var(--border);gap:16px}.nav-links.open .nav-cta{margin:6px 0 0}.burger{display:block}.foot-top{grid-template-columns:1fr 1fr}}
+@media(max-width:1160px){.nav-links{display:none}.nav-links.open{display:flex;position:absolute;top:74px;left:0;right:0;flex-direction:column;background:#fff;padding:18px 24px;border-bottom:1px solid var(--border);gap:16px}.nav-links.open .nav-cta{margin:6px 0 0}.nav-links.open a{white-space:normal}.burger{display:block}}
+@media(max-width:860px){.foot-top{grid-template-columns:1fr 1fr}}
+@media(max-width:560px){.foot-top{grid-template-columns:1fr;gap:26px}}
 """
 
-def nav():
+def nav(current=""):
     """Byte-for-byte the homepage's header (index.html) — same classes, same
     order, same logo — so /prompts/ and the category pages render an identical
-    navigation bar."""
-    return """<header class="nav">
+    navigation bar. `current="prompts"` marks the AI Prompts tab as the page
+    you are on (the category pages are part of the prompt library too)."""
+    prompts_cur = ' aria-current="page"' if current == "prompts" else ''
+    return f"""<header class="nav">
   <div class="shell nav-inner">
     <a class="nav-logo" href="/" aria-label="Mereka home"><img src="/assets/mereka-logo-emblem.svg" alt="Mereka"></a>
     <a class="chip" href="https://mereka.io" target="_blank" rel="noopener" style="background:var(--accent);color:#fff;border:0;font-weight:600;margin-left:2px">Marketplace</a>
     <button class="burger" aria-label="Menu" onclick="document.getElementById('nav').classList.toggle('open')"><span></span><span></span><span></span></button>
     <nav class="nav-links" id="nav">
+      <a href="/prompts/"{prompts_cur}>AI Prompts</a>
       <a href="https://corporate.mereka.io" target="_blank" rel="noopener">Our Approach</a>
       <a href="https://corporate.mereka.io/academy" target="_blank" rel="noopener">Grow with us</a>
       <a href="https://corporate.mereka.io/create-with-us" target="_blank" rel="noopener">Create With Us</a>

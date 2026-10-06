@@ -52,7 +52,8 @@ img{max-width:100%;display:block}
 header.nav{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.86);backdrop-filter:saturate(160%) blur(12px);border-bottom:1px solid var(--border)}
 .nav-inner{display:flex;align-items:center;gap:28px;height:74px}
 .nav-logo img{height:34px}
-.nav-links{display:flex;align-items:center;gap:26px;margin-left:auto;font-family:'Poppins Font';font-weight:500;font-size:.95rem}
+.nav-links{display:flex;align-items:center;gap:22px;margin-left:auto;font-family:'Poppins Font';font-weight:500;font-size:.95rem}
+.nav-links a{white-space:nowrap}
 .nav-links a{color:#2a2f3a}
 .nav-links a:hover{color:var(--teal)}
 .nav-cta{margin-left:4px}
@@ -179,11 +180,8 @@ footer a:hover{color:var(--teal)}
   .inst-grid{grid-template-columns:1fr 1fr}
   .res-grid{grid-template-columns:1fr}
   .foot-top{grid-template-columns:1fr 1fr}
-  .nav-links{display:none}
-  .burger{display:block}
-  .nav-links.open{display:flex;position:absolute;top:74px;left:0;right:0;flex-direction:column;background:#fff;padding:18px 24px;border-bottom:1px solid var(--border);gap:16px}
-  .nav-links.open .nav-cta{margin:6px 0 0}
 }
+@media(max-width:1160px){.nav-links{display:none}.nav-links.open{display:flex;position:absolute;top:74px;left:0;right:0;flex-direction:column;background:#fff;padding:18px 24px;border-bottom:1px solid var(--border);gap:16px}.nav-links.open .nav-cta{margin:6px 0 0}.nav-links.open a{white-space:normal}.burger{display:block}}
 @media(max-width:560px){.pains{grid-template-columns:1fr}.inst-grid{grid-template-columns:1fr}.dept-cols{grid-template-columns:1fr}.section{padding:64px 0}.band{padding:36px 22px}}
 
 .prog-img{width:100%;height:154px;object-fit:cover;border-radius:14px;margin-bottom:18px}
@@ -303,6 +301,7 @@ footer a:hover{color:var(--teal)}
 .nav-logo img{height:38px}
 .nav-links a:not(.btn){color:#1a1623;font-weight:500}
 .nav-links a.btn-dark,.nav-links a.nav-cta{color:#fff}
+.nav-links a[aria-current="page"]{color:var(--teal);font-weight:600}
 /* hero blob + below */
 .hero{padding:0}
 .hero-blob{position:relative;border-radius:0 0 44px 44px;overflow:hidden;background:#e9f5f1;padding:74px 0 92px}
@@ -393,6 +392,7 @@ footer a:hover{color:var(--teal)}
     <a class="chip" href="https://mereka.io" target="_blank" rel="noopener" style="background:var(--accent);color:#fff;border:0;font-weight:600;margin-left:2px">Marketplace</a>
     <button class="burger" aria-label="Menu" onclick="document.getElementById('nav').classList.toggle('open')"><span></span><span></span><span></span></button>
     <nav class="nav-links" id="nav">
+      <a href="/prompts/">AI Prompts</a>
       <a href="https://corporate.mereka.io" target="_blank" rel="noopener">Our Approach</a>
       <a href="https://corporate.mereka.io/academy" target="_blank" rel="noopener">Grow with us</a>
       <a href="https://corporate.mereka.io/create-with-us" target="_blank" rel="noopener">Create With Us</a>
