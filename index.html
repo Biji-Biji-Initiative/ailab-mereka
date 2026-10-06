@@ -356,7 +356,8 @@ footer a:hover{color:var(--teal)}
 .pc .prow span{color:var(--muted);font-size:.92rem}
 .pc .prow b{font-family:'Poppins Font';font-weight:700;color:var(--ink);font-size:1.02rem;white-space:nowrap}
 .pc .pcta{display:flex;gap:10px;flex-wrap:wrap;margin-top:auto;padding-top:20px}
-.pc .pcta .btn{padding:12px 22px;font-size:.92rem}
+/* share the card width rather than hugging their text */
+.pc .pcta .btn{flex:1 1 0;min-width:160px;justify-content:center;padding:12px 18px;font-size:.92rem;text-align:center}
 .footnote{color:var(--muted);font-size:.86rem;margin-top:18px;line-height:1.55}
 .outcomes{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:18px;margin-top:32px}
 .oc{background:var(--grey);border-radius:var(--radius-sm);padding:24px 22px}
@@ -518,6 +519,7 @@ footer a:hover{color:var(--teal)}
 .sb:hover b{color:var(--teal)}
 .sb b{transition:color .2s var(--ease)}
 /* the cohort chips actually filter now */
+.sched-row[hidden]{display:none}
 .sched-row{display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap;
   background:#fff;border:1px solid var(--border);border-radius:var(--radius-sm);padding:16px 20px;margin-bottom:10px;text-align:left}
 .sched-row b{display:block;font-family:'Poppins Font';font-size:1rem;color:var(--anchor)}
@@ -525,6 +527,42 @@ footer a:hover{color:var(--teal)}
 .sched-row .pill{background:var(--grey);border-radius:999px;padding:6px 14px;font-size:.84rem;font-weight:600;color:var(--anchor);white-space:nowrap}
 .sched-count{color:var(--muted);font-size:.9rem;margin:0 0 14px;text-align:center}
 @media(max-width:620px){.sched-row{flex-direction:column;align-items:flex-start;gap:8px}}
+
+
+/* ===== interactive sections (outcomes, criteria, agenda, steps, contacts) ===== */
+.oc,.crit{cursor:default;border:1px solid transparent;position:relative}
+.oc:hover,.oc:focus-within,.crit:hover,.crit:focus-within{
+  background:#fff;border-color:var(--border);box-shadow:var(--shadow-sm);transform:translateY(-3px)}
+.oc b i{transition:color .2s var(--ease)}
+.oc:hover b i{color:var(--anchor)}
+.crit b{transition:color .2s var(--ease)}
+.crit:hover b{color:var(--teal)}
+
+/* agenda + how-it-works: the step you are on lights up */
+.agenda li{transition:border-color .25s var(--ease)}
+.agenda li::before{transition:background .25s var(--ease),transform .25s var(--ease),box-shadow .25s}
+.agenda li.on::before{background:var(--teal);transform:scale(1.12);box-shadow:0 0 0 5px rgba(31,163,166,.16)}
+.agenda li.on{border-left-color:var(--teal)}
+.agenda li b{transition:color .2s var(--ease)}
+.agenda li.on b{color:var(--anchor)}
+
+.stp{transition:transform .25s var(--ease)}
+.stp::before{transition:background .25s var(--ease),transform .25s var(--ease),box-shadow .25s}
+.stp:hover{transform:translateY(-4px)}
+.stp.on::before,.stp:hover::before{background:var(--anchor);transform:scale(1.12);box-shadow:0 0 0 6px rgba(31,63,124,.14)}
+.stp b{transition:color .2s var(--ease)}
+.stp.on b,.stp:hover b{color:var(--anchor)}
+
+/* contact details copy to the clipboard on tap */
+.ct{position:relative}
+.ct.copyable{cursor:pointer}
+.ct.copyable:hover{background:rgba(255,255,255,.18);border-color:rgba(255,255,255,.35)}
+.ct .copied{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+  background:var(--teal);color:#fff;border-radius:var(--radius-sm);font-weight:600;font-size:.92rem;
+  opacity:0;pointer-events:none;transition:opacity .18s var(--ease)}
+.ct.done .copied{opacity:1}
+.ct .hint{display:block;margin-top:4px;font-size:.72rem;color:rgba(255,255,255,.55);letter-spacing:.04em}
+@media(hover:none){.ct .hint{display:none}}
 
 /*NAV-CSS*/
 /* ---- mega-menu (hover panels), 1-to-1 with ailab.mereka.io ---- */
@@ -887,8 +925,8 @@ footer a:hover{color:var(--teal)}
         <p style="color:var(--muted);margin:10px 0 0;line-height:1.6">Led by Gurpreet Singh, Mereka AI Lab. A live monthly drop-in: bring a real task from your work, troubleshoot prompts and workflows with the trainer, see what&rsquo;s new in the tools, and hear what other alumni have built.</p>
         <div class="prow" style="margin-top:18px"><span>Who can join</span><b>Alumni only</b></div>
         <div class="prow"><span>Next session</span><b>Announced monthly</b></div>
+        <p class="footnote" style="margin-top:16px">Attended a Mereka AI Lab workshop? You&rsquo;re an alumnus. Come back any month. Register with the email address you used at training.</p>
         <div class="pcta"><a class="btn btn-primary" href="https://mereka.io" target="_blank" rel="noopener">Register on Mereka.io</a></div>
-        <p class="footnote" style="margin-top:14px">Attended a Mereka AI Lab workshop? You&rsquo;re an alumnus. Come back any month. Register with the email address you used at training.</p>
       </div>
       <div class="pc">
         <h3>1-Month Impact Survey</h3>
@@ -1292,7 +1330,85 @@ function select(i){[...tabsEl.children].forEach((t,j)=>t.setAttribute('aria-sele
     document.querySelectorAll('.sb b').forEach(function(el){ sio.observe(el); });
   }
 
-  /* 3. cohort filter */
+  /* 3. agenda + how-it-works: mark the step nearest the reading line */
+  var tracks = [
+    {items: [].slice.call(document.querySelectorAll('.agenda li'))},
+    {items: [].slice.call(document.querySelectorAll('.stp'))}
+  ].filter(function(t){ return t.items.length; });
+  if (tracks.length) {
+    var ticking = false;
+    function markSteps(){
+      ticking = false;
+      var line = innerHeight * 0.42;
+      tracks.forEach(function(t){
+        var best = -1, bestD = Infinity;
+        t.items.forEach(function(el, i){
+          var r = el.getBoundingClientRect();
+          if (r.bottom < 0 || r.top > innerHeight) return;
+          var d = Math.abs((r.top + r.height / 2) - line);
+          if (d < bestD) { bestD = d; best = i; }
+        });
+        t.items.forEach(function(el, i){ el.classList.toggle('on', i === best); });
+      });
+    }
+    addEventListener('scroll', function(){
+      if (!ticking) { ticking = true; requestAnimationFrame(markSteps); }
+    }, {passive:true});
+    addEventListener('resize', markSteps);
+    markSteps();
+  }
+
+  /* 4. contact details copy on click — the number is still a usable link */
+  function copyText(text){
+    /* navigator.clipboard rejects without focus/permission, so fall back to a
+       hidden textarea rather than leaving a click with no feedback at all */
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      return navigator.clipboard.writeText(text).catch(legacy);
+    }
+    return legacy();
+    function legacy(){
+      return new Promise(function(resolve, reject){
+        try {
+          var ta = document.createElement('textarea');
+          ta.value = text;
+          ta.setAttribute('readonly','');
+          ta.style.cssText = 'position:fixed;top:-9999px;opacity:0';
+          document.body.appendChild(ta);
+          ta.select();
+          var ok = document.execCommand('copy');
+          document.body.removeChild(ta);
+          ok ? resolve() : reject();
+        } catch (err) { reject(err); }
+      });
+    }
+  }
+  document.querySelectorAll('.ct').forEach(function(card){
+    var a = card.querySelector('a');
+    if (!a) return;
+    var value = a.textContent.trim();
+    card.classList.add('copyable');
+    var badge = document.createElement('span');
+    badge.className = 'copied';
+    badge.textContent = 'Copied';
+    card.appendChild(badge);
+    var hint = document.createElement('span');
+    hint.className = 'hint';
+    hint.textContent = 'Click to copy';
+    a.insertAdjacentElement('afterend', hint);
+    card.addEventListener('click', function(e){
+      /* let a real tap on the link still open mail/WhatsApp */
+      if (e.target.closest('a')) return;
+      copyText(value).then(function(){
+        card.classList.add('done');
+        setTimeout(function(){ card.classList.remove('done'); }, 1100);
+      }).catch(function(){
+        /* copying genuinely unavailable — follow the link instead of doing nothing */
+        a.click();
+      });
+    });
+  });
+
+  /* 5. cohort filter */
   var chips = document.querySelectorAll('.chipfilter button[data-f]');
   var rows  = document.querySelectorAll('#schedlist .sched-row');
   var count = document.getElementById('schedcount');
