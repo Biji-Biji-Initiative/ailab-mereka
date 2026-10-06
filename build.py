@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Generate ailab.mereka.dev pages 1-to-1 with ailab.mereka.io:
    /prompts/ (AI Cookbooks) and /{category}/ role pages. Uses data.json + content.json + theme.py."""
-import json, os, html, sys, re
+import json, os, html, sys, re, unicodedata
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import theme
 
@@ -15,6 +15,11 @@ esc=html.escape
 
 # ---------------- ROLE PAGES ----------------
 ROLE_CSS = """
+/* A role page stacks two sticky bars: the 78px nav and the "On this page"
+   strip pinned under it (bottom edge ~149px). The global 100px that matches
+   ailab.mereka.io is right for /prompts/, but here it would drop a linked
+   prompt's title behind that strip, so clear the whole stack. */
+html{scroll-padding-top:165px}
 .rhero{padding:26px 0 10px}
 .rhero .blob{position:relative;border-radius:26px;padding:56px 40px 60px;text-align:center;overflow:hidden;
   background:linear-gradient(118deg,#f7bfe6 0%,#c8ccff 42%,#a7ecef 100%)}
@@ -45,8 +50,32 @@ COPY_SVG='<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="cu
 
 def slugify(s): return re.sub(r'[^a-z0-9]+','-',s.lower()).strip('-')
 
+# ---- title -> prompt id, so each card can carry the #prompt-<id> anchor that
+# ---- /prompts/ links to (same scheme as ailab.mereka.io).
+def _norm(s):
+    s=unicodedata.normalize("NFKC", html.unescape(s or ""))
+    for a,b in (("\u2018","'"),("\u2019","'"),("\u201c",'"'),("\u201d",'"'),("\u2013","-"),("\u2014","-")):
+        s=s.replace(a,b)
+    return re.sub(r"\s+"," ",s).strip().lower()
+
+# prompts indexed by (category id, normalised title) and by title alone
+PROMPT_BY_CAT={}
+PROMPT_BY_TITLE={}
+for _p in data["prompts"]:
+    PROMPT_BY_TITLE.setdefault(_norm(_p["t"]), _p)
+    for _cid in _p.get("c") or []:
+        PROMPT_BY_CAT.setdefault((_cid, _norm(_p["t"])), _p)
+
+def prompt_id_for(cat_id, title):
+    """id of the prompt with this title on this category page (falls back to a
+    title-only match so a card is still addressable if WP's categories drift)."""
+    hit = PROMPT_BY_CAT.get((cat_id, _norm(title))) or PROMPT_BY_TITLE.get(_norm(title))
+    return hit["id"] if hit else None
+
 def role_page(slug, r):
     groups=r["groups"]
+    cat_id=(cats.get(slug) or {}).get("id")
+    seen=set()
     toc="".join(f'<li><a href="#{slugify(g["usecase"])}">{esc(g["usecase"])}</a></li>' for g in groups if g["usecase"])
     body=""
     for i,g in enumerate(groups,1):
@@ -55,7 +84,12 @@ def role_page(slug, r):
         for p in g["prompts"]:
             name=f'<div class="pname">{esc(p["name"])}</div>' if p.get("name") else ""
             b=esc(p["body"])
-            prompts+=f'''<div class="prompt">{name}<div class="pbox"><button class="copy" aria-label="Copy" onclick="cp(this)"data-t="{esc(p["body"])}">{COPY_SVG}</button>{b}</div></div>'''
+            # anchor target for /prompts/ — only on the card's first appearance,
+            # so the id stays unique even when a prompt is reused across use cases
+            pid=prompt_id_for(cat_id, p.get("name") or "")
+            anchor=f' id="prompt-{pid}"' if pid and pid not in seen else ""
+            if pid: seen.add(pid)
+            prompts+=f'''<div class="prompt"{anchor}>{name}<div class="pbox"><button class="copy" aria-label="Copy" onclick="cp(this)"data-t="{esc(p["body"])}">{COPY_SVG}</button>{b}</div></div>'''
         body+=f'''<section class="uc" id="{gid}"><div class="shell">
   <div class="lbl">Use Case {i}</div>
   <h2>{esc(g["usecase"])}</h2>
@@ -72,7 +106,23 @@ def role_page(slug, r):
 {body}
 <div class="shell rfoot-cta"><a class="btn btn-accent" href="/prompts/">Browse all prompts &rarr;</a></div>
 {theme.footer()}
-<script>function cp(b){{navigator.clipboard.writeText(b.dataset.t).then(()=>{{b.classList.add('done');var s=b.innerHTML;b.textContent='✓';setTimeout(()=>{{b.classList.remove('done');b.innerHTML=s;}},1300);}});}}</script>
+<script>
+function cp(b){{navigator.clipboard.writeText(b.dataset.t).then(()=>{{b.classList.add('done');var s=b.innerHTML;b.textContent='✓';setTimeout(()=>{{b.classList.remove('done');b.innerHTML=s;}},1300);}});}}
+/* Land on the #prompt-<id> a /prompts/ link points at. The browser already does
+   this, but its on-load scroll is animated (html{{scroll-behavior:smooth}}) and
+   runs before the self-hosted Poppins faces finish loading — the reflow that
+   follows leaves you short of the prompt. Re-anchor once everything has settled. */
+function anchorToHash(){{
+  if(!location.hash) return;
+  var el=document.getElementById(location.hash.slice(1));
+  if(el) el.scrollIntoView({{behavior:'instant',block:'start'}});  /* 'auto' would inherit scroll-behavior:smooth */
+}}
+window.addEventListener('load',function(){{
+  anchorToHash();
+  if(document.fonts&&document.fonts.ready) document.fonts.ready.then(anchorToHash);
+}});
+window.addEventListener('hashchange',anchorToHash);
+</script>
 </body></html>'''
     os.makedirs(f"{REPO}/{slug}", exist_ok=True)
     open(f"{REPO}/{slug}/index.html","w").write(page)
@@ -109,6 +159,10 @@ LIB_CSS = """
 table.plist{width:100%;border-collapse:collapse}
 table.plist td{padding:16px 6px;border-bottom:1px solid var(--line);vertical-align:middle}
 table.plist td.nm{font-weight:500}
+table.plist td.nm a{display:block;color:var(--ink);transition:color .15s var(--ease)}
+table.plist tr:hover td.nm a{color:var(--blue)}
+table.plist tr:hover{background:#fafbff}
+a.fcard{display:block;color:inherit}
 table.plist td.tg{text-align:right;white-space:nowrap}
 table.plist td.tg .tag{display:inline-block;margin-left:6px;background:transparent;color:#7b7f8c;padding:2px 0;font-size:.82rem}
 .pager{display:flex;gap:8px;justify-content:center;align-items:center;margin-top:30px}
@@ -118,26 +172,55 @@ table.plist td.tg .tag{display:inline-block;margin-left:6px;background:transpare
 @media(max-width:820px){.feat{grid-template-columns:1fr}}
 """
 
-# featured (as on ailab.mereka.io)
-FEATURED=[
- ("Craft a list of customer communication best practices",["hiring","customer-support"]),
- ("Create a formula to calculate the difference between two columns",["formula","audit"]),
- ("Clean a user feedback survey spreadsheet",["survey","data-cleaning"]),
- ("Add more information to a press release",["pr","press-release"]),
- ("Create a detailed lesson plan for a 5th-grade history class",["learning"]),
+# featured prompts, in ailab.mereka.io's order — resolved against data.json so
+# each card carries the same tags and detail link as the row in the table below
+FEATURED_TITLES=[
+ "Craft a list of customer communication best practices",
+ "Create a formula to calculate the difference between two columns",
+ "Clean a user feedback survey spreadsheet",
+ "Create a detailed lesson plan for a 5th-grade history class",
+ "Add more information to a press release",
 ]
-# table rows: all prompts, tag = category name(s)
-def tagsfor(ids):
-    out=[]
-    for cid in ids:
-        c=CATBYID.get(cid)
-        if c and c["slug"]!="uncategorized": out.append(c["name"])
-    return out
-rows=sorted(({"t":p["t"],"tags":tagsfor(p["c"])} for p in data["prompts"]), key=lambda x:x["t"].lower())
-catopts="".join(f'<option value="{esc(c["name"])}">{esc(c["name"])}</option>' for c in data["categories"] if c["count"]>0 and c["slug"]!="uncategorized")
+
+def catslugs(ids):
+    return [CATBYID[cid]["slug"] for cid in ids
+            if cid in CATBYID and CATBYID[cid]["slug"]!="uncategorized"]
+
+def href_for(p):
+    """Detail link: /<category>#prompt-<id>, as on ailab.mereka.io."""
+    if p.get("h"): return p["h"]
+    sl=catslugs(p.get("c") or [])
+    return f'/{sl[0]}#prompt-{p["id"]}' if sl else ""
+
+def tags_for(p):
+    """Real post tags (pr, press-release, …) — never the category name.
+    A prompt with no tags shows none, exactly as on io; the category-name
+    fallback only applies to a data.json written before sync.py recorded tags."""
+    if "g" in p: return p["g"]
+    return [slugify(n) for n in (CATBYID[cid]["name"] for cid in (p.get("c") or []) if cid in CATBYID)]
+
+rows=sorted(({"t":p["t"],"h":href_for(p),"g":tags_for(p),"c":catslugs(p.get("c") or [])}
+             for p in data["prompts"]), key=lambda x:x["t"].lower())
+
+# category filter: value = slug, label carries the prompt count (as on io)
+def _pcount(c):
+    n=c.get("prompts")
+    if n is None: n=sum(1 for r in rows if c["slug"] in r["c"])
+    return n
+catopts="".join(
+    f'<option value="{esc(c["slug"])}">{esc(c["name"])} ({_pcount(c)})</option>'
+    for c in data["categories"] if c["slug"]!="uncategorized" and _pcount(c)>0)
+
 def _tagspans(tg):
     return "".join('<span class="tag">'+esc(x)+'</span>' for x in tg)
-featcards="".join('<div class="fcard"><h3>'+esc(t)+'</h3><div class="tags">'+_tagspans(tg)+'</div></div>' for t,tg in FEATURED)
+
+BY_TITLE={r["t"].strip().lower():r for r in rows}
+featcards=""
+for _t in FEATURED_TITLES:
+    _r=BY_TITLE.get(_t.strip().lower()) or {"t":_t,"h":"","g":[]}
+    _inner=f'<h3>{esc(_r["t"])}</h3><div class="tags">{_tagspans(_r["g"])}</div>'
+    featcards+=(f'<a class="fcard" href="{esc(_r["h"])}">{_inner}</a>' if _r["h"]
+                else f'<div class="fcard">{_inner}</div>')
 
 lib=theme.head("AI Prompts — AI Labs","Whether you're exploring automation, customer insights, or decision intelligence, these practical guides show you how AI fits into your business.","https://ailab.mereka.dev/prompts/",LIB_CSS)+theme.nav()+f'''
 <section class="chero"><div class="shell"><div class="blob">
@@ -168,13 +251,17 @@ const PER=24;let page=1;
 const tb=document.getElementById('tb'),pager=document.getElementById('pager'),cat=document.getElementById('cat'),q2=document.getElementById('q2'),q=document.getElementById('q'),qclear=document.getElementById('qclear'),count=document.getElementById('count'),ALL=document.getElementById('all');
 function esc(s){{return s.replace(/[&<>"]/g,c=>({{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}}[c]));}}
 function filtered(){{const term=q.value.trim().toLowerCase(),c=cat.value;
-  return ROWS.filter(r=>(!c||r.tags.includes(c))&&(!term||r.t.toLowerCase().includes(term)));}}
+  return ROWS.filter(r=>(!c||r.c.indexOf(c)>-1)&&(!term||r.t.toLowerCase().includes(term)||r.g.some(g=>g.includes(term))));}}
 function render(){{const f=filtered();const pages=Math.max(1,Math.ceil(f.length/PER));if(page>pages)page=1;
   const term=q.value.trim();count.textContent=f.length+(f.length===1?' prompt':' prompts')+((term||cat.value)?' found':'')+(term?(' for \u201c'+esc(term)+'\u201d'):'');
   const slice=f.slice((page-1)*PER,page*PER);
-  tb.innerHTML=slice.map(r=>`<tr><td class="nm">${{esc(r.t)}}</td><td class="tg">${{r.tags.map(x=>'<span class="tag">'+esc(x.toLowerCase().replace(/ & /g,' ').replace(/\\s+/g,'-'))+'</span>').join('')}}</td></tr>`).join('')||'<tr><td colspan="2" style="color:var(--muted);padding:40px 6px">No prompts found. Try a different keyword.</td></tr>';
+  tb.innerHTML=slice.map(r=>`<tr><td class="nm">${{r.h?`<a href="${{esc(r.h)}}">${{esc(r.t)}}</a>`:esc(r.t)}}</td><td class="tg">${{r.g.map(x=>'<span class="tag">'+esc(x)+'</span>').join('')}}</td></tr>`).join('')||'<tr><td colspan="2" style="color:var(--muted);padding:40px 6px">No prompts found. Try a different keyword.</td></tr>';
   let btns='<button '+(page===1?'disabled':'')+' onclick="go(page-1)">&larr;</button>';
-  for(let i=1;i<=pages;i++){{if(i<=3||i===pages||Math.abs(i-page)<=1){{btns+=`<button class="${{i===page?'on':''}}" onclick="go(${{i}})">${{i}}</button>`;}}else if(i===4||i===pages-1){{btns+='<span style="padding:0 4px">…</span>';}}}}
+  let gap=false;
+  for(let i=1;i<=pages;i++){{
+    if(i<=3||i===pages||Math.abs(i-page)<=1){{btns+=`<button class="${{i===page?'on':''}}" onclick="go(${{i}})">${{i}}</button>`;gap=false;}}
+    else if(!gap){{btns+='<span style="padding:0 4px">…</span>';gap=true;}}
+  }}
   btns+='<button '+(page===pages?'disabled':'')+' onclick="go(page+1)">&rarr;</button>';
   pager.innerHTML=pages>1?btns:'';}}
 function go(p){{page=p;render();window.scrollTo({{top:document.getElementById('all').offsetTop-90,behavior:'smooth'}});}}

@@ -18,7 +18,7 @@
   --shadow:0 20px 60px rgba(26,22,35,.10); --shadow-sm:0 8px 24px rgba(26,22,35,.06);
 }
 *{box-sizing:border-box}
-html{scroll-behavior:smooth}
+html{scroll-behavior:smooth;scroll-padding-top:100px}
 body{margin:0;font-family:'Poppins Font',system-ui,Arial,sans-serif;color:var(--ink);background:var(--white);line-height:1.6;-webkit-font-smoothing:antialiased}
 h1,h2,h3,h4,h5{font-family:'Poppins Font',system-ui,sans-serif;font-weight:700;line-height:1.12;margin:0}
 a{color:inherit;text-decoration:none}
@@ -54,6 +54,11 @@ footer a:hover{color:#fff}
 .foot-bottom a{color:#9a9dab;margin-left:18px}
 @media(max-width:860px){.nav-links{display:none}.burger{display:block}.foot-top{grid-template-columns:1fr 1fr}}
 
+/* A role page stacks two sticky bars: the 78px nav and the "On this page"
+   strip pinned under it (bottom edge ~149px). The global 100px that matches
+   ailab.mereka.io is right for /prompts/, but here it would drop a linked
+   prompt's title behind that strip, so clear the whole stack. */
+html{scroll-padding-top:165px}
 .rhero{padding:26px 0 10px}
 .rhero .blob{position:relative;border-radius:26px;padding:56px 40px 60px;text-align:center;overflow:hidden;
   background:linear-gradient(118deg,#f7bfe6 0%,#c8ccff 42%,#a7ecef 100%)}
@@ -99,11 +104,11 @@ footer a:hover{color:#fff}
 <section class="uc" id="write-a-product-description"><div class="shell">
   <div class="lbl">Use Case 1</div>
   <h2>Write a product description</h2>
-  <div class="prompt"><div class="pname">Write a compelling product description for a new product</div><div class="pbox"><button class="copy" aria-label="Copy" onclick="cp(this)"data-t="I am a [product marketing manager/copywriter/marketing specialist] creating compelling product copy for [product name] targeting [specific target audience demographics/psychographics]. Write a persuasive product description (150-250 words) that opens with a compelling hook addressing audience pain points, highlights key features: [list of key features] translated into customer benefits, uses emotional and rational appeals appropriate for the target market, includes social proof elements or credibility indicators, incorporates SEO-friendly keywords naturally, ends with a strong call-to-action driving desired customer behavior, and maintains a brand voice that resonates with the target audience while differentiating from competitors"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg></button>I am a [product marketing manager/copywriter/marketing specialist] creating compelling product copy for [product name] targeting [specific target audience demographics/psychographics]. Write a persuasive product description (150-250 words) that opens with a compelling hook addressing audience pain points, highlights key features: [list of key features] translated into customer benefits, uses emotional and rational appeals appropriate for the target market, includes social proof elements or credibility indicators, incorporates SEO-friendly keywords naturally, ends with a strong call-to-action driving desired customer behavior, and maintains a brand voice that resonates with the target audience while differentiating from competitors</div></div>
+  <div class="prompt" id="prompt-847"><div class="pname">Write a compelling product description for a new product</div><div class="pbox"><button class="copy" aria-label="Copy" onclick="cp(this)"data-t="I am a [product marketing manager/copywriter/marketing specialist] creating compelling product copy for [product name] targeting [specific target audience demographics/psychographics]. Write a persuasive product description (150-250 words) that opens with a compelling hook addressing audience pain points, highlights key features: [list of key features] translated into customer benefits, uses emotional and rational appeals appropriate for the target market, includes social proof elements or credibility indicators, incorporates SEO-friendly keywords naturally, ends with a strong call-to-action driving desired customer behavior, and maintains a brand voice that resonates with the target audience while differentiating from competitors"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg></button>I am a [product marketing manager/copywriter/marketing specialist] creating compelling product copy for [product name] targeting [specific target audience demographics/psychographics]. Write a persuasive product description (150-250 words) that opens with a compelling hook addressing audience pain points, highlights key features: [list of key features] translated into customer benefits, uses emotional and rational appeals appropriate for the target market, includes social proof elements or credibility indicators, incorporates SEO-friendly keywords naturally, ends with a strong call-to-action driving desired customer behavior, and maintains a brand voice that resonates with the target audience while differentiating from competitors</div></div>
 </div></section><section class="uc" id="create-a-social-media-calendar"><div class="shell">
   <div class="lbl">Use Case 2</div>
   <h2>Create a social media calendar</h2>
-  <div class="prompt"><div class="pname">Create a social media calendar for the next 7 days</div><div class="pbox"><button class="copy" aria-label="Copy" onclick="cp(this)"data-t="I am a [social media manager/marketing coordinator/content creator] developing a 7-day social media calendar for [social media platform] focused on [specific topic]. Create a structured calendar including: daily post concepts with captions (character-appropriate for platform), optimal posting times for [target audience], content mix (educational, promotional, engaging), relevant hashtags and trending topics, visual content suggestions (images, videos, graphics), engagement strategies and call-to-actions, and performance tracking metrics to monitor. Format as a weekly planning template with clear daily objectives and content themes."><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg></button>I am a [social media manager/marketing coordinator/content creator] developing a 7-day social media calendar for [social media platform] focused on [specific topic]. Create a structured calendar including: daily post concepts with captions (character-appropriate for platform), optimal posting times for [target audience], content mix (educational, promotional, engaging), relevant hashtags and trending topics, visual content suggestions (images, videos, graphics), engagement strategies and call-to-actions, and performance tracking metrics to monitor. Format as a weekly planning template with clear daily objectives and content themes.</div></div>
+  <div class="prompt" id="prompt-715"><div class="pname">Create a social media calendar for the next 7 days</div><div class="pbox"><button class="copy" aria-label="Copy" onclick="cp(this)"data-t="I am a [social media manager/marketing coordinator/content creator] developing a 7-day social media calendar for [social media platform] focused on [specific topic]. Create a structured calendar including: daily post concepts with captions (character-appropriate for platform), optimal posting times for [target audience], content mix (educational, promotional, engaging), relevant hashtags and trending topics, visual content suggestions (images, videos, graphics), engagement strategies and call-to-actions, and performance tracking metrics to monitor. Format as a weekly planning template with clear daily objectives and content themes."><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="11" height="11" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/></svg></button>I am a [social media manager/marketing coordinator/content creator] developing a 7-day social media calendar for [social media platform] focused on [specific topic]. Create a structured calendar including: daily post concepts with captions (character-appropriate for platform), optimal posting times for [target audience], content mix (educational, promotional, engaging), relevant hashtags and trending topics, visual content suggestions (images, videos, graphics), engagement strategies and call-to-actions, and performance tracking metrics to monitor. Format as a weekly planning template with clear daily objectives and content themes.</div></div>
 </div></section>
 <div class="shell rfoot-cta"><a class="btn btn-accent" href="/prompts/">Browse all prompts &rarr;</a></div>
 <footer><div class="shell">
@@ -140,5 +145,21 @@ footer a:hover{color:#fff}
     <span><a href="https://legal.mereka.io/" target="_blank" rel="noopener">Terms of Use</a><a href="https://legal.mereka.io/privacy-policy/" target="_blank" rel="noopener">Privacy Policy</a></span>
   </div>
 </div></footer>
-<script>function cp(b){navigator.clipboard.writeText(b.dataset.t).then(()=>{b.classList.add('done');var s=b.innerHTML;b.textContent='✓';setTimeout(()=>{b.classList.remove('done');b.innerHTML=s;},1300);});}</script>
+<script>
+function cp(b){navigator.clipboard.writeText(b.dataset.t).then(()=>{b.classList.add('done');var s=b.innerHTML;b.textContent='✓';setTimeout(()=>{b.classList.remove('done');b.innerHTML=s;},1300);});}
+/* Land on the #prompt-<id> a /prompts/ link points at. The browser already does
+   this, but its on-load scroll is animated (html{scroll-behavior:smooth}) and
+   runs before the self-hosted Poppins faces finish loading — the reflow that
+   follows leaves you short of the prompt. Re-anchor once everything has settled. */
+function anchorToHash(){
+  if(!location.hash) return;
+  var el=document.getElementById(location.hash.slice(1));
+  if(el) el.scrollIntoView({behavior:'instant',block:'start'});  /* 'auto' would inherit scroll-behavior:smooth */
+}
+window.addEventListener('load',function(){
+  anchorToHash();
+  if(document.fonts&&document.fonts.ready) document.fonts.ready.then(anchorToHash);
+});
+window.addEventListener('hashchange',anchorToHash);
+</script>
 </body></html>
