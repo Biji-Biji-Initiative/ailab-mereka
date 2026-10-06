@@ -302,6 +302,133 @@ footer a:hover{color:var(--teal)}
 .nav-links a:not(.btn){color:#1a1623;font-weight:500}
 .nav-links a.btn-dark,.nav-links a.nav-cta{color:#fff}
 .nav-links a[aria-current="page"]{color:var(--teal);font-weight:600}
+
+/* ===== 2026 content refresh (AI Lab website content edits, Draft 2) ===== */
+.topstrip{display:flex;justify-content:center;gap:10px;align-items:center;font-family:'Poppins Font';font-weight:600;
+  font-size:.82rem;letter-spacing:.06em;text-transform:uppercase;color:var(--anchor);margin-bottom:18px;flex-wrap:wrap}
+.topstrip .sep{opacity:.4}
+.hero-badges{display:flex;gap:12px;justify-content:center;align-items:center;flex-wrap:wrap;margin-bottom:22px}
+.hero-badges .hb{display:inline-flex;align-items:center;gap:9px;background:rgba(255,255,255,.82);border:1px solid var(--border);
+  border-radius:999px;padding:7px 16px;font-size:.84rem;font-weight:600;color:var(--ink)}
+.hero-badges .hb img{height:17px;width:auto;display:block}
+.hrd-strip{background:var(--gold);color:#3a2a05;font-weight:600;text-align:center;padding:14px 24px;border-radius:14px;
+  margin:28px auto 0;max-width:860px;font-size:1rem}
+.trust-strip{display:flex;align-items:center;justify-content:center;gap:14px 30px;flex-wrap:wrap;margin-top:30px}
+.trust-strip .tl{font-family:'Poppins Font';font-weight:700;font-size:.95rem;color:#6b7280;letter-spacing:.01em}
+.trust-strip img{height:38px;width:auto;opacity:.95}
+.two-teams{display:grid;grid-template-columns:1fr 1fr;gap:26px;margin-top:34px}
+.tt{background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:30px 28px;box-shadow:var(--shadow-sm)}
+.tt h3{font-size:1.18rem;margin-bottom:12px;color:var(--anchor)}
+.tt p{color:var(--muted);line-height:1.6}
+.tt-close{text-align:center;font-family:'Poppins Font';font-weight:600;font-size:1.18rem;margin-top:28px;color:var(--ink)}
+.statbar{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:34px}
+.sb{background:var(--grey);border-radius:var(--radius);padding:28px 24px;text-align:center}
+.sb b{display:block;font-family:'Poppins Font';font-weight:700;font-size:clamp(2.1rem,4vw,3rem);color:var(--anchor);line-height:1.05}
+.sb span{display:block;margin-top:10px;color:var(--muted);font-size:.95rem;line-height:1.5}
+.stat-cap{text-align:center;color:var(--muted);font-size:.9rem;margin-top:16px}
+.chipfilter{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin:22px 0 26px}
+.chipfilter button{font-family:inherit;font-weight:600;font-size:.9rem;padding:10px 20px;border-radius:999px;cursor:pointer;
+  border:1.5px solid var(--border);background:#fff;color:var(--ink);transition:all .18s var(--ease)}
+.chipfilter button.on,.chipfilter button:hover{background:var(--anchor);border-color:var(--anchor);color:#fff}
+.sched-empty{background:var(--grey);border-radius:var(--radius);padding:34px 28px;text-align:center;color:var(--muted)}
+.sched-empty b{display:block;color:var(--ink);font-family:'Poppins Font';font-weight:600;font-size:1.05rem;margin-bottom:8px}
+.callout{display:flex;gap:20px;align-items:center;justify-content:space-between;flex-wrap:wrap;background:#fff;
+  border:1.5px solid var(--border);border-radius:var(--radius);padding:24px 28px;margin-top:24px}
+.callout p{color:var(--muted);margin:0;max-width:62ch}
+.callout b{color:var(--ink)}
+.pillars{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:34px}
+.pil{background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:30px 26px;box-shadow:var(--shadow-sm)}
+.pil h3{font-size:1.12rem;margin-bottom:10px;color:var(--anchor)}
+.pil p{color:var(--muted);line-height:1.6;font-size:.98rem}
+.pricecards{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:30px}
+.pc{background:#fff;border:1.5px solid var(--border);border-radius:var(--radius);padding:30px 28px;display:flex;flex-direction:column}
+.pc h3{font-size:1.3rem;color:var(--anchor);margin-bottom:6px}
+.pc .mods{list-style:none;padding:0;margin:16px 0 22px}
+.pc .mods li{position:relative;padding-left:26px;margin:9px 0;color:var(--muted);font-size:.95rem;line-height:1.5}
+.pc .mods li::before{content:'';position:absolute;left:0;top:7px;width:14px;height:14px;border-radius:50%;
+  background:var(--teal);box-shadow:inset 0 0 0 3px #fff}
+.pc .prow{display:flex;justify-content:space-between;align-items:baseline;gap:12px;padding:11px 0;border-top:1px solid var(--border)}
+.pc .prow span{color:var(--muted);font-size:.92rem}
+.pc .prow b{font-family:'Poppins Font';font-weight:700;color:var(--ink);font-size:1.02rem;white-space:nowrap}
+.pc .pcta{display:flex;gap:10px;flex-wrap:wrap;margin-top:auto;padding-top:20px}
+.pc .pcta .btn{padding:12px 22px;font-size:.92rem}
+.footnote{color:var(--muted);font-size:.86rem;margin-top:18px;line-height:1.55}
+.outcomes{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:18px;margin-top:32px}
+.oc{background:var(--grey);border-radius:var(--radius-sm);padding:24px 22px}
+.oc b{display:block;font-family:'Poppins Font';font-weight:700;color:var(--anchor);font-size:1rem;margin-bottom:8px}
+.oc b i{font-style:normal;display:block;font-size:.78rem;letter-spacing:.1em;color:var(--teal);margin-bottom:6px}
+.oc p{color:var(--muted);font-size:.92rem;line-height:1.5;margin:0}
+.bridge{background:linear-gradient(120deg,var(--anchor),#27488a);color:#fff;border-radius:var(--radius);
+  padding:30px 32px;margin-top:30px;display:flex;gap:22px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+.bridge p{margin:0;max-width:60ch;color:rgba(255,255,255,.9)}
+.bridge .btn{padding:13px 26px}
+.toolgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:30px}
+.tool{background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:26px 24px;transition:transform .18s var(--ease),box-shadow .18s}
+.tool:hover{transform:translateY(-3px);box-shadow:var(--shadow-sm)}
+.tool .tmark{width:40px;height:40px;border-radius:11px;background:var(--grey);display:flex;align-items:center;justify-content:center;
+  font-family:'Poppins Font';font-weight:700;color:var(--anchor);margin-bottom:14px;font-size:1rem}
+.tool h3{font-size:1.06rem;margin-bottom:8px}
+.tool p{color:var(--muted);font-size:.93rem;line-height:1.5;margin:0}
+.agenda{list-style:none;padding:0;margin:26px 0 0;counter-reset:ag}
+.agenda li{counter-increment:ag;position:relative;padding:0 0 22px 52px;border-left:2px solid var(--border);margin-left:17px}
+.agenda li:last-child{border-left-color:transparent;padding-bottom:0}
+.agenda li::before{content:counter(ag);position:absolute;left:-18px;top:-2px;width:34px;height:34px;border-radius:50%;
+  background:var(--anchor);color:#fff;display:flex;align-items:center;justify-content:center;font-family:'Poppins Font';font-weight:700;font-size:.9rem}
+.agenda b{display:block;margin-bottom:4px}
+.agenda p{color:var(--muted);margin:0;font-size:.95rem;line-height:1.55}
+.criteria{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:26px}
+.crit{background:var(--grey);border-radius:var(--radius-sm);padding:18px 18px}
+.crit b{display:block;color:var(--anchor);font-size:.98rem;margin-bottom:5px}
+.crit span{color:var(--muted);font-size:.88rem;line-height:1.45}
+.deliv{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin-top:32px}
+.dlv{background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:26px 24px;box-shadow:var(--shadow-sm)}
+.dlv h3{font-size:1.05rem;margin-bottom:9px;color:var(--anchor)}
+.dlv p{color:var(--muted);font-size:.93rem;line-height:1.55;margin:0}
+.tgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:32px}
+.tq{background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:26px 24px;display:flex;flex-direction:column}
+.tq p{color:var(--ink);line-height:1.6;font-size:.96rem;margin:0 0 16px}
+.tq .who{margin-top:auto;color:var(--muted);font-size:.86rem;font-weight:600}
+.ptable{width:100%;border-collapse:collapse;margin-top:28px;font-size:.96rem}
+.ptable th,.ptable td{padding:15px 14px;border-bottom:1px solid var(--border);text-align:left}
+.ptable th{font-family:'Poppins Font';font-weight:700;color:var(--anchor);font-size:.82rem;letter-spacing:.08em;text-transform:uppercase}
+.ptable td b{font-family:'Poppins Font';font-weight:700}
+.ptable tr:last-child td{border-bottom:0}
+.logi{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:32px}
+.lg{background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:30px 28px;box-shadow:var(--shadow-sm)}
+.lg h3{font-size:1.14rem;color:var(--anchor);margin-bottom:16px}
+.lg dl{margin:0}
+.lg dt{font-weight:600;color:var(--ink);font-size:.95rem;margin-top:14px}
+.lg dd{margin:4px 0 0;color:var(--muted);font-size:.93rem;line-height:1.5}
+.lg .pbadge{display:inline-block;margin-top:20px;background:var(--grey);border-radius:999px;padding:9px 18px;
+  font-weight:600;font-size:.9rem;color:var(--anchor)}
+.concierge{background:var(--gold);color:#3a2a05;border-radius:var(--radius);padding:28px 30px;margin-top:24px;
+  display:flex;gap:20px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+.concierge h3{font-size:1.16rem;margin-bottom:6px}
+.concierge p{margin:0;max-width:62ch}
+.steps{display:grid;grid-template-columns:repeat(5,1fr);gap:18px;margin-top:34px}
+.stp{position:relative;padding-top:46px}
+.stp::before{content:attr(data-n);position:absolute;top:0;left:0;width:34px;height:34px;border-radius:50%;
+  background:var(--teal);color:#fff;display:flex;align-items:center;justify-content:center;font-family:'Poppins Font';font-weight:700;font-size:.9rem}
+.stp b{display:block;margin-bottom:7px;font-size:1rem}
+.stp p{color:var(--muted);font-size:.92rem;line-height:1.5;margin:0}
+.faq2{display:grid;grid-template-columns:1fr 1fr;gap:0 40px;margin-top:30px}
+.faq2 details{border-bottom:1px solid var(--border);padding:16px 0}
+.faq2 summary{font-family:'Poppins Font';font-weight:600;cursor:pointer;list-style:none;display:flex;justify-content:space-between;gap:14px;color:var(--ink)}
+.faq2 summary::-webkit-details-marker{display:none}
+.faq2 summary::after{content:'+';color:var(--teal);font-weight:700;flex:none}
+.faq2 details[open] summary::after{content:'\2013'}
+.faq2 p{color:var(--muted);margin:12px 0 0;line-height:1.6;font-size:.95rem}
+.contacts{display:grid;grid-template-columns:repeat(auto-fit,minmax(215px,1fr));gap:14px;margin:26px 0 28px;text-align:left}
+.ct{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);border-radius:var(--radius-sm);padding:16px 20px}
+.ct span{display:block;font-size:.76rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.65);margin-bottom:5px}
+.ct a{color:#fff;font-weight:600;font-size:.98rem}
+.ct a:hover{text-decoration:underline}
+@media(max-width:960px){.two-teams,.pricecards,.logi,.faq2{grid-template-columns:1fr}
+  .statbar,.pillars,.toolgrid,.criteria,.deliv,.tgrid{grid-template-columns:1fr 1fr}
+  .steps{grid-template-columns:1fr 1fr}}
+@media(max-width:620px){.statbar,.pillars,.toolgrid,.criteria,.deliv,.tgrid,.steps{grid-template-columns:1fr}
+  .ptable{font-size:.88rem}.ptable th,.ptable td{padding:12px 8px}}
+
 /*NAV-CSS*/
 /* ---- mega-menu (hover panels), 1-to-1 with ailab.mereka.io ---- */
 .navitem{position:relative;display:inline-flex;align-items:center}
@@ -427,49 +554,170 @@ footer a:hover{color:var(--teal)}
 <section class="hero">
   <div class="hero-blob">
     <div class="hero-inner">
-      <div class="pretitle"><span class="spk">&#10022;</span> Boost your teams productivity <span class="spk">&#10022;</span></div>
-      <h1>It's Easy To Get Started With AI</h1>
-      <p class="sub">We upskill &amp; empower companies &amp; departments to boost their productivity with AI. Future-proof your teams by learning how to deploy AI tools internally.</p>
+      <div class="topstrip">Future of Work <span class="sep">|</span> Future of Business <span class="sep">&mdash;</span> Boost your team&rsquo;s productivity</div>
+      <div class="hero-badges">
+        <span class="hb">In Partnership With <img src="/assets/img/logo-microsoft.png" alt="Microsoft"></span>
+        <span class="hb">100% HRD Corp Claimable</span>
+      </div>
+      <h1>Your AI Journey Starts Here.</h1>
+      <p class="sub">Transform your team&rsquo;s workflow and confidence.</p>
+      <div class="hero-cta" style="justify-content:center;margin-top:26px">
+        <a class="btn btn-primary" href="#contact" style="padding:16px 34px">Book a Free Discovery Call</a>
+        <a class="btn btn-ghost" href="#cohorts" style="padding:16px 34px">Join a Public Workshop</a>
+      </div>
     </div>
-    <img class="hero-badge" src="/assets/img/logo-hrd.png" alt="HRD Corp Claimable">
   </div>
   <div class="hero-below">
-    <div class="chips">
-      <span class="hc g"><span class="spk">&#10022;</span> Write Better Prompts</span>
-      <span class="hc p"><span class="spk">&#10022;</span> Automate with AI</span>
-      <span class="hc b"><span class="spk">&#10022;</span> Build Agents &amp; Tools</span>
-    </div>
-    <div class="hero-cta">
-      <a class="btn btn-dark" href="#contact" style="padding:16px 34px">Get In Touch</a>
-      <a class="btn btn-ghost" href="#programmes" style="padding:16px 34px">Browse Programmes</a>
+    <div class="hrd-strip">All programmes are HRD Corp claimable. Your levy is sitting there. Let&rsquo;s put it to work.</div>
+    <div class="trust-strip">
+      <span class="tl">CIDB</span><span class="tl">MARA</span><span class="tl">NTT Data</span><span class="tl">Kuehne+Nagel</span>
+      <img src="/assets/img/logo-hrd.png" alt="100% HRD Corp Claimable">
     </div>
   </div>
 </section>
 
-<!-- PAINS -->
+<!-- THE PROBLEM -->
 <section class="section">
   <div class="shell center">
-    <h2 style="font-size:clamp(2rem,4.2vw,3.2rem)">Most Senior Managers Struggle With</h2>
+    <h2 style="font-size:clamp(2rem,4.2vw,3rem)">Two kinds of teams. Same opportunity.</h2>
   </div>
   <div class="shell">
-    <div class="pain-cloud">
-      <span class="pill-tag blue">Drowning in Data, Short on Insights</span>
-      <span class="pill-tag blue">Fear of Falling Behind</span>
-      <span class="pill-tag grey">How do I quickly extract key insights from all this data?</span>
-      <span class="pill-tag blue">Team Communication Bottlenecks</span>
-      <span class="pill-tag grey">Why are some processes still so manual and time-consuming?</span>
-      <span class="pill-tag blue">Slow, Manual Processes</span>
-      <span class="pill-tag grey">How do I drive innovation while juggling daily operations?</span>
-      <span class="pill-tag blue">Outdated Process and Workflow</span>
-      <span class="pill-tag grey">Am I attending too many meetings that don't need me?</span>
-      <span class="pill-tag grey">How can I free up time for more high-value work?</span>
-      <span class="pill-tag grey">What tasks am I doing that I should be delegating or automating?</span>
-      <span class="pill-tag blue">Decision Fatigue</span>
+    <div class="two-teams">
+      <div class="tt">
+        <h3>Half your team is already using AI.</h3>
+        <p>They just haven&rsquo;t told you. Prompts from TikTok. Client data in free tools. Confident answers that are confidently wrong.</p>
+      </div>
+      <div class="tt">
+        <h3>The other half hasn&rsquo;t started.</h3>
+        <p>Not because they can&rsquo;t. Because nobody showed them how. And they&rsquo;re probably waiting for permission.</p>
+      </div>
     </div>
-    <div class="pain-foot">
-      <p class="lead">Perhaps someone in your organisation is going through the same thing?</p>
-      <a class="btn-outline" href="#case-study">See How AI Has Helped Mereka <span>&darr;</span></a>
+    <p class="tt-close">Either way, your team is ready. They just need the right start.</p>
+    <div class="statbar">
+      <div class="sb"><b>100%</b><span>Would recommend. Every single participant across 105 responses.</span></div>
+      <div class="sb"><b>4.8h</b><span>Average time saved per week using AI after training. (n=72)</span></div>
+      <div class="sb"><b>88%</b><span>Still using AI weekly or daily one month later. (n=33)</span></div>
     </div>
+    <p class="stat-cap">Measured impact from 170 survey responses across 10 organisations.</p>
+  </div>
+</section>
+
+<!-- COHORTS -->
+<section class="section section--grey" id="cohorts">
+  <div class="shell center">
+    <h2 style="font-size:clamp(1.9rem,3.8vw,2.7rem)">Find Your Next Cohort</h2>
+    <p class="lead">HRD Corp claimable. Filter by programme or view our upcoming open public schedules below.</p>
+  </div>
+  <div class="shell">
+    <div class="chipfilter">
+      <button class="on" type="button">All Public Sessions</button>
+      <button type="button">Tool Deep Dives</button>
+      <button type="button">AI Foundation L1</button>
+    </div>
+    <div class="sched-empty">
+      <b>Upcoming public dates are released monthly.</b>
+      Tell us which programme you&rsquo;re after and we&rsquo;ll send the current calendar with seats remaining.
+      <div style="margin-top:18px"><a class="btn btn-dark" href="#contact" style="padding:13px 26px">Ask for the current schedule</a></div>
+    </div>
+    <div class="callout">
+      <p><b>Need internal approval from HR or Finance?</b> We&rsquo;ll send the Public Workshop Calendar &amp; HRD Corp Guide &mdash; learning outcomes plus pre-filled grant application codes.</p>
+      <a class="btn btn-ghost" href="#contact" style="padding:13px 26px">Request the HRD Corp guide</a>
+    </div>
+  </div>
+</section>
+
+<!-- WHY ENTERPRISES CHOOSE US -->
+<section class="section">
+  <div class="shell center">
+    <h2 style="font-size:clamp(1.9rem,3.8vw,2.7rem)">We make AI click for your team.</h2>
+    <p class="lead">We bridge the gap between leadership AI targets and daily employee workflows through practical, hands-on upskilling.</p>
+  </div>
+  <div class="shell">
+    <div class="pillars">
+      <div class="pil">
+        <h3>Seamless Levy Utilisation</h3>
+        <p>Your levy is sitting there. Let&rsquo;s put it to work. We handle the documentation and grant application support so your budget works harder without admin friction.</p>
+      </div>
+      <div class="pil">
+        <h3>Workflows First, Zero Fluff</h3>
+        <p>No abstract AI theory. Your team learns hands-on inside ChatGPT, Copilot, Gemini, Claude and Canva, and leaves with workflows they&rsquo;ll actually use.</p>
+      </div>
+      <div class="pil">
+        <h3>Start Small, Scale Confidently</h3>
+        <p>Send 2&ndash;3 team members to a public cohort from RM 300/pax, or book a half-day in-house workshop from RM 3,000 tailored to your security and data policies.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROGRAMME 1 -->
+<section class="section section--grey" id="programmes">
+  <div class="shell center">
+    <span class="eyebrow">Programme 1</span>
+    <h2 style="font-size:clamp(1.9rem,3.8vw,2.7rem)">AI Foundation (Level 1)</h2>
+    <p class="lead">The starting point. No jargon. No prerequisites.</p>
+  </div>
+  <div class="shell">
+    <div class="pricecards">
+      <div class="pc">
+        <h3>Half Day</h3>
+        <ul class="mods">
+          <li>AI at work: your responsibilities, ethics, and compliance</li>
+          <li>Prompting: from fundamentals to advanced techniques</li>
+          <li>AI agents at work: what they are and when to trust them</li>
+        </ul>
+        <div class="prow"><span>In-House Team</span><b>RM 4,500 / group</b></div>
+        <div class="prow"><span>Public Seat</span><b>RM 450 / pax</b></div>
+        <div class="pcta"><a class="btn btn-primary" href="#contact">Request In-House</a><a class="btn btn-ghost" href="#cohorts">Book Public Seat</a></div>
+      </div>
+      <div class="pc">
+        <h3>Full Day</h3>
+        <ul class="mods">
+          <li>AI at work: your responsibilities, ethics, and compliance</li>
+          <li>Understanding data: the foundation of good AI</li>
+          <li>Prompting: from fundamentals to advanced techniques</li>
+          <li>AI agents at work: what they are and when to trust them</li>
+          <li>AI security: threats, safety, and reporting</li>
+        </ul>
+        <div class="prow"><span>In-House Team</span><b>RM 7,000 / group</b></div>
+        <div class="prow"><span>Public Seat</span><b>RM 700 / pax</b></div>
+        <div class="pcta"><a class="btn btn-primary" href="#contact">Request In-House</a><a class="btn btn-ghost" href="#cohorts">Book Public Seat</a></div>
+      </div>
+    </div>
+    <p class="footnote">Excludes 8% SST. 4% HRDC fee added to invoice. In-house includes up to 20 participants; per-person cost applies for additional participants. Public classes require a minimum 12 pax cohort.</p>
+    <h3 style="margin-top:44px;font-size:1.3rem">Learning Outcomes</h3>
+    <div class="outcomes">
+      <div class="oc"><b><i>01</i>Know What&rsquo;s Expected</b><p>Ethics, compliance, and governance policies.</p></div>
+      <div class="oc"><b><i>02</i>Catch the Fakes</b><p>Spot AI hallucinations &mdash; made-up facts, fake citations, logic gaps &mdash; before they hit a client&rsquo;s inbox.</p></div>
+      <div class="oc"><b><i>03</i>Prompts That Actually Work</b><p>Write structured prompts using role, context, task, format, and constraints instead of guesswork.</p></div>
+      <div class="oc"><b><i>04</i>Chatbot vs Assistant vs Agent</b><p>Know the difference and when to trust each one.</p></div>
+      <div class="oc"><b><i>05</i>Stay Safe</b><p>Spot AI-powered phishing and deepfakes, and know which data never goes into a public tool.</p></div>
+    </div>
+    <div class="bridge">
+      <p>Not ready for a full team booking? Send 1&ndash;3 team members or join as an independent professional in our open cohorts.</p>
+      <a class="btn btn-light" href="#cohorts" style="background:#fff;color:var(--anchor)">View Upcoming Public Dates</a>
+    </div>
+  </div>
+</section>
+
+<!-- PROGRAMME 2 -->
+<section class="section">
+  <div class="shell center">
+    <span class="eyebrow">Programme 2</span>
+    <h2 style="font-size:clamp(1.9rem,3.8vw,2.7rem)">AI Tool Deep Dive</h2>
+    <p class="lead">Pick a tool. We&rsquo;ll make your team great at it. Half-day format &mdash; RM 3,000 / group in-house (up to 20 pax) or RM 300 / pax public cohort (min 12 pax).</p>
+  </div>
+  <div class="shell">
+    <p class="stat-cap" style="margin:0 0 6px">Modules, standard across all tools: Tool Orientation &middot; Core Workflows &middot; Advanced Features &middot; Daily Integration</p>
+    <div class="toolgrid">
+      <div class="tool"><div class="tmark">G</div><h3>Gemini</h3><p>Draft, analyse, and automate inside Gmail, Docs, and Sheets.</p></div>
+      <div class="tool"><div class="tmark">C</div><h3>Claude</h3><p>Deep analysis, long documents, and structured reasoning.</p></div>
+      <div class="tool"><div class="tmark">Co</div><h3>Copilot</h3><p>Turn Word, Excel, PowerPoint, and Teams into AI-powered workflows.</p></div>
+      <div class="tool"><div class="tmark">GPT</div><h3>ChatGPT</h3><p>The Swiss army knife: code, images, search, and custom GPTs.</p></div>
+      <div class="tool"><div class="tmark">Cv</div><h3>Canva AI</h3><p>On-brand designs, batch assets, and AI image editing without a designer.</p></div>
+      <div class="tool"><div class="tmark">&#9638;</div><h3>Custom</h3><p>Your team uses more than one? We&rsquo;ll build a session around the tools that matter most. <a href="#contact" style="color:var(--teal);font-weight:600">Talk to us</a></p></div>
+    </div>
+    <p class="footnote">Each deep dive includes tool-specific prompts, live practice on real tasks, and a take-home prompt library.</p>
   </div>
 </section>
 
@@ -489,218 +737,237 @@ footer a:hover{color:var(--teal)}
   </div>
 </section>
 
-<!-- CASE STUDY -->
-<section class="section" id="case-study">
-  <div class="shell">
-    <div class="cs-wrap">
-      <div class="cs-card" style="background-image:url('/assets/img/card-case-study.jpg')">
-        <span class="eyb">Case Study : Mereka</span>
-        <div class="cs-bottom">
-          <h3>How we saved 5 hours / week with AI.</h3>
-          <p>Understand how AI can help save your business time and cost.</p>
-          <a class="btn btn-light" href="https://corporate.mereka.io/blog/organizational-case-study-merekas-ai-transformation" target="_blank" rel="noopener">Read the full case study →</a>
-        </div>
-      </div>
-      <div class="cs-body">
-        <div class="cs-tag">The Mereka Case Study</div>
-        <h2>Our teams have learnt &amp; implemented AI for themselves.</h2>
-        <p>We completed a 10-week AI micro-learning programme with AI tools, workflows and use cases that improved productivity.</p>
-        <div class="cs-pills">
-          <div class="cs-pill"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="9" cy="8" r="3.2"/><path d="M3.5 19c0-3 2.5-5 5.5-5s5.5 2 5.5 5"/><circle cx="17" cy="8.5" r="2.6"/><path d="M15 14.2c3 .2 5 2.2 5 4.8"/></svg><span><b>22</b>People</span></div>
-          <div class="cs-pill"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3.5" y="5" width="17" height="15" rx="2.5"/><path d="M3.5 9.5h17M8 3.5v3M16 3.5v3"/></svg><span><b>10</b>Weeks</span></div>
-          <div class="cs-pill"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4.5" width="18" height="12" rx="2"/><path d="M8 20h8M12 16.5V20"/></svg><span><b>Full</b>Remote</span></div>
-        </div>
-        <ul class="cs-checks">
-          <li><b>5 hours+</b> weekly productivity gains per employee</li>
-          <li><b>80% increase</b> in AI adoption with the organisation</li>
-          <li><b>USD 100,000</b> worth of leads won using AI</li>
-          <li><b>Increased team confidence</b> when using AI</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</section>
 
-<!-- PROGRAMMES -->
-<section class="section" id="programmes">
+<!-- ADD-ON 1: FINALE SHOWCASE DAY -->
+<section class="section section--grey">
   <div class="shell center">
-    <span class="chip" style="background:#eaf0ff;color:var(--blue);border:0;font-weight:600">&#10022; No coding experience required! &#10022;</span>
-    <h2 style="font-size:clamp(2rem,4vw,3rem);margin-top:16px">Discover Our Programmes</h2>
-    <p class="lead" style="margin-top:14px">Designed to future-proof your teams by learning AI skills and deploying AI tools internally. Yes, you can do it by yourself!</p>
+    <span class="eyebrow">Add-On Service</span>
+    <h2 style="font-size:clamp(1.9rem,3.8vw,2.7rem)">Finale Showcase Day</h2>
+    <p class="lead">Turn training into proof. Your team presents the workflows they actually built.</p>
   </div>
   <div class="shell">
-    <div class="prog-grid">
-      <div class="prog">
-        <img class="prog-img" src="/assets/img/programme-ai-foundation.jpg" alt="AI Foundation for Your Team">
-        <div class="prog-in">
-          <h3>AI Foundation for Your Team</h3>
-          <p>Improve your team's productivity through AI literacy and gradual adoption of AI in task-specific roles.</p>
-          <div class="prog-meta"><span>1 day</span><span class="price">From RM8,000</span></div>
-          <a class="prog-btn" href="https://corporate.mereka.io/academy/course/ai-foundation-for-your-team" target="_blank" rel="noopener"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M8.5 13h7M8.5 16.5h7"/></svg> See Programme Details</a>
-        </div>
-      </div>
-      <div class="prog">
-        <img class="prog-img" src="/assets/img/programme-ai-adaptation.jpg" alt="AI Adaptation in Your Team">
-        <div class="prog-in">
-          <h3>AI Adaptation in Your Team</h3>
-          <p>Enhance decision-making through data-driven insights. Foster innovation by leveraging AI tools to generate new ideas and solutions.</p>
-          <div class="prog-meta"><span>8 sessions</span><span class="price">From RM16,000</span></div>
-          <a class="prog-btn" href="https://corporate.mereka.io/academy/course/ai-adaptation-in-your-team" target="_blank" rel="noopener"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M8.5 13h7M8.5 16.5h7"/></svg> See Programme Details</a>
-        </div>
-      </div>
-      <div class="prog">
-        <img class="prog-img" src="/assets/img/programme-ai-embedding.jpg" alt="AI Embedding in Your Team">
-        <div class="prog-in">
-          <h3>AI Embedding in Your Team</h3>
-          <p>Modernise processes. Develop and deploy chat bots for department or task specific functions.</p>
-          <div class="prog-meta"><span>8 sessions</span><span class="price">From RM24,000</span></div>
-          <a class="prog-btn" href="https://corporate.mereka.io/academy/course/ai-embedding-in-your-team" target="_blank" rel="noopener"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M8.5 13h7M8.5 16.5h7"/></svg> See Programme Details</a>
-        </div>
-      </div>
-      <div class="prog prog--dark">
-        <div class="prog-in">
-          <div class="tagpill">50+ Businesses Registered!</div>
-          <h3>Need a customised solution for your business?</h3>
-          <p>We can tailor-make courses according to your businesses' needs.</p>
-          <a class="prog-btn" href="#contact">Speak to Us &rarr;</a>
-        </div>
-      </div>
+    <ol class="agenda">
+      <li><b>Opening</b><p>Trainer sets context: cohort profile, workflows submitted, tools most used. Voting criteria explained.</p></li>
+      <li><b>Peer Showcase Circles</b><p>Every participant presents their workflow in small groups of 6&ndash;8 (3 minutes each): the trigger, the before/after, and what they learned.</p></li>
+      <li><b>Gallery Wall &amp; peer vote</b><p>All workflows displayed on screen. Participants and leadership vote using the four criteria below.</p></li>
+      <li><b>Top 5 live demos</b><p>The top-voted participants demo their working workflow live to leadership (8&ndash;10 min each incl. Q&amp;A). Screen share of the real thing, not slides about it.</p></li>
+      <li><b>Leadership response &amp; next steps</b><p>Recognition, strategic commentary, and how the team keeps iterating.</p></li>
+    </ol>
+    <h3 style="margin-top:34px;font-size:1.12rem">Voting criteria</h3>
+    <div class="criteria">
+      <div class="crit"><b>Frequent</b><span>Triggers daily or weekly.</span></div>
+      <div class="crit"><b>Measurable</b><span>Clear before/after.</span></div>
+      <div class="crit"><b>Team-wide</b><span>Colleagues could adopt it.</span></div>
+      <div class="crit"><b>Working, not conceptual</b><span>It actually runs.</span></div>
+    </div>
+    <div class="callout" style="margin-top:28px">
+      <p><b>What your organisation receives.</b> Post-cohort report within 14 business days: attendance, completion, pre/post assessment results, workflows built by segment, showcase outcomes, and recommended next steps. Best paired with a Full Day AI Foundation or a Tool Deep Dive, with a 7-day build window between training and Showcase. Pricing is quoted in your customised proposal; venue, AV and catering at cost (or add the Concierge package).</p>
+      <a class="btn btn-primary" href="#contact" style="padding:13px 26px">Add Showcase Day to My Proposal</a>
     </div>
   </div>
 </section>
 
-<!-- PORTFOLIO -->
-<section class="section section--grey" id="portfolio">
-  <div class="shell center">
-    <div class="eyebrow">Our AI skilling portfolio</div>
-    <h2 style="font-size:clamp(1.7rem,3.4vw,2.4rem);margin-top:12px">842,000+ learners reached</h2>
-    <p class="lead" style="margin-top:14px">In partnership with Microsoft, our AI skilling initiatives have created significant impact across Malaysia and Indonesia.</p>
-    <div class="big-stats">
-      <div class="big-stat"><div class="n">260K</div><div class="d">learners reached through AI skilling programs across Malaysia &amp; Indonesia</div></div>
-      <div class="big-stat"><div class="n">60K</div><div class="d">learners trained in AI fundamentals across Malaysia &amp; Indonesia</div></div>
-      <div class="big-stat"><div class="n">1,484</div><div class="d">TVET educators trained in AI literacy &amp; Microsoft AI skills content</div></div>
-    </div>
-  </div>
-  <div class="shell">
-    <div class="study-carousel">
-      <div class="pstudy">
-        <img class="pstudy-img" src="/assets/img/portfolio-sdec-landscape.jpg" alt="SDEC">
-        <div class="pstudy-body">
-          <img class="plogo" src="/assets/img/logo-sdec.png" alt="SDEC">
-          <h4>Sarawak Digital Economy Corporation (SDEC) - AI Skilling for Craft Entrepreneurs</h4>
-          <p>Trained 50 craft entrepreneurs from 7 rural Sarawak hubs on practical AI tools like Microsoft Copilot — AI literacy, data analytics for customer insights, and AI-powered sales &amp; marketing.</p>
-          <ul class="checks"><li><b>66% women participants</b> — strong inclusivity among micro &amp; SME owners</li><li><b>62% aged 30–49</b> — prime working-age entrepreneurs</li><li><b>High completion</b> — several hubs hit 100% (Betong, Serian, Kapit, Sarikei)</li></ul>
-        </div>
-      </div>
-      <div class="pstudy">
-        <img class="pstudy-img" src="/assets/img/portfolio-talentcorp-landscape.jpg" alt="TalentCorp">
-        <div class="pstudy-body">
-          <img class="plogo" src="/assets/img/logo-talent-corp-coa.png" alt="TalentCorp">
-          <h4>TalentCorp - AI Skilling for Women Re-entering the Workforce</h4>
-          <p>Supporting TalentCorp's gender inclusion goals through AI literacy training.</p>
-          <ul class="checks"><li><b>100% female participation</b> — supporting gender inclusion goals</li><li><b>Faster task completion</b> post-training, zero participants needing over 2 hours</li><li><b>Positive feedback</b> — boosted confidence and interest in advanced training</li></ul>
-        </div>
-      </div>
-      <div class="pstudy">
-        <img class="pstudy-img" src="/assets/img/portfolio-petrajaya-landscape.jpg" alt="Putrajaya">
-        <div class="pstudy-body">
-          <img class="plogo" src="/assets/img/logo-petrajaya.png" alt="Putrajaya">
-          <h4>Parliament of Petrajaya - AI Skilling for Community Leaders</h4>
-          <p>AI literacy training for community leaders to boost productivity and efficiency.</p>
-          <ul class="checks"><li><b>97 graduates with 94% completion</b> — by community leaders (47/50)</li><li><b>Productivity boost</b> — tasks cut from 2+ hours to under 30 mins, 44% AI literacy gain for leaders</li><li><b>3× faster workflows</b> — for teachers &amp; entrepreneurs, 50% less reporting time for leaders</li></ul>
-        </div>
-      </div>
-      <div class="pstudy">
-        <img class="pstudy-img" src="/assets/img/portfolio-irda-landscape.jpg" alt="IRDA">
-        <div class="pstudy-body">
-          <img class="plogo" src="/assets/img/logo-irda.png" alt="IRDA">
-          <h4>Iskandar Regional Development Authority (IRDA) - AI Skilling for Mid-Career Professionals</h4>
-          <p>AI and data skills training for mid-career professionals across multiple domains.</p>
-          <ul class="checks"><li><b>44% AI &amp; data skills boost</b> across 7 domains</li><li><b>Faster analysis</b> — under-30-min completions up from 38% to 43%</li><li><b>Time saved</b> — 2+ hour tasks cut from 38% to 10.8%</li></ul>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- INSTRUCTORS -->
-<!-- TESTIMONIAL + TRUSTED -->
+<!-- ADD-ON 2: POST-WORKSHOP SUPPORT -->
 <section class="section">
-  <div class="shell">
-    <div class="testi">
-      <div class="testi-quote"><span class="qmark">&ldquo;</span><h2>The most human centered AI Upskilling Programme</h2></div>
-      <div class="testi-author"><img src="/assets/img/logo-yayasan-amir.png" alt="Yayasan AMIR"><b>Zaida Khalida Shaari</b><span>Advisor</span></div>
-    </div>
-    <div class="trusted"><span>Trusted by:</span><img src="/assets/img/logo-microsoft.png" alt="Microsoft"><img src="/assets/img/logo-perkeso.png" alt="PERKESO"><img src="/assets/img/logo-talent-corp.png" alt="TalentCorp"><img src="/assets/img/logo-avpn.png" alt="AVPN"><img src="/assets/img/logo-sdec.png" alt="SDEC"></div>
-  </div>
-</section>
-
-<!-- INSTRUCTORS -->
-<section class="section" id="instructors">
-  <div class="shell">
-    <h2 style="font-size:clamp(1.8rem,3.6vw,2.6rem)">Learn From Experts In Their Field</h2>
+  <div class="shell center">
+    <span class="eyebrow">Add-On Service</span>
+    <h2 style="font-size:clamp(1.9rem,3.8vw,2.7rem)">Post-Workshop Support</h2>
+    <p class="lead">Training doesn&rsquo;t end on training day. Monthly alumni sessions keep the momentum going.</p>
   </div>
   <div class="shell">
-    <div class="inst-grid">
-      <div class="inst"><div class="ph"><img src="/assets/img/expert-jey.jpg" alt="Jey Bala"></div><div class="body"><h4>Jey Bala</h4><div class="role">Lead-Instructor / Chief Ecosystem Officer @ Mereka</div><p>Experienced educator, trainer and business development professional with 15+ years in corporate training and educational program development.</p></div></div>
-      <div class="inst"><div class="ph"><img src="/assets/img/expert-gurpreet.jpg" alt="Gurpreet Singh Dhillon"></div><div class="body"><h4>Gurpreet Singh Dhillon</h4><div class="role">AI Agent Instructor / CEO @ Mereka.io</div><p>Changemaker and social entrepreneur equipping Asia's youth with 21st-century skills and an entrepreneurial mindset.</p></div></div>
-      <div class="inst"><div class="ph"><img src="/assets/img/expert-rashvin.jpg" alt="Rashvin Pal Singh"></div><div class="body"><h4>Rashvin Pal Singh</h4><div class="role">AI For Business Instructor / CEO @ Biji-Biji Initiative</div><p>Leads the Biji-biji Group, one of Malaysia's pioneering social innovation organisations, since 2013.</p></div></div>
-      <div class="inst"><div class="ph"><img src="/assets/img/expert-sangaran.jpg" alt="Ambika Sangaran"></div><div class="body"><h4>Ambika Sangaran</h4><div class="role">AI Ethics &amp; Sustainability Instructor / COO @ Mereka</div><p>Builds ecosystems that empower individuals through education, entrepreneurship, and sustainability.</p></div></div>
-    </div>
-  </div>
-</section>
-
-<!-- HRDF BAND -->
-<section class="section"><div class="shell">
-  <div class="hrd-band">
-    <div>
-      <h2>Our programmes are HRDF-claimable.</h2>
-      <p>Any registered employer under HRD Corp can apply for the training grant.</p>
-      <a class="btn btn-dark" href="https://corporate.mereka.io/contact" target="_blank" rel="noopener">Get in touch with our team</a>
-    </div>
-    <img class="badge-img" src="/assets/img/logo-hrd.png" alt="HRD Corp Claimable">
-  </div>
-</div></section>
-
-<!-- RESOURCES -->
-<section class="section" id="resources">
-  <div class="shell">
-    <div class="res-head">
-      <h2 style="font-size:clamp(2rem,4vw,3rem)">Explore our collection of introductory resources to get started!</h2>
-      <p class="lead">We've got loads of FREE material for you to start upskilling your team at no cost!</p>
-    </div>
-    <div class="res-tabs"><button class="on">Free Programmes</button><button>Free Courses</button></div>
-    <div class="res-grid">
-      <div class="res res--dark">
-        <h4>Mereka AI Lab: FREE AI Training &ndash; 2hr</h4>
-        <p>Join us for a FREE introduction to AI for the workplace.</p>
-        <img class="res-photo" src="/assets/img/resource-mereka-ai-lab-sesion.jpg" alt="Mereka AI Lab">
-        <a class="res-link" href="https://mereka.io/experience/mereka-ai-lab" target="_blank" rel="noopener">Programme Details <span>&rarr;</span></a>
+    <div class="pricecards">
+      <div class="pc">
+        <h3>Monthly Alumni Sessions</h3>
+        <p style="color:var(--muted);margin:10px 0 0;line-height:1.6">Led by Gurpreet Singh, Mereka AI Lab. A live monthly drop-in: bring a real task from your work, troubleshoot prompts and workflows with the trainer, see what&rsquo;s new in the tools, and hear what other alumni have built.</p>
+        <div class="prow" style="margin-top:18px"><span>Who can join</span><b>Alumni only</b></div>
+        <div class="prow"><span>Next session</span><b>Announced monthly</b></div>
+        <div class="pcta"><a class="btn btn-primary" href="https://mereka.io" target="_blank" rel="noopener">Register on Mereka.io</a></div>
+        <p class="footnote" style="margin-top:14px">Attended a Mereka AI Lab workshop? You&rsquo;re an alumnus. Come back any month. Register with the email address you used at training.</p>
       </div>
-      <div class="res">
-        <img class="res-logo" src="/assets/img/logo-microsoft.png" alt="Microsoft">
-        <h4>AI for MY Future</h4>
-        <p>Start your AI journey in a supportive, community-driven environment with free training, certification, and mentorship.</p>
-        <a class="res-link" href="https://aiformyfuture.biji-biji.com/" target="_blank" rel="noopener">Programme Details <span>&rarr;</span></a>
-      </div>
-      <div class="res">
-        <img class="res-logo" src="/assets/img/logo-avpn.png" alt="AVPN">
-        <h4>AVPN AI Opportunity Fund</h4>
-        <p>For social entrepreneurs and NGOs&mdash;get support to pilot impactful AI projects.</p>
-        <a class="res-link" href="https://avpn.asia/event/ai-opportunity-fund-ap-2-info-session-1/" target="_blank" rel="noopener">Programme Details <span>&rarr;</span></a>
+      <div class="pc">
+        <h3>1-Month Impact Survey</h3>
+        <p style="color:var(--muted);margin:10px 0 0;line-height:1.6">Included after every workshop, so your HR team gets real numbers rather than assumptions: adoption rates, time saved, and where the team wants to go next.</p>
+        <div class="prow" style="margin-top:18px"><span>Included with</span><b>Every programme</b></div>
+        <div class="prow"><span>Runs at</span><b>30 days post-training</b></div>
+        <div class="pcta"><a class="btn btn-ghost" href="#contact">See a sample report</a></div>
       </div>
     </div>
   </div>
 </section>
 
-</main>
+<!-- DELIVERABLES -->
+<section class="section section--grey">
+  <div class="shell center">
+    <h2 style="font-size:clamp(1.9rem,3.8vw,2.7rem)">What your team walks away with</h2>
+    <p class="lead">It&rsquo;s not just a workshop. It&rsquo;s a system your HR team can measure.</p>
+  </div>
+  <div class="shell">
+    <div class="deliv">
+      <div class="dlv"><h3>Prompt Library</h3><p>Tested prompts built around your team&rsquo;s real tasks. Ready to use on Monday.</p></div>
+      <div class="dlv"><h3>Mereka AI Lab Certificate</h3><p>Every participant gets a verifiable certificate of completion, for individuals and HR records.</p></div>
+      <div class="dlv"><h3>Competency Report</h3><p>Pre/post assessment showing exactly how your team&rsquo;s AI skills shifted.</p></div>
+      <div class="dlv"><h3>Follow-Up Support</h3><p>1-month post-training impact survey, plus access to the monthly alumni sessions. See the real numbers, not just assumptions.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- CLIENT SUCCESS STORIES -->
+<section class="section">
+  <div class="shell center">
+    <h2 style="font-size:clamp(1.9rem,3.8vw,2.7rem)">Client Success Stories</h2>
+    <p class="lead">Real stories from HR, education, and corporate teams across Malaysia.</p>
+  </div>
+  <div class="shell">
+    <div class="tgrid">
+      <div class="tq"><p>&ldquo;I have used AI to develop training materials, course syllabuses, scaffolding technical content, safety infographics, presentations and promotional materials. AI has helped me save significant time, improve the quality of my work and generate ideas more quickly.&rdquo;</p><span class="who">Educator, Construction Industry Training Academy</span></div>
+      <div class="tq"><p>&ldquo;AI was applied in the preparation of a management paper, significantly reducing preparation time while improving clarity and persuasiveness of the justification.&rdquo;</p><span class="who">Manager (HR), International Accounting Body</span></div>
+      <div class="tq"><p>&ldquo;This training has given me valuable knowledge and practical skills in using AI. I am now more confident in using AI tools to improve productivity, create content, and support my work.&rdquo;</p><span class="who">Director, Government Education Agency</span></div>
+      <div class="tq"><p>&ldquo;Didn&rsquo;t know how AI works previously, just surface knowledge but now understand how much AI can do.&rdquo;</p><span class="who">Manager, Global Logistics Company</span></div>
+      <div class="tq"><p>&ldquo;Will utilise AI in my daily work from now on. The trust has been built.&rdquo;</p><span class="who">Manager, Government Professional College</span></div>
+      <div class="tq"><p>&ldquo;I like the way that AI can help to generate infographics which I&rsquo;m not familiar with earlier. It benefits me for personal and work tasks.&rdquo;</p><span class="who">Executive, Global Logistics Company</span></div>
+    </div>
+    <div class="statbar" style="margin-top:34px">
+      <div class="sb"><b>100%</b><span>Would recommend this training to others (105 of 105 across post-training and 1-month surveys).</span></div>
+      <div class="sb"><b>4.4/5</b><span>Average trainer rating.</span></div>
+      <div class="sb"><b>39%</b><span>Report saving 4+ hours a week at the 1-month mark.</span></div>
+    </div>
+    <p class="stat-cap">88% still using AI weekly or daily at 1 month &middot; 100% of HR respondents report reduced admin time.</p>
+  </div>
+</section>
+
+<!-- PRICING + SCHEDULE -->
+<section class="section section--grey" id="pricing">
+  <div class="shell center">
+    <h2 style="font-size:clamp(1.9rem,3.8vw,2.7rem)">Training Prices &amp; Public Schedule</h2>
+    <p class="lead">Whether you&rsquo;re training your whole team or sending a few people, we&rsquo;ve got you covered. All public sessions are 100% HRD Corp claimable and capped at small group sizes.</p>
+  </div>
+  <div class="shell">
+    <table class="ptable">
+      <thead><tr><th>Programme</th><th>Format</th><th>In-House (base 20 pax)</th><th>Public (per person)</th></tr></thead>
+      <tbody>
+        <tr><td><b>Tool Deep Dive</b></td><td>Half day</td><td>RM 3,000</td><td>RM 300</td></tr>
+        <tr><td><b>L1: AI Foundation</b></td><td>Half day</td><td>RM 4,500</td><td>RM 450</td></tr>
+        <tr><td><b>L1: AI Foundation</b></td><td>Full day</td><td>RM 7,000</td><td>RM 700</td></tr>
+      </tbody>
+    </table>
+    <p class="footnote">Excludes 8% SST. 4% HRDC fee added to invoice. In-house includes up to 20 participants; per-person cost applies beyond. Public classes require min 12 pax.</p>
+    <div class="callout">
+      <p><b>Booking for a team or need internal HR clearance?</b> Ask us for the HRD Corp Submission Package: pre-filled grant application codes, itemised training breakdowns, and invoice request forms for your finance department.</p>
+      <a class="btn btn-primary" href="#contact" style="padding:13px 26px">Request the HRD Corp grant kit</a>
+    </div>
+  </div>
+</section>
+
+<!-- LOGISTICS -->
+<section class="section">
+  <div class="shell center">
+    <h2 style="font-size:clamp(1.9rem,3.8vw,2.7rem)">Need Help Coordinating Logistics?</h2>
+    <p class="lead">Let us handle the venue, catering, and participant communications so your team can focus on learning.</p>
+  </div>
+  <div class="shell">
+    <div class="logi">
+      <div class="lg">
+        <h3>Venue &amp; Catering Management</h3>
+        <dl>
+          <dt>Location Options</dt><dd>Hosted at your office, Mereka Space, or a premium partner venue.</dd>
+          <dt>AV &amp; Technical Setup</dt><dd>Complete management of projectors, Wi-Fi configuration, and room setup.</dd>
+          <dt>Vendor Network Catering</dt><dd>Meals and refreshments from RM 30/pax (tea, coffee, and lunch options).</dd>
+        </dl>
+        <span class="pbadge">RM 250 service fee + venue &amp; catering at cost</span>
+      </div>
+      <div class="lg">
+        <h3>End-to-End Participant Comms</h3>
+        <dl>
+          <dt>Pre-Training Logistics</dt><dd>Automated distribution of session links, pre-training surveys, and reminders.</dd>
+          <dt>Learning Assets</dt><dd>Instant delivery of course materials, templates, and certificates upon completion.</dd>
+          <dt>1-Month Impact Tracking</dt><dd>Execution of a 30-day post-training impact survey for HR ROI reporting.</dd>
+        </dl>
+        <span class="pbadge">RM 350 flat fee</span>
+      </div>
+    </div>
+    <div class="concierge">
+      <div>
+        <h3>Full Concierge Package</h3>
+        <p>Want us to handle both venue logistics and participant management? Get the complete bundle for a RM 500 total service charge (+ venue/catering at cost).</p>
+      </div>
+      <a class="btn btn-dark" href="#contact" style="padding:14px 28px">Add Concierge to My In-House Proposal</a>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="section section--grey">
+  <div class="shell center">
+    <h2 style="font-size:clamp(1.9rem,3.8vw,2.7rem)">How It Works</h2>
+    <p class="lead">Discovery to Delivery. We&rsquo;ve got you.</p>
+  </div>
+  <div class="shell">
+    <div class="steps">
+      <div class="stp" data-n="1"><b>Discovery Call</b><p>Free, 30 minutes. Tell us about your team. We recommend the right programme and pick a date together.</p></div>
+      <div class="stp" data-n="2"><b>Proposal in 48 hrs</b><p>Tailored agenda, learning outcomes, budget. Confirm to lock in your trainer.</p></div>
+      <div class="stp" data-n="3"><b>We prep, you relax.</b><p>We tailor the session to your team. Add our concierge package and we handle the logistics too.</p></div>
+      <div class="stp" data-n="4"><b>Training Day</b><p>Hands-on. Energetic. Your team builds real skills with real tools.</p></div>
+      <div class="stp" data-n="5"><b>Wrap Up</b><p>Certificates, HR summary, and HRD Corp claim docs in your inbox within 3 working days. Impact survey at 1 month.</p></div>
+    </div>
+    <p class="stat-cap" style="margin-top:26px">Dates held for 14 days from proposal acceptance. Want more? Add a Finale Showcase Day or join the monthly alumni sessions after training.</p>
+  </div>
+</section>
+
+<!-- TRUSTED BY -->
+<section class="section">
+  <div class="shell center">
+    <h2 style="font-size:clamp(1.9rem,3.8vw,2.7rem)">Trusted By</h2>
+    <p class="lead">Organisations across Malaysia putting their teams first.</p>
+    <div class="trust-strip" style="margin-top:26px">
+      <img src="/assets/img/logo-microsoft.png" alt="Microsoft">
+      <img src="/assets/img/logo-hrd.png" alt="HRD Corp Registered Training Provider">
+      <span class="tl">Global Logistics Company</span>
+      <span class="tl">International Accounting Body</span>
+      <span class="tl">Construction Industry Training Academy</span>
+      <span class="tl">Government Education Agency</span>
+      <span class="tl">Government Professional College</span>
+    </div>
+    <p class="stat-cap">Measured impact from 170 survey responses across 10 organisations.</p>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="section section--grey" id="faq">
+  <div class="shell center">
+    <h2 style="font-size:clamp(1.9rem,3.8vw,2.7rem)">Frequently Asked Questions</h2>
+  </div>
+  <div class="shell">
+    <div class="faq2">
+      <div>
+        <details><summary>Minimum group size for private sessions?</summary><p>12 pax. Smaller teams can ask about combined sessions.</p></details>
+        <details><summary>Zero AI experience?</summary><p>Perfect. We start from scratch and build up to hands-on use.</p></details>
+        <details><summary>Virtual delivery?</summary><p>Yes. Zoom, Teams or Meet.</p></details>
+        <details><summary>How far in advance should we book?</summary><p>2&ndash;4 weeks. Trainers fill up fast, especially at quarter-end.</p></details>
+      </div>
+      <div>
+        <details><summary>Can we send just 2&ndash;3 people?</summary><p>Yes. Join one of our open sessions alongside other companies. Same content, smaller commitment.</p></details>
+        <details><summary>How is this different from hiring a freelance trainer?</summary><p>We deliver a programme: needs analysis before, competency assessment during, and impact measurement after. That&rsquo;s why our clients can prove ROI to management.</p></details>
+        <details><summary>What do participants walk away with?</summary><p>A personal prompt library, hands-on tool practice, and a certificate. Your HR team gets a competency report and impact data.</p></details>
+        <details><summary>What happens after training?</summary><p>Certificates, HR summary and claim docs within 3 working days. Impact survey at 1 month. Alumni can join the monthly sessions.</p></details>
+      </div>
+    </div>
+  </div>
+</section>
 
 <!-- FINAL CTA + FOOTER -->
 <div class="footwrap" id="contact">
   <div class="cta-band">
-    <h2>Not sure where to begin?</h2>
-    <p>Let us recommend the right programme for your business.</p>
-    <a class="btn" href="https://corporate.mereka.io/contact" target="_blank" rel="noopener" style="background:#191627;color:#fff;padding:16px 34px">Get in touch with our team</a>
+    <h2>Book a Free Discovery Call</h2>
+    <p>30 minutes. We recommend the right programme, generate a tailored proposal, and handle the HRD Corp paperwork.</p>
+    <div class="shell" style="max-width:940px">
+      <div class="contacts">
+        <div class="ct"><span>Email</span><a href="mailto:ailab@mereka.io">ailab@mereka.io</a></div>
+        <div class="ct"><span>WhatsApp &mdash; Syazwi</span><a href="https://wa.me/60173416240" target="_blank" rel="noopener">+60 17-341 6240</a></div>
+        <div class="ct"><span>WhatsApp &mdash; Gurpreet</span><a href="https://wa.me/60187704030" target="_blank" rel="noopener">+60 18-770 4030</a></div>
+        <div class="ct"><span>WhatsApp &mdash; Leadership</span><a href="https://wa.me/60149257203" target="_blank" rel="noopener">+60 14-925 7203</a></div>
+      </div>
+    </div>
+    <a class="btn" href="mailto:ailab@mereka.io?subject=Discovery%20Call%20%E2%80%94%20Mereka%20AI%20Lab" style="background:#fff;color:var(--anchor);padding:16px 34px">Book a Free Discovery Call</a>
     <img class="badge-img" src="/assets/img/logo-hrd.png" alt="HRD Corp Claimable">
   </div>
   <div class="foot2">
