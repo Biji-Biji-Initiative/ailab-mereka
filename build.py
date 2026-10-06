@@ -20,13 +20,12 @@ ROLE_CSS = """
    ailab.mereka.io is right for /prompts/, but here it would drop a linked
    prompt's title behind that strip, so clear the whole stack. */
 html{scroll-padding-top:176px}
-/* Hero, as on ailab.mereka.io: full-bleed mesh gradient that runs edge to edge
-   under the nav and is rounded only along the bottom, with "Back to Prompts"
-   centred above the title. It used to be an inset card with a flat 3-stop
-   linear-gradient. */
+/* Hero, laid out as on ailab.mereka.io — full-bleed under the nav, rounded
+   only along the bottom, "Back to Prompts" centred above the title — in the
+   FOB AI Lab palette (Anchor Blue + Strategy Teal tints). */
 .rhero{position:relative;overflow:hidden;text-align:center;padding:104px 0 118px;border-radius:0 0 80px 80px}
 .rhero::before{content:'';position:absolute;inset:0;z-index:0;
-  background:url('/assets/bg-hero.png') center/cover no-repeat}
+  background:radial-gradient(58% 78% at 10% 28%,#9fd6d7 0%,rgba(159,214,215,0) 62%),radial-gradient(52% 72% at 88% 22%,#b9c8e4 0%,rgba(185,200,228,0) 64%),radial-gradient(64% 86% at 46% 102%,#d6e7ee 0%,rgba(214,231,238,0) 66%),linear-gradient(135deg,#eaf2f4 0%,#eef1f7 100%)}
 .rhero-in{position:relative;z-index:1;max-width:1008px;margin:0 auto;padding:0 24px}
 .rhero .back{display:inline-flex;gap:6px;align-items:center;font-weight:500;font-size:1rem;color:var(--ink);margin-bottom:36px}
 .rhero .back:hover{opacity:.7}
@@ -224,13 +223,13 @@ print("index.html: header", "updated" if _home != _before else "already current"
 
 # ---------------- PROMPTS LIBRARY (AI Cookbooks) ----------------
 LIB_CSS = """
-/* Hero, as on ailab.mereka.io/prompts/: the full-bleed bg-hero.png mesh running
-   edge to edge under the nav, rounded only along the bottom. Was an inset
-   rounded card with a flat 3-stop linear-gradient. io puts its title at 7.51vw
-   over a 960px column and its search pill at 400px with the icon on the right. */
+/* Hero, laid out as on ailab.mereka.io/prompts/ — full-bleed under the nav,
+   rounded only along the bottom, title at 7.51vw over a 960px column, 400px
+   search pill with the icon on the right — but in the FOB AI Lab palette: a
+   mesh of Anchor Blue and Strategy Teal tints rather than io's pink/purple. */
 .chero{position:relative;overflow:hidden;text-align:center;padding:100px 0 116px;border-radius:0 0 80px 80px}
 .chero::before{content:'';position:absolute;inset:0;z-index:0;
-  background:url('/assets/bg-hero.png') center/cover no-repeat}
+  background:radial-gradient(58% 78% at 10% 28%,#9fd6d7 0%,rgba(159,214,215,0) 62%),radial-gradient(52% 72% at 88% 22%,#b9c8e4 0%,rgba(185,200,228,0) 64%),radial-gradient(64% 86% at 46% 102%,#d6e7ee 0%,rgba(214,231,238,0) 66%),linear-gradient(135deg,#eaf2f4 0%,#eef1f7 100%)}
 .chero-in{position:relative;z-index:1;max-width:1008px;margin:0 auto;padding:0 24px}
 .chero h1{font-size:clamp(2.4rem,7.5vw,6.2rem);line-height:1.1;color:var(--ink);margin:0 0 35px}
 .chero p{color:var(--ink);font-size:1.25rem;line-height:1.5;margin:0 auto 34px}
@@ -250,7 +249,7 @@ LIB_CSS = """
 .fcard:hover{transform:translateY(-4px);box-shadow:var(--shadow-sm)}
 .fcard h3{font-size:1.06rem;line-height:1.35;margin-bottom:16px;min-height:2.7em}
 .tags{display:flex;flex-wrap:wrap;gap:8px}
-.tag{background:#eef0ff;color:#4f5bd0;font-weight:500;font-size:.74rem;padding:5px 12px;border-radius:100px}
+.tag{background:#e6f2f2;color:#17787a;font-weight:500;font-size:.74rem;padding:5px 12px;border-radius:100px}
 .toolbar{display:flex;gap:14px;align-items:center;flex-wrap:wrap;margin-bottom:8px}
 .toolbar select,.toolbar .sinput{font-family:inherit;font-size:.94rem;padding:11px 16px;border:1.5px solid var(--line);border-radius:100px;background:#fff;color:var(--ink)}
 .toolbar select{cursor:pointer}.toolbar .sp{margin-left:auto}
@@ -259,10 +258,10 @@ table.plist td{padding:16px 6px;border-bottom:1px solid var(--line);vertical-ali
 table.plist td.nm{font-weight:500}
 table.plist td.nm a{display:block;color:var(--ink);transition:color .15s var(--ease)}
 table.plist tr:hover td.nm a{color:var(--blue)}
-table.plist tr:hover{background:#fafbff}
+table.plist tr:hover{background:#f3f8f8}
 a.fcard{display:block;color:inherit}
 table.plist td.tg{text-align:right;white-space:nowrap}
-table.plist td.tg .tag{display:inline-block;margin-left:6px;background:transparent;color:#7b7f8c;padding:2px 0;font-size:.82rem}
+table.plist td.tg .tag{display:inline-block;margin-left:6px;background:transparent;color:#6b7280;padding:2px 0;font-size:.82rem}
 .pager{display:flex;gap:8px;justify-content:center;align-items:center;margin-top:30px}
 .pager button{min-width:40px;height:40px;border:1px solid var(--line);background:#fff;border-radius:12px;font-family:inherit;font-weight:600;cursor:pointer;color:var(--ink)}
 .pager button.on{border-color:var(--ink)}

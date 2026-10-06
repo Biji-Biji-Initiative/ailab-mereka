@@ -37,7 +37,7 @@ CSS = FONTFACE + """
   --ink:#1a1623; --muted:#5a5f6b; --white:#fff; --grey:#f6f6f8; --line:#e9eaee;
   /* homepage nav tokens, so every page's header is literally the same */
   --anchor:#1f3f7c; --teal:#1fa3a6; --border:#e6e8ec;
-  --pink:#ee53b1; --blue:#5177f9; --accent:linear-gradient(135deg,#ee53b1,#5177f9);
+  --pink:#1fa3a6; --blue:#1f3f7c; --accent:linear-gradient(135deg,#1f3f7c,#1fa3a6);
   --maxw:1180px; --ease:cubic-bezier(.2,.7,.2,1);
   --shadow:0 20px 60px rgba(26,22,35,.10); --shadow-sm:0 8px 24px rgba(26,22,35,.06);
 }
@@ -51,7 +51,7 @@ img{max-width:100%;display:block}
 .btn{display:inline-flex;align-items:center;gap:9px;font-family:'Poppins Font';font-weight:600;font-size:.98rem;padding:14px 26px;border-radius:999px;cursor:pointer;border:1.5px solid transparent;transition:transform .2s var(--ease),background .2s,box-shadow .2s}
 .btn:hover{transform:translateY(-2px)}
 .btn-dark{background:var(--ink);color:#fff}
-.btn-accent{background:var(--accent);color:#fff;box-shadow:0 10px 28px rgba(129,100,220,.32)}
+.btn-accent{background:var(--accent);color:#fff;box-shadow:0 10px 28px rgba(31,63,124,.28)}
 .btn-ghost{background:#fff;color:var(--ink);border-color:var(--line)}
 .pill-accent{background:var(--accent);color:#fff;font-weight:600;font-size:.86rem;padding:8px 18px;border-radius:100px}
 /* NAV */
