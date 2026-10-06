@@ -20,17 +20,25 @@ ROLE_CSS = """
    ailab.mereka.io is right for /prompts/, but here it would drop a linked
    prompt's title behind that strip, so clear the whole stack. */
 html{scroll-padding-top:165px}
-.rhero{padding:26px 0 10px}
-.rhero .blob{position:relative;border-radius:26px;padding:56px 40px 60px;text-align:center;overflow:hidden;
-  background:linear-gradient(118deg,#f7bfe6 0%,#c8ccff 42%,#a7ecef 100%)}
-.rhero .back{position:absolute;top:22px;left:26px;font-weight:600;font-size:.92rem;color:#3a2f52;display:inline-flex;gap:6px;align-items:center}
-.rhero h1{font-size:clamp(2.2rem,5vw,3.6rem);color:#1a1623;margin:6px auto 14px;max-width:16ch}
-.rhero p{color:#43405a;font-size:1.06rem;max-width:60ch;margin:0 auto}
+/* Hero, as on ailab.mereka.io: full-bleed mesh gradient that runs edge to edge
+   under the nav and is rounded only along the bottom, with "Back to Prompts"
+   centred above the title. It used to be an inset card with a flat 3-stop
+   linear-gradient. */
+.rhero{position:relative;overflow:hidden;text-align:center;padding:104px 0 118px;border-radius:0 0 80px 80px}
+.rhero::before{content:'';position:absolute;inset:0;z-index:0;
+  background:url('/assets/bg-hero.png') center/cover no-repeat}
+.rhero-in{position:relative;z-index:1;max-width:960px;margin:0 auto;padding:0 24px}
+.rhero .back{display:inline-flex;gap:6px;align-items:center;font-weight:500;font-size:1rem;color:var(--ink);margin-bottom:22px}
+.rhero .back:hover{opacity:.7}
+.rhero h1{font-size:clamp(2.4rem,6.9vw,6rem);line-height:1.05;color:var(--ink);margin:0 0 20px}
+.rhero p{color:var(--ink);font-size:1.25rem;line-height:1.5;max-width:64ch;margin:0 auto}
+@media(max-width:860px){.rhero{padding:64px 0 76px;border-radius:0 0 44px 44px}
+  .rhero p{font-size:1.06rem}}
 /* "On this page" — a sticky card that follows you down the page and marks the
    use case you are currently in, as on ailab.mereka.io. The wrapper reserves
    only the collapsed height so the open panel overlays the content instead of
    shoving it down. */
-.onthis{position:sticky;top:94px;z-index:45;height:46px;max-width:var(--maxw);margin:0 auto;padding:0 28px}
+.onthis{position:sticky;top:90px;z-index:45;height:46px;max-width:var(--maxw);margin:0 auto;padding:0 28px}
 .toc{position:absolute;left:28px;top:0;width:296px;max-width:calc(100vw - 56px);
   background:#fff;border:1px solid var(--line);border-radius:20px;box-shadow:0 14px 38px rgba(26,22,35,.14);padding:5px}
 .toc-h{display:flex;align-items:center;justify-content:space-between;gap:10px;width:100%;
@@ -116,11 +124,11 @@ def role_page(slug, r):
 </div></section>'''
     page=theme.head(f'{r["title"]} — AI Labs', r["subtitle"] or r["title"],
                     f'https://ailab.mereka.dev/{slug}/', ROLE_CSS) + theme.nav() + f'''
-<section class="rhero"><div class="shell"><div class="blob">
-  <a class="back" href="/prompts/">&larr; Back to Prompts</a>
+<section class="rhero"><div class="rhero-in">
+  <a class="back" href="/prompts/"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M15.41 16.59 10.83 12l4.58-4.59L14 6l-6 6 6 6 1.41-1.41Z"/></svg>Back to Prompts</a>
   <h1>{esc(r["title"])}</h1>
   <p>{esc(r["subtitle"])}</p>
-</div></div></section>
+</div></section>
 <div class="onthis"><div class="toc" id="toc">
   <button class="toc-h" type="button" aria-expanded="false" aria-controls="toc-list" onclick="tocToggle()">
     <span>On this page</span>

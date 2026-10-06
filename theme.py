@@ -11,8 +11,10 @@ FONTFACE = """
 CSS = FONTFACE + """
 :root{
   --ink:#1a1623; --muted:#5a5f6b; --white:#fff; --grey:#f6f6f8; --line:#e9eaee;
+  /* homepage nav tokens, so every page's header is literally the same */
+  --anchor:#1f3f7c; --teal:#1fa3a6; --border:#e6e8ec;
   --pink:#ee53b1; --blue:#5177f9; --accent:linear-gradient(135deg,#ee53b1,#5177f9);
-  --maxw:1200px; --ease:cubic-bezier(.2,.7,.2,1);
+  --maxw:1180px; --ease:cubic-bezier(.2,.7,.2,1);
   --shadow:0 20px 60px rgba(26,22,35,.10); --shadow-sm:0 8px 24px rgba(26,22,35,.06);
 }
 *{box-sizing:border-box}
@@ -22,19 +24,23 @@ h1,h2,h3,h4,h5{font-family:'Poppins Font',system-ui,sans-serif;font-weight:700;l
 a{color:inherit;text-decoration:none}
 img{max-width:100%;display:block}
 .shell{max-width:var(--maxw);margin:0 auto;padding:0 28px}
-.btn{display:inline-flex;align-items:center;gap:8px;font-weight:600;font-size:.98rem;padding:14px 28px;border-radius:100px;cursor:pointer;border:1.5px solid transparent;transition:transform .2s var(--ease),box-shadow .2s,opacity .2s}
+.btn{display:inline-flex;align-items:center;gap:9px;font-family:'Poppins Font';font-weight:600;font-size:.98rem;padding:14px 26px;border-radius:999px;cursor:pointer;border:1.5px solid transparent;transition:transform .2s var(--ease),background .2s,box-shadow .2s}
 .btn:hover{transform:translateY(-2px)}
 .btn-dark{background:var(--ink);color:#fff}
 .btn-accent{background:var(--accent);color:#fff;box-shadow:0 10px 28px rgba(129,100,220,.32)}
 .btn-ghost{background:#fff;color:var(--ink);border-color:var(--line)}
 .pill-accent{background:var(--accent);color:#fff;font-weight:600;font-size:.86rem;padding:8px 18px;border-radius:100px}
 /* NAV */
-header.nav{position:sticky;top:0;z-index:60;background:rgba(255,255,255,.9);backdrop-filter:saturate(160%) blur(12px);border-bottom:1px solid var(--line)}
-.nav-in{display:flex;align-items:center;gap:22px;height:78px}
-.nav-logo img{height:30px}
-.nav-links{display:flex;align-items:center;gap:24px;margin-left:auto;font-weight:500;font-size:.95rem}
-.nav-links a{color:#26222e}
-.nav-links a:hover{color:var(--pink)}
+header.nav{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.86);backdrop-filter:saturate(160%) blur(12px);border-bottom:1px solid var(--border)}
+.nav-inner{display:flex;align-items:center;gap:28px;height:74px}
+.nav-logo img{height:38px}
+.nav-links{display:flex;align-items:center;gap:26px;margin-left:auto;font-family:'Poppins Font';font-weight:500;font-size:.95rem}
+.nav-links a:not(.btn){color:#1a1623;font-weight:500}
+.nav-links a:not(.btn):hover{color:var(--teal)}
+/* without this the CTA inherits .nav-links a and renders dark-on-dark */
+.nav-links a.btn-dark,.nav-links a.nav-cta{color:#fff}
+.nav-cta{margin-left:4px;background:var(--anchor)}
+.chip{font-family:'Poppins Font';font-weight:500;font-size:.9rem;padding:9px 16px;border-radius:999px;background:#fff;border:1px solid var(--border);box-shadow:var(--shadow-sm)}
 .burger{display:none;margin-left:auto;background:none;border:0;cursor:pointer;padding:8px}
 .burger span{display:block;width:24px;height:2px;background:var(--ink);margin:5px 0;border-radius:2px}
 /* FOOTER */
@@ -50,26 +56,28 @@ footer a:hover{color:#fff}
 .foot-social a{width:34px;height:34px;border:1px solid rgba(255,255,255,.24);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.74rem}
 .foot-bottom{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;padding-top:22px;font-size:.86rem;color:#9a9dab}
 .foot-bottom a{color:#9a9dab;margin-left:18px}
-@media(max-width:860px){.nav-links{display:none}.nav-links.open{display:flex;position:absolute;top:78px;right:28px;flex-direction:column;align-items:flex-start;background:#fff;padding:16px 20px;gap:14px;box-shadow:var(--shadow);border-radius:14px}.burger{display:block}.foot-top{grid-template-columns:1fr 1fr}}
+@media(max-width:860px){.nav-links{display:none}.nav-links.open{display:flex;position:absolute;top:74px;left:0;right:0;flex-direction:column;background:#fff;padding:18px 24px;border-bottom:1px solid var(--border);gap:16px}.nav-links.open .nav-cta{margin:6px 0 0}.burger{display:block}.foot-top{grid-template-columns:1fr 1fr}}
 """
 
 def nav():
-    """Same navigation as the homepage and ailab.mereka.io — the prompt library
-    and the category pages used to carry their own link set (AI Prompts /
-    Departments / Programmes / Impact), which matched neither."""
-    return """<header class="nav"><div class="shell nav-in">
-  <a class="nav-logo" href="/" aria-label="Mereka home"><img src="/assets/mereka-logo-emblem.svg" alt="Mereka"></a>
-  <a class="pill-accent" href="https://mereka.io" target="_blank" rel="noopener" style="margin-left:2px">Marketplace</a>
-  <nav class="nav-links" id="nav">
-    <a href="https://corporate.mereka.io" target="_blank" rel="noopener">Our Approach</a>
-    <a href="https://corporate.mereka.io/academy" target="_blank" rel="noopener">Grow with us</a>
-    <a href="https://corporate.mereka.io/create-with-us" target="_blank" rel="noopener">Create With Us</a>
-    <a href="https://mereka.io/hubs" target="_blank" rel="noopener">Discover Spaces</a>
-    <a href="https://corporate.mereka.io/about-us" target="_blank" rel="noopener">Company</a>
-    <a class="btn btn-dark nav-cta" href="/#contact" style="padding:11px 22px">Contact Us</a>
-  </nav>
-  <button class="burger" aria-label="Menu" onclick="document.getElementById('nav').classList.toggle('open')"><span></span><span></span><span></span></button>
-</div></header>"""
+    """Byte-for-byte the homepage's header (index.html) — same classes, same
+    order, same logo — so /prompts/ and the category pages render an identical
+    navigation bar."""
+    return """<header class="nav">
+  <div class="shell nav-inner">
+    <a class="nav-logo" href="/" aria-label="Mereka home"><img src="/assets/mereka-logo-emblem.svg" alt="Mereka"></a>
+    <a class="chip" href="https://mereka.io" target="_blank" rel="noopener" style="background:var(--accent);color:#fff;border:0;font-weight:600;margin-left:2px">Marketplace</a>
+    <button class="burger" aria-label="Menu" onclick="document.getElementById('nav').classList.toggle('open')"><span></span><span></span><span></span></button>
+    <nav class="nav-links" id="nav">
+      <a href="https://corporate.mereka.io" target="_blank" rel="noopener">Our Approach</a>
+      <a href="https://corporate.mereka.io/academy" target="_blank" rel="noopener">Grow with us</a>
+      <a href="https://corporate.mereka.io/create-with-us" target="_blank" rel="noopener">Create With Us</a>
+      <a href="https://mereka.io/hubs" target="_blank" rel="noopener">Discover Spaces</a>
+      <a href="https://corporate.mereka.io/about-us" target="_blank" rel="noopener">Company</a>
+      <a class="btn btn-dark nav-cta" href="/#contact">Contact Us</a>
+    </nav>
+  </div>
+</header>"""
 
 def footer():
     return """<footer><div class="shell">
