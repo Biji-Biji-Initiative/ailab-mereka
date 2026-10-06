@@ -312,9 +312,14 @@ footer a:hover{color:var(--teal)}
 .hero-badges .hb img{height:17px;width:auto;display:block}
 .hrd-strip{background:var(--gold);color:#3a2a05;font-weight:600;text-align:center;padding:14px 24px;border-radius:14px;
   margin:28px auto 0;max-width:860px;font-size:1rem}
-.trust-strip{display:flex;align-items:center;justify-content:center;gap:14px 30px;flex-wrap:wrap;margin-top:30px}
-.trust-strip .tl{font-family:'Poppins Font';font-weight:700;font-size:.95rem;color:#6b7280;letter-spacing:.01em}
-.trust-strip img{height:38px;width:auto;opacity:.95}
+/* client logos only — the HRD Corp badge is a certification mark and gets its
+   own row (.hrd-badge) rather than sitting in the client line-up */
+.trust-strip{display:flex;align-items:center;justify-content:center;gap:22px 44px;flex-wrap:wrap;margin-top:30px}
+.trust-strip img{max-height:38px;max-width:150px;width:auto;height:auto;object-fit:contain}
+.trust-strip img.sq{max-height:58px}
+.hrd-badge{display:flex;justify-content:center;margin-top:26px}
+.hrd-badge img{width:96px;height:96px;object-fit:contain}
+.trust-note{text-align:center;color:var(--muted);font-size:.84rem;margin-top:10px}
 .two-teams{display:grid;grid-template-columns:1fr 1fr;gap:26px;margin-top:34px}
 .tt{background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:30px 28px;box-shadow:var(--shadow-sm)}
 .tt h3{font-size:1.18rem;margin-bottom:12px;color:var(--anchor)}
@@ -364,8 +369,10 @@ footer a:hover{color:var(--teal)}
 .toolgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:30px}
 .tool{background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:26px 24px;transition:transform .18s var(--ease),box-shadow .18s}
 .tool:hover{transform:translateY(-3px);box-shadow:var(--shadow-sm)}
-.tool .tmark{width:40px;height:40px;border-radius:11px;background:var(--grey);display:flex;align-items:center;justify-content:center;
-  font-family:'Poppins Font';font-weight:700;color:var(--anchor);margin-bottom:14px;font-size:1rem}
+.tool .tmark{width:44px;height:44px;border-radius:12px;background:var(--grey);display:flex;align-items:center;justify-content:center;
+  margin-bottom:14px}
+.tool .tmark img{width:24px;height:24px;object-fit:contain;display:block}
+.tool .tmark.mono{font-family:'Poppins Font';font-weight:700;color:var(--anchor);font-size:1rem}
 .tool h3{font-size:1.06rem;margin-bottom:8px}
 .tool p{color:var(--muted);font-size:.93rem;line-height:1.5;margin:0}
 .agenda{list-style:none;padding:0;margin:26px 0 0;counter-reset:ag}
@@ -417,7 +424,7 @@ footer a:hover{color:var(--teal)}
 .faq2 summary::after{content:'+';color:var(--teal);font-weight:700;flex:none}
 .faq2 details[open] summary::after{content:'\2013'}
 .faq2 p{color:var(--muted);margin:12px 0 0;line-height:1.6;font-size:.95rem}
-.contacts{display:grid;grid-template-columns:repeat(auto-fit,minmax(215px,1fr));gap:14px;margin:26px 0 28px;text-align:left}
+.contacts{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;max-width:720px;margin:28px auto 30px;text-align:left}
 .ct{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);border-radius:var(--radius-sm);padding:16px 20px}
 .ct span{display:block;font-size:.76rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.65);margin-bottom:5px}
 .ct a{color:#fff;font-weight:600;font-size:.98rem}
@@ -425,7 +432,7 @@ footer a:hover{color:var(--teal)}
 @media(max-width:960px){.two-teams,.pricecards,.logi,.faq2{grid-template-columns:1fr}
   .statbar,.pillars,.toolgrid,.criteria,.deliv,.tgrid{grid-template-columns:1fr 1fr}
   .steps{grid-template-columns:1fr 1fr}}
-@media(max-width:620px){.statbar,.pillars,.toolgrid,.criteria,.deliv,.tgrid,.steps{grid-template-columns:1fr}
+@media(max-width:620px){.statbar,.pillars,.toolgrid,.criteria,.deliv,.tgrid,.steps,.contacts{grid-template-columns:1fr}
   .ptable{font-size:.88rem}.ptable th,.ptable td{padding:12px 8px}}
 
 /*NAV-CSS*/
@@ -500,7 +507,7 @@ footer a:hover{color:var(--teal)}
 .cta-band{max-width:var(--maxw);margin:0 auto 64px;border-radius:26px;padding:70px 60px;position:relative;overflow:hidden;background:linear-gradient(120deg,#12224e 0%,#173a86 45%,#1f8fb0 100%);text-align:center}
 .cta-band h2{color:#fff;font-size:clamp(2rem,4vw,3rem);margin:0 0 14px}
 .cta-band p{color:rgba(255,255,255,.9);margin:0 0 26px}
-.cta-band .badge-img{position:absolute;right:56px;top:50%;transform:translateY(-50%);width:140px;height:140px}
+.cta-band .badge-img{display:block;margin:30px auto 0;width:104px;height:104px;object-fit:contain}
 .foot2{max-width:var(--maxw);margin:0 auto;padding:0 24px}
 .foot2-top{display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap;padding-bottom:40px}
 .foot2-logo img{height:38px}
@@ -511,7 +518,7 @@ footer a:hover{color:var(--teal)}
 .foot2-links{display:flex;gap:34px;flex-wrap:wrap;font-family:'Poppins Font';font-weight:500}
 .foot2-links a{color:#e7e5f0}.foot2-links a:hover{color:#fff}
 .foot2-contact{background:#fff;color:var(--ink);border-radius:100px;padding:13px 30px;font-family:'Poppins Font';font-weight:600}
-@media(max-width:640px){.cta-band .badge-img{display:none}.cta-band{padding:48px 26px}}
+@media(max-width:640px){.cta-band .badge-img{width:84px;height:84px;margin-top:24px}.cta-band{padding:48px 26px}}
 
 .foot2-cols{display:grid;grid-template-columns:1fr 1.5fr 1fr 1.3fr;gap:36px;padding:44px 0 36px;border-top:1px solid rgba(255,255,255,.12);margin-top:34px}
 .foot2-cols h5{color:#fff;font-family:'Poppins Font';font-weight:600;font-size:.98rem;margin:0 0 16px}
@@ -569,9 +576,12 @@ footer a:hover{color:var(--teal)}
   <div class="hero-below">
     <div class="hrd-strip">All programmes are HRD Corp claimable. Your levy is sitting there. Let&rsquo;s put it to work.</div>
     <div class="trust-strip">
-      <span class="tl">CIDB</span><span class="tl">MARA</span><span class="tl">NTT Data</span><span class="tl">Kuehne+Nagel</span>
-      <img src="/assets/img/logo-hrd.png" alt="100% HRD Corp Claimable">
+      <img src="/assets/img/logo-cidb.png" alt="CIDB Malaysia">
+      <img class="sq" src="/assets/img/logo-mara.png" alt="MARA">
+      <img src="/assets/img/logo-ntt-data.svg" alt="NTT Data">
+      <img src="/assets/img/logo-kuehne-nagel.svg" alt="Kuehne + Nagel">
     </div>
+    <div class="hrd-badge"><img src="/assets/img/logo-hrd.png" alt="100% HRD Corp Claimable"></div>
   </div>
 </section>
 
@@ -709,12 +719,12 @@ footer a:hover{color:var(--teal)}
   <div class="shell">
     <p class="stat-cap" style="margin:0 0 6px">Modules, standard across all tools: Tool Orientation &middot; Core Workflows &middot; Advanced Features &middot; Daily Integration</p>
     <div class="toolgrid">
-      <div class="tool"><div class="tmark">G</div><h3>Gemini</h3><p>Draft, analyse, and automate inside Gmail, Docs, and Sheets.</p></div>
-      <div class="tool"><div class="tmark">C</div><h3>Claude</h3><p>Deep analysis, long documents, and structured reasoning.</p></div>
-      <div class="tool"><div class="tmark">Co</div><h3>Copilot</h3><p>Turn Word, Excel, PowerPoint, and Teams into AI-powered workflows.</p></div>
-      <div class="tool"><div class="tmark">GPT</div><h3>ChatGPT</h3><p>The Swiss army knife: code, images, search, and custom GPTs.</p></div>
-      <div class="tool"><div class="tmark">Cv</div><h3>Canva AI</h3><p>On-brand designs, batch assets, and AI image editing without a designer.</p></div>
-      <div class="tool"><div class="tmark">&#9638;</div><h3>Custom</h3><p>Your team uses more than one? We&rsquo;ll build a session around the tools that matter most. <a href="#contact" style="color:var(--teal);font-weight:600">Talk to us</a></p></div>
+      <div class="tool"><div class="tmark"><img src="/assets/img/tool-gemini.svg" alt="Gemini"></div><h3>Gemini</h3><p>Draft, analyse, and automate inside Gmail, Docs, and Sheets.</p></div>
+      <div class="tool"><div class="tmark"><img src="/assets/img/tool-claude.svg" alt="Claude"></div><h3>Claude</h3><p>Deep analysis, long documents, and structured reasoning.</p></div>
+      <div class="tool"><div class="tmark"><img src="/assets/img/tool-copilot.svg" alt="Microsoft Copilot"></div><h3>Copilot</h3><p>Turn Word, Excel, PowerPoint, and Teams into AI-powered workflows.</p></div>
+      <div class="tool"><div class="tmark"><img src="/assets/img/tool-chatgpt.svg" alt="ChatGPT"></div><h3>ChatGPT</h3><p>The Swiss army knife: code, images, search, and custom GPTs.</p></div>
+      <div class="tool"><div class="tmark"><img src="/assets/img/tool-canva.svg" alt="Canva"></div><h3>Canva AI</h3><p>On-brand designs, batch assets, and AI image editing without a designer.</p></div>
+      <div class="tool"><div class="tmark mono">&#9638;</div><h3>Custom</h3><p>Your team uses more than one? We&rsquo;ll build a session around the tools that matter most. <a href="#contact" style="color:var(--teal);font-weight:600">Talk to us</a></p></div>
     </div>
     <p class="footnote">Each deep dive includes tool-specific prompts, live practice on real tasks, and a take-home prompt library.</p>
   </div>
@@ -918,14 +928,14 @@ footer a:hover{color:var(--teal)}
     <h2 style="font-size:clamp(1.9rem,3.8vw,2.7rem)">Trusted By</h2>
     <p class="lead">Organisations across Malaysia putting their teams first.</p>
     <div class="trust-strip" style="margin-top:26px">
+      <img src="/assets/img/logo-cidb.png" alt="CIDB Malaysia">
+      <img class="sq" src="/assets/img/logo-mara.png" alt="MARA">
+      <img src="/assets/img/logo-ntt-data.svg" alt="NTT Data">
+      <img src="/assets/img/logo-kuehne-nagel.svg" alt="Kuehne + Nagel">
       <img src="/assets/img/logo-microsoft.png" alt="Microsoft">
-      <img src="/assets/img/logo-hrd.png" alt="HRD Corp Registered Training Provider">
-      <span class="tl">Global Logistics Company</span>
-      <span class="tl">International Accounting Body</span>
-      <span class="tl">Construction Industry Training Academy</span>
-      <span class="tl">Government Education Agency</span>
-      <span class="tl">Government Professional College</span>
     </div>
+    <div class="hrd-badge"><img src="/assets/img/logo-hrd.png" alt="HRD Corp Registered Training Provider"></div>
+    <p class="trust-note">HRD Corp Registered Training Provider &mdash; all programmes 100% claimable.</p>
     <p class="stat-cap">Measured impact from 170 survey responses across 10 organisations.</p>
   </div>
 </section>
