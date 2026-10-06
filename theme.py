@@ -1,11 +1,35 @@
 # Shared theme matching ailab.mereka.io — used by build.py
 import html
+from navdata import MENUS
 
 FONTFACE = """
 @font-face{font-family:'Poppins Font';font-weight:400;font-display:swap;src:url('/assets/fonts/Poppins-Regular.woff2') format('woff2')}
 @font-face{font-family:'Poppins Font';font-weight:500;font-display:swap;src:url('/assets/fonts/Poppins-Medium.woff2') format('woff2')}
 @font-face{font-family:'Poppins Font';font-weight:600;font-display:swap;src:url('/assets/fonts/Poppins-SemiBold.woff2') format('woff2')}
 @font-face{font-family:'Poppins Font';font-weight:700;font-display:swap;src:url('/assets/fonts/Poppins-Bold.woff2') format('woff2')}
+"""
+
+MENU_CSS = """
+/* ---- mega-menu (hover panels), 1-to-1 with ailab.mereka.io ---- */
+.navitem{position:relative;display:inline-flex;align-items:center}
+.navtrigger{background:none;border:0;padding:0;font:inherit;color:#1a1623;font-weight:500;cursor:pointer;white-space:nowrap}
+.navitem:hover .navtrigger,.navitem:focus-within .navtrigger{color:#8c8b91}
+/* the panel's transparent top padding bridges the gap to the trigger, so the
+   pointer never leaves the hover target on its way down */
+.navpanel{position:absolute;top:100%;left:50%;transform:translateX(-50%);padding-top:18px;z-index:70;
+  opacity:0;visibility:hidden;pointer-events:none;transition:opacity .16s var(--ease)}
+.navitem:hover .navpanel,.navitem:focus-within .navpanel{opacity:1;visibility:visible;pointer-events:auto}
+.navitem--end .navpanel{left:auto;right:0;transform:none}
+.navcard{display:grid;grid-auto-flow:column;gap:0 40px;background:#fff;border-radius:20px;padding:6px;
+  box-shadow:0 26px 64px rgba(26,22,35,.16),0 4px 14px rgba(26,22,35,.06)}
+.navcard--stack{grid-auto-flow:row;grid-template-columns:auto auto}
+.navcol{padding:11px 24px}
+.navhead{font-size:.8rem;font-weight:500;text-transform:uppercase;color:#8c8b91;padding:7px 0;margin:0}
+.navlink{display:flex;align-items:center;gap:16px;padding:7px 0;font-size:.875rem;font-weight:500;color:#53505a;white-space:nowrap}
+.navlink:hover{color:var(--ink)}
+.navlink .ni{flex:none;width:18px;height:18px;display:inline-flex;align-items:center;justify-content:center}
+.navlink .ni svg{width:100%;height:100%;display:block}
+.navfoot{grid-column:1/-1;display:grid;grid-auto-flow:column;gap:0 40px;background:#f0f2f3;border-radius:16px;padding:10px 24px;margin:6px}
 """
 
 CSS = FONTFACE + """
@@ -43,6 +67,7 @@ header.nav{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.86);bac
 .nav-links a.btn-dark,.nav-links a.nav-cta{color:#fff}
 .nav-cta{margin-left:4px;background:var(--anchor)}
 .nav-links a[aria-current="page"]{color:var(--teal);font-weight:600}
+""" + MENU_CSS + """
 .chip{font-family:'Poppins Font';font-weight:500;font-size:.9rem;padding:9px 16px;border-radius:999px;background:#fff;border:1px solid var(--border);box-shadow:var(--shadow-sm)}
 .burger{display:none;margin-left:auto;background:none;border:0;cursor:pointer;padding:8px}
 .burger span{display:block;width:24px;height:2px;background:var(--ink);margin:5px 0;border-radius:2px}
@@ -59,17 +84,39 @@ footer a:hover{color:#fff}
 .foot-social a{width:34px;height:34px;border:1px solid rgba(255,255,255,.24);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.74rem}
 .foot-bottom{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;padding-top:22px;font-size:.86rem;color:#9a9dab}
 .foot-bottom a{color:#9a9dab;margin-left:18px}
-@media(max-width:1160px){.nav-links{display:none}.nav-links.open{display:flex;position:absolute;top:74px;left:0;right:0;flex-direction:column;background:#fff;padding:18px 24px;border-bottom:1px solid var(--border);gap:16px}.nav-links.open .nav-cta{margin:6px 0 0}.nav-links.open a{white-space:normal}.burger{display:block}}
+@media(max-width:1160px){.nav-links{display:none}.nav-links.open{display:flex;position:absolute;top:74px;left:0;right:0;flex-direction:column;background:#fff;padding:18px 24px;border-bottom:1px solid var(--border);gap:16px}.nav-links.open .nav-cta{margin:6px 0 0}.nav-links.open a{white-space:normal}.burger{display:block}.navitem{display:block;width:100%}.navtrigger{display:block;width:100%;text-align:left;padding:2px 0;font-weight:600;color:#1a1623}.navitem:hover .navtrigger{color:#1a1623}.navpanel{position:static;opacity:1;visibility:visible;pointer-events:auto;transform:none;padding-top:0}.navcard,.navcard--stack{display:block;box-shadow:none;border-radius:0;padding:0;background:transparent}.navcol{padding:2px 0 8px}.navhead{padding:6px 0 2px}.navfoot{display:block;background:transparent;border-radius:0;padding:0;margin:0}.navlink{white-space:normal}}
 @media(max-width:860px){.foot-top{grid-template-columns:1fr 1fr}}
 @media(max-width:560px){.foot-top{grid-template-columns:1fr;gap:26px}}
 """
 
+def _menu(m, is_last):
+    """One hover panel: columns of icon links, plus the grey full-width row
+    that only the Company menu has."""
+    cols, foot = "", ""
+    for c in m["columns"]:
+        links = "".join(
+            f'<a class="navlink" href="{i["href"]}" target="_blank" rel="noopener">'
+            f'<span class="ni">{i["svg"]}</span><span>{html.escape(i["text"])}</span></a>'
+            for i in c["items"])
+        if c.get("footer"):
+            foot = f'<div class="navfoot">{links}</div>'
+        else:
+            head = f'<p class="navhead">{html.escape(c["heading"])}</p>' if c["heading"] else ""
+            cols += f'<div class="navcol">{head}{links}</div>'
+    card = "navcard navcard--stack" if foot else "navcard"
+    tail = " navitem--end" if is_last else ""
+    return (f'<div class="navitem{tail}">'
+            f'<button class="navtrigger" type="button" aria-haspopup="true">{html.escape(m["label"])}</button>'
+            f'<div class="navpanel"><div class="{card}">{cols}{foot}</div></div></div>')
+
+
 def nav(current=""):
-    """Byte-for-byte the homepage's header (index.html) — same classes, same
-    order, same logo — so /prompts/ and the category pages render an identical
-    navigation bar. `current="prompts"` marks the AI Prompts tab as the page
-    you are on (the category pages are part of the prompt library too)."""
+    """The site header. build.py injects this exact string into index.html too,
+    so the homepage and the generated pages cannot drift apart. The five
+    mega-menus come from navdata.py, scraped from ailab.mereka.io's own header
+    (scrape_nav.py) — icons included."""
     prompts_cur = ' aria-current="page"' if current == "prompts" else ''
+    menus = "".join(_menu(m, i == len(MENUS) - 1) for i, m in enumerate(MENUS))
     return f"""<header class="nav">
   <div class="shell nav-inner">
     <a class="nav-logo" href="/" aria-label="Mereka home"><img src="/assets/mereka-logo-emblem.svg" alt="Mereka"></a>
@@ -77,11 +124,7 @@ def nav(current=""):
     <button class="burger" aria-label="Menu" onclick="document.getElementById('nav').classList.toggle('open')"><span></span><span></span><span></span></button>
     <nav class="nav-links" id="nav">
       <a href="/prompts/"{prompts_cur}>AI Prompts</a>
-      <a href="https://corporate.mereka.io" target="_blank" rel="noopener">Our Approach</a>
-      <a href="https://corporate.mereka.io/academy" target="_blank" rel="noopener">Grow with us</a>
-      <a href="https://corporate.mereka.io/create-with-us" target="_blank" rel="noopener">Create With Us</a>
-      <a href="https://mereka.io/hubs" target="_blank" rel="noopener">Discover Spaces</a>
-      <a href="https://corporate.mereka.io/about-us" target="_blank" rel="noopener">Company</a>
+      {menus}
       <a class="btn btn-dark nav-cta" href="/#contact">Contact Us</a>
     </nav>
   </div>

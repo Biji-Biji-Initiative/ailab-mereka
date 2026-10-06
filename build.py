@@ -205,6 +205,23 @@ for slug,r in content["roles"].items():
     total+=role_page(slug,r)
 print(f"role pages: {len(content['roles'])}, prompts rendered: {total}")
 
+# ---------------- keep the homepage's header in sync ----------------
+# index.html is hand-written and carries its own copy of the header; it has
+# drifted from theme.nav() twice. Inject the generated markup and mega-menu CSS
+# so there is only one source of truth.
+import re as _re
+_home_path = f"{REPO}/index.html"
+_home = open(_home_path).read()
+_before = _home
+_home = _re.sub(r"<!--NAV-->.*?<!--/NAV-->",
+                lambda _m: "<!--NAV-->" + theme.nav() + "<!--/NAV-->", _home, flags=_re.S)
+_home = _re.sub(r"/\*NAV-CSS\*/.*?/\*/NAV-CSS\*/",
+                lambda _m: "/*NAV-CSS*/" + theme.MENU_CSS + "/*/NAV-CSS*/", _home, flags=_re.S)
+if "<!--NAV-->" not in _home or "/*NAV-CSS*/" not in _home:
+    raise SystemExit("index.html is missing its <!--NAV--> / /*NAV-CSS*/ markers")
+open(_home_path, "w").write(_home)
+print("index.html: header", "updated" if _home != _before else "already current")
+
 # ---------------- PROMPTS LIBRARY (AI Cookbooks) ----------------
 LIB_CSS = """
 /* Hero, as on ailab.mereka.io/prompts/: the full-bleed bg-hero.png mesh running
