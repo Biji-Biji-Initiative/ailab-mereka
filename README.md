@@ -31,6 +31,27 @@ Pushing to `main` triggers a Coolify redeploy. A weekly GitHub Action
 > use-case bodies are titles too. Departments map to prompts/use-cases via
 > ACF fields `department_prompts` / `department_use-cases`.
 
+## SEO / going to production
+
+`ailab.mereka.dev` is a preview and must never be indexed. Every page ships
+`noindex, nofollow` and `robots.txt` disallows everything.
+
+The metadata itself is written for production, so promoting it is one switch:
+
+```bash
+AILAB_SITE_URL=https://ailab.mereka.io python3 build.py
+```
+
+That flips every canonical, `og:url`, sitemap entry and the robots rules to the
+production host and drops the noindex. Build without the variable and you are
+back to a noindexed preview. Nothing else needs editing.
+
+Per page: unique title (<=60 chars) and description (<=155), Open Graph +
+Twitter card, and JSON-LD — Organization and WebSite everywhere, plus
+Service/OfferCatalog and FAQPage on the homepage (the FAQ schema is parsed out
+of the rendered page, so it cannot drift from the visible copy) and
+CollectionPage + BreadcrumbList on the library and category pages.
+
 ## Deploy
 - Coolify app UUID: `f5uw9prltijdaifgkq95wgme` (build pack: Dockerfile, port 80)
 - Domains: `ailab.mereka.dev`, `www.ailab.mereka.dev`

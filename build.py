@@ -2,6 +2,7 @@
 """Generate ailab.mereka.dev pages 1-to-1 with ailab.mereka.io:
    /prompts/ (AI Cookbooks) and /{category}/ role pages. Uses data.json + content.json + theme.py."""
 import json, os, html, sys, re, unicodedata
+import html as _html
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import theme
 
@@ -124,8 +125,40 @@ def role_page(slug, r):
   <h2>{esc(g["usecase"])}</h2>
   {prompts}
 </div></section>'''
-    page=theme.head(f'{r["title"]} — AI Labs', r["subtitle"] or r["title"],
-                    f'https://ailab.mereka.dev/{slug}/', ROLE_CSS) + theme.nav("prompts") + f'''
+    n_prompts = sum(len(g["prompts"]) for g in groups)
+    n_cases   = len([g for g in groups if g["usecase"]])
+    seo_title = f'{r["title"]} AI Prompts ({n_prompts}) | Mereka AI Lab'
+    if len(seo_title) > 60:
+        seo_title = f'{r["title"]} AI Prompts ({n_prompts})'
+    # build up in whole clauses so the description always ends on a full stop
+    _lead = (f'{n_prompts} tested AI {theme.plural(n_prompts, "prompt")} across {n_cases} '
+             f'{r["title"].lower()} {theme.plural(n_cases, "use case")}')
+    _sub  = " ".join((r.get("subtitle") or "").split()).rstrip(".")
+    seo_desc = _lead + "."
+    if _sub and len(_lead) + len(_sub) + 3 <= 155:
+        seo_desc = f'{_lead}: {_sub}.'
+    _tail = " Free to copy, no sign-up."
+    if len(seo_desc) + len(_tail) <= 155:
+        seo_desc += _tail
+    schema = [
+        {"@type": "CollectionPage",
+         "@id": theme.PROD_URL + f'/{slug}/#page',
+         "url": theme.PROD_URL + f'/{slug}/',
+         "name": f'{r["title"]} AI Prompts',
+         "description": r.get("subtitle") or r["title"],
+         "isPartOf": {"@id": theme.PROD_URL + "/#website"},
+         "about": {"@type": "Thing", "name": r["title"]},
+         "mainEntity": {"@type": "ItemList", "numberOfItems": n_prompts,
+                        "itemListElement": [
+                            {"@type": "ListItem", "position": i, "name": pr["name"]}
+                            for i, pr in enumerate(
+                                [pr for g in groups for pr in g["prompts"] if pr.get("name")][:25], 1)]}},
+        {"@type": "BreadcrumbList", "itemListElement": [
+            {"@type": "ListItem", "position": 1, "name": "Home", "item": theme.PROD_URL + "/"},
+            {"@type": "ListItem", "position": 2, "name": "AI Prompts", "item": theme.PROD_URL + "/prompts/"},
+            {"@type": "ListItem", "position": 3, "name": r["title"]}]},
+    ]
+    page=theme.head(seo_title, seo_desc, f'/{slug}/', ROLE_CSS, schema) + theme.nav("prompts") + f'''
 <section class="rhero"><div class="rhero-in">
   <a class="back" href="/prompts/"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M15.41 16.59 10.83 12l4.58-4.59L14 6l-6 6 6 6 1.41-1.41Z"/></svg>Back to Prompts</a>
   <h1>{esc(r["title"])}</h1>
@@ -220,6 +253,82 @@ if "<!--NAV-->" not in _home or "/*NAV-CSS*/" not in _home:
     raise SystemExit("index.html is missing its <!--NAV--> / /*NAV-CSS*/ markers")
 open(_home_path, "w").write(_home)
 print("index.html: header", "updated" if _home != _before else "already current")
+
+# ---- homepage SEO, built from the page's own content so it cannot drift ----
+HOME_TITLE = "HRD Corp Claimable AI Training for Teams | Mereka AI Lab"
+HOME_DESC  = ("Hands-on, HRD Corp claimable AI training for Malaysian teams. AI Foundation plus "
+              "tool deep dives in ChatGPT, Copilot, Gemini and Claude. Seats from RM 300.")
+
+# the FAQ block is the real one on the page, parsed back out so the rich-result
+# markup and the visible copy can never disagree
+_faq = []
+for _m in _re.finditer(r"<details><summary>(.*?)</summary><p>(.*?)</p></details>", _home, _re.S):
+    _q = _html.unescape(_re.sub(r"<[^>]+>", "", _m.group(1))).strip()
+    _a = _html.unescape(_re.sub(r"<[^>]+>", "", _m.group(2))).strip()
+    if _q and _a:
+        _faq.append({"@type": "Question", "name": _q,
+                     "acceptedAnswer": {"@type": "Answer", "text": _a}})
+
+_offers = [
+    ("AI Foundation (Level 1) — Half Day", "4500", "450",
+     "AI at work, ethics and compliance; prompting from fundamentals to advanced; AI agents at work."),
+    ("AI Foundation (Level 1) — Full Day", "7000", "700",
+     "Adds understanding data and AI security: threats, safety and reporting."),
+    ("AI Tool Deep Dive — Half Day", "3000", "300",
+     "Tool orientation, core workflows, advanced features and daily integration for one tool."),
+]
+HOME_SCHEMA = [
+    {"@type": "WebPage", "@id": theme.PROD_URL + "/#page", "url": theme.PROD_URL + "/",
+     "name": HOME_TITLE, "description": HOME_DESC,
+     "isPartOf": {"@id": theme.PROD_URL + "/#website"},
+     "about": {"@id": theme.PROD_URL + "/#organisation"}},
+    {"@type": "Service", "serviceType": "Corporate AI training",
+     "provider": {"@id": theme.PROD_URL + "/#organisation"},
+     "areaServed": {"@type": "Country", "name": "Malaysia"},
+     "audience": {"@type": "BusinessAudience", "name": "Corporate and government teams"},
+     "hasOfferCatalog": {"@type": "OfferCatalog", "name": "Mereka AI Lab programmes",
+        "itemListElement": [
+            {"@type": "Offer",
+             "itemOffered": {"@type": "Course", "name": _n, "description": _d,
+                             "provider": {"@id": theme.PROD_URL + "/#organisation"}},
+             "priceCurrency": "MYR", "price": _pub,
+             "priceSpecification": [
+                 {"@type": "UnitPriceSpecification", "price": _pub, "priceCurrency": "MYR",
+                  "name": "Public seat", "unitText": "per participant"},
+                 {"@type": "UnitPriceSpecification", "price": _grp, "priceCurrency": "MYR",
+                  "name": "In-house group", "unitText": "per group of up to 20"}]}
+            for _n, _grp, _pub, _d in _offers]}},
+]
+if _faq:
+    HOME_SCHEMA.append({"@type": "FAQPage", "mainEntity": _faq})
+
+_seo = theme.seo(HOME_TITLE, HOME_DESC, "/", HOME_SCHEMA)
+_home2 = _re.sub(r"<!--SEO-->.*?<!--/SEO-->", lambda _m: "<!--SEO-->" + _seo + "<!--/SEO-->",
+                 _home, flags=_re.S)
+if "<!--SEO-->" not in _home2:
+    raise SystemExit("index.html is missing its <!--SEO--> markers")
+if _home2 != _home:
+    open(_home_path, "w").write(_home2)
+print(f"index.html: SEO block written ({len(_faq)} FAQ entries)")
+
+# ---- robots.txt + sitemap.xml ----
+_paths = ["/", "/prompts/"] + sorted(f"/{sl}/" for sl in content["roles"])
+if theme.IS_PROD:
+    _robots = ("User-agent: *\nAllow: /\n\n"
+               f"Sitemap: {theme.SITE_URL}/sitemap.xml\n")
+else:
+    _robots = ("# Preview build — not for indexing.\n"
+               "User-agent: *\nDisallow: /\n")
+open(f"{REPO}/robots.txt", "w").write(_robots)
+
+_urls = "".join(
+    f"<url><loc>{theme.SITE_URL}{_p}</loc><changefreq>monthly</changefreq>"
+    f"<priority>{'1.0' if _p == '/' else ('0.9' if _p == '/prompts/' else '0.7')}</priority></url>"
+    for _p in _paths)
+open(f"{REPO}/sitemap.xml", "w").write(
+    '<?xml version="1.0" encoding="UTF-8"?>'
+    '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' + _urls + "</urlset>")
+print(f"robots.txt ({'ALLOW' if theme.IS_PROD else 'DISALLOW ALL'}) + sitemap.xml ({len(_paths)} urls)")
 
 # ---------------- PROMPTS LIBRARY (AI Cookbooks) ----------------
 LIB_CSS = """
@@ -319,7 +428,27 @@ for _t in FEATURED_TITLES:
     featcards+=(f'<a class="fcard" href="{esc(_r["h"])}">{_inner}</a>' if _r["h"]
                 else f'<div class="fcard">{_inner}</div>')
 
-lib=theme.head("AI Prompts — AI Labs","Whether you're exploring automation, customer insights, or decision intelligence, these practical guides show you how AI fits into your business.","https://ailab.mereka.dev/prompts/",LIB_CSS)+theme.nav("prompts")+f'''
+LIB_TITLE = f"AI Prompt Library — {len(rows)} Free Prompts | Mereka AI Lab"
+LIB_DESC  = theme.clamp(
+    f"{len(rows)} tested AI prompts across "
+    f"{len([c for c in data['categories'] if c['slug']!='uncategorized'])} business functions: "
+    "sales, marketing, HR, operations and more. Filter by department, copy, use today.", 155)
+LIB_SCHEMA = [
+    {"@type": "CollectionPage",
+     "@id": theme.PROD_URL + "/prompts/#page",
+     "url": theme.PROD_URL + "/prompts/",
+     "name": "AI Prompt Library",
+     "description": LIB_DESC,
+     "isPartOf": {"@id": theme.PROD_URL + "/#website"},
+     "mainEntity": {"@type": "ItemList", "numberOfItems": len(rows),
+                    "itemListElement": [{"@type": "ListItem", "position": i, "name": r["t"],
+                                         "url": theme.PROD_URL + r["h"]}
+                                        for i, r in enumerate(rows[:25], 1)]}},
+    {"@type": "BreadcrumbList", "itemListElement": [
+        {"@type": "ListItem", "position": 1, "name": "Home", "item": theme.PROD_URL + "/"},
+        {"@type": "ListItem", "position": 2, "name": "AI Prompts"}]},
+]
+lib=theme.head(LIB_TITLE, LIB_DESC, "/prompts/", LIB_CSS, LIB_SCHEMA)+theme.nav("prompts")+f'''
 <section class="chero"><div class="chero-in">
   <h1>Turn Strategy Into AI-Driven Results With AI Cookbooks</h1>
   <p>Whether you're exploring automation, customer insights, or decision intelligence, these practical guides will show you how AI fits into your business&mdash;step by step, no PhD required.</p>

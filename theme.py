@@ -1,5 +1,5 @@
 # Shared theme matching ailab.mereka.io — used by build.py
-import html
+import html, os, json
 from navdata import MENUS
 
 FONTFACE = """
@@ -110,6 +110,103 @@ def _menu(m, is_last):
             f'<div class="navpanel"><div class="{card}">{cols}{foot}</div></div></div>')
 
 
+# ---------------------------------------------------------------- SEO
+# ailab.mereka.dev is a preview of the production site and must never be
+# indexed. The metadata below is written for production, so promoting it is a
+# single switch: build with AILAB_SITE_URL=https://ailab.mereka.io and every
+# canonical, og:url, sitemap entry and the robots rules flip with it, and the
+# noindex comes off. Until then every page ships noindex,nofollow and
+# robots.txt disallows everything.
+PROD_URL = "https://ailab.mereka.io"
+SITE_URL = os.environ.get("AILAB_SITE_URL", "https://ailab.mereka.dev").rstrip("/")
+IS_PROD  = SITE_URL == PROD_URL
+
+OG_IMAGE   = "/assets/img/bg-cta.jpg"   # 1500x600 session photo
+OG_IMAGE_W = "1500"
+OG_IMAGE_H = "600"
+SITE_NAME  = "Mereka AI Lab"
+TWITTER    = "@mereka_io"
+
+ORGANISATION = {
+    "@type": "Organization",
+    "@id": PROD_URL + "/#organisation",
+    "name": "Mereka AI Lab",
+    "url": PROD_URL + "/",
+    "logo": PROD_URL + "/assets/mereka-logo.svg",
+    "description": "HRD Corp claimable, hands-on AI training for Malaysian teams.",
+    "email": "ailab@mereka.io",
+    "areaServed": "MY",
+    "parentOrganization": {"@type": "Organization", "name": "Mereka", "url": "https://mereka.io/"},
+    "sameAs": [
+        "https://www.linkedin.com/company/mereka",
+        "https://www.facebook.com/mereka.io",
+        "https://www.instagram.com/mereka.io/",
+        "https://www.tiktok.com/@mereka.io",
+        "https://www.youtube.com/channel/UCGJ5RzyL0oib2ONP2gPvOYA",
+    ],
+}
+
+
+def _ld(graph):
+    """One @graph block per page; Organization and WebSite are always present."""
+    base = [ORGANISATION, {
+        "@type": "WebSite",
+        "@id": PROD_URL + "/#website",
+        "url": PROD_URL + "/",
+        "name": SITE_NAME,
+        "publisher": {"@id": PROD_URL + "/#organisation"},
+        "inLanguage": "en-MY",
+    }]
+    doc = {"@context": "https://schema.org", "@graph": base + list(graph or [])}
+    return ('<script type="application/ld+json">'
+            + json.dumps(doc, ensure_ascii=False, separators=(",", ":"))
+            + "</script>")
+
+
+def clamp(text, limit):
+    """Trim to a word boundary so a description is not cut mid-word in a SERP."""
+    text = " ".join(text.split())
+    if len(text) <= limit:
+        return text
+    cut = text[:limit].rsplit(" ", 1)[0].rstrip(" ,;:\u2014-")
+    return cut + "\u2026"
+
+
+def plural(n, one, many=None):
+    return one if n == 1 else (many or one + "s")
+
+
+def seo(title, desc, path, schema=None, og_type="website"):
+    """Title/description/canonical/OG/Twitter/robots + JSON-LD for one page."""
+    url = SITE_URL + path
+    img = SITE_URL + OG_IMAGE
+    e = html.escape
+    robots = ('<meta name="robots" content="index, follow, max-image-preview:large, '
+              'max-snippet:-1, max-video-preview:-1">') if IS_PROD else \
+             '<meta name="robots" content="noindex, nofollow">'
+    return (
+        f'<title>{e(title)}</title>\n'
+        f'<meta name="description" content="{e(desc)}">\n'
+        f'{robots}\n'
+        f'<link rel="canonical" href="{url}">\n'
+        f'<meta property="og:type" content="{og_type}">'
+        f'<meta property="og:site_name" content="{SITE_NAME}">'
+        f'<meta property="og:locale" content="en_MY">'
+        f'<meta property="og:title" content="{e(title)}">'
+        f'<meta property="og:description" content="{e(desc)}">'
+        f'<meta property="og:url" content="{url}">'
+        f'<meta property="og:image" content="{img}">'
+        f'<meta property="og:image:width" content="{OG_IMAGE_W}">'
+        f'<meta property="og:image:height" content="{OG_IMAGE_H}">\n'
+        f'<meta name="twitter:card" content="summary_large_image">'
+        f'<meta name="twitter:site" content="{TWITTER}">'
+        f'<meta name="twitter:title" content="{e(title)}">'
+        f'<meta name="twitter:description" content="{e(desc)}">'
+        f'<meta name="twitter:image" content="{img}">\n'
+        + _ld(schema)
+    )
+
+
 def nav(current=""):
     """The site header. build.py injects this exact string into index.html too,
     so the homepage and the generated pages cannot drift apart. The five
@@ -166,12 +263,11 @@ def footer():
   </div>
 </div></footer>"""
 
-def head(title, desc, canonical, extra_css=""):
-    return f"""<!doctype html><html lang="en"><head>
+def head(title, desc, path, extra_css="", schema=None):
+    """`path` is site-root-relative ("/prompts/"); seo() turns it into the
+    canonical and og:url for whichever host this build targets."""
+    return f"""<!doctype html><html lang="en-MY"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<title>{html.escape(title)}</title>
-<meta name="description" content="{html.escape(desc)}">
-<link rel="canonical" href="{canonical}">
-<meta property="og:title" content="{html.escape(title)}"><meta property="og:description" content="{html.escape(desc)}"><meta property="og:url" content="{canonical}">
+{seo(title, desc, path, schema)}
 <link rel="icon" href="/assets/favicon.png">
 <style>{CSS}{extra_css}</style></head><body id="top">"""
