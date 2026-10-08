@@ -368,7 +368,7 @@ footer a:hover{color:var(--teal)}
   padding:30px 32px;margin-top:30px;display:flex;gap:22px;align-items:center;justify-content:space-between;flex-wrap:wrap}
 .bridge p{margin:0;max-width:60ch;color:rgba(255,255,255,.9)}
 .bridge .btn{padding:13px 26px}
-.toolgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:30px}
+.toolgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:30px;align-items:start}
 .tool{background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:26px 24px;transition:transform .18s var(--ease),box-shadow .18s}
 .tool:hover{transform:translateY(-3px);box-shadow:var(--shadow-sm)}
 .tool .tmark{width:44px;height:44px;border-radius:12px;background:var(--grey);display:flex;align-items:center;justify-content:center;
@@ -565,6 +565,29 @@ footer a:hover{color:var(--teal)}
 .ct .hint{display:block;margin-top:4px;font-size:.72rem;color:rgba(255,255,255,.55);letter-spacing:.04em}
 @media(hover:none){.ct .hint{display:none}}
 
+
+/* ===== tool deep-dive detail panels (deck appendix A1-A5) ===== */
+.tool{padding:0;overflow:hidden}
+.tool>summary{list-style:none;cursor:pointer;padding:26px 24px;display:block}
+.tool>summary::-webkit-details-marker{display:none}
+.tool>summary::after{content:'';position:absolute;right:24px;top:34px;width:9px;height:9px;
+  border-right:2px solid var(--muted);border-bottom:2px solid var(--muted);
+  transform:rotate(45deg);transition:transform .22s var(--ease),border-color .2s}
+.tool{position:relative}
+.tool[open]>summary::after{transform:rotate(-135deg);border-color:var(--anchor)}
+.tool>summary:hover::after{border-color:var(--anchor)}
+.tool h3{margin-bottom:8px;padding-right:22px}
+.tool .outcomes-head{font-size:.78rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--teal);padding:0 24px;margin:4px 0 10px}
+.tool ul.will{list-style:none;margin:0;padding:0 24px 26px}
+.tool ul.will li{position:relative;padding-left:24px;margin:11px 0;color:var(--muted);
+  font-size:.93rem;line-height:1.55}
+.tool ul.will li::before{content:'';position:absolute;left:0;top:8px;width:12px;height:12px;
+  border-radius:50%;background:var(--teal);box-shadow:inset 0 0 0 3px #fff}
+.tool--plain{padding:26px 24px}
+@media(max-width:620px){.tool>summary{padding:22px 20px}.tool ul.will{padding:0 20px 22px}
+  .tool .outcomes-head{padding:0 20px}.tool--plain{padding:22px 20px}}
+
 /*NAV-CSS*/
 /* ---- mega-menu (hover panels), 1-to-1 with ailab.mereka.io ---- */
 .navitem{position:relative;display:inline-flex;align-items:center}
@@ -755,9 +778,7 @@ footer a:hover{color:var(--teal)}
     </div>
     <p class="sched-count" id="schedcount"></p>
     <div id="schedlist">
-      <div class="sched-row" data-k="foundation"><div><b>AI Foundation (Level 1) &mdash; Half Day</b><span>Public cohort &middot; RM 450 / pax &middot; min 12 pax</span></div><span class="pill">Dates on request</span></div>
-      <div class="sched-row" data-k="foundation"><div><b>AI Foundation (Level 1) &mdash; Full Day</b><span>Public cohort &middot; RM 700 / pax &middot; min 12 pax</span></div><span class="pill">Dates on request</span></div>
-      <div class="sched-row" data-k="tool"><div><b>AI Tool Deep Dive &mdash; Half Day</b><span>Public cohort &middot; RM 300 / pax &middot; min 12 pax</span></div><span class="pill">Dates on request</span></div>
+      <div class="sched-row" data-k="foundation"><div><b>AI Foundation (Level 1) &mdash; Half Day</b><span>Public cohort &middot; RM 450 / pax &middot; min 12 pax</span></div><span class="pill">Dates on request</span></div><div class="sched-row" data-k="foundation"><div><b>AI Foundation (Level 1) &mdash; Full Day</b><span>Public cohort &middot; RM 700 / pax &middot; min 12 pax</span></div><span class="pill">Dates on request</span></div><div class="sched-row" data-k="tool"><div><b>Tool Deep Dive: ChatGPT</b><span>Public cohort &middot; RM 300 / pax &middot; min 12 pax</span></div><span class="pill">Dates on request</span></div><div class="sched-row" data-k="tool"><div><b>Tool Deep Dive: Microsoft Copilot</b><span>Public cohort &middot; RM 300 / pax &middot; min 12 pax</span></div><span class="pill">Dates on request</span></div><div class="sched-row" data-k="tool"><div><b>Tool Deep Dive: Claude</b><span>Public cohort &middot; RM 300 / pax &middot; min 12 pax</span></div><span class="pill">Dates on request</span></div><div class="sched-row" data-k="tool"><div><b>Tool Deep Dive: Gemini</b><span>Public cohort &middot; RM 300 / pax &middot; min 12 pax</span></div><span class="pill">Dates on request</span></div><div class="sched-row" data-k="tool"><div><b>Tool Deep Dive: Canva AI</b><span>Public cohort &middot; RM 300 / pax &middot; min 12 pax</span></div><span class="pill">Dates on request</span></div>
     </div>
     <div class="sched-empty" style="margin-top:16px">
       <b>Upcoming public dates are released monthly.</b>
@@ -855,12 +876,7 @@ footer a:hover{color:var(--teal)}
   <div class="shell">
     <p class="stat-cap" style="margin:0 0 6px">Modules, standard across all tools: Tool Orientation &middot; Core Workflows &middot; Advanced Features &middot; Daily Integration</p>
     <div class="toolgrid">
-      <div class="tool"><div class="tmark"><img src="/assets/img/tool-gemini.svg" alt="Gemini"></div><h3>Gemini</h3><p>Draft, analyse, and automate inside Gmail, Docs, and Sheets.</p></div>
-      <div class="tool"><div class="tmark"><img src="/assets/img/tool-claude.svg" alt="Claude"></div><h3>Claude</h3><p>Deep analysis, long documents, and structured reasoning.</p></div>
-      <div class="tool"><div class="tmark"><img src="/assets/img/tool-copilot.svg" alt="Microsoft Copilot"></div><h3>Copilot</h3><p>Turn Word, Excel, PowerPoint, and Teams into AI-powered workflows.</p></div>
-      <div class="tool"><div class="tmark"><img src="/assets/img/tool-chatgpt.svg" alt="ChatGPT"></div><h3>ChatGPT</h3><p>The Swiss army knife: code, images, search, and custom GPTs.</p></div>
-      <div class="tool"><div class="tmark"><img src="/assets/img/tool-canva.svg" alt="Canva"></div><h3>Canva AI</h3><p>On-brand designs, batch assets, and AI image editing without a designer.</p></div>
-      <div class="tool"><div class="tmark mono">&#9638;</div><h3>Custom</h3><p>Your team uses more than one? We&rsquo;ll build a session around the tools that matter most. <a href="#contact" style="color:var(--teal);font-weight:600">Talk to us</a></p></div>
+      <details class="tool"><summary><div class="tmark"><img src="/assets/img/tool-gemini.svg" alt="Gemini"></div><h3>Gemini</h3><p>Google&rsquo;s multimodal AI across Search, Workspace, and standalone chat.</p></summary><p class="outcomes-head">Participants will</p><ul class="will"><li>Choose when to use the Gemini app for open-ended tasks, Gemini inside Workspace for in-context edits, and NotebookLM for closed-source research.</li><li>Map Gemini features to their current Google Workspace plan so they know what is free, what needs an add-on, and what requires a paid subscription.</li><li>Draft emails, reports, and meeting summaries directly inside Gmail and Docs without copying content into a separate AI tool.</li><li>Analyse spreadsheet data in natural language by asking Sheets to generate formulas, pivot data, and create charts from a plain-English question.</li><li>Upload documents into NotebookLM and get cited answers grounded only in those sources, then generate Audio Overviews to brief stakeholders on the go.</li></ul></details><details class="tool"><summary><div class="tmark"><img src="/assets/img/tool-claude.svg" alt="Claude"></div><h3>Claude</h3><p>Reasoning-first AI for analysis, writing, and complex tasks.</p></summary><p class="outcomes-head">Participants will</p><ul class="will"><li>Pick the right Claude interface and model tier for the task at hand, using Chat for conversations and Cowork for file and desktop tasks.</li><li>Upload a long report, contract, or policy document and extract structured findings they would trust to forward to leadership.</li><li>Break complex requests into multi-step prompt chains that produce reliable, repeatable output instead of hoping one prompt gets it right.</li><li>Generate polished documents, spreadsheets, and visuals inside the conversation using Artifacts, without switching to another application.</li><li>Set up a Project with persistent instructions and context that carries across sessions so they never repeat the same setup twice.</li></ul></details><details class="tool"><summary><div class="tmark"><img src="/assets/img/tool-copilot.svg" alt="Copilot"></div><h3>Copilot</h3><p>AI assistant embedded across Microsoft 365.</p></summary><p class="outcomes-head">Participants will</p><ul class="will"><li>Map Copilot capabilities to their Microsoft 365 licence tier so they know exactly which features are available and which require the Copilot add-on.</li><li>Write app-specific prompts that cut revision cycles, recognising that a good Word prompt looks nothing like a good Excel prompt.</li><li>Explore Copilot Pages for collaborative AI documents and Copilot Studio for building custom agents that serve team-wide workflows.</li><li>Use Copilot across Word, Excel, PowerPoint, Outlook, and Teams to draft, analyse, generate decks, triage email, and recap meetings without leaving the app.</li><li>Ground Copilot responses in their organisation&rsquo;s SharePoint and OneDrive data so answers reference internal documents, not just the internet.</li></ul></details><details class="tool"><summary><div class="tmark"><img src="/assets/img/tool-chatgpt.svg" alt="ChatGPT"></div><h3>ChatGPT</h3><p>The most widely adopted AI assistant.</p></summary><p class="outcomes-head">Participants will</p><ul class="will"><li>Select the right model and mode for different task types, knowing when to use search, canvas, image generation, or reasoning mode.</li><li>Upload a spreadsheet and get charts, pivot tables, and trend analysis using Code Interpreter without writing any code.</li><li>Build a custom GPT that standardises a repeated team output such as weekly reports, client briefs, or onboarding documents.</li><li>Draft and revise content iteratively in Canvas, using AI as an inline editing partner rather than a black box that outputs final text.</li><li>Generate and edit images for presentations, social posts, and internal communications directly inside ChatGPT.</li></ul></details><details class="tool"><summary><div class="tmark"><img src="/assets/img/tool-canva.svg" alt="Canva AI"></div><h3>Canva AI</h3><p>AI-powered design for presentations, social media, and documents.</p></summary><p class="outcomes-head">Participants will</p><ul class="will"><li>Use Magic Design to generate on-brand layouts from a brief in under two minutes, covering presentations, social posts, and documents.</li><li>Set up and enforce Brand Kit so every team member&rsquo;s output automatically uses the correct colours, fonts, and logos.</li><li>Apply batch design techniques to produce campaign assets for multiple channels and sizes in one sitting.</li><li>Generate and edit images with text-to-image, background removal, and Magic Eraser without needing Photoshop or a designer.</li><li>Repurpose a single piece of content across multiple formats and channels without starting a new design from scratch each time.</li></ul></details><div class="tool tool--plain"><div class="tmark mono">&#9638;</div><h3>Custom</h3><p>Your team uses more than one? We&rsquo;ll build a session around the tools that matter most. <a href="#contact" style="color:var(--teal);font-weight:600">Talk to us</a></p></div>
     </div>
     <p class="footnote">Each deep dive includes tool-specific prompts, live practice on real tasks, and a take-home prompt library.</p>
   </div>
