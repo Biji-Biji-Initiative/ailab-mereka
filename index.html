@@ -1446,13 +1446,15 @@ function select(i){[...tabsEl.children].forEach((t,j)=>t.setAttribute('aria-sele
      rewrites the WhatsApp prefill and the email subject before the scroll
      lands, so the visitor opens a chat that already says what they came for. */
   var WA_NUMBER  = '601130116472';
-  var WA_DEFAULT = 'Hi Mereka AI Lab, I\u2019d like to know more about your AI training programmes.';
+  var WA_DEFAULT = 'Hi Mereka AI Lab,\n\nI\u2019d like to know more about your AI training programmes.';
   var waLink     = document.getElementById('waLink');
   var mailLink   = document.getElementById('mailLink');
   var discovery  = document.getElementById('discoveryBtn');
 
   function setIntent(line, label){
-    var msg = 'Hi Mereka AI Lab, ' + line;
+    /* a blank line, not a comma: half the CTA lines start with "Please" or
+       "Could", and "Hi Mereka AI Lab, Please send..." reads like a typo */
+    var msg = 'Hi Mereka AI Lab,\n\n' + line;
     if (waLink) waLink.href = 'https://wa.me/' + WA_NUMBER + '?text=' + encodeURIComponent(msg);
     var subject = 'Mereka AI Lab \u2014 ' + label;
     var mailto  = 'mailto:ailab@mereka.io?subject=' + encodeURIComponent(subject)
