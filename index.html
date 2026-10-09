@@ -553,14 +553,8 @@ footer a:hover{color:var(--teal)}
 
 /* contact details copy to the clipboard on tap */
 .ct{position:relative}
-.ct.copyable{cursor:pointer}
-.ct.copyable:hover{background:rgba(255,255,255,.18);border-color:rgba(255,255,255,.35)}
-.ct .copied{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
-  background:var(--teal);color:#fff;border-radius:var(--radius-sm);font-weight:600;font-size:.92rem;
-  opacity:0;pointer-events:none;transition:opacity .18s var(--ease)}
-.ct.done .copied{opacity:1}
-.ct .hint{display:block;margin-top:4px;font-size:.72rem;color:rgba(255,255,255,.55);letter-spacing:.04em}
-@media(hover:none){.ct .hint{display:none}}
+.ct--link{cursor:pointer}
+.ct--link:hover{background:rgba(255,255,255,.18);border-color:rgba(255,255,255,.35)}
 
 
 /* ===== tool deep-dive detail panels (deck appendix A1-A5) ===== */
@@ -1117,7 +1111,7 @@ footer a:hover{color:var(--teal)}
         <div class="ct"><span>WhatsApp &mdash; Mereka AI Lab</span><a id="waLink" href="https://wa.me/601130116472" target="_blank" rel="noopener">+60 11-3011 6472</a></div>
       </div>
     </div>
-    <a class="btn" id="discoveryBtn" href="mailto:ailab@mereka.io?subject=Discovery%20Call%20%E2%80%94%20Mereka%20AI%20Lab" style="background:#fff;color:var(--anchor);padding:16px 34px">Book a Free Discovery Call</a>
+    <a class="btn" id="discoveryBtn" href="https://wa.me/601130116472" target="_blank" rel="noopener" style="background:#fff;color:var(--anchor);padding:16px 34px">Book a Free Discovery Call</a>
     <img class="badge-img" src="/assets/img/logo-hrd.png" alt="HRD Corp Claimable">
   </div>
   <div class="foot2">
@@ -1367,53 +1361,17 @@ function select(i){[...tabsEl.children].forEach((t,j)=>t.setAttribute('aria-sele
     markSteps();
   }
 
-  /* 4. contact details copy on click — the number is still a usable link */
-  function copyText(text){
-    /* navigator.clipboard rejects without focus/permission, so fall back to a
-       hidden textarea rather than leaving a click with no feedback at all */
-    if (navigator.clipboard && navigator.clipboard.writeText) {
-      return navigator.clipboard.writeText(text).catch(legacy);
-    }
-    return legacy();
-    function legacy(){
-      return new Promise(function(resolve, reject){
-        try {
-          var ta = document.createElement('textarea');
-          ta.value = text;
-          ta.setAttribute('readonly','');
-          ta.style.cssText = 'position:fixed;top:-9999px;opacity:0';
-          document.body.appendChild(ta);
-          ta.select();
-          var ok = document.execCommand('copy');
-          document.body.removeChild(ta);
-          ok ? resolve() : reject();
-        } catch (err) { reject(err); }
-      });
-    }
-  }
+  /* 4. the whole contact card is a link - clicking anywhere opens the mail
+     client or WhatsApp with the message already written. It used to copy the
+     address to the clipboard, which left the visitor to start the message
+     themselves. */
   document.querySelectorAll('.ct').forEach(function(card){
     var a = card.querySelector('a');
     if (!a) return;
-    var value = a.textContent.trim();
-    card.classList.add('copyable');
-    var badge = document.createElement('span');
-    badge.className = 'copied';
-    badge.textContent = 'Copied';
-    card.appendChild(badge);
-    var hint = document.createElement('span');
-    hint.className = 'hint';
-    hint.textContent = 'Click to copy';
-    a.insertAdjacentElement('afterend', hint);
+    card.classList.add('ct--link');
     card.addEventListener('click', function(e){
-      /* let a real tap on the link still open mail/WhatsApp */
-      if (e.target.closest('a')) return;
-      copyText(value).then(function(){
-        card.classList.add('done');
-        setTimeout(function(){ card.classList.remove('done'); }, 1100);
-      }).catch(function(){
-        /* copying genuinely unavailable — follow the link instead of doing nothing */
-        a.click();
-      });
+      if (e.target.closest('a')) return;   /* the link itself already handles it */
+      a.click();
     });
   });
 
@@ -1460,10 +1418,14 @@ function select(i){[...tabsEl.children].forEach((t,j)=>t.setAttribute('aria-sele
     var mailto  = 'mailto:ailab@mereka.io?subject=' + encodeURIComponent(subject)
                 + '&body=' + encodeURIComponent(msg);
     if (mailLink)  mailLink.href  = mailto;
-    if (discovery) discovery.href = mailto;
+    /* the band's own button is the WhatsApp route, so it carries the same line */
+    if (discovery) discovery.href = 'https://wa.me/' + WA_NUMBER + '?text=' + encodeURIComponent(msg);
   }
   /* arriving without clicking a CTA (direct link, footer scroll) still gets a sane prefill */
-  if (waLink) waLink.href = 'https://wa.me/' + WA_NUMBER + '?text=' + encodeURIComponent(WA_DEFAULT);
+  if (waLink)    waLink.href    = 'https://wa.me/' + WA_NUMBER + '?text=' + encodeURIComponent(WA_DEFAULT);
+  if (discovery) discovery.href = 'https://wa.me/' + WA_NUMBER + '?text=' + encodeURIComponent(WA_DEFAULT);
+  if (mailLink)  mailLink.href  = 'mailto:ailab@mereka.io?subject=' + encodeURIComponent('Mereka AI Lab enquiry')
+                                + '&body=' + encodeURIComponent(WA_DEFAULT);
 
   document.querySelectorAll('a[href^="#contact"][data-wa]').forEach(function(cta){
     cta.addEventListener('click', function(){
