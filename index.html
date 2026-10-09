@@ -520,6 +520,9 @@ footer a:hover{color:var(--teal)}
 .sched-row b{display:block;font-family:'Poppins Font';font-size:1rem;color:var(--anchor)}
 .sched-row span{color:var(--muted);font-size:.9rem}
 .sched-row .pill{background:var(--grey);border-radius:999px;padding:6px 14px;font-size:.84rem;font-weight:600;color:var(--anchor);white-space:nowrap}
+/* the pill is an <a> to the mereka.io listing now, not a static label */
+.sched-row a.pill--book{text-decoration:none;background:var(--anchor);color:#fff;padding:9px 18px;transition:background .18s var(--ease),transform .18s var(--ease)}
+.sched-row a.pill--book:hover,.sched-row a.pill--book:focus-visible{background:var(--teal);transform:translateY(-1px)}
 .sched-count{color:var(--muted);font-size:.9rem;margin:0 0 14px;text-align:center}
 @media(max-width:620px){.sched-row{flex-direction:column;align-items:flex-start;gap:8px}}
 
@@ -772,7 +775,7 @@ footer a:hover{color:var(--teal)}
     </div>
     <p class="sched-count" id="schedcount"></p>
     <div id="schedlist">
-      <div class="sched-row" data-k="foundation"><div><b>AI Foundation (Level 1) &mdash; Half Day</b><span>Public cohort &middot; RM 450 / pax &middot; min 12 pax</span></div><span class="pill">Dates on request</span></div><div class="sched-row" data-k="foundation"><div><b>AI Foundation (Level 1) &mdash; Full Day</b><span>Public cohort &middot; RM 700 / pax &middot; min 12 pax</span></div><span class="pill">Dates on request</span></div><div class="sched-row" data-k="tool"><div><b>Tool Deep Dive: ChatGPT</b><span>Public cohort &middot; RM 300 / pax &middot; min 12 pax</span></div><span class="pill">Dates on request</span></div><div class="sched-row" data-k="tool"><div><b>Tool Deep Dive: Microsoft Copilot</b><span>Public cohort &middot; RM 300 / pax &middot; min 12 pax</span></div><span class="pill">Dates on request</span></div><div class="sched-row" data-k="tool"><div><b>Tool Deep Dive: Claude</b><span>Public cohort &middot; RM 300 / pax &middot; min 12 pax</span></div><span class="pill">Dates on request</span></div><div class="sched-row" data-k="tool"><div><b>Tool Deep Dive: Gemini</b><span>Public cohort &middot; RM 300 / pax &middot; min 12 pax</span></div><span class="pill">Dates on request</span></div><div class="sched-row" data-k="tool"><div><b>Tool Deep Dive: Canva AI</b><span>Public cohort &middot; RM 300 / pax &middot; min 12 pax</span></div><span class="pill">Dates on request</span></div>
+      <div class="sched-row" data-k="foundation"><div><b>AI Foundation (Level 1) &mdash; Half Day</b><span>Public cohort &middot; RM 450 / pax &middot; min 12 pax &middot; 14 &amp; 28 Oct, 11 Nov 2026</span></div><a class="pill pill--book" href="https://mereka.io/experience/ai-foundation-level-1-half-day-public-cohort" target="_blank" rel="noopener">View dates &amp; book</a></div><div class="sched-row" data-k="foundation"><div><b>AI Foundation (Level 1) &mdash; Full Day</b><span>Public cohort &middot; RM 700 / pax &middot; min 12 pax &middot; 20 Oct &amp; 3 Nov 2026</span></div><a class="pill pill--book" href="https://mereka.io/experience/ai-foundation-level-1-full-day-public-cohort" target="_blank" rel="noopener">View dates &amp; book</a></div><div class="sched-row" data-k="tool"><div><b>Tool Deep Dive: ChatGPT</b><span>Public cohort &middot; RM 300 / pax &middot; min 12 pax &middot; 12, 21 &amp; 29 Oct, 6 Nov 2026</span></div><a class="pill pill--book" href="https://mereka.io/experience/ai-tool-deep-dive-chatgpt-half-day-public-cohort" target="_blank" rel="noopener">View dates &amp; book</a></div><div class="sched-row" data-k="tool"><div><b>Tool Deep Dive: Microsoft Copilot</b><span>Public cohort &middot; RM 300 / pax &middot; min 12 pax &middot; 13, 22 &amp; 30 Oct, 10 Nov 2026</span></div><a class="pill pill--book" href="https://mereka.io/experience/ai-tool-deep-dive-microsoft-copilot-half-day-public-cohort" target="_blank" rel="noopener">View dates &amp; book</a></div><div class="sched-row" data-k="tool"><div><b>Tool Deep Dive: Claude</b><span>Public cohort &middot; RM 300 / pax &middot; min 12 pax &middot; 15 &amp; 23 Oct, 2 &amp; 12 Nov 2026</span></div><a class="pill pill--book" href="https://mereka.io/experience/ai-tool-deep-dive-claude-half-day-public-cohort" target="_blank" rel="noopener">View dates &amp; book</a></div><div class="sched-row" data-k="tool"><div><b>Tool Deep Dive: Gemini</b><span>Public cohort &middot; RM 300 / pax &middot; min 12 pax &middot; 16 &amp; 26 Oct, 4 Nov 2026</span></div><a class="pill pill--book" href="https://mereka.io/experience/ai-tool-deep-dive-gemini-half-day-public-cohort" target="_blank" rel="noopener">View dates &amp; book</a></div><div class="sched-row" data-k="tool"><div><b>Tool Deep Dive: Canva AI</b><span>Public cohort &middot; RM 300 / pax &middot; min 12 pax &middot; 19 &amp; 27 Oct, 5 Nov 2026</span></div><a class="pill pill--book" href="https://mereka.io/experience/ai-tool-deep-dive-canva-ai-half-day-public-cohort" target="_blank" rel="noopener">View dates &amp; book</a></div>
     </div>
     <div class="callout">
       <p><b>Need internal approval from HR or Finance?</b> We&rsquo;ll send the Public Workshop Calendar &amp; HRD Corp Guide &mdash; learning outcomes plus pre-filled grant application codes.</p>
@@ -823,7 +826,7 @@ footer a:hover{color:var(--teal)}
         </ul>
         <div class="prow"><span>In-House Team</span><b>RM 4,500 / group</b></div>
         <div class="prow"><span>Public Seat</span><b>RM 450 / pax</b></div>
-        <div class="pcta"><a class="btn btn-primary" href="#contact">Request In-House</a><a class="btn btn-ghost" href="#cohorts">Book Public Seat</a></div>
+        <div class="pcta"><a class="btn btn-primary" href="#contact">Request In-House</a><a class="btn btn-ghost" href="https://mereka.io/experience/ai-foundation-level-1-half-day-public-cohort" target="_blank" rel="noopener">Book Public Seat</a></div>
       </div>
       <div class="pc">
         <h3>Full Day</h3>
@@ -836,7 +839,7 @@ footer a:hover{color:var(--teal)}
         </ul>
         <div class="prow"><span>In-House Team</span><b>RM 7,000 / group</b></div>
         <div class="prow"><span>Public Seat</span><b>RM 700 / pax</b></div>
-        <div class="pcta"><a class="btn btn-primary" href="#contact">Request In-House</a><a class="btn btn-ghost" href="#cohorts">Book Public Seat</a></div>
+        <div class="pcta"><a class="btn btn-primary" href="#contact">Request In-House</a><a class="btn btn-ghost" href="https://mereka.io/experience/ai-foundation-level-1-full-day-public-cohort" target="_blank" rel="noopener">Book Public Seat</a></div>
       </div>
     </div>
     <p class="footnote">Excludes 8% SST. 4% HRDC fee added to invoice. In-house includes up to 20 participants; per-person cost applies for additional participants. Public classes require a minimum 12 pax cohort.</p>
