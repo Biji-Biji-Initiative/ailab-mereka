@@ -46,7 +46,7 @@ The site is decoupled from WordPress, but stays in sync with it on demand.
 python3 sync.py          # pull latest content from ailab.mereka.io and regenerate
 git add -A && git commit -m "sync content from ailab.mereka.io" && git push
 ```
-Pushing to `main` does **not** redeploy — trigger it from the Coolify app (uuid below), then byte-compare the live pages against the repo. A weekly GitHub Action
+Pushing to `main` redeploys via the GitHub webhook below. Always byte-compare the live pages against the repo afterwards — a green Coolify job is not proof the site changed. A weekly GitHub Action
 (`.github/workflows/sync.yml`) can run this automatically.
 
 > Prompt text lives in each item's title (the WP CMS stores it there);
@@ -76,5 +76,9 @@ CollectionPage + BreadcrumbList on the library and category pages.
 
 ## Deploy
 - Coolify app UUID: `f5uw9prltijdaifgkq95wgme` (build pack: Dockerfile, port 80)
+- Auto-deploy: repo webhook -> `https://app.coolify.io/webhooks/source/github/events/manual`
+  (hook id 698967046, push events). The Coolify source is **Public GitHub**, not a GitHub
+  App, so Coolify cannot create this hook itself — that is why pushes did nothing until
+  2026-10-16. Its shared secret is on the app's Webhooks tab; rotate it in both places.
 - Domains: `ailab.mereka.dev`, `www.ailab.mereka.dev`
 - DNS: Cloudflare A records → `194.233.71.200` (DNS-only / grey cloud)
