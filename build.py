@@ -334,9 +334,7 @@ _CSS_HREF, _JS_SRC = _stamp("/assets/ailab.css"), _stamp("/assets/ailab.js")
 
 for _pg in HAND_PAGES:
     _f = _pg["file"]
-    # each hand-written page carries its own #contact band, so the nav CTA
-    # scrolls down instead of bouncing the visitor back to the homepage
-    _inject(_f, "NAV", theme.nav(contact="#contact"))
+    _inject(_f, "NAV", theme.nav())
     _inject(_f, "FOOT", _FOOTER)
     # the FAQ rich result is parsed back out of the page's own markup, so the
     # structured data and the visible copy can never disagree

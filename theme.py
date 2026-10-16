@@ -286,7 +286,14 @@ NAV_SCRIPT = """
 """
 
 
-def nav(current="", contact="/#contact"):
+# The header CTA opens WhatsApp with the AI Lab message already written.
+# It used to scroll to #contact, which looked like a dead link in review:
+# the URL changed to #contact and, from the footer, nothing moved.
+CONTACT_WA = ("https://wa.me/601130116472?text=Hi%20Mereka%20AI%20Lab%2C%0A"
+              "%0AI%E2%80%99d%20like%20to%20know%20more%20about%20your%20AI%20training%20programmes.")
+
+
+def nav(current="", contact=CONTACT_WA):
     """The site header. build.py injects this exact string into index.html too,
     so the homepage and the generated pages cannot drift apart. The five
     mega-menus come from navdata.py, scraped from ailab.mereka.io's own header
@@ -299,7 +306,7 @@ def nav(current="", contact="/#contact"):
     <button class="burger" aria-label="Menu" onclick="document.getElementById('nav').classList.toggle('open')"><span></span><span></span><span></span></button>
     <nav class="nav-links" id="nav">
       <div class="nav-menus">{menus}</div>
-      <a class="btn btn-dark nav-cta" href="{contact}">Contact Us</a>
+      <a class="btn btn-dark nav-cta" href="{contact}" target="_blank" rel="noopener">Contact Us</a>
     </nav>
   </div>
 </header>""" + NAV_SCRIPT
