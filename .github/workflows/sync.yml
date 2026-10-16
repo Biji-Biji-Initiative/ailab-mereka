@@ -5,7 +5,7 @@ on:
   workflow_dispatch: {}
 jobs:
   sync:
-    runs-on: ubuntu-latest
+    runs-on: mereka-k8s-light
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5

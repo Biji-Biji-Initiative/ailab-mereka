@@ -16,7 +16,8 @@ concurrency:
 
 jobs:
   deploy:
-    runs-on: ubuntu-latest
+    # This org runs self-hosted ARC runners; GitHub-hosted jobs queue forever here.
+    runs-on: mereka-k8s-light
     steps:
       - name: Trigger Coolify deployment
         env:
