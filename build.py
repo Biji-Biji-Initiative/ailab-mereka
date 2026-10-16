@@ -366,6 +366,30 @@ for _pg in HAND_PAGES:
         open(_f, "w").write(_t2)
     print(f"{_pg['path']}: header, footer and SEO written ({len(_faq)} FAQ entries)")
 
+# ---- the Prompts section's links must point at pages that exist ----
+# assets/ailab.js hand-carries a department card link and a #prompt-<id> anchor
+# for every power prompt. Those ids come from data.json, so a re-sync can retire
+# one and the card would quietly link to nowhere. Check them on every build.
+_deptjs = open(f"{REPO}/assets/ailab.js").read()
+_dept_block = _re.search(r"const DEPTS = \[(.*?)\n\];", _deptjs, _re.S)
+if not _dept_block:
+    raise SystemExit("assets/ailab.js: DEPTS array not found")
+_bad = []
+for _href in _re.findall(r'href:"(/[a-z-]+/)"', _dept_block.group(1)):
+    if not os.path.exists(f"{REPO}{_href}index.html"):
+        _bad.append(f"{_href} (no such page)")
+for _target in _re.findall(r'"(/[a-z-]+/#prompt-\d+)"', _dept_block.group(1)):
+    _page, _frag = _target.split("#")
+    if not os.path.exists(f"{REPO}{_page}index.html"):
+        _bad.append(f"{_target} (no such page)")
+    elif f'id="{_frag}"' not in open(f"{REPO}{_page}index.html").read():
+        _bad.append(f"{_target} (anchor missing on the page)")
+if _bad:
+    raise SystemExit("Prompts section links are broken:\n  " + "\n  ".join(_bad))
+_n_anchor = len(_re.findall(r'"/[a-z-]+/#prompt-\d+"', _dept_block.group(1)))
+_n_card   = len(_re.findall(r'href:"/[a-z-]+/"', _dept_block.group(1)))
+print(f"prompts section: {_n_anchor} prompt anchors + {_n_card} card links verified")
+
 # ---- robots.txt + sitemap.xml ----
 _paths = ["/", "/corporate-training/", "/public-training/", "/prompts/"] + sorted(f"/{sl}/" for sl in content["roles"])
 if theme.IS_PROD:

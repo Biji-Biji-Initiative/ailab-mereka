@@ -1,30 +1,30 @@
 /* Department tabs — data pulled from ailab.mereka.io (5 departments). */
 const DEPTS = [
-  { name:"People & Culture", slug:"people-culture", img:"/assets/img/department-people-culture.jpg",
+  { name:"People & Culture", slug:"people-culture", href:"/human-resources/", img:"/assets/img/department-people-culture.jpg",
     desc:"AI-powered hiring, engagement, and people operations—smarter, faster, more human.",
     roles:"Head of People, Chief of Staff, HR Managers, Talent Acquisition Managers, HR Executives",
     usecases:[["Communicate key findings & draft follow-up surveys","/human-resources"],["Communicate with candidates","/human-resources"],["Assess employee satisfaction","/executive-leadership"],["Board meetings","/executive-leadership"],["Annual planning offsites","/administrative-operations"],["Communicate on the go","/executive-leadership"]],
-    prompts:[["Add talking points to a presentation script","/human-resources"],["Brainstorm employee appreciation ideas","/executive-leadership"],["Brainstorm responses to tough employee questions","/executive-leadership"],["Check inventory levels","/frontline-management"]] },
-  { name:"Growth & Acquisition", slug:"growth-acquisition", img:"/assets/img/department-growth-acquisition.jpg",
+    prompts:[["Add talking points to a presentation script","/human-resources/#prompt-843"],["Brainstorm employee appreciation ideas","/executive-leadership/#prompt-737"],["Brainstorm responses to tough employee questions","/executive-leadership/#prompt-814"],["Check inventory levels","/frontline-management/#prompt-790"]] },
+  { name:"Growth & Acquisition", slug:"growth-acquisition", href:"/marketing-communications/", img:"/assets/img/department-growth-acquisition.jpg",
     desc:"AI-driven campaigns and sales automation for rapid, measurable growth.",
     roles:"Marketing Directors, Sales Managers, Campaign Managers, Digital Marketing Specialists, Growth Hackers",
     usecases:[["Analyze social media trends to reduce time to market","/marketing-communications"],["Brainstorm and generate marketing content","/marketing-communications"],["Brainstorm brand partnerships","/marketing-communications"],["Build customer relationships","/sales"],["Access tools on your phone while on the go","/sales"],["Brainstorm content & thought leadership","/executive-leadership"]],
-    prompts:[["Add more information to a press release","/communications"],["Analyse the findings in this report","/marketing-communications"],["Brainstorm marketing materials for an event/sale","/marketing-communications"],["Brainstorm tactics to bring in new customers","/marketing-communications"]] },
-  { name:"Customer Experience", slug:"customer-experience", img:"/assets/img/department-customer-experience.jpg",
+    prompts:[["Add more information to a press release","/communications/#prompt-711"],["Analyse the findings in this report","/marketing-communications/#prompt-666"],["Brainstorm marketing materials for an event/sale","/marketing-communications/#prompt-671"],["Brainstorm tactics to bring in new customers","/marketing-communications/#prompt-670"]] },
+  { name:"Customer Experience", slug:"customer-experience", href:"/customer-support-service/", img:"/assets/img/department-customer-experience.jpg",
     desc:"Delight customers with intelligent support and frictionless service, powered by AI.",
     roles:"Customer Success Managers, Support Team Leads, Call Center Managers, Customer Experience Directors",
     usecases:[["Analyze customer feedback","/customer-support-service"],["Conduct voice of the customer research","/customer-support-service"],["Draft customer communications","/customer-support-service"],["Enable customer self-service","/customer-support-service"],["Improve customer service","/customer-support-service"],["Client inquiries","/administrative-operations"]],
-    prompts:[["Analyze customer feedback from a spreadsheet","/customer-support-service"],["Craft a list of customer communication best practices","/customer-support-service"],["Create a blog post from a product return policy","/customer-support-service"],["Create a post-call customer survey","/customer-support-service"]] },
-  { name:"Finance & Operations", slug:"finance-operations", img:"/assets/img/department-operations.jpg",
+    prompts:[["Analyze customer feedback from a spreadsheet","/customer-support-service/#prompt-663"],["Craft a list of customer communication best practices","/customer-support-service/#prompt-785"],["Create a blog post from a product return policy","/customer-support-service/#prompt-759"],["Create a post-call customer survey","/customer-support-service/#prompt-704"]] },
+  { name:"Finance & Operations", slug:"finance-operations", href:"/startup-leaders/", img:"/assets/img/department-operations.jpg",
     desc:"Automate finances and streamline operations with data-fueled intelligence.",
     roles:"CFOs, Finance Managers, Operations Directors, Budget Analysts, Financial Controllers",
     usecases:[["Brainstorm business and strategy","/startup-leaders"],["Communicate and negotiate with vendors","/startup-leaders"],["Conduct fundraising and investor relations","/startup-leaders"],["Develop a product launch plan","/startup-leaders"],["Compliance requests","/administrative-operations"],["Create an elevator pitch (speech to text)","/startup-leaders"]],
-    prompts:[["Brainstorm scenarios for a product launch plan","/startup-leaders"],["Build a high-level roadmap","/startup-leaders"],["Clean a user feedback survey spreadsheet","/startup-leaders"],["Compare product prices to competitors","/startup-leaders"]] },
-  { name:"Product & Engineering", slug:"product-engineering", img:"/assets/img/department-product-engineering.jpg",
+    prompts:[["Brainstorm different scenarios for a product launch plan","/startup-leaders/#prompt-741"],["Build a high-level roadmap","/startup-leaders/#prompt-749"],["Clean a user feedback survey spreadsheet","/startup-leaders/#prompt-750"],["Compare product prices to competitors","/startup-leaders/#prompt-740"]] },
+  { name:"Product & Engineering", slug:"product-engineering", href:"/project-management/", img:"/assets/img/department-product-engineering.jpg",
     desc:"Ship better products, faster—AI-enhanced development and IT automation at every step.",
     roles:"IT Directors, DevOps Engineers, System Administrators, Tech Leads, Infrastructure Managers",
     usecases:[["Create a project plan","/productivity-automation"],["Create a project retrospective","/project-management"],["Create a workback schedule","/project-management"],["Develop an issue tracker & related communications","/project-management"],["Complex project discussions","/project-management"],["Communicate technical topics to non-technical audiences","/executive-leadership"]],
-    prompts:[["Create a detailed project plan for a software project","/productivity-automation"],["Create a presentation slide to explain a technical topic","/executive-leadership"],["Create a software license tracker","/executive-leadership"],["Create a spreadsheet to track project issues","/project-management"]] },
+    prompts:[["Create a detailed project plan for a new software development project","/productivity-automation/#prompt-712"],["Create a presentation slide to explain a technical topic","/executive-leadership/#prompt-688"],["Create a software license tracker","/executive-leadership/#prompt-841"],["Create a spreadsheet to track project issues","/project-management/#prompt-745"]] },
 ];
 const deptSection=document.getElementById('prompts');
 const tabsEl=document.getElementById('depttabs'), panelsEl=document.getElementById('deptpanels');
@@ -35,18 +35,19 @@ DEPTS.forEach((d,i)=>{
   t.onclick=()=>select(i);tabsEl.appendChild(t);
   const p=document.createElement('div');p.className='tabpanel'+(i===0?' active':'');
   p.innerHTML=`<div class="dept-card">
-    <div class="dept-media">
+    <a class="dept-media" href="${d.href}" target="_blank" rel="noopener">
       <img src="${d.img}" alt="${d.name}">
       <h3>${d.name}</h3>
       <p>${d.desc}</p>
-    </div>
+      <span class="dept-go">See the prompts &rsaquo;</span>
+    </a>
     <div class="dept-uc">
       <h4>Use Cases</h4>
       <ul>${d.usecases.map(u=>`<li><a href="${u[1]}" target="_blank" rel="noopener">${u[0]}</a></li>`).join('')}</ul>
     </div>
     <div class="dept-pp">
       <h4>Power Prompts</h4><div class="div"></div>
-      <ul>${d.prompts.map(u=>`<li>${u[0]}</li>`).join('')}</ul>
+      <ul>${d.prompts.map(u=>`<li><a href="${u[1]}" target="_blank" rel="noopener">${u[0]}</a></li>`).join('')}</ul>
     </div>
   </div>`;
   panelsEl.appendChild(p);
