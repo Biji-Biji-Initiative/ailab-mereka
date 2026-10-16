@@ -237,37 +237,46 @@ for slug,r in content["roles"].items():
     total+=role_page(slug,r)
 print(f"role pages: {len(content['roles'])}, prompts rendered: {total}")
 
-# ---------------- keep the homepage's header in sync ----------------
-# index.html is hand-written and carries its own copy of the header; it has
-# drifted from theme.nav() twice. Inject the generated markup and mega-menu CSS
-# so there is only one source of truth.
+# ------------- keep the hand-written pages' chrome in sync -------------
+# index.html and the two training pages are hand-written, but they must not
+# carry their own copies of the header, the footer or the mega-menu CSS: that
+# drifted from theme.nav() twice already. Each page declares marker pairs and
+# this injects the generated markup into them. The page CSS and JS are shared
+# files under /assets, so the nav CSS is injected there instead of per page.
 import re as _re
-_home_path = f"{REPO}/index.html"
-_home = open(_home_path).read()
-_before = _home
-_home = _re.sub(r"<!--NAV-->.*?<!--/NAV-->",
-                lambda _m: "<!--NAV-->" + theme.nav() + "<!--/NAV-->", _home, flags=_re.S)
-_home = _re.sub(r"/\*NAV-CSS\*/.*?/\*/NAV-CSS\*/",
-                lambda _m: "/*NAV-CSS*/" + theme.MENU_CSS + "/*/NAV-CSS*/", _home, flags=_re.S)
-if "<!--NAV-->" not in _home or "/*NAV-CSS*/" not in _home:
-    raise SystemExit("index.html is missing its <!--NAV--> / /*NAV-CSS*/ markers")
-open(_home_path, "w").write(_home)
-print("index.html: header", "updated" if _home != _before else "already current")
 
-# ---- homepage SEO, built from the page's own content so it cannot drift ----
-HOME_TITLE = "HRD Corp Claimable AI Training for Teams | Mereka AI Lab"
-HOME_DESC  = ("Hands-on, HRD Corp claimable AI training for Malaysian teams. AI Foundation plus "
-              "tool deep dives in ChatGPT, Copilot, Gemini and Claude. Seats from RM 300.")
+_FOOTER = open(f"{REPO}/partials/footer.html").read().rstrip("\n")
 
-# the FAQ block is the real one on the page, parsed back out so the rich-result
-# markup and the visible copy can never disagree
-_faq = []
-for _m in _re.finditer(r"<details><summary>(.*?)</summary><p>(.*?)</p></details>", _home, _re.S):
-    _q = _html.unescape(_re.sub(r"<[^>]+>", "", _m.group(1))).strip()
-    _a = _html.unescape(_re.sub(r"<[^>]+>", "", _m.group(2))).strip()
-    if _q and _a:
-        _faq.append({"@type": "Question", "name": _q,
-                     "acceptedAnswer": {"@type": "Answer", "text": _a}})
+def _inject(path, marker, markup):
+    """Replace <!--MARKER-->…<!--/MARKER--> (or the /*MARKER*/ form in CSS)."""
+    txt = open(path).read()
+    if marker.startswith("/*"):
+        open_t, close_t = marker, "/*/" + marker[2:]
+        pat = _re.escape(open_t) + ".*?" + _re.escape(close_t)
+    else:
+        open_t, close_t = f"<!--{marker}-->", f"<!--/{marker}-->"
+        pat = _re.escape(open_t) + ".*?" + _re.escape(close_t)
+    if open_t not in txt or close_t not in txt:
+        raise SystemExit(f"{path} is missing its {open_t} / {close_t} markers")
+    out = _re.sub(pat, lambda _m: open_t + markup + close_t, txt, flags=_re.S)
+    if out != txt:
+        open(path, "w").write(out)
+    return out != txt
+
+# the shared stylesheet owns the mega-menu CSS
+_css_changed = _inject(f"{REPO}/assets/ailab.css", "/*NAV-CSS*/", theme.MENU_CSS)
+print("assets/ailab.css: nav CSS", "updated" if _css_changed else "already current")
+
+# ---- the three hand-written pages ----
+_HOME_TITLE = "HRD Corp Claimable AI Training for Teams | Mereka AI Lab"
+_HOME_DESC  = ("Hands-on, HRD Corp claimable AI training for Malaysian teams. Corporate in-house "
+               "cohorts and public seats in ChatGPT, Copilot, Gemini, Claude and Canva.")
+_CORP_TITLE = "AI Lab Corporate Training | In-House AI Workshops | Mereka AI Lab"
+_CORP_DESC  = ("Private, HRD Corp claimable AI training for your team. AI Foundation plus tool deep "
+               "dives, tailored to your tools and data policies. In-house from RM 3,000 per group.")
+_PUB_TITLE  = "AI Lab Public Training | Open AI Workshops in Malaysia | Mereka AI Lab"
+_PUB_DESC   = ("Join an open, HRD Corp claimable AI cohort in Kuala Lumpur. AI Foundation and tool "
+               "deep dives in ChatGPT, Copilot, Gemini, Claude and Canva. Seats from RM 300.")
 
 _offers = [
     ("AI Foundation (Level 1) — Half Day", "4500", "450",
@@ -277,42 +286,86 @@ _offers = [
     ("AI Tool Deep Dive — Half Day", "3000", "300",
      "Tool orientation, core workflows, advanced features and daily integration for one tool."),
 ]
-HOME_SCHEMA = [
-    {"@type": "WebPage", "@id": theme.PROD_URL + "/#page", "url": theme.PROD_URL + "/",
-     "name": HOME_TITLE, "description": HOME_DESC,
-     "isPartOf": {"@id": theme.PROD_URL + "/#website"},
-     "about": {"@id": theme.PROD_URL + "/#organisation"}},
-    {"@type": "Service", "serviceType": "Corporate AI training",
-     "provider": {"@id": theme.PROD_URL + "/#organisation"},
-     "areaServed": {"@type": "Country", "name": "Malaysia"},
-     "audience": {"@type": "BusinessAudience", "name": "Corporate and government teams"},
-     "hasOfferCatalog": {"@type": "OfferCatalog", "name": "Mereka AI Lab programmes",
-        "itemListElement": [
-            {"@type": "Offer",
-             "itemOffered": {"@type": "Course", "name": _n, "description": _d,
-                             "provider": {"@id": theme.PROD_URL + "/#organisation"}},
-             "priceCurrency": "MYR", "price": _pub,
-             "priceSpecification": [
-                 {"@type": "UnitPriceSpecification", "price": _pub, "priceCurrency": "MYR",
-                  "name": "Public seat", "unitText": "per participant"},
-                 {"@type": "UnitPriceSpecification", "price": _grp, "priceCurrency": "MYR",
-                  "name": "In-house group", "unitText": "per group of up to 20"}]}
-            for _n, _grp, _pub, _d in _offers]}},
-]
-if _faq:
-    HOME_SCHEMA.append({"@type": "FAQPage", "mainEntity": _faq})
 
-_seo = theme.seo(HOME_TITLE, HOME_DESC, "/", HOME_SCHEMA)
-_home2 = _re.sub(r"<!--SEO-->.*?<!--/SEO-->", lambda _m: "<!--SEO-->" + _seo + "<!--/SEO-->",
-                 _home, flags=_re.S)
-if "<!--SEO-->" not in _home2:
-    raise SystemExit("index.html is missing its <!--SEO--> markers")
-if _home2 != _home:
-    open(_home_path, "w").write(_home2)
-print(f"index.html: SEO block written ({len(_faq)} FAQ entries)")
+def _catalog(name):
+    return {"@type": "OfferCatalog", "name": name, "itemListElement": [
+        {"@type": "Offer",
+         "itemOffered": {"@type": "Course", "name": _n, "description": _d,
+                         "provider": {"@id": theme.PROD_URL + "/#organisation"}},
+         "priceCurrency": "MYR", "price": _pub,
+         "priceSpecification": [
+             {"@type": "UnitPriceSpecification", "price": _pub, "priceCurrency": "MYR",
+              "name": "Public seat", "unitText": "per participant"},
+             {"@type": "UnitPriceSpecification", "price": _grp, "priceCurrency": "MYR",
+              "name": "In-house group", "unitText": "per group of up to 20"}]}
+        for _n, _grp, _pub, _d in _offers]}
+
+def _service(service_type, audience, catalog):
+    return {"@type": "Service", "serviceType": service_type,
+            "provider": {"@id": theme.PROD_URL + "/#organisation"},
+            "areaServed": {"@type": "Country", "name": "Malaysia"},
+            "audience": {"@type": "BusinessAudience", "name": audience},
+            "hasOfferCatalog": _catalog(catalog)}
+
+HAND_PAGES = [
+    {"file": f"{REPO}/index.html", "path": "/",
+     "title": _HOME_TITLE, "desc": _HOME_DESC,
+     "service": _service("Corporate AI training", "Corporate and government teams",
+                         "Mereka AI Lab programmes")},
+    {"file": f"{REPO}/corporate-training/index.html", "path": "/corporate-training/",
+     "title": _CORP_TITLE, "desc": _CORP_DESC,
+     "service": _service("Corporate AI training", "Corporate and government teams",
+                         "Mereka AI Lab in-house programmes")},
+    {"file": f"{REPO}/public-training/index.html", "path": "/public-training/",
+     "title": _PUB_TITLE, "desc": _PUB_DESC,
+     "service": _service("Public AI training", "Professionals and small teams",
+                         "Mereka AI Lab public cohorts")},
+]
+
+# nginx caches /assets/*.css and *.js for 7 days, so a deploy that only changes
+# the shared stylesheet would reach returning visitors a week late. Stamp both
+# links with a content hash instead.
+import hashlib as _hashlib
+
+def _stamp(rel):
+    return rel + "?v=" + _hashlib.sha1(open(f"{REPO}{rel}", "rb").read()).hexdigest()[:8]
+
+_CSS_HREF, _JS_SRC = _stamp("/assets/ailab.css"), _stamp("/assets/ailab.js")
+
+for _pg in HAND_PAGES:
+    _f = _pg["file"]
+    _inject(_f, "NAV", theme.nav())
+    _inject(_f, "FOOT", _FOOTER)
+    # the FAQ rich result is parsed back out of the page's own markup, so the
+    # structured data and the visible copy can never disagree
+    _txt = open(_f).read()
+    _faq = []
+    for _m in _re.finditer(r"<details><summary>(.*?)</summary><p>(.*?)</p></details>", _txt, _re.S):
+        _q = _html.unescape(_re.sub(r"<[^>]+>", "", _m.group(1))).strip()
+        _a = _html.unescape(_re.sub(r"<[^>]+>", "", _m.group(2))).strip()
+        if _q and _a:
+            _faq.append({"@type": "Question", "name": _q,
+                         "acceptedAnswer": {"@type": "Answer", "text": _a}})
+    _schema = [
+        {"@type": "WebPage", "@id": theme.PROD_URL + _pg["path"] + "#page",
+         "url": theme.PROD_URL + _pg["path"],
+         "name": _pg["title"], "description": _pg["desc"],
+         "isPartOf": {"@id": theme.PROD_URL + "/#website"},
+         "about": {"@id": theme.PROD_URL + "/#organisation"}},
+        _pg["service"],
+    ]
+    if _faq:
+        _schema.append({"@type": "FAQPage", "mainEntity": _faq})
+    _inject(_f, "SEO", theme.seo(_pg["title"], _pg["desc"], _pg["path"], _schema))
+    _t = open(_f).read()
+    _t2 = _re.sub(r'(?<=")/assets/ailab\.css(\?v=[0-9a-f]+)?(?=")', _CSS_HREF, _t)
+    _t2 = _re.sub(r'(?<=")/assets/ailab\.js(\?v=[0-9a-f]+)?(?=")', _JS_SRC, _t2)
+    if _t2 != _t:
+        open(_f, "w").write(_t2)
+    print(f"{_pg['path']}: header, footer and SEO written ({len(_faq)} FAQ entries)")
 
 # ---- robots.txt + sitemap.xml ----
-_paths = ["/", "/prompts/"] + sorted(f"/{sl}/" for sl in content["roles"])
+_paths = ["/", "/corporate-training/", "/public-training/", "/prompts/"] + sorted(f"/{sl}/" for sl in content["roles"])
 if theme.IS_PROD:
     _robots = ("User-agent: *\nAllow: /\n\n"
                f"Sitemap: {theme.SITE_URL}/sitemap.xml\n")
@@ -323,7 +376,7 @@ open(f"{REPO}/robots.txt", "w").write(_robots)
 
 _urls = "".join(
     f"<url><loc>{theme.SITE_URL}{_p}</loc><changefreq>monthly</changefreq>"
-    f"<priority>{'1.0' if _p == '/' else ('0.9' if _p == '/prompts/' else '0.7')}</priority></url>"
+    f"<priority>{'1.0' if _p == '/' else ('0.9' if _p in ('/corporate-training/', '/public-training/', '/prompts/') else '0.7')}</priority></url>"
     for _p in _paths)
 open(f"{REPO}/sitemap.xml", "w").write(
     '<?xml version="1.0" encoding="UTF-8"?>'

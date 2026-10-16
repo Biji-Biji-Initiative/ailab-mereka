@@ -30,6 +30,9 @@ MENU_CSS = """
 .navlink .ni{flex:none;width:18px;height:18px;display:inline-flex;align-items:center;justify-content:center}
 .navlink .ni svg{width:100%;height:100%;display:block}
 .navfoot{grid-column:1/-1;display:grid;grid-auto-flow:column;gap:0 40px;background:#f0f2f3;border-radius:16px;padding:10px 24px;margin:6px}
+/* below 1160px the panels stop hovering and stack inside the burger menu,
+   aligned to the right edge the burger itself sits on */
+@media(max-width:1160px){.nav-links{display:none}.nav-links.open{display:flex;position:absolute;top:74px;left:0;right:0;flex-direction:column;align-items:flex-end;text-align:right;background:#fff;padding:18px 24px;border-bottom:1px solid var(--border);gap:16px}.nav-links.open .nav-cta{margin:6px 0 0}.nav-links.open a{white-space:normal}.burger{display:block}.navitem{display:block;width:100%}.navtrigger{display:block;width:100%;text-align:right;padding:2px 0;font-weight:600;color:#1a1623}.navitem:hover .navtrigger{color:#1a1623}.navpanel{position:static;opacity:1;visibility:visible;pointer-events:auto;transform:none;padding-top:0}.navcard,.navcard--stack{display:block;box-shadow:none;border-radius:0;padding:0;background:transparent}.navcol{padding:2px 0 8px;text-align:right}.navhead{padding:6px 0 2px}.navlink{justify-content:flex-end}.navfoot{display:block;background:transparent;border-radius:0;padding:0;margin:0}.navlink{white-space:normal}}
 """
 
 CSS = FONTFACE + """
@@ -84,10 +87,36 @@ footer a:hover{color:#fff}
 .foot-social a{width:34px;height:34px;border:1px solid rgba(255,255,255,.24);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.74rem}
 .foot-bottom{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;padding-top:22px;font-size:.86rem;color:#9a9dab}
 .foot-bottom a{color:#9a9dab;margin-left:18px}
-@media(max-width:1160px){.nav-links{display:none}.nav-links.open{display:flex;position:absolute;top:74px;left:0;right:0;flex-direction:column;background:#fff;padding:18px 24px;border-bottom:1px solid var(--border);gap:16px}.nav-links.open .nav-cta{margin:6px 0 0}.nav-links.open a{white-space:normal}.burger{display:block}.navitem{display:block;width:100%}.navtrigger{display:block;width:100%;text-align:left;padding:2px 0;font-weight:600;color:#1a1623}.navitem:hover .navtrigger{color:#1a1623}.navpanel{position:static;opacity:1;visibility:visible;pointer-events:auto;transform:none;padding-top:0}.navcard,.navcard--stack{display:block;box-shadow:none;border-radius:0;padding:0;background:transparent}.navcol{padding:2px 0 8px}.navhead{padding:6px 0 2px}.navfoot{display:block;background:transparent;border-radius:0;padding:0;margin:0}.navlink{white-space:normal}}
 @media(max-width:860px){.foot-top{grid-template-columns:1fr 1fr}}
 @media(max-width:560px){.foot-top{grid-template-columns:1fr;gap:26px}}
 """
+
+# ---------------------------------------------------------------- menus
+# navdata.py is scraped from ailab.mereka.io and must stay a faithful copy, so
+# the AI Lab's own pages are added here instead of hand-edited into it.
+TRAINING_ICON = ('<svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" '
+                 'viewBox="0 0 24 24" fill="none"><path d="M12 2 1.5 7.5 12 13l10.5-5.5L12 2Z" fill="#36C8F6"/>'
+                 '<path d="M5 10.5v5.2c0 .6.3 1.1.8 1.4C7.3 18 9.5 19 12 19s4.7-1 6.2-1.9c.5-.3.8-.8.8-1.4v-5.2'
+                 'L12 15 5 10.5Z" fill="#2583EF"/><path d="M21 8.6v6.1h1.5V8.6H21Z" fill="#A2E4F4"/></svg>')
+
+TRAINING_COLUMN = {"heading": "Training", "footer": False, "items": [
+    {"text": "AI Lab Corporate Training", "href": "/corporate-training/",
+     "svg": TRAINING_ICON, "blank": False},
+    {"text": "AI Lab Public Training", "href": "/public-training/",
+     "svg": TRAINING_ICON, "blank": False},
+]}
+
+def _menus():
+    """MENUS with the AI Lab's own Training column pushed to the front of the
+    'Grow with us' panel. Copied, never mutated, so a rebuild in the same
+    process cannot stack the column twice."""
+    out = []
+    for m in MENUS:
+        if m["label"] == "Grow with us":
+            m = dict(m, columns=[TRAINING_COLUMN] + list(m["columns"]))
+        out.append(m)
+    return out
+
 
 def _menu(m, is_last):
     """One hover panel: columns of icon links, plus the grey full-width row
@@ -95,7 +124,8 @@ def _menu(m, is_last):
     cols, foot = "", ""
     for c in m["columns"]:
         links = "".join(
-            f'<a class="navlink" href="{i["href"]}" target="_blank" rel="noopener">'
+            f'<a class="navlink" href="{i["href"]}"'
+            f'{" target=\"_blank\" rel=\"noopener\"" if i.get("blank", True) else ""}>'
             f'<span class="ni">{i["svg"]}</span><span>{html.escape(i["text"])}</span></a>'
             for i in c["items"])
         if c.get("footer"):
@@ -212,15 +242,13 @@ def nav(current=""):
     so the homepage and the generated pages cannot drift apart. The five
     mega-menus come from navdata.py, scraped from ailab.mereka.io's own header
     (scrape_nav.py) — icons included."""
-    prompts_cur = ' aria-current="page"' if current == "prompts" else ''
-    menus = "".join(_menu(m, i == len(MENUS) - 1) for i, m in enumerate(MENUS))
+    menus = "".join(_menu(m, i == len(_menus()) - 1) for i, m in enumerate(_menus()))
     return f"""<header class="nav">
   <div class="shell nav-inner">
     <a class="nav-logo" href="/" aria-label="Mereka home"><img src="/assets/mereka-logo-emblem.svg" alt="Mereka"></a>
     <a class="chip" href="https://mereka.io" target="_blank" rel="noopener" style="background:var(--accent);color:#fff;border:0;font-weight:600;margin-left:2px">Marketplace</a>
     <button class="burger" aria-label="Menu" onclick="document.getElementById('nav').classList.toggle('open')"><span></span><span></span><span></span></button>
     <nav class="nav-links" id="nav">
-      <a href="/prompts/"{prompts_cur}>AI Prompts</a>
       {menus}
       <a class="btn btn-dark nav-cta" href="/#contact">Contact Us</a>
     </nav>
