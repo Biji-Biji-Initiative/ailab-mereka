@@ -237,7 +237,7 @@ def seo(title, desc, path, schema=None, og_type="website"):
     )
 
 
-def nav(current=""):
+def nav(current="", contact="/#contact"):
     """The site header. build.py injects this exact string into index.html too,
     so the homepage and the generated pages cannot drift apart. The five
     mega-menus come from navdata.py, scraped from ailab.mereka.io's own header
@@ -250,7 +250,7 @@ def nav(current=""):
     <button class="burger" aria-label="Menu" onclick="document.getElementById('nav').classList.toggle('open')"><span></span><span></span><span></span></button>
     <nav class="nav-links" id="nav">
       {menus}
-      <a class="btn btn-dark nav-cta" href="/#contact">Contact Us</a>
+      <a class="btn btn-dark nav-cta" href="{contact}">Contact Us</a>
     </nav>
   </div>
 </header>"""
