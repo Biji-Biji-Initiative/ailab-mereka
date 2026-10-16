@@ -1,0 +1,40 @@
+name: Deploy to Coolify
+
+# Coolify's own "deploy on push" cannot work here: the app's Git source is
+# "Public GitHub" (a plain public-repo clone), not a GitHub App, so Coolify has
+# no permission to install a webhook on this repo and never learns about a
+# push. That is why the live site once sat six days behind main. This workflow
+# does the notifying instead.
+on:
+  push:
+    branches: [main]
+  workflow_dispatch: {}
+
+concurrency:
+  group: coolify-deploy
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger Coolify deployment
+        env:
+          COOLIFY_API_TOKEN: ${{ secrets.COOLIFY_API_TOKEN }}
+          APP_UUID: f5uw9prltijdaifgkq95wgme
+        run: |
+          if [ -z "$COOLIFY_API_TOKEN" ]; then
+            echo "::error::COOLIFY_API_TOKEN is not set on this repository."
+            exit 1
+          fi
+          # Coolify sits behind a WAF that rejects curl's default agent.
+          code=$(curl -sS -o /tmp/resp.json -w '%{http_code}' \
+            -H "Authorization: Bearer $COOLIFY_API_TOKEN" \
+            -H 'User-Agent: Mozilla/5.0 (compatible; github-actions)' \
+            "https://app.coolify.io/api/v1/deploy?uuid=$APP_UUID&force=false")
+          echo "HTTP $code"
+          cat /tmp/resp.json
+          echo
+          # A 2xx only means the job was QUEUED. Never read it as "the site changed":
+          # verify by byte-comparing the live pages against the repo.
+          [ "$code" -ge 200 ] && [ "$code" -lt 300 ]

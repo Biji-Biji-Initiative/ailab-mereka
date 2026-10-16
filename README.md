@@ -76,9 +76,10 @@ CollectionPage + BreadcrumbList on the library and category pages.
 
 ## Deploy
 - Coolify app UUID: `f5uw9prltijdaifgkq95wgme` (build pack: Dockerfile, port 80)
-- Auto-deploy: repo webhook -> `https://app.coolify.io/webhooks/source/github/events/manual`
-  (hook id 698967046, push events). The Coolify source is **Public GitHub**, not a GitHub
-  App, so Coolify cannot create this hook itself — that is why pushes did nothing until
-  2026-10-16. Its shared secret is on the app's Webhooks tab; rotate it in both places.
+- Auto-deploy: `.github/workflows/deploy.yml` calls the Coolify deploy API on every push
+  to `main`, using the `COOLIFY_API_TOKEN` repo secret. Coolify's own "deploy on push"
+  cannot work here — the app's Git source is **Public GitHub**, not a GitHub App, so
+  Coolify may not install a webhook on the repo and never hears about a push. That is why
+  pushes did nothing until 2026-10-16.
 - Domains: `ailab.mereka.dev`, `www.ailab.mereka.dev`
 - DNS: Cloudflare A records → `194.233.71.200` (DNS-only / grey cloud)
