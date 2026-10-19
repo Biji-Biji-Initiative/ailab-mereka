@@ -53,26 +53,30 @@ Pushing to `main` redeploys via the GitHub webhook below. Always byte-compare th
 > use-case bodies are titles too. Departments map to prompts/use-cases via
 > ACF fields `department_prompts` / `department_use-cases`.
 
-## SEO / going to production
+## SEO and going to production
 
-`ailab.mereka.dev` is a preview and must never be indexed. Every page ships
-`noindex, nofollow` and `robots.txt` disallows everything.
-
-The metadata itself is written for production, so promoting it is one switch:
+ailab.mereka.dev ships `noindex, nofollow` and `robots.txt` disallows everything.
+All metadata is written for production, so promoting it is one build flag:
 
 ```bash
 AILAB_SITE_URL=https://ailab.mereka.io python3 build.py
 ```
 
-That flips every canonical, `og:url`, sitemap entry and the robots rules to the
-production host and drops the noindex. Build without the variable and you are
-back to a noindexed preview. Nothing else needs editing.
+That flips every canonical, `og:url`, share image URL and sitemap entry to
+`ailab.mereka.io`, swaps robots to `index, follow`, and points `robots.txt` at
+the sitemap. Verified to leave zero `.dev` references.
 
-Per page: unique title (<=60 chars) and description (<=155), Open Graph +
-Twitter card, and JSON-LD — Organization and WebSite everywhere, plus
-Service/OfferCatalog and FAQPage on the homepage (the FAQ schema is parsed out
-of the rendered page, so it cannot drift from the visible copy) and
-CollectionPage + BreadcrumbList on the library and category pages.
+What every page carries:
+
+| | |
+| --- | --- |
+| Title / description | <=60 / <=155 chars; every claim is stated on the page |
+| Share card | 1200x630 per page type: `assets/img/og-{home,corporate,public,prompts}.jpg` |
+| JSON-LD | Organization (raster logo, contact, address) + WebSite on every page; WebPage, BreadcrumbList on sub-pages; FAQPage only where an FAQ is visible |
+| Courses | `catalogue.py` is the one source: 9 Course entries on Corporate, 7 bookable public seats on Public (each Offer points at its mereka.io listing). Prices appear only where the page shows them; dates are left out on purpose because the schedule moves |
+| Sitemap | `lastmod` from a content hash kept in `sitemap-dates.json` (commit it) |
+
+Before cutover, re-check: Foundation Half Day price (deck RM 3,500 vs site RM 4,500).
 
 ## Deploy
 - Coolify app UUID: `f5uw9prltijdaifgkq95wgme` (build pack: Dockerfile, port 80)

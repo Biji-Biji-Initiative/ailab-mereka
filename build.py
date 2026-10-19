@@ -94,6 +94,14 @@ def prompt_id_for(cat_id, title):
     hit = PROMPT_BY_CAT.get((cat_id, _norm(title))) or PROMPT_BY_TITLE.get(_norm(title))
     return hit["id"] if hit else None
 
+_SMALL = {"and", "or", "of", "for", "the", "a", "an", "to", "in", "on", "&"}
+def _nice(name):
+    """WordPress category names arrive in mixed case. Title-case them for titles,
+    headings and breadcrumbs without touching words that are already capitalised."""
+    words = name.split()
+    return " ".join(w if (i and w.lower() in _SMALL) or w[:1].isupper() else w[:1].upper() + w[1:]
+                    for i, w in enumerate(words))
+
 def role_page(slug, r):
     groups=r["groups"]
     cat_id=(cats.get(slug) or {}).get("id")
@@ -127,27 +135,30 @@ def role_page(slug, r):
 </div></section>'''
     n_prompts = sum(len(g["prompts"]) for g in groups)
     n_cases   = len([g for g in groups if g["usecase"]])
-    seo_title = f'{r["title"]} AI Prompts ({n_prompts}) | Mereka AI Lab'
-    if len(seo_title) > 60:
-        seo_title = f'{r["title"]} AI Prompts ({n_prompts})'
-    # build up in whole clauses so the description always ends on a full stop
-    _lead = (f'{n_prompts} tested AI {theme.plural(n_prompts, "prompt")} across {n_cases} '
-             f'{r["title"].lower()} {theme.plural(n_cases, "use case")}')
+    name = _nice(r["title"])
+    # keep the brand suffix; drop the count before dropping the brand
+    seo_title = next(t for t in (f'{name} AI Prompts ({n_prompts}) | Mereka AI Lab',
+                                 f'{name} AI Prompts | Mereka AI Lab',
+                                 f'{name} AI Prompts ({n_prompts})') if len(t) <= 60)
+    # whole clauses only, so a description never ends mid-sentence; the longest
+    # option that fits wins (the old builder fell back to ~90-character stubs)
+    _lead = (f'{n_prompts} tested AI {theme.plural(n_prompts, "prompt")} for {name.lower()} '
+             f'across {n_cases} {theme.plural(n_cases, "use case")}')
     _sub  = " ".join((r.get("subtitle") or "").split()).rstrip(".")
-    seo_desc = _lead + "."
-    if _sub and len(_lead) + len(_sub) + 3 <= 155:
-        seo_desc = f'{_lead}: {_sub}.'
-    _tail = " Free to copy, no sign-up."
-    if len(seo_desc) + len(_tail) <= 155:
-        seo_desc += _tail
+    _opts = []
+    if _sub:
+        _opts += [f'{_lead}: {_sub}. Free to copy, no sign-up.', f'{_lead}: {_sub}.']
+    _opts += [f'{_lead}. Copy into ChatGPT, Copilot, Claude or Gemini. Free, no sign-up.',
+              f'{_lead}. Free to copy, no sign-up.', f'{_lead}.']
+    seo_desc = next(d for d in _opts if len(d) <= 155)
     schema = [
         {"@type": "CollectionPage",
          "@id": theme.PROD_URL + f'/{slug}/#page',
          "url": theme.PROD_URL + f'/{slug}/',
-         "name": f'{r["title"]} AI Prompts',
+         "name": f'{name} AI Prompts',
          "description": r.get("subtitle") or r["title"],
          "isPartOf": {"@id": theme.PROD_URL + "/#website"},
-         "about": {"@type": "Thing", "name": r["title"]},
+         "about": {"@type": "Thing", "name": name},
          "mainEntity": {"@type": "ItemList", "numberOfItems": n_prompts,
                         "itemListElement": [
                             {"@type": "ListItem", "position": i, "name": pr["name"]}
@@ -156,12 +167,13 @@ def role_page(slug, r):
         {"@type": "BreadcrumbList", "itemListElement": [
             {"@type": "ListItem", "position": 1, "name": "Home", "item": theme.PROD_URL + "/"},
             {"@type": "ListItem", "position": 2, "name": "AI Prompts", "item": theme.PROD_URL + "/prompts/"},
-            {"@type": "ListItem", "position": 3, "name": r["title"]}]},
+            {"@type": "ListItem", "position": 3, "name": name,
+             "item": theme.PROD_URL + f'/{slug}/'}]},
     ]
     page=theme.head(seo_title, seo_desc, f'/{slug}/', ROLE_CSS, schema) + theme.nav("prompts") + f'''
 <section class="rhero"><div class="rhero-in">
   <a class="back" href="/prompts/"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M15.41 16.59 10.83 12l4.58-4.59L14 6l-6 6 6 6 1.41-1.41Z"/></svg>Back to Prompts</a>
-  <h1>{esc(r["title"])}</h1>
+  <h1>{esc(name)}</h1>
   <p>{esc(r["subtitle"])}</p>
 </div></section>
 <div class="onthis"><div class="toc" id="toc">
@@ -273,58 +285,63 @@ _css_changed = _inject(f"{REPO}/assets/ailab.css", "/*NAV-CSS*/", theme.MENU_CSS
 print("assets/ailab.css: nav CSS", "updated" if _css_changed else "already current")
 
 # ---- the three hand-written pages ----
-_HOME_TITLE = "HRD Corp Claimable AI Training for Teams | Mereka AI Lab"
-_HOME_DESC  = ("Hands-on, HRD Corp claimable AI training for Malaysian teams. Corporate in-house "
-               "cohorts and public seats in ChatGPT, Copilot, Gemini, Claude and Canva.")
-_CORP_TITLE = "AI Lab Corporate Training | In-House AI Workshops | Mereka AI Lab"
-_CORP_DESC  = ("Private, HRD Corp claimable AI training for your team: AI Foundation, the Level 2-5 "
-               "Mastery Pathway, AI Leadership, tool deep dives and custom department training.")
-_PUB_TITLE  = "AI Lab Public Training | Open AI Workshops in Malaysia | Mereka AI Lab"
-_PUB_DESC   = ("Join an open, HRD Corp claimable AI cohort in Kuala Lumpur. AI Foundation and tool "
-               "deep dives in ChatGPT, Copilot, Gemini, Claude and Canva. Seats from RM 300.")
+import catalogue as _cat
 
-_offers = [
-    ("AI Foundation (Level 1) — Half Day", "4500", "450",
-     "AI at work, ethics and compliance; prompting from fundamentals to advanced; AI agents at work."),
-    ("AI Foundation (Level 1) — Full Day", "7000", "700",
-     "Adds understanding data and AI security: threats, safety and reporting."),
-    ("AI Tool Deep Dive — Half Day", "3000", "300",
-     "Tool orientation, core workflows, advanced features and daily integration for one tool."),
-]
+# Titles stay under ~60 characters and descriptions under ~155 so neither is
+# truncated in a results page; every claim here is stated on the page itself.
+_HOME_TITLE = "HRD Corp Claimable AI Training in Malaysia | Mereka AI Lab"
+_HOME_DESC  = ("Hands-on, HRD Corp claimable AI training for Malaysian teams: in-house corporate "
+               "programmes, open public workshops and 187 free AI prompts by role.")
+_CORP_TITLE = "Corporate AI Training for Teams in Malaysia | Mereka AI Lab"
+_CORP_DESC  = ("In-house, HRD Corp claimable AI training for your team: AI Foundation, Levels 2-5, "
+               "AI Leadership, tool deep dives and custom department programmes.")
+_PUB_TITLE  = "Public AI Workshops in Kuala Lumpur | Mereka AI Lab"
+_PUB_DESC   = ("Book an open, HRD Corp claimable AI workshop: AI Foundation or a hands-on deep dive "
+               "in ChatGPT, Copilot, Claude, Gemini or Canva AI. Seats from RM 300.")
+for _t, _d in ((_HOME_TITLE, _HOME_DESC), (_CORP_TITLE, _CORP_DESC), (_PUB_TITLE, _PUB_DESC)):
+    assert len(_t) <= 60 and len(_d) <= 155, (_t, len(_t), len(_d))
 
-def _catalog(name):
-    return {"@type": "OfferCatalog", "name": name, "itemListElement": [
-        {"@type": "Offer",
-         "itemOffered": {"@type": "Course", "name": _n, "description": _d,
-                         "provider": {"@id": theme.PROD_URL + "/#organisation"}},
-         "priceCurrency": "MYR", "price": _pub,
-         "priceSpecification": [
-             {"@type": "UnitPriceSpecification", "price": _pub, "priceCurrency": "MYR",
-              "name": "Public seat", "unitText": "per participant"},
-             {"@type": "UnitPriceSpecification", "price": _grp, "priceCurrency": "MYR",
-              "name": "In-house group", "unitText": "per group of up to 20"}]}
-        for _n, _grp, _pub, _d in _offers]}
+_ORG = {"@id": theme.PROD_URL + "/#organisation"}
 
-def _service(service_type, audience, catalog):
-    return {"@type": "Service", "serviceType": service_type,
-            "provider": {"@id": theme.PROD_URL + "/#organisation"},
+def _crumbs(name, path):
+    return {"@type": "BreadcrumbList", "itemListElement": [
+        {"@type": "ListItem", "position": 1, "name": "Home", "item": theme.PROD_URL + "/"},
+        {"@type": "ListItem", "position": 2, "name": name, "item": theme.PROD_URL + path}]}
+
+def _service(service_type, audience, low, unit, url):
+    return {"@type": "Service", "serviceType": service_type, "provider": _ORG,
             "areaServed": {"@type": "Country", "name": "Malaysia"},
             "audience": {"@type": "BusinessAudience", "name": audience},
-            "hasOfferCatalog": _catalog(catalog)}
+            "offers": {"@type": "Offer", "url": url, "priceCurrency": "MYR",
+                       "priceSpecification": {"@type": "UnitPriceSpecification", "minPrice": low,
+                                              "priceCurrency": "MYR", "unitText": unit}}}
 
 HAND_PAGES = [
-    {"file": f"{REPO}/index.html", "path": "/", "contact_band": False,
-     "title": _HOME_TITLE, "desc": _HOME_DESC,
-     "service": _service("Corporate AI training", "Corporate and government teams",
-                         "Mereka AI Lab programmes")},
+    {"file": f"{REPO}/index.html", "path": "/", "contact_band": False, "image": "home",
+     "title": _HOME_TITLE, "desc": _HOME_DESC, "name": "Mereka AI Lab",
+     "extra": [
+        # the two prices Home states on its training cards
+        _service("Corporate AI training", "Corporate and government teams", "3000",
+                 "per group of up to 20", theme.PROD_URL + "/corporate-training/"),
+        _service("Public AI training", "Professionals and small teams", "300",
+                 "per participant", theme.PROD_URL + "/public-training/"),
+        {"@type": "ItemList", "name": "Mereka AI Lab", "itemListElement": [
+            {"@type": "ListItem", "position": 1, "name": "AI Lab Corporate Training",
+             "url": theme.PROD_URL + "/corporate-training/"},
+            {"@type": "ListItem", "position": 2, "name": "AI Lab Public Training",
+             "url": theme.PROD_URL + "/public-training/"},
+            {"@type": "ListItem", "position": 3, "name": "AI Prompt Library",
+             "url": theme.PROD_URL + "/prompts/"}]}]},
     {"file": f"{REPO}/corporate-training/index.html", "path": "/corporate-training/",
-     "title": _CORP_TITLE, "desc": _CORP_DESC,
-     "service": _service("Corporate AI training", "Corporate and government teams",
-                         "Mereka AI Lab in-house programmes")},
+     "image": "corporate", "title": _CORP_TITLE, "desc": _CORP_DESC,
+     "name": "AI Lab Corporate Training",
+     "extra": [_crumbs("AI Lab Corporate Training", "/corporate-training/"),
+               _cat.item_list("Mereka AI Lab programmes", _cat.corporate_courses())]},
     {"file": f"{REPO}/public-training/index.html", "path": "/public-training/",
-     "title": _PUB_TITLE, "desc": _PUB_DESC,
-     "service": _service("Public AI training", "Professionals and small teams",
-                         "Mereka AI Lab public cohorts")},
+     "image": "public", "title": _PUB_TITLE, "desc": _PUB_DESC,
+     "name": "AI Lab Public Training",
+     "extra": [_crumbs("AI Lab Public Training", "/public-training/"),
+               _cat.item_list("Mereka AI Lab public workshops", _cat.public_courses())]},
 ]
 
 # nginx caches /assets/*.css and *.js for 7 days, so a deploy that only changes
@@ -353,15 +370,28 @@ for _pg in HAND_PAGES:
                          "acceptedAnswer": {"@type": "Answer", "text": _a}})
     _schema = [
         {"@type": "WebPage", "@id": theme.PROD_URL + _pg["path"] + "#page",
-         "url": theme.PROD_URL + _pg["path"],
+         "url": theme.PROD_URL + _pg["path"], "inLanguage": "en-MY",
          "name": _pg["title"], "description": _pg["desc"],
          "isPartOf": {"@id": theme.PROD_URL + "/#website"},
-         "about": {"@id": theme.PROD_URL + "/#organisation"}},
-        _pg["service"],
-    ]
+         "about": {"@id": theme.PROD_URL + "/#organisation"},
+         "primaryImageOfPage": {"@type": "ImageObject",
+                                "url": theme.PROD_URL + theme.OG_IMAGES[_pg["image"]][0],
+                                "width": 1200, "height": 630}},
+    ] + _pg["extra"]
     if _faq:
         _schema.append({"@type": "FAQPage", "mainEntity": _faq})
-    _inject(_f, "SEO", theme.seo(_pg["title"], _pg["desc"], _pg["path"], _schema))
+    _inject(_f, "SEO", theme.seo(_pg["title"], _pg["desc"], _pg["path"], _schema,
+                                 image=_pg["image"]))
+    _t = open(_f).read()
+    # the hand-written shells said lang="en"; every generated page says en-MY
+    _t2 = _t.replace('<html lang="en">', '<html lang="en-MY">', 1)
+    # below-the-fold images load lazily; the first section (the hero) stays eager
+    _m = _re.search(r'<main id="top">.*?</section>(.*?)</main>', _t2, _re.S)
+    if _m:
+        _rest = _re.sub(r'<img(?![^>]*\bloading=)', '<img loading="lazy" decoding="async"', _m.group(1))
+        _t2 = _t2[:_m.start(1)] + _rest + _t2[_m.end(1):]
+    if _t2 != _t:
+        open(_f, "w").write(_t2)
     _t = open(_f).read()
     _t2 = _re.sub(r'(?<=")/assets/ailab\.css(\?v=[0-9a-f]+)?(?=")', _CSS_HREF, _t)
     _t2 = _re.sub(r'(?<=")/assets/ailab\.js(\?v=[0-9a-f]+)?(?=")', _JS_SRC, _t2)
@@ -403,10 +433,29 @@ else:
                "User-agent: *\nDisallow: /\n")
 open(f"{REPO}/robots.txt", "w").write(_robots)
 
+# lastmod per URL, from a hash of the page's content rather than the build
+# date: rebuilding without changes must not make every page look fresh. The
+# hashes and dates persist in sitemap-dates.json, which is committed.
+import datetime as _dt
+_DATES_F = f"{REPO}/sitemap-dates.json"
+_dates = json.load(open(_DATES_F)) if os.path.exists(_DATES_F) else {}
+_today = _dt.date.today().isoformat()
+def _lastmod(path):
+    f = f"{REPO}{path}index.html"
+    if not os.path.exists(f):
+        return _today
+    body = open(f).read()
+    # canonical/robots/asset stamps differ between hosts and builds; hash content only
+    body = _re.sub(r"<!--SEO-->.*?<!--/SEO-->|\?v=[0-9a-f]+", "", body, flags=_re.S)
+    h = _hashlib.sha1(body.encode()).hexdigest()
+    if _dates.get(path, {}).get("hash") != h:
+        _dates[path] = {"hash": h, "lastmod": _today}
+    return _dates[path]["lastmod"]
 _urls = "".join(
-    f"<url><loc>{theme.SITE_URL}{_p}</loc><changefreq>monthly</changefreq>"
+    f"<url><loc>{theme.SITE_URL}{_p}</loc><lastmod>{_lastmod(_p)}</lastmod><changefreq>monthly</changefreq>"
     f"<priority>{'1.0' if _p == '/' else ('0.9' if _p in ('/corporate-training/', '/public-training/', '/prompts/') else '0.7')}</priority></url>"
     for _p in _paths)
+json.dump(_dates, open(_DATES_F, "w"), indent=1, sort_keys=True)
 open(f"{REPO}/sitemap.xml", "w").write(
     '<?xml version="1.0" encoding="UTF-8"?>'
     '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' + _urls + "</urlset>")

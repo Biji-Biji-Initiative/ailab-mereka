@@ -9,3 +9,5 @@ README.md
 .github
 partials
 *.md
+sitemap-dates.json
+catalogue.py

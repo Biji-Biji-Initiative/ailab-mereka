@@ -157,9 +157,18 @@ PROD_URL = "https://ailab.mereka.io"
 SITE_URL = os.environ.get("AILAB_SITE_URL", "https://ailab.mereka.dev").rstrip("/")
 IS_PROD  = SITE_URL == PROD_URL
 
-OG_IMAGE   = "/assets/img/bg-cta.jpg"   # 1500x600 session photo
-OG_IMAGE_W = "1500"
-OG_IMAGE_H = "600"
+# Branded 1200x630 share cards, one per page type (rendered from HTML with
+# headless Chrome in our own Poppins). The old default, bg-cta.jpg, was a
+# 1500x600 plain gradient: off-ratio for every platform and blank when shown.
+OG_IMAGES = {
+    "home":      ("/assets/img/og-home.jpg",      "Mereka AI Lab: hands-on AI training for Malaysian teams"),
+    "corporate": ("/assets/img/og-corporate.jpg", "Mereka AI Lab Corporate Training: AI training built around your team"),
+    "public":    ("/assets/img/og-public.jpg",    "Mereka AI Lab Public Training: open AI workshops you can book"),
+    "prompts":   ("/assets/img/og-prompts.jpg",   "Mereka AI Lab: 187 ready-to-use AI prompts, sorted by role"),
+}
+OG_IMAGE_W = "1200"
+OG_IMAGE_H = "630"
+THEME_COLOR = "#1f3f7c"
 SITE_NAME  = "Mereka AI Lab"
 TWITTER    = "@mereka_io"
 
@@ -168,10 +177,25 @@ ORGANISATION = {
     "@id": PROD_URL + "/#organisation",
     "name": "Mereka AI Lab",
     "url": PROD_URL + "/",
-    "logo": PROD_URL + "/assets/mereka-logo.svg",
-    "description": "HRD Corp claimable, hands-on AI training for Malaysian teams.",
+    # Google ignores SVG logos; it wants a raster image of at least 112px
+    "logo": {"@type": "ImageObject", "url": PROD_URL + "/assets/favicon.png",
+             "width": 256, "height": 256},
+    "image": PROD_URL + "/assets/img/og-home.jpg",
+    "description": ("HRD Corp claimable, hands-on AI training for Malaysian teams: "
+                    "in-house corporate programmes, open public cohorts and a free AI prompt library."),
     "email": "ailab@mereka.io",
-    "areaServed": "MY",
+    "telephone": "+60 11-3011 6472",
+    "contactPoint": [{
+        "@type": "ContactPoint", "contactType": "customer service",
+        "email": "ailab@mereka.io", "telephone": "+60 11-3011 6472",
+        "areaServed": "MY", "availableLanguage": ["English", "Malay"]}],
+    # public cohorts run at Mereka @ Publika (the mereka.io listings carry this address)
+    "address": {"@type": "PostalAddress", "streetAddress": "Publika Shopping Gallery, Solaris Dutamas",
+                "addressLocality": "Kuala Lumpur", "postalCode": "50480",
+                "addressRegion": "Wilayah Persekutuan Kuala Lumpur", "addressCountry": "MY"},
+    "areaServed": {"@type": "Country", "name": "Malaysia"},
+    "knowsAbout": ["Generative AI", "Prompt engineering", "ChatGPT", "Microsoft Copilot",
+                   "Claude", "Google Gemini", "Canva AI", "AI governance", "AI automation"],
     "parentOrganization": {"@type": "Organization", "name": "Mereka", "url": "https://mereka.io/"},
     "sameAs": [
         "https://www.linkedin.com/company/mereka",
@@ -212,10 +236,11 @@ def plural(n, one, many=None):
     return one if n == 1 else (many or one + "s")
 
 
-def seo(title, desc, path, schema=None, og_type="website"):
+def seo(title, desc, path, schema=None, og_type="website", image="home"):
     """Title/description/canonical/OG/Twitter/robots + JSON-LD for one page."""
     url = SITE_URL + path
-    img = SITE_URL + OG_IMAGE
+    img_path, img_alt = OG_IMAGES[image]
+    img = SITE_URL + img_path
     e = html.escape
     robots = ('<meta name="robots" content="index, follow, max-image-preview:large, '
               'max-snippet:-1, max-video-preview:-1">') if IS_PROD else \
@@ -233,12 +258,17 @@ def seo(title, desc, path, schema=None, og_type="website"):
         f'<meta property="og:url" content="{url}">'
         f'<meta property="og:image" content="{img}">'
         f'<meta property="og:image:width" content="{OG_IMAGE_W}">'
-        f'<meta property="og:image:height" content="{OG_IMAGE_H}">\n'
+        f'<meta property="og:image:height" content="{OG_IMAGE_H}">'
+        f'<meta property="og:image:type" content="image/jpeg">'
+        f'<meta property="og:image:alt" content="{e(img_alt)}">\n'
         f'<meta name="twitter:card" content="summary_large_image">'
         f'<meta name="twitter:site" content="{TWITTER}">'
         f'<meta name="twitter:title" content="{e(title)}">'
         f'<meta name="twitter:description" content="{e(desc)}">'
-        f'<meta name="twitter:image" content="{img}">\n'
+        f'<meta name="twitter:image" content="{img}">'
+        f'<meta name="twitter:image:alt" content="{e(img_alt)}">\n'
+        f'<meta name="theme-color" content="{THEME_COLOR}">'
+        f'<link rel="apple-touch-icon" href="/assets/favicon.png">\n'
         + _ld(schema)
     )
 
@@ -347,11 +377,11 @@ def footer():
   </div>
 </div></footer>"""
 
-def head(title, desc, path, extra_css="", schema=None):
+def head(title, desc, path, extra_css="", schema=None, image="prompts"):
     """`path` is site-root-relative ("/prompts/"); seo() turns it into the
     canonical and og:url for whichever host this build targets."""
     return f"""<!doctype html><html lang="en-MY"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-{seo(title, desc, path, schema)}
+{seo(title, desc, path, schema, image=image)}
 <link rel="icon" href="/assets/favicon.png">
 <style>{CSS}{extra_css}</style></head><body id="top">"""
