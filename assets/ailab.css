@@ -560,6 +560,24 @@ footer a:hover{color:var(--teal)}
 @media(max-width:620px){.tool>summary{padding:22px 20px}.tool ul.will{padding:0 20px 22px}
   .tool .outcomes-head{padding:0 20px}.tool--plain{padding:22px 20px}}
 
+/* Custom Solutions: nine departments read better three across */
+.deliv--3{grid-template-columns:repeat(3,1fr)}
+@media(max-width:900px){.deliv--3{grid-template-columns:1fr 1fr}}
+@media(max-width:620px){.deliv--3{grid-template-columns:1fr}}
+.deliv--3 .dlv h3{font-size:1.05rem;margin-bottom:8px}
+.deliv--3 .dlv p{color:var(--muted);font-size:.93rem;line-height:1.55;margin:0}
+/* Public: each tool card books straight to its mereka.io listing. It sits in
+   the <summary>, so it is visible without expanding the card. */
+.tool-book{display:inline-flex;align-items:center;margin-top:14px;align-self:flex-start;text-decoration:none;background:var(--anchor);color:#fff;border-radius:999px;padding:8px 16px;font-size:.84rem;font-weight:600;white-space:nowrap;transition:background .18s var(--ease),transform .18s var(--ease)}
+.tool-book:hover,.tool-book:focus-visible{background:var(--teal);color:#fff;transform:translateY(-1px)}
+/* Mastery Pathway: who each level is for, as a line rather than a squeezed table row */
+.pc .built{color:var(--muted);font-size:.92rem;line-height:1.55;margin:0 0 4px}
+.pc .built b{color:var(--ink)}
+/* .prow values are nowrap so prices like "RM 4,500 / group" never break, but the
+   new programme cards carry long values ("Two days · 7 modules, 33 learning
+   outcomes"). Let those wrap, and let grid cards shrink below their content. */
+.pricecards>.pc{min-width:0}
+.prow b.wrap{white-space:normal;text-align:right}
 /*NAV-CSS*/
 /* ---- the whole site header: structure, mega-menu panels and the mobile
      accordion. build.py injects this into assets/ailab.css too, so the

@@ -246,6 +246,11 @@ print(f"role pages: {len(content['roles'])}, prompts rendered: {total}")
 import re as _re
 
 _FOOTER = open(f"{REPO}/partials/footer.html").read().rstrip("\n")
+# Home drops the "Book a Free Discovery Call" band (Ambika's design, 2026-10-16);
+# the training pages keep it. Same partial, band cut out where a page opts out.
+_FOOTER_NO_BAND = _re.sub(r'\n?\s*<div class="cta-band">.*?(?=\n\s*<div class="foot2">)', "",
+                          _FOOTER, count=1, flags=_re.S)
+assert "cta-band" not in _FOOTER_NO_BAND and "foot2" in _FOOTER_NO_BAND, "contact band split failed"
 
 def _inject(path, marker, markup):
     """Replace <!--MARKER-->…<!--/MARKER--> (or the /*MARKER*/ form in CSS)."""
@@ -272,8 +277,8 @@ _HOME_TITLE = "HRD Corp Claimable AI Training for Teams | Mereka AI Lab"
 _HOME_DESC  = ("Hands-on, HRD Corp claimable AI training for Malaysian teams. Corporate in-house "
                "cohorts and public seats in ChatGPT, Copilot, Gemini, Claude and Canva.")
 _CORP_TITLE = "AI Lab Corporate Training | In-House AI Workshops | Mereka AI Lab"
-_CORP_DESC  = ("Private, HRD Corp claimable AI training for your team. AI Foundation plus tool deep "
-               "dives, tailored to your tools and data policies. In-house from RM 3,000 per group.")
+_CORP_DESC  = ("Private, HRD Corp claimable AI training for your team: AI Foundation, the Level 2-5 "
+               "Mastery Pathway, AI Leadership, tool deep dives and custom department training.")
 _PUB_TITLE  = "AI Lab Public Training | Open AI Workshops in Malaysia | Mereka AI Lab"
 _PUB_DESC   = ("Join an open, HRD Corp claimable AI cohort in Kuala Lumpur. AI Foundation and tool "
                "deep dives in ChatGPT, Copilot, Gemini, Claude and Canva. Seats from RM 300.")
@@ -308,7 +313,7 @@ def _service(service_type, audience, catalog):
             "hasOfferCatalog": _catalog(catalog)}
 
 HAND_PAGES = [
-    {"file": f"{REPO}/index.html", "path": "/",
+    {"file": f"{REPO}/index.html", "path": "/", "contact_band": False,
      "title": _HOME_TITLE, "desc": _HOME_DESC,
      "service": _service("Corporate AI training", "Corporate and government teams",
                          "Mereka AI Lab programmes")},
@@ -335,7 +340,7 @@ _CSS_HREF, _JS_SRC = _stamp("/assets/ailab.css"), _stamp("/assets/ailab.js")
 for _pg in HAND_PAGES:
     _f = _pg["file"]
     _inject(_f, "NAV", theme.nav())
-    _inject(_f, "FOOT", _FOOTER)
+    _inject(_f, "FOOT", _FOOTER if _pg.get("contact_band", True) else _FOOTER_NO_BAND)
     # the FAQ rich result is parsed back out of the page's own markup, so the
     # structured data and the visible copy can never disagree
     _txt = open(_f).read()
