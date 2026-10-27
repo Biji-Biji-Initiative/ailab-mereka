@@ -124,6 +124,11 @@ def _menus():
     return out
 
 
+# Kept out of the f-string below: a backslash inside an f-string expression is a
+# SyntaxError before Python 3.12, and macOS still ships 3.9 as /usr/bin/python3.
+_NEW_TAB = ' target="_blank" rel="noopener"'
+
+
 def _menu(m, is_last):
     """One hover panel: columns of icon links, plus the grey full-width row
     that only the Company menu has."""
@@ -131,7 +136,7 @@ def _menu(m, is_last):
     for c in m["columns"]:
         links = "".join(
             f'<a class="navlink" href="{i["href"]}"'
-            f'{" target=\"_blank\" rel=\"noopener\"" if i.get("blank", True) else ""}>'
+            f'{_NEW_TAB if i.get("blank", True) else ""}>'
             f'<span class="ni">{i["svg"]}</span><span>{html.escape(i["text"])}</span></a>'
             for i in c["items"])
         if c.get("footer"):
