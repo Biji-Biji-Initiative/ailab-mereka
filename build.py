@@ -316,6 +316,37 @@ def _service(service_type, audience, low, unit, url):
                        "priceSpecification": {"@type": "UnitPriceSpecification", "minPrice": low,
                                               "priceCurrency": "MYR", "unitText": unit}}}
 
+# AI case studies: each is a hand-written article at /case-studies/<slug>/,
+# listed newest first on /case-studies/. Add one entry here per new article.
+_CS_TITLE = "AI Case Studies: How Mereka Teams Use AI | Mereka AI Lab"
+_CS_DESC  = ("Real examples of Mereka teams building with AI: what each tool does, what it "
+             "changed and the numbers behind it.")
+CASE_STUDIES = [
+    {"slug": "team-analytics-dashboard",
+     "headline": "How We Built an AI-Powered Team Analytics Dashboard",
+     "title": "AI Team Analytics Dashboard Case Study | Mereka AI Lab",
+     "desc": ("How Mereka built a team analytics dashboard with AI: reports that took 4 to 6 "
+              "hours now take 30 seconds, with 50+ metrics refreshed every 2 hours."),
+     "published": "2026-05-20"},
+]
+for _t, _d in [(_CS_TITLE, _CS_DESC)] + [(_c["title"], _c["desc"]) for _c in CASE_STUDIES]:
+    assert len(_t) <= 60 and len(_d) <= 155, (_t, len(_t), len(_d))
+
+def _case_crumbs(c):
+    return {"@type": "BreadcrumbList", "itemListElement": [
+        {"@type": "ListItem", "position": 1, "name": "Home", "item": theme.PROD_URL + "/"},
+        {"@type": "ListItem", "position": 2, "name": "AI Case Studies",
+         "item": theme.PROD_URL + "/case-studies/"},
+        {"@type": "ListItem", "position": 3, "name": c["headline"],
+         "item": theme.PROD_URL + f"/case-studies/{c['slug']}/"}]}
+
+def _case_article(c):
+    return {"@type": "Article", "headline": c["headline"], "description": c["desc"],
+            "datePublished": c["published"], "inLanguage": "en-MY",
+            "author": _ORG, "publisher": _ORG,
+            "mainEntityOfPage": {"@id": theme.PROD_URL + f"/case-studies/{c['slug']}/#page"},
+            "image": theme.PROD_URL + theme.OG_IMAGES["home"][0]}
+
 HAND_PAGES = [
     {"file": f"{REPO}/index.html", "path": "/", "contact_band": False, "image": "home",
      "title": _HOME_TITLE, "desc": _HOME_DESC, "name": "Mereka AI Lab",
@@ -342,6 +373,15 @@ HAND_PAGES = [
      "name": "AI Lab Public Training",
      "extra": [_crumbs("AI Lab Public Training", "/public-training/"),
                _cat.item_list("Mereka AI Lab public workshops", _cat.public_courses())]},
+    {"file": f"{REPO}/case-studies/index.html", "path": "/case-studies/",
+     "image": "home", "title": _CS_TITLE, "desc": _CS_DESC, "name": "AI Case Studies",
+     "extra": [_crumbs("AI Case Studies", "/case-studies/")]},
+] + [
+    {"file": f"{REPO}/case-studies/{_c['slug']}/index.html",
+     "path": f"/case-studies/{_c['slug']}/", "image": "home",
+     "title": _c["title"], "desc": _c["desc"], "name": _c["headline"],
+     "extra": [_case_crumbs(_c), _case_article(_c)]}
+    for _c in CASE_STUDIES
 ]
 
 # nginx caches /assets/*.css and *.js for 7 days, so a deploy that only changes
@@ -424,7 +464,8 @@ _n_card   = len(_re.findall(r'href:"/[a-z-]+/"', _dept_block.group(1)))
 print(f"prompts section: {_n_anchor} prompt anchors + {_n_card} card links verified")
 
 # ---- robots.txt + sitemap.xml ----
-_paths = ["/", "/corporate-training/", "/public-training/", "/prompts/"] + sorted(f"/{sl}/" for sl in content["roles"])
+_paths = ["/", "/corporate-training/", "/public-training/", "/prompts/", "/case-studies/"] \
+    + [f"/case-studies/{_c['slug']}/" for _c in CASE_STUDIES] + sorted(f"/{sl}/" for sl in content["roles"])
 if theme.IS_PROD:
     _robots = ("User-agent: *\nAllow: /\n\n"
                f"Sitemap: {theme.SITE_URL}/sitemap.xml\n")

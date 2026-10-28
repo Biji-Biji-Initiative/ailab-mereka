@@ -1,7 +1,7 @@
 {
  "/": {
-  "hash": "b97f75eb9cbb28f5eb0570699aa9c449b09f6576",
-  "lastmod": "2026-10-19"
+  "hash": "7188c52884c8e492c56fdb4266ffe4a71b5792a7",
+  "lastmod": "2026-10-28"
  },
  "/administrative-operations/": {
   "hash": "22b66c22c6c8133dfbabdb1025ea90c8b93c2f3d",
@@ -10,6 +10,14 @@
  "/budgeting-financial-analysis/": {
   "hash": "7da6c236b6b67751e9cbff15a9c8f5c07765c22f",
   "lastmod": "2026-10-19"
+ },
+ "/case-studies/": {
+  "hash": "dc9a7f1fa05e9589be57ee175aabfdfb5f19318e",
+  "lastmod": "2026-10-28"
+ },
+ "/case-studies/team-analytics-dashboard/": {
+  "hash": "c7bc5cb372003bb8193598cae02f4b81d2effb1c",
+  "lastmod": "2026-10-28"
  },
  "/communications/": {
   "hash": "c11680c90637b61485433e85805474b23d6c366a",

@@ -703,3 +703,34 @@ header.nav{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.86);bac
 .foot2-bottom a{color:#9a9dab;margin-left:22px}.foot2-bottom a:hover{color:#fff}
 @media(max-width:860px){.foot2-cols{grid-template-columns:1fr 1fr}}
 @media(max-width:560px){.foot2-cols{grid-template-columns:1fr}.foot2-mk{grid-template-columns:1fr 1fr}}
+
+/* ---- AI case studies (/case-studies/) ---- */
+.hero h1.cs-title{font-size:clamp(2.1rem,4.6vw,3.8rem);line-height:1.12}
+.cs-body{padding-top:40px}
+.prose{max-width:780px}
+.prose p,.prose li{font-size:1.06rem;line-height:1.75;color:var(--ink)}
+.prose p{margin:0 0 18px}
+.prose h2{font-size:clamp(1.5rem,2.6vw,1.9rem);margin:46px 0 16px}
+.prose h3{font-size:1.14rem;margin:28px 0 8px}
+.prose ul{margin:0 0 22px;padding-left:22px}
+.prose li{margin-bottom:8px}
+.prose a{color:var(--teal-600);text-decoration:underline;text-underline-offset:3px}
+.cs-meta{color:var(--muted)!important;font-size:.9rem!important;font-weight:600;margin-bottom:28px!important}
+.cs-meta .sep{opacity:.4;margin:0 6px}
+.cs-table{overflow-x:auto;margin:6px 0 24px;border:1px solid var(--border);border-radius:var(--radius-sm)}
+.cs-table table{width:100%;border-collapse:collapse;font-size:.96rem;min-width:520px}
+.cs-table th,.cs-table td{text-align:left;padding:12px 16px;border-bottom:1px solid var(--border);vertical-align:top}
+.cs-table th{background:var(--grey);font-weight:600}
+.cs-table tr:last-child td{border-bottom:0}
+.cs-takeaways{background:var(--grey);border-radius:var(--radius);padding:28px 30px 12px;margin:40px 0 28px}
+.cs-takeaways h2{margin-top:0}
+.cs-note{color:var(--muted)!important;font-size:.94rem!important;font-style:italic}
+.cs-cta{display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin-top:36px;padding-top:28px;border-top:1px solid var(--border)}
+.cs-cta p{width:100%;font-weight:600;margin:0 0 4px}
+.prose .cs-cta a.btn{text-decoration:none}
+.cs-card{color:inherit;transition:transform .18s var(--ease),box-shadow .18s}
+.cs-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-sm)}
+.cs-card h2{font-size:1.2rem;line-height:1.35;margin:10px 0 12px}
+.cs-card .who{color:var(--teal-600)}
+.proof-more{text-align:center;margin-top:34px}
+@media(max-width:620px){.cs-takeaways{padding:22px 20px 6px}.prose p,.prose li{font-size:1rem}}
