@@ -317,7 +317,8 @@ def _service(service_type, audience, low, unit, url):
                                               "priceCurrency": "MYR", "unitText": unit}}}
 
 # AI case studies: each is a hand-written article at /case-studies/<slug>/,
-# listed newest first on /case-studies/. Add one entry here per new article.
+# listed newest first on /case-studies/. Add one entry here per new article;
+# "published" is the date it went live on this site, never an earlier post's.
 _CS_TITLE = "AI Case Studies: How Mereka Teams Use AI | Mereka AI Lab"
 _CS_DESC  = ("Real examples of Mereka teams building with AI: what each tool does, what it "
              "changed and the numbers behind it.")
@@ -327,7 +328,7 @@ CASE_STUDIES = [
      "title": "AI Team Analytics Dashboard Case Study | Mereka AI Lab",
      "desc": ("How Mereka built a team analytics dashboard with AI: reports that took 4 to 6 "
               "hours now take 30 seconds, with 50+ metrics refreshed every 2 hours."),
-     "published": "2026-05-20"},
+     "published": "2026-10-28"},
 ]
 for _t, _d in [(_CS_TITLE, _CS_DESC)] + [(_c["title"], _c["desc"]) for _c in CASE_STUDIES]:
     assert len(_t) <= 60 and len(_d) <= 155, (_t, len(_t), len(_d))
